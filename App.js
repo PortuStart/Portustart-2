@@ -9,8 +9,6 @@ import {
   ActivityIndicator,
   SafeAreaView,
   StatusBar,
-  Keyboard,
-  TouchableWithoutFeedback,
   Modal,
   Alert,
   Platform,
@@ -80,7 +78,6 @@ const UI_TEXTS = {
     guideStepSlangTitle: '5. Lissabon-Slang & Audio',
     guideStepSlangDesc: 'Übersetzer für 8 Sprachen mit lokaler Dialektanpassung und Sprachausgabe.',
     welcomeBtn: 'Alles klar, los geht\'s!',
-    // Celebration Modal
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'Du hast alle 7 Schritte der Roadmap gemeistert!',
     celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das bürokratische Fundament gelegt und bist nun offiziell startklar für dein neues Leben in Portugal!',
@@ -137,7 +134,6 @@ const UI_TEXTS = {
     guideStepSlangTitle: '5. Authentic Lisbon Slang',
     guideStepSlangDesc: '8-language translator tailored to local dialect with audio.',
     welcomeBtn: 'Got it, let\'s start!',
-    // Celebration Modal
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'You completed all 7 roadmap milestones!',
     celebDesc: 'From your NIF and bank account to your SNS healthcare number: you conquered Portuguese paperwork and are ready to thrive!',
@@ -238,7 +234,7 @@ const IDIOM_DICTIONARY = [
   },
   {
     triggers: ['keinen bock', 'kein bock', 'keine lust', 'no mood'],
-    pt: 'Não me apetece nada!',
+    pt: 'Nicht Lust darauf.',
     explanation: '💡 Umgangssprachlich für "Ich habe überhaupt keine Lust darauf".',
   },
   {
@@ -290,7 +286,6 @@ export default function App() {
   const [passportFileName, setPassportFileName] = useState('');
   const [proofFileName, setProofFileName] = useState('');
 
-  // Checkliste umschalten & Celebration prüfen
   const toggleChecklistItem = (id) => {
     const updated = checklist.map((item) => (item.id === id ? { ...item, done: !item.done } : item));
     setChecklist(updated);
@@ -399,7 +394,6 @@ export default function App() {
 
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
-    Keyboard.dismiss();
     setLoading(true);
     setTranslatedText('');
     setSlangNote('');
@@ -472,546 +466,562 @@ export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#0F5132" />
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          
-          {/* Header */}
-          <View style={styles.header}>
-            <View style={styles.headerTopRow}>
-              <View>
-                <Text style={styles.headerTitle}>{t.title}</Text>
-                <Text style={styles.headerSubtitle}>{t.sub}</Text>
-              </View>
-              <View style={styles.headerActions}>
-                <TouchableOpacity style={styles.guideIconBtn} onPress={() => setWelcomeModalVisible(true)}>
-                  <Ionicons name="help-circle-outline" size={18} color="#fff" />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
-                  <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
-                  <Text style={styles.langSwitchHeaderText}>
-                    {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
+      <View style={styles.container}>
+        
+        {/* Header */}
+        <View style={styles.header}>
+          <View style={styles.headerTopRow}>
+            <View>
+              <Text style={styles.headerTitle}>{t.title}</Text>
+              <Text style={styles.headerSubtitle}>{t.sub}</Text>
+            </View>
+            <View style={styles.headerActions}>
+              <TouchableOpacity style={styles.guideIconBtn} onPress={() => setWelcomeModalVisible(true)}>
+                <Ionicons name="help-circle-outline" size={18} color="#fff" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
+                <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
+                <Text style={styles.langSwitchHeaderText}>
+                  {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+
+        {/* Menüleiste */}
+        <View style={styles.tabBarContainer}>
+          <View style={styles.tabBar}>
+            <TouchableOpacity
+              style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]}
+              onPress={() => setActiveTab('services')}
+            >
+              <Ionicons name="briefcase" size={14} color={activeTab === 'services' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]}
+              onPress={() => setActiveTab('trans')}
+            >
+              <Ionicons name="chatbubbles" size={14} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]}
+              onPress={() => {
+                setActiveTab('calc');
+                if (!calcResult) calculateNetSalary(grossInput);
+              }}
+            >
+              <Ionicons name="calculator" size={14} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.tabButton, activeTab === 'guide' && styles.tabButtonActive]}
+              onPress={() => setActiveTab('guide')}
+            >
+              <Ionicons name="book" size={14} color={activeTab === 'guide' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'guide' && styles.tabTextActive]}>{t.tabGuide}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* TAB: SERVICES */}
+        {activeTab === 'services' && (
+          <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+            
+            {/* ROADMAP */}
+            <View style={styles.card}>
+              <View style={styles.checklistHeaderRow}>
+                <View>
+                  <Text style={styles.sectionHeaderTitle}>{t.checklistTitle}</Text>
+                  <Text style={styles.subText}>{t.checklistSub}</Text>
+                </View>
+                <View style={styles.progressBadge}>
+                  <Text style={styles.progressBadgeText}>
+                    {completedCount} / {checklist.length} {t.checklistDone}
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          </View>
 
-          {/* Menüleiste */}
-          <View style={styles.tabBarContainer}>
-            <View style={styles.tabBar}>
-              <TouchableOpacity
-                style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]}
-                onPress={() => setActiveTab('services')}
-              >
-                <Ionicons name="briefcase" size={14} color={activeTab === 'services' ? '#fff' : '#64748B'} />
-                <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
-              </TouchableOpacity>
+              <View style={styles.progressBarTrack}>
+                <View style={[styles.progressBarFill, { width: `${(completedCount / checklist.length) * 100}%` }]} />
+              </View>
 
-              <TouchableOpacity
-                style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]}
-                onPress={() => setActiveTab('trans')}
-              >
-                <Ionicons name="chatbubbles" size={14} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
-                <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]}
-                onPress={() => {
-                  setActiveTab('calc');
-                  if (!calcResult) calculateNetSalary(grossInput);
-                }}
-              >
-                <Ionicons name="calculator" size={14} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
-                <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={[styles.tabButton, activeTab === 'guide' && styles.tabButtonActive]}
-                onPress={() => setActiveTab('guide')}
-              >
-                <Ionicons name="book" size={14} color={activeTab === 'guide' ? '#fff' : '#64748B'} />
-                <Text style={[styles.tabText, activeTab === 'guide' && styles.tabTextActive]}>{t.tabGuide}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          {/* TAB: SERVICES (CHECKLISTE + ANTRÄGE) */}
-          {activeTab === 'services' && (
-            <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-              
-              {/* ROADMAP */}
-              <View style={styles.card}>
-                <View style={styles.checklistHeaderRow}>
-                  <View>
-                    <Text style={styles.sectionHeaderTitle}>{t.checklistTitle}</Text>
-                    <Text style={styles.subText}>{t.checklistSub}</Text>
-                  </View>
-                  <View style={styles.progressBadge}>
-                    <Text style={styles.progressBadgeText}>
-                      {completedCount} / {checklist.length} {t.checklistDone}
+              {checklist.map((item) => (
+                <TouchableOpacity
+                  key={item.id}
+                  style={[styles.checklistItem, item.done && styles.checklistItemDone]}
+                  onPress={() => toggleChecklistItem(item.id)}
+                >
+                  <Ionicons
+                    name={item.done ? 'checkmark-circle' : 'ellipse-outline'}
+                    size={20}
+                    color={item.done ? '#0F5132' : '#94A3B8'}
+                    style={{ marginRight: 10, marginTop: 2 }}
+                  />
+                  <View style={{ flex: 1 }}>
+                    <Text style={[styles.checklistText, item.done && styles.checklistTextDone]}>
+                      {item.title}
                     </Text>
+                    <Text style={styles.checklistTip}>{item.tip}</Text>
                   </View>
-                </View>
+                </TouchableOpacity>
+              ))}
+            </View>
 
-                <View style={styles.progressBarTrack}>
-                  <View style={[styles.progressBarFill, { width: `${(completedCount / checklist.length) * 100}%` }]} />
-                </View>
+            {/* ANTRAGS-FORMULAR */}
+            <View style={styles.card}>
+              <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
+              <Text style={styles.subText}>{t.servicesSub}</Text>
 
-                {checklist.map((item) => (
+              <Text style={styles.inputFieldLabel}>{t.selectServices}</Text>
+              <View style={styles.serviceSelectorRow}>
+                {[
+                  { key: 'nif', label: 'NIF (Steuernummer)' },
+                  { key: 'niss', label: 'NISS (Sozialversicherung)' },
+                  { key: 'bank', label: 'Bankkonto' },
+                ].map((s) => (
                   <TouchableOpacity
-                    key={item.id}
-                    style={[styles.checklistItem, item.done && styles.checklistItemDone]}
-                    onPress={() => toggleChecklistItem(item.id)}
+                    key={s.key}
+                    style={[styles.serviceCheckChip, selectedServices[s.key] && styles.serviceCheckChipActive]}
+                    onPress={() => setSelectedServices({ ...selectedServices, [s.key]: !selectedServices[s.key] })}
                   >
                     <Ionicons
-                      name={item.done ? 'checkmark-circle' : 'ellipse-outline'}
-                      size={20}
-                      color={item.done ? '#0F5132' : '#94A3B8'}
-                      style={{ marginRight: 10, marginTop: 2 }}
+                      name={selectedServices[s.key] ? 'checkbox' : 'square-outline'}
+                      size={17}
+                      color={selectedServices[s.key] ? '#0F5132' : '#64748B'}
                     />
-                    <View style={{ flex: 1 }}>
-                      <Text style={[styles.checklistText, item.done && styles.checklistTextDone]}>
-                        {item.title}
-                      </Text>
-                      <Text style={styles.checklistTip}>{item.tip}</Text>
-                    </View>
+                    <Text style={styles.serviceChipText}>{s.label}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
 
-              {/* ANTRAGS-FORMULAR */}
-              <View style={styles.card}>
-                <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
-                <Text style={styles.subText}>{t.servicesSub}</Text>
+              <Text style={styles.inputFieldLabel}>Vollständiger Name:</Text>
+              <TextInput
+                style={styles.fieldInput}
+                placeholder="z. B. Julia Schneider"
+                placeholderTextColor="#94A3B8"
+                value={userName}
+                onChangeText={setUserName}
+                autoCorrect={false}
+                autoCapitalize="words"
+                editable={true}
+              />
 
-                <Text style={styles.inputFieldLabel}>{t.selectServices}</Text>
-                <View style={styles.serviceSelectorRow}>
-                  {[
-                    { key: 'nif', label: 'NIF (Steuernummer)' },
-                    { key: 'niss', label: 'NISS (Sozialversicherung)' },
-                    { key: 'bank', label: 'Bankkonto' },
-                  ].map((s) => (
-                    <TouchableOpacity
-                      key={s.key}
-                      style={[styles.serviceCheckChip, selectedServices[s.key] && styles.serviceCheckChipActive]}
-                      onPress={() => setSelectedServices({ ...selectedServices, [s.key]: !selectedServices[s.key] })}
-                    >
-                      <Ionicons
-                        name={selectedServices[s.key] ? 'checkbox' : 'square-outline'}
-                        size={17}
-                        color={selectedServices[s.key] ? '#0F5132' : '#64748B'}
-                      />
-                      <Text style={styles.serviceChipText}>{s.label}</Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
+              <Text style={styles.inputFieldLabel}>E-Mail-Adresse:</Text>
+              <TextInput
+                style={styles.fieldInput}
+                placeholder="name@example.com"
+                placeholderTextColor="#94A3B8"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                value={userEmail}
+                onChangeText={setUserEmail}
+                editable={true}
+              />
 
-                <Text style={styles.inputFieldLabel}>Vollständiger Name:</Text>
-                <TextInput style={styles.fieldInput} placeholder="z. B. Julia Schneider" value={userName} onChangeText={setUserName} />
+              <Text style={styles.inputFieldLabel}>Erforderliche Dokumente:</Text>
+              <TouchableOpacity style={styles.uploadBtn} onPress={() => pickFile('passport')}>
+                <Ionicons name="cloud-upload-outline" size={18} color="#0F5132" style={{ marginRight: 6 }} />
+                <Text style={styles.uploadBtnText}>
+                  {passportFileName ? `${t.fileSelected} ${passportFileName}` : t.uploadPass}
+                </Text>
+              </TouchableOpacity>
 
-                <Text style={styles.inputFieldLabel}>E-Mail-Adresse:</Text>
-                <TextInput style={styles.fieldInput} placeholder="name@example.com" keyboardType="email-address" value={userEmail} onChangeText={setUserEmail} />
+              <TouchableOpacity style={styles.uploadBtn} onPress={() => pickFile('proof')}>
+                <Ionicons name="document-attach-outline" size={18} color="#0F5132" style={{ marginRight: 6 }} />
+                <Text style={styles.uploadBtnText}>
+                  {proofFileName ? `${t.fileSelected} ${proofFileName}` : t.uploadProof}
+                </Text>
+              </TouchableOpacity>
 
-                <Text style={styles.inputFieldLabel}>Erforderliche Dokumente:</Text>
-                <TouchableOpacity style={styles.uploadBtn} onPress={() => pickFile('passport')}>
-                  <Ionicons name="cloud-upload-outline" size={18} color="#0F5132" style={{ marginRight: 6 }} />
-                  <Text style={styles.uploadBtnText}>
-                    {passportFileName ? `${t.fileSelected} ${passportFileName}` : t.uploadPass}
-                  </Text>
-                </TouchableOpacity>
+              <TouchableOpacity style={styles.primaryBtn} onPress={handleServiceSubmit}>
+                <Ionicons name="paper-plane" size={16} color="#fff" style={{ marginRight: 6 }} />
+                <Text style={styles.btnText}>{t.submitBtn}</Text>
+              </TouchableOpacity>
+            </View>
 
-                <TouchableOpacity style={styles.uploadBtn} onPress={() => pickFile('proof')}>
-                  <Ionicons name="document-attach-outline" size={18} color="#0F5132" style={{ marginRight: 6 }} />
-                  <Text style={styles.uploadBtnText}>
-                    {proofFileName ? `${t.fileSelected} ${proofFileName}` : t.uploadProof}
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.primaryBtn} onPress={handleServiceSubmit}>
-                  <Ionicons name="paper-plane" size={16} color="#fff" style={{ marginRight: 6 }} />
-                  <Text style={styles.btnText}>{t.submitBtn}</Text>
-                </TouchableOpacity>
+            {/* Support */}
+            <View style={styles.supportCard}>
+              <View style={styles.supportHeaderRow}>
+                <Ionicons name="help-buoy" size={18} color="#0F5132" style={{ marginRight: 6 }} />
+                <Text style={styles.supportHeaderTitle}>Hilfe & Support</Text>
               </View>
+              <Text style={styles.supportHelpText}>{t.supportHelpText}</Text>
+              <TouchableOpacity style={styles.supportOutlineBtn} onPress={handleSupportContact}>
+                <Ionicons name="mail-unread-outline" size={15} color="#0F5132" style={{ marginRight: 6 }} />
+                <Text style={styles.supportOutlineBtnText}>{t.supportBtn} (portustart.support@proton.me)</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        )}
 
-              {/* Support */}
-              <View style={styles.supportCard}>
-                <View style={styles.supportHeaderRow}>
-                  <Ionicons name="help-buoy" size={18} color="#0F5132" style={{ marginRight: 6 }} />
-                  <Text style={styles.supportHeaderTitle}>Hilfe & Support</Text>
-                </View>
-                <Text style={styles.supportHelpText}>{t.supportHelpText}</Text>
-                <TouchableOpacity style={styles.supportOutlineBtn} onPress={handleSupportContact}>
-                  <Ionicons name="mail-unread-outline" size={15} color="#0F5132" style={{ marginRight: 6 }} />
-                  <Text style={styles.supportOutlineBtnText}>{t.supportBtn} (portustart.support@proton.me)</Text>
-                </TouchableOpacity>
-              </View>
-            </ScrollView>
-          )}
-
-          {/* TAB: TRANSLATOR */}
-          {activeTab === 'trans' && (
-            <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-              <View style={styles.card}>
-                <Text style={styles.miniLabel}>{t.from}</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
-                  {TRANSLATOR_LANGUAGES.map((l) => (
-                    <TouchableOpacity
-                      key={`src-${l.code}`}
-                      onPress={() => setSourceLang(l.code)}
-                      style={[styles.langChip, sourceLang === l.code && styles.langChipSelected]}
-                    >
-                      <Text style={[styles.langChipText, sourceLang === l.code && styles.langChipTextSelected]}>
-                        {l.flag} {l.label}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </ScrollView>
-
-                <View style={styles.dividerRow}>
-                  <TouchableOpacity style={styles.switchButton} onPress={switchLanguages}>
-                    <Ionicons name="swap-vertical" size={16} color="#0F5132" />
-                  </TouchableOpacity>
-                </View>
-
-                <Text style={styles.miniLabel}>{t.to}</Text>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
-                  {TRANSLATOR_LANGUAGES.map((l) => (
-                    <TouchableOpacity
-                      key={`tgt-${l.code}`}
-                      onPress={() => setTargetLang(l.code)}
-                      style={[styles.langChip, targetLang === l.code && styles.langChipSelected]}
-                    >
-                      <Text style={[styles.langChipText, targetLang === l.code && styles.langChipTextSelected]}>
-                        {l.flag} {l.label}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </ScrollView>
-              </View>
-
-              <View style={styles.card}>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={t.placeholderTrans}
-                  placeholderTextColor="#94A3B8"
-                  value={inputText}
-                  onChangeText={setInputText}
-                  multiline
-                />
-                <TouchableOpacity
-                  style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]}
-                  onPress={handleTranslate}
-                  disabled={loading || !inputText.trim()}
-                >
-                  {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.btnTrans}</Text>}
-                </TouchableOpacity>
-              </View>
-
-              {translatedText ? (
-                <View style={styles.resultCard}>
-                  <View style={styles.resultHeaderRow}>
-                    <Text style={styles.resultHeader}>Ergebnis ({targetLang.toUpperCase()}):</Text>
-                    {targetLang === 'pt' && (
-                      <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText)}>
-                        <Ionicons name="volume-high" size={16} color="#0F5132" />
-                        <Text style={styles.audioBtnText}>Anhören</Text>
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                  <Text style={styles.resultBody}>{translatedText}</Text>
-                  {slangNote ? <Text style={styles.slangNote}>{slangNote}</Text> : null}
-                </View>
-              ) : null}
-            </ScrollView>
-          )}
-
-          {/* TAB: GEHALT */}
-          {activeTab === 'calc' && (
-            <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-              <View style={styles.card}>
-                <Text style={styles.sectionHeaderTitle}>{t.calcTitle}</Text>
-                <Text style={styles.subText}>{t.calcSub}</Text>
-
-                <Text style={styles.inputFieldLabel}>{t.calcGrossLabel}</Text>
-                <TextInput
-                  style={styles.salaryInputField}
-                  keyboardType="numeric"
-                  value={grossInput}
-                  onChangeText={(val) => {
-                    setGrossInput(val);
-                    calculateNetSalary(val);
-                  }}
-                />
-
-                <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalary(grossInput)}>
-                  <Text style={styles.btnText}>{t.calcBtn}</Text>
-                </TouchableOpacity>
-              </View>
-
-              {calcResult && (
-                <View style={styles.calcResultCard}>
-                  <Text style={styles.netLabel}>{t.calcNetMonthly}</Text>
-                  <Text style={styles.netValue}>{calcResult.netMonthly} €</Text>
-                  <Text style={styles.netNote}>{t.calc14Notice}</Text>
-                  <View style={styles.calcDivider} />
-                  <View style={styles.row}>
-                    <Text style={styles.rowLabel}>{t.calcGrossRow}</Text>
-                    <Text style={styles.rowValue}>{calcResult.gross} €</Text>
-                  </View>
-                  <View style={styles.row}>
-                    <Text style={styles.rowLabel}>{t.calcSSRow}</Text>
-                    <Text style={[styles.rowValue, { color: '#DC2626' }]}>- {calcResult.ss} €</Text>
-                  </View>
-                  <View style={styles.row}>
-                    <Text style={styles.rowLabel}>{t.calcIRSRow} (~{calcResult.irsPercent}%):</Text>
-                    <Text style={[styles.rowValue, { color: '#DC2626' }]}>- {calcResult.irs} €</Text>
-                  </View>
-                </View>
-              )}
-            </ScrollView>
-          )}
-
-          {/* TAB: GUIDE */}
-          {activeTab === 'guide' && (
-            <ScrollView contentContainerStyle={styles.scrollContent}>
-              
-              {/* ÖPNV & TRANSIT HUB */}
-              <View style={styles.card}>
-                <View style={styles.transitHeaderRow}>
-                  <Ionicons name="train" size={22} color="#0F5132" style={{ marginRight: 8 }} />
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.sectionHeaderTitle}>{t.transitTitle}</Text>
-                    <Text style={styles.subText}>{t.transitSub}</Text>
-                  </View>
-                </View>
-
-                {/* 40€ Navegante Pass Info */}
-                <View style={styles.naveganteCard}>
-                  <View style={styles.naveganteTop}>
-                    <Text style={styles.naveganteBadge}>Spar-Tipp: 40 € / Monat</Text>
-                    <Text style={styles.naveganteTitle}>Navegante Metropolitano</Text>
-                  </View>
-                  <Text style={styles.naveganteText}>
-                    Gilt unbegrenzt für Metro, Busse (Carris), Vorortzüge (CP nach Cascais & Sintra, Fertagus) und Fähren in allen 18 Bezirken rund um Lissabon.
-                  </Text>
-                  <View style={styles.zappingRow}>
-                    <Ionicons name="card-outline" size={16} color="#0F5132" style={{ marginRight: 6 }} />
-                    <Text style={styles.zappingText}>
-                      <Text style={{ fontWeight: 'bold' }}>Zapping:</Text> Lade 5–40 € auf die grüne Viva-Karte. Einzelfahrten kosten so ca. 1,61 € statt 2,00 €+ beim Busfahrer.
-                    </Text>
-                  </View>
-                </View>
-
-                {/* Metro Linien Übersicht */}
-                <Text style={[styles.inputFieldLabel, { marginTop: 10 }]}>Metro Lissabon Liniennetz:</Text>
-                <View style={styles.metroLinesContainer}>
-                  {METRO_LINES.map((m, idx) => (
-                    <View key={idx} style={styles.metroLineRow}>
-                      <View style={[styles.metroDot, { backgroundColor: m.color }]} />
-                      <Text style={styles.metroLineName}>{m.name}:</Text>
-                      <Text style={styles.metroLineCode}>{m.code}</Text>
-                    </View>
-                  ))}
-                </View>
-
-                {/* Live Navigation & Offizielle Metro App */}
-                <TouchableOpacity
-                  style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginTop: 12 }]}
-                  onPress={() => openUrl('https://www.google.com/maps/dir/?api=1&travelmode=transit')}
-                >
-                  <Ionicons name="navigate-circle" size={18} color="#fff" style={{ marginRight: 6 }} />
-                  <Text style={styles.btnText}>{t.openLiveTransitBtn}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.supportOutlineBtn}
-                  onPress={() => openUrl('https://www.metrolisboa.pt/en/')}
-                >
-                  <Ionicons name="globe-outline" size={15} color="#0F5132" style={{ marginRight: 6 }} />
-                  <Text style={styles.supportOutlineBtnText}>{t.metroAppBtn}</Text>
-                </TouchableOpacity>
-              </View>
-
-              {/* NOTFALLNUMMERN */}
-              <View style={styles.guideSection}>
-                <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
-                {EMERGENCY_CONTACTS.map((item, idx) => (
+        {/* TAB: TRANSLATOR */}
+        {activeTab === 'trans' && (
+          <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+            <View style={styles.card}>
+              <Text style={styles.miniLabel}>{t.from}</Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
+                {TRANSLATOR_LANGUAGES.map((l) => (
                   <TouchableOpacity
-                    key={idx}
-                    style={styles.emergencyCard}
-                    onPress={() => dialNumber(item.num)}
+                    key={`src-${l.code}`}
+                    onPress={() => setSourceLang(l.code)}
+                    style={[styles.langChip, sourceLang === l.code && styles.langChipSelected]}
                   >
-                    <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
-                      <Ionicons name={item.icon} size={18} color="#fff" />
-                    </View>
-                    <View style={{ flex: 1 }}>
-                      <Text style={styles.emergencyName}>{item.name}</Text>
-                      <Text style={styles.emergencyDesc}>{item.desc}</Text>
-                    </View>
-                    <View style={styles.callBadge}>
-                      <Ionicons name="call" size={13} color="#0F5132" style={{ marginRight: 3 }} />
-                      <Text style={styles.callBadgeText}>{item.num}</Text>
-                    </View>
+                    <Text style={[styles.langChipText, sourceLang === l.code && styles.langChipTextSelected]}>
+                      {l.flag} {l.label}
+                    </Text>
                   </TouchableOpacity>
+                ))}
+              </ScrollView>
+
+              <View style={styles.dividerRow}>
+                <TouchableOpacity style={styles.switchButton} onPress={switchLanguages}>
+                  <Ionicons name="swap-vertical" size={16} color="#0F5132" />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.miniLabel}>{t.to}</Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
+                {TRANSLATOR_LANGUAGES.map((l) => (
+                  <TouchableOpacity
+                    key={`tgt-${l.code}`}
+                    onPress={() => setTargetLang(l.code)}
+                    style={[styles.langChip, targetLang === l.code && styles.langChipSelected]}
+                  >
+                    <Text style={[styles.langChipText, targetLang === l.code && styles.langChipTextSelected]}>
+                      {l.flag} {l.label}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+
+            <View style={styles.card}>
+              <TextInput
+                style={styles.textInput}
+                placeholder={t.placeholderTrans}
+                placeholderTextColor="#94A3B8"
+                value={inputText}
+                onChangeText={setInputText}
+                multiline
+                editable={true}
+              />
+              <TouchableOpacity
+                style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]}
+                onPress={handleTranslate}
+                disabled={loading || !inputText.trim()}
+              >
+                {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.btnTrans}</Text>}
+              </TouchableOpacity>
+            </View>
+
+            {translatedText ? (
+              <View style={styles.resultCard}>
+                <View style={styles.resultHeaderRow}>
+                  <Text style={styles.resultHeader}>Ergebnis ({targetLang.toUpperCase()}):</Text>
+                  {targetLang === 'pt' && (
+                    <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText)}>
+                      <Ionicons name="volume-high" size={16} color="#0F5132" />
+                      <Text style={styles.audioBtnText}>Anhören</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+                <Text style={styles.resultBody}>{translatedText}</Text>
+                {slangNote ? <Text style={styles.slangNote}>{slangNote}</Text> : null}
+              </View>
+            ) : null}
+          </ScrollView>
+        )}
+
+        {/* TAB: GEHALT */}
+        {activeTab === 'calc' && (
+          <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+            <View style={styles.card}>
+              <Text style={styles.sectionHeaderTitle}>{t.calcTitle}</Text>
+              <Text style={styles.subText}>{t.calcSub}</Text>
+
+              <Text style={styles.inputFieldLabel}>{t.calcGrossLabel}</Text>
+              <TextInput
+                style={styles.salaryInputField}
+                keyboardType="numeric"
+                value={grossInput}
+                onChangeText={(val) => {
+                  setGrossInput(val);
+                  calculateNetSalary(val);
+                }}
+                editable={true}
+              />
+
+              <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalary(grossInput)}>
+                <Text style={styles.btnText}>{t.calcBtn}</Text>
+              </TouchableOpacity>
+            </View>
+
+            {calcResult && (
+              <View style={styles.calcResultCard}>
+                <Text style={styles.netLabel}>{t.calcNetMonthly}</Text>
+                <Text style={styles.netValue}>{calcResult.netMonthly} €</Text>
+                <Text style={styles.netNote}>{t.calc14Notice}</Text>
+                <View style={styles.calcDivider} />
+                <View style={styles.row}>
+                  <Text style={styles.rowLabel}>{t.calcGrossRow}</Text>
+                  <Text style={styles.rowValue}>{calcResult.gross} €</Text>
+                </View>
+                <View style={styles.row}>
+                  <Text style={styles.rowLabel}>{t.calcSSRow}</Text>
+                  <Text style={[styles.rowValue, { color: '#DC2626' }]}>- {calcResult.ss} €</Text>
+                </View>
+                <View style={styles.row}>
+                  <Text style={styles.rowLabel}>{t.calcIRSRow} (~{calcResult.irsPercent}%):</Text>
+                  <Text style={[styles.rowValue, { color: '#DC2626' }]}>- {calcResult.irs} €</Text>
+                </View>
+              </View>
+            )}
+          </ScrollView>
+        )}
+
+        {/* TAB: GUIDE */}
+        {activeTab === 'guide' && (
+          <ScrollView contentContainerStyle={styles.scrollContent}>
+            
+            {/* ÖPNV & TRANSIT HUB */}
+            <View style={styles.card}>
+              <View style={styles.transitHeaderRow}>
+                <Ionicons name="train" size={22} color="#0F5132" style={{ marginRight: 8 }} />
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.sectionHeaderTitle}>{t.transitTitle}</Text>
+                  <Text style={styles.subText}>{t.transitSub}</Text>
+                </View>
+              </View>
+
+              <View style={styles.naveganteCard}>
+                <View style={styles.naveganteTop}>
+                  <Text style={styles.naveganteBadge}>Spar-Tipp: 40 € / Monat</Text>
+                  <Text style={styles.naveganteTitle}>Navegante Metropolitano</Text>
+                </View>
+                <Text style={styles.naveganteText}>
+                  Gilt unbegrenzt für Metro, Busse (Carris), Vorortzüge (CP nach Cascais & Sintra, Fertagus) und Fähren in allen 18 Bezirken rund um Lissabon.
+                </Text>
+                <View style={styles.zappingRow}>
+                  <Ionicons name="card-outline" size={16} color="#0F5132" style={{ marginRight: 6 }} />
+                  <Text style={styles.zappingText}>
+                    <Text style={{ fontWeight: 'bold' }}>Zapping:</Text> Lade 5–40 € auf die grüne Viva-Karte. Einzelfahrten kosten so ca. 1,61 € statt 2,00 €+ beim Busfahrer.
+                  </Text>
+                </View>
+              </View>
+
+              <Text style={[styles.inputFieldLabel, { marginTop: 10 }]}>Metro Lissabon Liniennetz:</Text>
+              <View style={styles.metroLinesContainer}>
+                {METRO_LINES.map((m, idx) => (
+                  <View key={idx} style={styles.metroLineRow}>
+                    <View style={[styles.metroDot, { backgroundColor: m.color }]} />
+                    <Text style={styles.metroLineName}>{m.name}:</Text>
+                    <Text style={styles.metroLineCode}>{m.code}</Text>
+                  </View>
                 ))}
               </View>
 
-              {/* PHRASEN */}
-              {QUICK_PHRASES.map((sec, i) => (
-                <View key={i} style={styles.guideSection}>
-                  <Text style={[styles.sectionTitle, { color: sec.color }]}>{sec.category}</Text>
-                  {sec.items.map((item, idx) => (
-                    <View key={idx} style={styles.phraseCard}>
-                      <View style={styles.phraseHeaderRow}>
-                        <Text style={styles.ptText}>{item.pt}</Text>
-                        <TouchableOpacity onPress={() => playAudio(item.pt)} style={{ padding: 4 }}>
-                          <Ionicons name="volume-medium" size={18} color="#0F5132" />
-                        </TouchableOpacity>
-                      </View>
-                      <Text style={styles.phText}>🗣 {item.ph}</Text>
-                      <Text style={styles.deText}>{item.trans}</Text>
-                    </View>
-                  ))}
-                </View>
+              <TouchableOpacity
+                style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginTop: 12 }]}
+                onPress={() => openUrl('https://www.google.com/maps/dir/?api=1&travelmode=transit')}
+              >
+                <Ionicons name="navigate-circle" size={18} color="#fff" style={{ marginRight: 6 }} />
+                <Text style={styles.btnText}>{t.openLiveTransitBtn}</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.supportOutlineBtn}
+                onPress={() => openUrl('https://www.metrolisboa.pt/en/')}
+              >
+                <Ionicons name="globe-outline" size={15} color="#0F5132" style={{ marginRight: 6 }} />
+                <Text style={styles.supportOutlineBtnText}>{t.metroAppBtn}</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* NOTFALLNUMMERN */}
+            <View style={styles.guideSection}>
+              <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
+              {EMERGENCY_CONTACTS.map((item, idx) => (
+                <TouchableOpacity
+                  key={idx}
+                  style={styles.emergencyCard}
+                  onPress={() => dialNumber(item.num)}
+                >
+                  <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
+                    <Ionicons name={item.icon} size={18} color="#fff" />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.emergencyName}>{item.name}</Text>
+                    <Text style={styles.emergencyDesc}>{item.desc}</Text>
+                  </View>
+                  <View style={styles.callBadge}>
+                    <Ionicons name="call" size={13} color="#0F5132" style={{ marginRight: 3 }} />
+                    <Text style={styles.callBadgeText}>{item.num}</Text>
+                  </View>
+                </TouchableOpacity>
               ))}
-            </ScrollView>
-          )}
+            </View>
 
-          {/* 1. CELEBRATION MODAL (WENN ALLE 7 SCHRITTE ERLEDIGT SIND) */}
-          <Modal
-            visible={celebrationModalVisible}
-            transparent
-            animationType="fade"
-            onRequestClose={() => setCelebrationModalVisible(false)}
-          >
-            <View style={styles.modalOverlay}>
-              <View style={styles.celebrationCard}>
-                <View style={styles.celebBadge}>
-                  <Ionicons name="trophy" size={32} color="#D97706" />
+            {/* PHRASEN */}
+            {QUICK_PHRASES.map((sec, i) => (
+              <View key={i} style={styles.guideSection}>
+                <Text style={[styles.sectionTitle, { color: sec.color }]}>{sec.category}</Text>
+                {sec.items.map((item, idx) => (
+                  <View key={idx} style={styles.phraseCard}>
+                    <View style={styles.phraseHeaderRow}>
+                      <Text style={styles.ptText}>{item.pt}</Text>
+                      <TouchableOpacity onPress={() => playAudio(item.pt)} style={{ padding: 4 }}>
+                        <Ionicons name="volume-medium" size={18} color="#0F5132" />
+                      </TouchableOpacity>
+                    </View>
+                    <Text style={styles.phText}>🗣 {item.ph}</Text>
+                    <Text style={styles.deText}>{item.trans}</Text>
+                  </View>
+                ))}
+              </View>
+            ))}
+          </ScrollView>
+        )}
+
+        {/* 1. CELEBRATION MODAL */}
+        <Modal
+          visible={celebrationModalVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setCelebrationModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.celebrationCard}>
+              <View style={styles.celebBadge}>
+                <Ionicons name="trophy" size={32} color="#D97706" />
+              </View>
+              <Text style={styles.celebTitle}>{t.celebTitle}</Text>
+              <Text style={styles.celebSub}>{t.celebSub}</Text>
+              <Text style={styles.celebDesc}>{t.celebDesc}</Text>
+
+              <TouchableOpacity
+                style={styles.celebBtn}
+                onPress={() => setCelebrationModalVisible(false)}
+              >
+                <Text style={styles.celebBtnText}>{t.celebBtn}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        {/* 2. ONBOARDING-GUIDE MODAL */}
+        <Modal
+          visible={welcomeModalVisible}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setWelcomeModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.onboardingCard}>
+              <View style={styles.onboardingHeader}>
+                <View style={styles.bridgeIconBadge}>
+                  <Ionicons name="compass" size={26} color="#0F5132" />
                 </View>
-                <Text style={styles.celebTitle}>{t.celebTitle}</Text>
-                <Text style={styles.celebSub}>{t.celebSub}</Text>
-                <Text style={styles.celebDesc}>{t.celebDesc}</Text>
+                <Text style={styles.onboardingTitle}>{t.welcomeTitle}</Text>
+                <Text style={styles.onboardingSub}>{t.welcomeSub}</Text>
+              </View>
 
-                <TouchableOpacity
-                  style={styles.celebBtn}
-                  onPress={() => setCelebrationModalVisible(false)}
-                >
-                  <Text style={styles.celebBtnText}>{t.celebBtn}</Text>
-                </TouchableOpacity>
+              <ScrollView style={styles.onboardingScroll} showsVerticalScrollIndicator={false}>
+                <View style={styles.onboardingFeatureRow}>
+                  <View style={[styles.featureIconWrap, { backgroundColor: '#DCFCE7' }]}>
+                    <Ionicons name="checkbox" size={20} color="#0F5132" />
+                  </View>
+                  <View style={styles.featureTextWrap}>
+                    <Text style={styles.featureTitle}>{t.guideStepRoadmapTitle}</Text>
+                    <Text style={styles.featureDesc}>{t.guideStepRoadmapDesc}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.onboardingFeatureRow}>
+                  <View style={[styles.featureIconWrap, { backgroundColor: '#E0F2FE' }]}>
+                    <Ionicons name="document-text" size={20} color="#0284C7" />
+                  </View>
+                  <View style={styles.featureTextWrap}>
+                    <Text style={styles.featureTitle}>{t.guideStepServicesTitle}</Text>
+                    <Text style={styles.featureDesc}>{t.guideStepServicesDesc}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.onboardingFeatureRow}>
+                  <View style={[styles.featureIconWrap, { backgroundColor: '#E0E7FF' }]}>
+                    <Ionicons name="train" size={20} color="#4338CA" />
+                  </View>
+                  <View style={styles.featureTextWrap}>
+                    <Text style={styles.featureTitle}>{t.guideStepTransitTitle}</Text>
+                    <Text style={styles.featureDesc}>{t.guideStepTransitDesc}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.onboardingFeatureRow}>
+                  <View style={[styles.featureIconWrap, { backgroundColor: '#FEE2E2' }]}>
+                    <Ionicons name="call" size={20} color="#DC2626" />
+                  </View>
+                  <View style={styles.featureTextWrap}>
+                    <Text style={styles.featureTitle}>{t.guideStepEmergencyTitle}</Text>
+                    <Text style={styles.featureDesc}>{t.guideStepEmergencyDesc}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.onboardingFeatureRow}>
+                  <View style={[styles.featureIconWrap, { backgroundColor: '#EDE9FE' }]}>
+                    <Ionicons name="chatbubbles" size={20} color="#7C3AED" />
+                  </View>
+                  <View style={styles.featureTextWrap}>
+                    <Text style={styles.featureTitle}>{t.guideStepSlangTitle}</Text>
+                    <Text style={styles.featureDesc}>{t.guideStepSlangDesc}</Text>
+                  </View>
+                </View>
+              </ScrollView>
+
+              <TouchableOpacity
+                style={styles.onboardingBtn}
+                onPress={() => setWelcomeModalVisible(false)}
+              >
+                <Text style={styles.onboardingBtnText}>{t.welcomeBtn}</Text>
+                <Ionicons name="arrow-forward" size={16} color="#fff" style={{ marginLeft: 6 }} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        {/* 3. SPRACHAUSWAHL MODAL */}
+        <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalCard}>
+              <Ionicons name="language" size={28} color="#0F5132" style={{ alignSelf: 'center', marginBottom: 6 }} />
+              <Text style={styles.modalTitle}>App-Sprache wählen</Text>
+              <View style={styles.modalGrid}>
+                {UI_LANGUAGES.map((lang) => (
+                  <TouchableOpacity
+                    key={lang.code}
+                    style={[styles.modalLangBtn, appLang === lang.code && styles.modalLangBtnActive]}
+                    onPress={() => {
+                      setAppLang(lang.code);
+                      setSourceLang(lang.code);
+                      setLangModalVisible(false);
+                    }}
+                  >
+                    <Text style={{ fontSize: 20 }}>{lang.flag}</Text>
+                    <Text style={[styles.modalLangText, appLang === lang.code && styles.modalLangTextActive]}>{lang.label}</Text>
+                  </TouchableOpacity>
+                ))}
               </View>
             </View>
-          </Modal>
+          </View>
+        </Modal>
 
-          {/* 2. ONBOARDING-GUIDE MODAL */}
-          <Modal
-            visible={welcomeModalVisible}
-            transparent
-            animationType="slide"
-            onRequestClose={() => setWelcomeModalVisible(false)}
-          >
-            <View style={styles.modalOverlay}>
-              <View style={styles.onboardingCard}>
-                <View style={styles.onboardingHeader}>
-                  <View style={styles.bridgeIconBadge}>
-                    <Ionicons name="compass" size={26} color="#0F5132" />
-                  </View>
-                  <Text style={styles.onboardingTitle}>{t.welcomeTitle}</Text>
-                  <Text style={styles.onboardingSub}>{t.welcomeSub}</Text>
-                </View>
-
-                <ScrollView style={styles.onboardingScroll} showsVerticalScrollIndicator={false}>
-                  <View style={styles.onboardingFeatureRow}>
-                    <View style={[styles.featureIconWrap, { backgroundColor: '#DCFCE7' }]}>
-                      <Ionicons name="checkbox" size={20} color="#0F5132" />
-                    </View>
-                    <View style={styles.featureTextWrap}>
-                      <Text style={styles.featureTitle}>{t.guideStepRoadmapTitle}</Text>
-                      <Text style={styles.featureDesc}>{t.guideStepRoadmapDesc}</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.onboardingFeatureRow}>
-                    <View style={[styles.featureIconWrap, { backgroundColor: '#E0F2FE' }]}>
-                      <Ionicons name="document-text" size={20} color="#0284C7" />
-                    </View>
-                    <View style={styles.featureTextWrap}>
-                      <Text style={styles.featureTitle}>{t.guideStepServicesTitle}</Text>
-                      <Text style={styles.featureDesc}>{t.guideStepServicesDesc}</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.onboardingFeatureRow}>
-                    <View style={[styles.featureIconWrap, { backgroundColor: '#E0E7FF' }]}>
-                      <Ionicons name="train" size={20} color="#4338CA" />
-                    </View>
-                    <View style={styles.featureTextWrap}>
-                      <Text style={styles.featureTitle}>{t.guideStepTransitTitle}</Text>
-                      <Text style={styles.featureDesc}>{t.guideStepTransitDesc}</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.onboardingFeatureRow}>
-                    <View style={[styles.featureIconWrap, { backgroundColor: '#FEE2E2' }]}>
-                      <Ionicons name="call" size={20} color="#DC2626" />
-                    </View>
-                    <View style={styles.featureTextWrap}>
-                      <Text style={styles.featureTitle}>{t.guideStepEmergencyTitle}</Text>
-                      <Text style={styles.featureDesc}>{t.guideStepEmergencyDesc}</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.onboardingFeatureRow}>
-                    <View style={[styles.featureIconWrap, { backgroundColor: '#EDE9FE' }]}>
-                      <Ionicons name="chatbubbles" size={20} color="#7C3AED" />
-                    </View>
-                    <View style={styles.featureTextWrap}>
-                      <Text style={styles.featureTitle}>{t.guideStepSlangTitle}</Text>
-                      <Text style={styles.featureDesc}>{t.guideStepSlangDesc}</Text>
-                    </View>
-                  </View>
-                </ScrollView>
-
-                <TouchableOpacity
-                  style={styles.onboardingBtn}
-                  onPress={() => setWelcomeModalVisible(false)}
-                >
-                  <Text style={styles.onboardingBtnText}>{t.welcomeBtn}</Text>
-                  <Ionicons name="arrow-forward" size={16} color="#fff" style={{ marginLeft: 6 }} />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
-
-          {/* 3. SPRACHAUSWAHL MODAL */}
-          <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
-            <View style={styles.modalOverlay}>
-              <View style={styles.modalCard}>
-                <Ionicons name="language" size={28} color="#0F5132" style={{ alignSelf: 'center', marginBottom: 6 }} />
-                <Text style={styles.modalTitle}>App-Sprache wählen</Text>
-                <View style={styles.modalGrid}>
-                  {UI_LANGUAGES.map((lang) => (
-                    <TouchableOpacity
-                      key={lang.code}
-                      style={[styles.modalLangBtn, appLang === lang.code && styles.modalLangBtnActive]}
-                      onPress={() => {
-                        setAppLang(lang.code);
-                        setSourceLang(lang.code);
-                        setLangModalVisible(false);
-                      }}
-                    >
-                      <Text style={{ fontSize: 20 }}>{lang.flag}</Text>
-                      <Text style={[styles.modalLangText, appLang === lang.code && styles.modalLangTextActive]}>{lang.label}</Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              </View>
-            </View>
-          </Modal>
-
-        </View>
-      </TouchableWithoutFeedback>
+      </View>
     </SafeAreaView>
   );
 }
@@ -1095,7 +1105,17 @@ const styles = StyleSheet.create({
   langChipTextSelected: { color: '#0F5132' },
   dividerRow: { alignItems: 'center', marginVertical: 4 },
   switchButton: { padding: 6, backgroundColor: '#F1F5F9', borderRadius: 15 },
-  textInput: { minHeight: 75, fontSize: 15, textAlignVertical: 'top', color: '#0F172A' },
+  textInput: {
+    minHeight: 80,
+    fontSize: 15,
+    textAlignVertical: 'top',
+    color: '#0F172A',
+    backgroundColor: '#F8FAFC',
+    borderRadius: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+  },
   primaryBtn: {
     backgroundColor: '#0F5132',
     paddingVertical: 12,
@@ -1123,8 +1143,29 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: { fontSize: 15, fontWeight: '800', color: '#0F172A' },
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
-  fieldInput: { backgroundColor: '#F8FAFC', borderWidth: 1, borderColor: '#CBD5E1', borderRadius: 10, padding: 10, fontSize: 14, color: '#0F172A' },
-  salaryInputField: { backgroundColor: '#F8FAFC', borderWidth: 1, borderColor: '#CBD5E1', borderRadius: 10, padding: 10, fontSize: 16, fontWeight: '700', color: '#0F5132' },
+  fieldInput: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#CBD5E1',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: '#0F172A',
+    minHeight: 44,
+  },
+  salaryInputField: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#CBD5E1',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0F5132',
+    minHeight: 44,
+  },
   serviceSelectorRow: { flexDirection: 'column', gap: 6, marginBottom: 4 },
   serviceCheckChip: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, paddingHorizontal: 10, borderRadius: 10, backgroundColor: '#F1F5F9', gap: 8 },
   serviceCheckChipActive: { backgroundColor: '#DCFCE7', borderColor: '#0F5132', borderWidth: 1 },
@@ -1202,7 +1243,6 @@ const styles = StyleSheet.create({
   phText: { fontSize: 12, color: '#64748B', fontStyle: 'italic', marginVertical: 2 },
   deText: { fontSize: 12, color: '#334155' },
 
-  // Celebration Modal Styles
   celebrationCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
@@ -1239,7 +1279,6 @@ const styles = StyleSheet.create({
   },
   celebBtnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
 
-  // Onboarding Modal
   onboardingCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
