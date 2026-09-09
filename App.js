@@ -13,8 +13,12 @@ import {
   Alert,
   Platform,
   Linking,
+  Image,
+  Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
+const { width } = Dimensions.get('window');
 
 // UI-Sprachen
 const UI_LANGUAGES = [
@@ -37,15 +41,222 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
-// VOLLSTÄNDIGE LOKALISIERUNG FÜR ALLE DETAILS
+// STÄDTE & ATTRAKTIONEN (PORTUGAL-MAP & SWIPE)
+const CITIES_DATA = [
+  {
+    id: 'lisboa',
+    name: 'Lisboa (Lissabon)',
+    region: 'Zentral / Tejo',
+    tagline: 'Die Stadt der 7 Hügel, Fado & Aussichtspunkte',
+    mapCoords: { top: '56%', left: '26%' },
+    places: [
+      {
+        id: 'l1',
+        title: 'Torre de Belém & Mosteiro dos Jerónimos',
+        category: 'UNESCO Welterbe',
+        img: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80',
+        desc: 'Das Meisterwerk des manuelinischen Stils direkt an der Mündung des Tejo. Gleich nebenan gibt es die originalen Pastéis de Belém.',
+        tip: 'Tipp: Vor 10:00 Uhr kommen, um die Warteschlangen zu vermeiden.',
+        query: 'Torre de Belem Lisbon',
+      },
+      {
+        id: 'l2',
+        title: 'Miradouro de Santa Luzia & Alfama',
+        category: 'Aussicht & Altstadt',
+        img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80',
+        desc: 'Bougainvillea-Blüten, Kacheln (Azulejos) und ein atemberaubender Blick über die bunten Dächer der Alfama bis hin zum Tejo.',
+        tip: 'Tipp: Bei Sonnenuntergang den Straßenmusikern mit einer Bica lauschen.',
+        query: 'Miradouro de Santa Luzia Lisbon',
+      },
+      {
+        id: 'l3',
+        title: 'Praça do Comércio & Cais das Colunas',
+        category: 'Historischer Platz',
+        img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80',
+        desc: 'Der riesige, zum Fluss hin offene Palastplatz. Einst das Tor der Seefahrer zur Neuen Welt.',
+        tip: 'Tipp: Perfekter Ausgangspunkt für Spaziergänge entlang der Uferpromenade.',
+        query: 'Praca do Comercio Lisbon',
+      },
+    ],
+  },
+  {
+    id: 'porto',
+    name: 'Porto',
+    region: 'Norden / Douro',
+    tagline: 'Granit, Portwein und dramatische Brücken',
+    mapCoords: { top: '22%', left: '32%' },
+    places: [
+      {
+        id: 'p1',
+        title: 'Ponte Luís I & Ribeira',
+        category: 'Wahrzeichen & Ufer',
+        img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80',
+        desc: 'Die zweistöckige Eisenbrücke von Gustave Eiffels Partner Theophile Seyrig. Oben fährt die Metro, unten flanieren Fußgänger.',
+        tip: 'Tipp: Zu Fuß über das obere Deck gehen für die beste Aussicht auf Vila Nova de Gaia.',
+        query: 'Dom Luis I Bridge Porto',
+      },
+      {
+        id: 'p2',
+        title: 'Livraria Lello & Clérigos-Turm',
+        category: 'Kultur & Architektur',
+        img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80',
+        desc: 'Eine der schönsten Buchhandlungen weltweit mit ikonischer roter Treppe und neugotischer Holzschnitzerei.',
+        tip: 'Tipp: Ticket-Gutschein online vorab buchen, wird beim Buchkauf angerechnet.',
+        query: 'Livraria Lello Porto',
+      },
+      {
+        id: 'p3',
+        title: 'Portweinkeller in Vila Nova de Gaia',
+        category: 'Genuss & Tradition',
+        img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80',
+        desc: 'Historische Weinkeller berühmter Portwein-Häuser (Taylor’s, Sandeman, Cálem) mit traditionellen Rabelo-Booten am Ufer.',
+        tip: 'Tipp: Führung mit anschließender Verkostung buchen.',
+        query: 'Port Wine Cellars Gaia Porto',
+      },
+    ],
+  },
+  {
+    id: 'sintra',
+    name: 'Sintra & Cascais',
+    region: 'Küste von Lissabon',
+    tagline: 'Märchenschlösser im Nebelwald & Ozeanklippen',
+    mapCoords: { top: '53%', left: '20%' },
+    places: [
+      {
+        id: 's1',
+        title: 'Palácio Nacional da Pena',
+        category: 'Märchenschloss',
+        img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80',
+        desc: 'Buntes Meisterwerk der Romantik auf den Gipfeln des Sintra-Gebirges. Leuchtendes Gelb und Rot über dichten Wäldern.',
+        tip: 'Tipp: Feste Einlasszeiten online reservieren, morgens ist der Park am ruhigsten.',
+        query: 'Pena Palace Sintra',
+      },
+      {
+        id: 's2',
+        title: 'Quinta da Regaleira & Initiationsbrunnen',
+        category: 'Mystik & Gärten',
+        img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80',
+        desc: 'Verwunschenes Anwesen mit unterirdischen Gängen, Höhlen und der berühmten 27 Meter tiefen Wendeltreppe.',
+        tip: 'Tipp: Taschenlampe auf dem Smartphone bereithalten für die Höhlengänge.',
+        query: 'Quinta da Regaleira Sintra',
+      },
+      {
+        id: 's3',
+        title: 'Cabo da Roca',
+        category: 'Naturwunder',
+        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+        desc: 'Der westlichste Punkt des europäischen Festlands: 140 Meter hohe Steilklippen, an denen der Atlantik tobt.',
+        tip: 'Tipp: Winddichte Jacke einpacken, hier weht fast immer eine kräftige Brise.',
+        query: 'Cabo da Roca Portugal',
+      },
+    ],
+  },
+  {
+    id: 'algarve',
+    name: 'Faro & Algarve',
+    region: 'Südküste',
+    tagline: 'Goldene Sandsteinklippen, Grotten & 300 Sonnentage',
+    mapCoords: { top: '82%', left: '46%' },
+    places: [
+      {
+        id: 'a1',
+        title: 'Benagil Meereshöhle (Algar de Benagil)',
+        category: 'Grotten & Strand',
+        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+        desc: 'Die spektakulärste Brandungshöhle Europas mit kreisrundem Natur-Dachfenster und goldenem Sandstrand im Inneren.',
+        tip: 'Tipp: Mit dem Stand-up-Paddleboard oder Kajak am frühen Morgen erkunden.',
+        query: 'Benagil Cave Algarve',
+      },
+      {
+        id: 'a2',
+        title: 'Ponta da Piedade (Lagos)',
+        category: 'Klippenlandschaft',
+        img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80',
+        desc: 'Bizarre Kalksteinformationen, natürliche Felstore und türkisblaues Wasser. Einer der schönsten Küstenpfade Europas.',
+        tip: 'Tipp: Eine kleine Fischerboot-Tour durch die engen Felsbögen unternehmen.',
+        query: 'Ponta da Piedade Lagos',
+      },
+      {
+        id: 'a3',
+        title: 'Ria Formosa Naturpark (Faro/Olhão)',
+        category: 'Lagune & Inseln',
+        img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80',
+        desc: 'Riesiges Labyrinth aus Gezeiteninseln, Sandbänken und Seepferdchen-Schutzgebieten mit endlosen, ruhigen Stränden.',
+        tip: 'Tipp: Die Fähre von Olhão zur autofreien Insel Ilha da Armona nehmen.',
+        query: 'Ria Formosa Natural Park Faro',
+      },
+    ],
+  },
+  {
+    id: 'coimbra',
+    name: 'Coimbra & Centro',
+    region: 'Zentralportugal',
+    tagline: 'Alte Königsstadt & eine der ältesten Universitäten Europas',
+    mapCoords: { top: '38%', left: '38%' },
+    places: [
+      {
+        id: 'c1',
+        title: 'Biblioteca Joanina (Universität Coimbra)',
+        category: 'Historische Bibliothek',
+        img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80',
+        desc: 'Barockes Meisterwerk aus dem 18. Jahrhundert mit Goldverzierungen und seltenen Handschriften, bewacht von einer Fledermauskolonie.',
+        tip: 'Tipp: Kombiticket mit Königspalast und Universitätskapelle São Miguel buchen.',
+        query: 'Biblioteca Joanina Coimbra',
+      },
+      {
+        id: 'c2',
+        title: 'Kloster Santa Cruz & Coimbra Altstadt',
+        category: 'Geschichte & Fado',
+        img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80',
+        desc: 'Ruhestätte der ersten beiden portugiesischen Könige. Ursprung des melodischen, studentischen Coimbra-Fados.',
+        tip: 'Tipp: Ein Fado-Konzert in einer traditionellen "Casa de Fado" am Abend erleben.',
+        query: 'Monastery of Santa Cruz Coimbra',
+      },
+    ],
+  },
+  {
+    id: 'madeira',
+    name: 'Madeira (Funchal)',
+    region: 'Atlantikinsel',
+    tagline: 'Die Blumeninsel mit schroffen Gipfeln und Levadas',
+    mapCoords: { top: '88%', left: '16%' },
+    places: [
+      {
+        id: 'm1',
+        title: 'Pico do Arieiro bis Pico Ruivo',
+        category: 'Hochgebirgswanderung',
+        img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+        desc: 'Spektakuläre Gratwanderung über den Wolken zwischen den höchsten Berggipfeln Madeiras mit Tunneln und Steilwänden.',
+        tip: 'Tipp: Zum Sonnenaufgang auf dem Pico do Arieiro sein (mit Auto erreichbar).',
+        query: 'Pico do Arieiro Madeira',
+      },
+      {
+        id: 'm2',
+        title: 'Levada das 25 Fontes & Lorbeerwald',
+        category: 'UNESCO Naturerbe',
+        img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+        desc: 'Wanderung entlang historischer Wasserkanäle durch den uralten Laurisilva-Wald zu einem Talkessel mit 25 Quellen.',
+        tip: 'Tipp: Früh starten, um Gegenverkehr auf den schmalen Pfaden zu meiden.',
+        query: '25 Fontes Levada Madeira',
+      },
+    ],
+  },
+];
+
 const LOCALES = {
   de: {
     title: 'PortuStart',
     sub: 'Dein Relocation-Partner für Portugal',
-    tabTrans: 'Translator',
+    tabPlaces: 'Entdecken',
     tabServices: 'Services',
+    tabTrans: 'Translator',
     tabCalc: 'Gehalt',
     tabGuide: 'Guide',
+    placesSectionTitle: '🇵🇹 Sehenswürdigkeiten & Schöne Orte',
+    placesSectionSub: 'Tippe auf eine Stadt auf der Karte und swipe durch die schönsten Highlights:',
+    mapInstruction: '📍 Wähle eine Region auf der Karte:',
+    swipeInstruction: '👉 Horizontal wischen für weitere Orte in dieser Stadt:',
+    openInMapsBtn: 'Route in Maps öffnen',
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
@@ -65,11 +276,7 @@ const LOCALES = {
     checklistSub: 'Dein bürokratischer Ablaufplan für Portugal',
     checklistDone: 'erledigt',
     selectServices: 'Benötigte Services:',
-    serviceLabels: {
-      nif: 'NIF (Steuernummer)',
-      niss: 'NISS (Sozialversicherung)',
-      bank: 'Bankkonto',
-    },
+    serviceLabels: { nif: 'NIF (Steuernummer)', niss: 'NISS (Sozialversicherung)', bank: 'Bankkonto' },
     uploadPass: 'Reisepass / Personalausweis anhängen',
     uploadProof: 'Wohnsitznachweis anhängen',
     submitBtn: 'Dokumente einreichen (portustart@proton.me)',
@@ -105,7 +312,7 @@ const LOCALES = {
     welcomeBtn: 'Alles klar, los geht\'s!',
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'Du hast alle 7 Schritte der Roadmap gemeistert!',
-    celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das Fundament für dein Leben in Portugal gelegt!',
+    celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das Fundament gelegt!',
     celebBtn: 'Muito obrigado! Weiter geht\'s 🚀',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
@@ -114,7 +321,7 @@ const LOCALES = {
       { id: 4, title: 'Wohnungsanmietung & Registrierung', tip: 'Der Mietvertrag muss beim Finanzamt (Finanças) gemeldet sein.' },
       { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für Arbeitsvertrag und Rentenanspruch benötigt.' },
       { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara Municipal an.' },
-      { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Hausarztsystem und Krankenhäusern.' },
+      { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Hausarztsystem und Kliniken.' },
     ],
     phrases: [
       {
@@ -152,10 +359,16 @@ const LOCALES = {
   en: {
     title: 'PortuStart',
     sub: 'Your Relocation Partner for Portugal',
-    tabTrans: 'Translator',
+    tabPlaces: 'Explore',
     tabServices: 'Services',
+    tabTrans: 'Translator',
     tabCalc: 'Salary',
     tabGuide: 'Guide',
+    placesSectionTitle: '🇵🇹 Attractions & Beautiful Places',
+    placesSectionSub: 'Tap a city on the map and swipe through its best sights:',
+    mapInstruction: '📍 Select a region on the map:',
+    swipeInstruction: '👉 Swipe horizontally to discover more spots in this city:',
+    openInMapsBtn: 'Open Route in Maps',
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
@@ -175,11 +388,7 @@ const LOCALES = {
     checklistSub: 'Your step-by-step relocation checklist',
     checklistDone: 'completed',
     selectServices: 'Required Services:',
-    serviceLabels: {
-      nif: 'NIF (Tax Number)',
-      niss: 'NISS (Social Security)',
-      bank: 'Bank Account',
-    },
+    serviceLabels: { nif: 'NIF (Tax Number)', niss: 'NISS (Social Security)', bank: 'Bank Account' },
     uploadPass: 'Attach Passport / ID',
     uploadProof: 'Attach Proof of Address',
     submitBtn: 'Submit Documents (portustart@proton.me)',
@@ -215,7 +424,7 @@ const LOCALES = {
     welcomeBtn: 'Got it, let\'s start!',
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'You completed all 7 roadmap milestones!',
-    celebDesc: 'From your NIF and bank account to your SNS healthcare number: you are ready for Portugal!',
+    celebDesc: 'From your NIF to your SNS healthcare number: you are ready for Portugal!',
     celebBtn: 'Muito obrigado! Let\'s go 🚀',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
@@ -262,10 +471,16 @@ const LOCALES = {
   es: {
     title: 'PortuStart',
     sub: 'Tu socio de reubicación en Portugal',
-    tabTrans: 'Traductor',
+    tabPlaces: 'Descubrir',
     tabServices: 'Servicios',
+    tabTrans: 'Traductor',
     tabCalc: 'Salario',
     tabGuide: 'Guía',
+    placesSectionTitle: '🇵🇹 Atracciones y Lugares Hermosos',
+    placesSectionSub: 'Toca una ciudad en el mapa y desliza para ver sus atractivos:',
+    mapInstruction: '📍 Elige una región en el mapa:',
+    swipeInstruction: '👉 Desliza horizontalmente para ver más sitios en esta ciudad:',
+    openInMapsBtn: 'Abrir ruta en Maps',
     from: 'De:',
     to: 'A:',
     inputLabel: 'Entrada:',
@@ -285,11 +500,7 @@ const LOCALES = {
     checklistSub: 'Plan burocrático paso a paso para Portugal',
     checklistDone: 'completado',
     selectServices: 'Servicios requeridos:',
-    serviceLabels: {
-      nif: 'NIF (Número Fiscal)',
-      niss: 'NISS (Seguridad Social)',
-      bank: 'Cuenta Bancaria',
-    },
+    serviceLabels: { nif: 'NIF (Número Fiscal)', niss: 'NISS (Seguridad Social)', bank: 'Cuenta Bancaria' },
     uploadPass: 'Adjuntar Pasaporte / DNI',
     uploadProof: 'Adjuntar Comprobante de domicilio',
     submitBtn: 'Enviar documentos (portustart@proton.me)',
@@ -372,10 +583,16 @@ const LOCALES = {
   fr: {
     title: 'PortuStart',
     sub: 'Votre partenaire de relocation au Portugal',
-    tabTrans: 'Traducteur',
+    tabPlaces: 'Découvrir',
     tabServices: 'Services',
+    tabTrans: 'Traducteur',
     tabCalc: 'Salaire',
     tabGuide: 'Guide',
+    placesSectionTitle: '🇵🇹 Lieux & Attractions Touristiques',
+    placesSectionSub: 'Touchez une ville sur la carte et faites défiler les incontournables :',
+    mapInstruction: '📍 Choisissez une région sur la carte :',
+    swipeInstruction: '👉 Balayez horizontalement pour découvrir plus d\'endroits :',
+    openInMapsBtn: 'Itinéraire dans Maps',
     from: 'De :',
     to: 'À :',
     inputLabel: 'Texte :',
@@ -395,11 +612,7 @@ const LOCALES = {
     checklistSub: 'Votre guide administratif pour le Portugal',
     checklistDone: 'terminé',
     selectServices: 'Services nécessaires :',
-    serviceLabels: {
-      nif: 'NIF (Numéro Fiscal)',
-      niss: 'NISS (Sécurité Sociale)',
-      bank: 'Compte Bancaire',
-    },
+    serviceLabels: { nif: 'NIF (Numéro Fiscal)', niss: 'NISS (Sécurité Sociale)', bank: 'Compte Bancaire' },
     uploadPass: 'Joindre Passeport / CNI',
     uploadProof: 'Joindre Justificatif de domicile',
     submitBtn: 'Envoyer les documents (portustart@proton.me)',
@@ -482,10 +695,16 @@ const LOCALES = {
   it: {
     title: 'PortuStart',
     sub: 'Il tuo partner per il trasferimento in Portogallo',
-    tabTrans: 'Traduttore',
+    tabPlaces: 'Scopri',
     tabServices: 'Servizi',
+    tabTrans: 'Traduttore',
     tabCalc: 'Stipendio',
     tabGuide: 'Guida',
+    placesSectionTitle: '🇵🇹 Attrazioni e Luoghi Imperdibili',
+    placesSectionSub: 'Tocca una città sulla mappa e scorri le attrazioni principali:',
+    mapInstruction: '📍 Scegli una regione sulla mappa:',
+    swipeInstruction: '👉 Scorri in orizzontale per scoprire i luoghi di questa città:',
+    openInMapsBtn: 'Apri percorso in Maps',
     from: 'Da:',
     to: 'A:',
     inputLabel: 'Testo:',
@@ -505,11 +724,7 @@ const LOCALES = {
     checklistSub: 'La tua guida burocratica per il Portogallo',
     checklistDone: 'completato',
     selectServices: 'Servizi richiesti:',
-    serviceLabels: {
-      nif: 'NIF (Codice Fiscale)',
-      niss: 'NISS (Previdenza Sociale)',
-      bank: 'Conto Bancario',
-    },
+    serviceLabels: { nif: 'NIF (Codice Fiscale)', niss: 'NISS (Previdenza Sociale)', bank: 'Conto Bancario' },
     uploadPass: 'Allega Passaporto / Carta d\'Identità',
     uploadProof: 'Allega Prova di Domicilio',
     submitBtn: 'Invia Documenti (portustart@proton.me)',
@@ -592,10 +807,16 @@ const LOCALES = {
   uk: {
     title: 'PortuStart',
     sub: 'Ваш помічник для переїзду в Португалію',
-    tabTrans: 'Перекладач',
+    tabPlaces: 'Локації',
     tabServices: 'Сервіси',
+    tabTrans: 'Перекладач',
     tabCalc: 'Зарплата',
     tabGuide: 'Гід',
+    placesSectionTitle: '🇵🇹 Пам\'ятки та красиві локації',
+    placesSectionSub: 'Оберіть місто на карті та гортайте найкращі пам\'ятки:',
+    mapInstruction: '📍 Оберіть регіон на карті:',
+    swipeInstruction: '👉 Свайпайте вбік, щоб побачити більше локацій:',
+    openInMapsBtn: 'Маршрут у Google Maps',
     from: 'З:',
     to: 'На:',
     inputLabel: 'Введення:',
@@ -615,11 +836,7 @@ const LOCALES = {
     checklistSub: 'Покроковий гід португальською бюрократією',
     checklistDone: 'виконано',
     selectServices: 'Потрібні послуги:',
-    serviceLabels: {
-      nif: 'NIF (Податковий номер)',
-      niss: 'NISS (Соціальне страхування)',
-      bank: 'Банківський рахунок',
-    },
+    serviceLabels: { nif: 'NIF (Податковий номер)', niss: 'NISS (Соціальне страхування)', bank: 'Банківський рахунок' },
     uploadPass: 'Додати Закордонний паспорт / ID',
     uploadProof: 'Додати Підтвердження адреси',
     submitBtn: 'Надіслати документи (portustart@proton.me)',
@@ -778,51 +995,19 @@ const NATIONAL_TRANSIT_SYSTEMS = [
   },
 ];
 
-const IDIOM_DICTIONARY = [
-  {
-    triggers: ['voll cool', 'mega cool', 'voll geil', 'that is so cool', 'really cool'],
-    pt: 'Isso é bué fixe!',
-    explanation: '💡 Slang: "bué" = sehr/mega, "fixe" = cool/klasse.',
-  },
-  {
-    triggers: ['bier trinken', 'lass ein bier trinken', 'have a beer', 'grab a beer'],
-    pt: 'Bora beber uma imperial / um fino!',
-    explanation: '💡 In Lissabon "imperial", im Norden rund um Porto sagt man "um fino".',
-  },
-  {
-    triggers: ['keinen bock', 'kein bock', 'keine lust', 'no mood'],
-    pt: 'Não me apetece nada!',
-    explanation: '💡 Umgangssprachlich für "Ich habe überhaupt keine Lust darauf".',
-  },
-  {
-    triggers: ['was geht', 'wie läuft es', 'whats up'],
-    pt: 'Tudo bem, pá? Então, como é?',
-    explanation: '💡 "Pá" ist das meistgenutzte Füllwort in Portugal (wie "Alter" oder "Mensch").',
-  },
-];
-
-const PT_PT_REPLACEMENTS = {
-  'trem': 'comboio',
-  'ônibus': 'autocarro',
-  'celular': 'telemóvel',
-  'café da manhã': 'pequeno-almoço',
-  'banheiro': 'casa de banho',
-  'legal': 'fixe',
-  'muito legal': 'bué fixe',
-  'aluguel': 'arrendamento',
-};
-
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
   const [welcomeModalVisible, setWelcomeModalVisible] = useState(true);
   const [celebrationModalVisible, setCelebrationModalVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState('services');
+  
+  // Tabs: 'places' | 'services' | 'trans' | 'calc' | 'guide'
+  const [activeTab, setActiveTab] = useState('places');
+  const [selectedCityId, setSelectedCityId] = useState('lisboa');
 
-  // Dynamische Lokalisierungsdaten laden
   const t = LOCALES[appLang] || LOCALES['de'];
 
-  // Checkliste: Status merken (ID -> Boolean)
+  // Checkliste
   const [checkedMap, setCheckedMap] = useState({});
 
   // Translator
@@ -845,7 +1030,8 @@ export default function App() {
   const [passportFileName, setPassportFileName] = useState('');
   const [proofFileName, setProofFileName] = useState('');
 
-  // Checkliste abhaken
+  const activeCity = CITIES_DATA.find((c) => c.id === selectedCityId) || CITIES_DATA[0];
+
   const toggleChecklistItem = (id) => {
     const updated = { ...checkedMap, [id]: !checkedMap[id] };
     setCheckedMap(updated);
@@ -871,7 +1057,11 @@ export default function App() {
     });
   };
 
-  // TEXT-TO-SPEECH
+  const openPlaceInMaps = (query) => {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+    openUrl(url);
+  };
+
   const playAudio = (text, langCode = 'pt') => {
     if (!text) return;
     if (Platform.OS === 'web' && typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -887,12 +1077,11 @@ export default function App() {
     }
   };
 
-  // SPEECH-TO-TEXT
   const startSpeechRecognition = () => {
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
-        Alert.alert('Hinweis', 'Spracherkennung wird in diesem Browser nicht unterstützt (bitte Chrome oder Safari nutzen).');
+        Alert.alert('Hinweis', 'Spracherkennung wird in diesem Browser nicht unterstützt.');
         return;
       }
 
@@ -911,13 +1100,8 @@ export default function App() {
           setIsRecording(false);
         };
 
-        recognition.onerror = () => {
-          setIsRecording(false);
-        };
-
-        recognition.onend = () => {
-          setIsRecording(false);
-        };
+        recognition.onerror = () => setIsRecording(false);
+        recognition.onend = () => setIsRecording(false);
 
         recognition.start();
       } catch {
@@ -999,18 +1183,6 @@ export default function App() {
     setTranslatedText('');
     setSlangNote('');
 
-    const cleanInput = inputText.trim().toLowerCase();
-
-    if (targetLang === 'pt') {
-      const matched = IDIOM_DICTIONARY.find((item) => item.triggers.some((trig) => cleanInput.includes(trig)));
-      if (matched) {
-        setTranslatedText(matched.pt);
-        setSlangNote(matched.explanation);
-        setLoading(false);
-        return;
-      }
-    }
-
     try {
       const langPair = `${sourceLang}|${targetLang}`;
       const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${langPair}`;
@@ -1018,19 +1190,7 @@ export default function App() {
       const data = await res.json();
 
       if (data.responseData?.translatedText) {
-        let result = data.responseData.translatedText;
-        if (targetLang === 'pt') {
-          let notes = [];
-          Object.keys(PT_PT_REPLACEMENTS).forEach((key) => {
-            const reg = new RegExp(`\\b${key}\\b`, 'gi');
-            if (reg.test(result)) {
-              result = result.replace(reg, PT_PT_REPLACEMENTS[key]);
-              notes.push(`"${PT_PT_REPLACEMENTS[key]}"`);
-            }
-          });
-          if (notes.length > 0) setSlangNote(`🇵🇹 Portugiesisch angepasst: ${notes.join(', ')}`);
-        }
-        setTranslatedText(result);
+        setTranslatedText(data.responseData.translatedText);
       } else {
         setTranslatedText('Übersetzung nicht verfügbar.');
       }
@@ -1090,14 +1250,22 @@ export default function App() {
           </View>
         </View>
 
-        {/* Navigation Tabs */}
+        {/* 5-Fach Menüleiste (Inkl. Entdecken/Places) */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
+            <TouchableOpacity
+              style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]}
+              onPress={() => setActiveTab('places')}
+            >
+              <Ionicons name="map" size={13} color={activeTab === 'places' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]}
               onPress={() => setActiveTab('services')}
             >
-              <Ionicons name="briefcase" size={14} color={activeTab === 'services' ? '#fff' : '#64748B'} />
+              <Ionicons name="briefcase" size={13} color={activeTab === 'services' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
             </TouchableOpacity>
 
@@ -1105,7 +1273,7 @@ export default function App() {
               style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]}
               onPress={() => setActiveTab('trans')}
             >
-              <Ionicons name="chatbubbles" size={14} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
+              <Ionicons name="chatbubbles" size={13} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
@@ -1116,7 +1284,7 @@ export default function App() {
                 if (!calcResult) calculateNetSalary(grossInput);
               }}
             >
-              <Ionicons name="calculator" size={14} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
+              <Ionicons name="calculator" size={13} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
 
@@ -1124,17 +1292,141 @@ export default function App() {
               style={[styles.tabButton, activeTab === 'guide' && styles.tabButtonActive]}
               onPress={() => setActiveTab('guide')}
             >
-              <Ionicons name="compass" size={14} color={activeTab === 'guide' ? '#fff' : '#64748B'} />
+              <Ionicons name="compass" size={13} color={activeTab === 'guide' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'guide' && styles.tabTextActive]}>{t.tabGuide}</Text>
             </TouchableOpacity>
           </View>
         </View>
 
+        {/* TAB 0: PLACES & SEHENSWÜRDIGKEITEN (INTERAKTIVE MAP + SWIPE) */}
+        {activeTab === 'places' && (
+          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            
+            {/* Header Karte */}
+            <View style={styles.card}>
+              <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
+              <Text style={styles.subText}>{t.placesSectionSub}</Text>
+              <Text style={styles.miniLabel}>{t.mapInstruction}</Text>
+
+              {/* STILISIERTE INTERAKTIVE PORTUGAL-KARTE */}
+              <View style={styles.mapGraphicWrapper}>
+                {/* Silhouette / Hintergrund der Karte */}
+                <View style={styles.portugalMapShape}>
+                  <View style={styles.oceanWaterMark}>
+                    <Text style={styles.oceanWaterMarkText}>ATLÂNTICO</Text>
+                  </View>
+
+                  {/* Interaktive Pins auf der Karte */}
+                  {CITIES_DATA.map((city) => {
+                    const isSelected = selectedCityId === city.id;
+                    return (
+                      <TouchableOpacity
+                        key={city.id}
+                        style={[
+                          styles.mapPinContainer,
+                          { top: city.mapCoords.top, left: city.mapCoords.left },
+                          isSelected && styles.mapPinContainerActive,
+                        ]}
+                        onPress={() => setSelectedCityId(city.id)}
+                      >
+                        <View style={[styles.mapPinDot, isSelected && styles.mapPinDotActive]}>
+                          <Ionicons name="location" size={isSelected ? 16 : 12} color={isSelected ? '#DC2626' : '#0F5132'} />
+                        </View>
+                        <View style={[styles.mapPinLabelBadge, isSelected && styles.mapPinLabelBadgeActive]}>
+                          <Text style={[styles.mapPinLabelText, isSelected && styles.mapPinLabelTextActive]}>
+                            {city.name.split(' ')[0]}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+
+              {/* Städte-Schnellwahlliste (Chips) */}
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
+                {CITIES_DATA.map((city) => {
+                  const isSelected = selectedCityId === city.id;
+                  return (
+                    <TouchableOpacity
+                      key={city.id}
+                      style={[styles.cityChip, isSelected && styles.cityChipActive]}
+                      onPress={() => setSelectedCityId(city.id)}
+                    >
+                      <Ionicons
+                        name="business-outline"
+                        size={13}
+                        color={isSelected ? '#0F5132' : '#64748B'}
+                        style={{ marginRight: 4 }}
+                      />
+                      <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>
+                        {city.name}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
+            </View>
+
+            {/* AKTIVE STADT & SWIPEBEDINGTER HORIZONTALER SCROLLBEREICH */}
+            <View style={styles.cityDetailsHeader}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.activeCityName}>{activeCity.name}</Text>
+                <Text style={styles.activeCityTagline}>{activeCity.tagline}</Text>
+              </View>
+              <View style={styles.cityPlacesCounter}>
+                <Text style={styles.cityPlacesCounterText}>{activeCity.places.length} Highlights</Text>
+              </View>
+            </View>
+
+            <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>
+              {t.swipeInstruction}
+            </Text>
+
+            {/* HORIZONTALES SWIPE-VERFAHREN FÜR ATTRAKTIONEN */}
+            <ScrollView
+              horizontal
+              pagingEnabled={false}
+              showsHorizontalScrollIndicator={false}
+              snapToAlignment="start"
+              decelerationRate="fast"
+              contentContainerStyle={styles.attractionsSwipeScroll}
+            >
+              {activeCity.places.map((place) => (
+                <View key={place.id} style={styles.attractionCard}>
+                  <Image source={{ uri: place.img }} style={styles.attractionImage} />
+                  
+                  <View style={styles.attractionCategoryBadge}>
+                    <Text style={styles.attractionCategoryText}>{place.category}</Text>
+                  </View>
+
+                  <View style={styles.attractionBody}>
+                    <Text style={styles.attractionTitle}>{place.title}</Text>
+                    <Text style={styles.attractionDesc}>{place.desc}</Text>
+
+                    <View style={styles.attractionTipBox}>
+                      <Ionicons name="sparkles" size={13} color="#D97706" style={{ marginRight: 4, marginTop: 1 }} />
+                      <Text style={styles.attractionTipText}>{place.tip}</Text>
+                    </View>
+
+                    <TouchableOpacity
+                      style={styles.openMapBtn}
+                      onPress={() => openPlaceInMaps(place.query)}
+                    >
+                      <Ionicons name="navigate-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
+                      <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ))}
+            </ScrollView>
+
+          </ScrollView>
+        )}
+
         {/* TAB 1: SERVICES & CHECKLISTE */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-            
-            {/* ROADMAP (VOLLSTÄNDIG ÜBERSETZT) */}
             <View style={styles.card}>
               <View style={styles.checklistHeaderRow}>
                 <View>
@@ -1177,7 +1469,6 @@ export default function App() {
               })}
             </View>
 
-            {/* SERVICES ANTRÄGE */}
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
               <Text style={styles.subText}>{t.servicesSub}</Text>
@@ -1247,7 +1538,6 @@ export default function App() {
               </TouchableOpacity>
             </View>
 
-            {/* Support */}
             <View style={styles.supportCard}>
               <View style={styles.supportHeaderRow}>
                 <Ionicons name="help-buoy" size={18} color="#0F5132" style={{ marginRight: 6 }} />
@@ -1321,9 +1611,7 @@ export default function App() {
                 </View>
               </View>
 
-              {isRecording ? (
-                <Text style={styles.recordingText}>{t.listeningNotice}</Text>
-              ) : null}
+              {isRecording ? <Text style={styles.recordingText}>{t.listeningNotice}</Text> : null}
 
               <TextInput
                 style={styles.textInput}
@@ -1353,7 +1641,6 @@ export default function App() {
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.resultBody}>{translatedText}</Text>
-                {slangNote ? <Text style={styles.slangNote}>{slangNote}</Text> : null}
               </View>
             ) : null}
           </ScrollView>
@@ -1408,8 +1695,6 @@ export default function App() {
         {/* TAB 4: GUIDE */}
         {activeTab === 'guide' && (
           <ScrollView contentContainerStyle={styles.scrollContent}>
-            
-            {/* TRANSIT HUB */}
             <View style={styles.card}>
               <View style={styles.transitHeaderRow}>
                 <Ionicons name="train" size={24} color="#0F5132" style={{ marginRight: 8 }} />
@@ -1447,15 +1732,10 @@ export default function App() {
               ))}
             </View>
 
-            {/* NOTFALLNUMMERN (VOLLSTÄNDIG ÜBERSETZT) */}
             <View style={styles.guideSection}>
               <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
               {t.emergencies.map((item, idx) => (
-                <TouchableOpacity
-                  key={idx}
-                  style={styles.emergencyCard}
-                  onPress={() => dialNumber(item.num)}
-                >
+                <TouchableOpacity key={idx} style={styles.emergencyCard} onPress={() => dialNumber(item.num)}>
                   <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
                     <Ionicons name={item.icon} size={18} color="#fff" />
                   </View>
@@ -1471,7 +1751,6 @@ export default function App() {
               ))}
             </View>
 
-            {/* REDEWENDUNGEN (VOLLSTÄNDIG ÜBERSETZT) */}
             {t.phrases.map((sec, i) => (
               <View key={i} style={styles.guideSection}>
                 <Text style={[styles.sectionTitle, { color: sec.color }]}>{sec.category}</Text>
@@ -1492,39 +1771,8 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* 1. CELEBRATION MODAL */}
-        <Modal
-          visible={celebrationModalVisible}
-          transparent
-          animationType="fade"
-          onRequestClose={() => setCelebrationModalVisible(false)}
-        >
-          <View style={styles.modalOverlay}>
-            <View style={styles.celebrationCard}>
-              <View style={styles.celebBadge}>
-                <Ionicons name="trophy" size={32} color="#D97706" />
-              </View>
-              <Text style={styles.celebTitle}>{t.celebTitle}</Text>
-              <Text style={styles.celebSub}>{t.celebSub}</Text>
-              <Text style={styles.celebDesc}>{t.celebDesc}</Text>
-
-              <TouchableOpacity
-                style={styles.celebBtn}
-                onPress={() => setCelebrationModalVisible(false)}
-              >
-                <Text style={styles.celebBtnText}>{t.celebBtn}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-
-        {/* 2. ONBOARDING MODAL */}
-        <Modal
-          visible={welcomeModalVisible}
-          transparent
-          animationType="slide"
-          onRequestClose={() => setWelcomeModalVisible(false)}
-        >
+        {/* ONBOARDING MODAL */}
+        <Modal visible={welcomeModalVisible} transparent animationType="slide" onRequestClose={() => setWelcomeModalVisible(false)}>
           <View style={styles.modalOverlay}>
             <View style={styles.onboardingCard}>
               <View style={styles.onboardingHeader}>
@@ -1538,41 +1786,21 @@ export default function App() {
               <ScrollView style={styles.onboardingScroll} showsVerticalScrollIndicator={false}>
                 <View style={styles.onboardingFeatureRow}>
                   <View style={[styles.featureIconWrap, { backgroundColor: '#DCFCE7' }]}>
-                    <Ionicons name="checkbox" size={20} color="#0F5132" />
+                    <Ionicons name="map" size={20} color="#0F5132" />
                   </View>
                   <View style={styles.featureTextWrap}>
-                    <Text style={styles.featureTitle}>{t.guideStepRoadmapTitle}</Text>
-                    <Text style={styles.featureDesc}>{t.guideStepRoadmapDesc}</Text>
+                    <Text style={styles.featureTitle}>Sehenswürdigkeiten & Schöne Orte</Text>
+                    <Text style={styles.featureDesc}>Interaktive Karte & Swipe-Verfahren durch ganz Portugal.</Text>
                   </View>
                 </View>
 
                 <View style={styles.onboardingFeatureRow}>
                   <View style={[styles.featureIconWrap, { backgroundColor: '#E0F2FE' }]}>
-                    <Ionicons name="document-text" size={20} color="#0284C7" />
+                    <Ionicons name="checkbox" size={20} color="#0284C7" />
                   </View>
                   <View style={styles.featureTextWrap}>
-                    <Text style={styles.featureTitle}>{t.guideStepServicesTitle}</Text>
-                    <Text style={styles.featureDesc}>{t.guideStepServicesDesc}</Text>
-                  </View>
-                </View>
-
-                <View style={styles.onboardingFeatureRow}>
-                  <View style={[styles.featureIconWrap, { backgroundColor: '#E0E7FF' }]}>
-                    <Ionicons name="train" size={20} color="#4338CA" />
-                  </View>
-                  <View style={styles.featureTextWrap}>
-                    <Text style={styles.featureTitle}>{t.guideStepTransitTitle}</Text>
-                    <Text style={styles.featureDesc}>{t.guideStepTransitDesc}</Text>
-                  </View>
-                </View>
-
-                <View style={styles.onboardingFeatureRow}>
-                  <View style={[styles.featureIconWrap, { backgroundColor: '#FEE2E2' }]}>
-                    <Ionicons name="call" size={20} color="#DC2626" />
-                  </View>
-                  <View style={styles.featureTextWrap}>
-                    <Text style={styles.featureTitle}>{t.guideStepEmergencyTitle}</Text>
-                    <Text style={styles.featureDesc}>{t.guideStepEmergencyDesc}</Text>
+                    <Text style={styles.featureTitle}>{t.guideStepRoadmapTitle}</Text>
+                    <Text style={styles.featureDesc}>{t.guideStepRoadmapDesc}</Text>
                   </View>
                 </View>
 
@@ -1587,10 +1815,7 @@ export default function App() {
                 </View>
               </ScrollView>
 
-              <TouchableOpacity
-                style={styles.onboardingBtn}
-                onPress={() => setWelcomeModalVisible(false)}
-              >
+              <TouchableOpacity style={styles.onboardingBtn} onPress={() => setWelcomeModalVisible(false)}>
                 <Text style={styles.onboardingBtnText}>{t.welcomeBtn}</Text>
                 <Ionicons name="arrow-forward" size={16} color="#fff" style={{ marginLeft: 6 }} />
               </TouchableOpacity>
@@ -1598,7 +1823,7 @@ export default function App() {
           </View>
         </Modal>
 
-        {/* 3. SPRACHAUSWAHL MODAL */}
+        {/* SPRACHAUSWAHL MODAL */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
             <View style={styles.modalCard}>
@@ -1644,11 +1869,7 @@ const styles = StyleSheet.create({
   headerTitle: { color: '#FFFFFF', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
   headerSubtitle: { color: '#BBF7D0', fontSize: 11, marginTop: 2 },
   headerActions: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  guideIconBtn: {
-    backgroundColor: 'rgba(255,255,255,0.18)',
-    padding: 6,
-    borderRadius: 12,
-  },
+  guideIconBtn: { backgroundColor: 'rgba(255,255,255,0.18)', padding: 6, borderRadius: 12 },
   langSwitchHeaderBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1658,7 +1879,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   langSwitchHeaderText: { color: '#FFFFFF', fontSize: 11, fontWeight: 'bold' },
-  tabBarContainer: { paddingHorizontal: 12, marginTop: -16, marginBottom: 8, zIndex: 10 },
+  tabBarContainer: { paddingHorizontal: 8, marginTop: -16, marginBottom: 8, zIndex: 10 },
   tabBar: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
@@ -1671,15 +1892,15 @@ const styles = StyleSheet.create({
   },
   tabButton: {
     flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 8,
+    flexDirection: 'column',
+    paddingVertical: 6,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
-    gap: 3,
+    borderRadius: 18,
+    gap: 2,
   },
   tabButtonActive: { backgroundColor: '#0F5132' },
-  tabText: { fontSize: 11, color: '#64748B', fontWeight: '600' },
+  tabText: { fontSize: 10, color: '#64748B', fontWeight: '600' },
   tabTextActive: { color: '#FFFFFF', fontWeight: '700' },
   scrollContent: { padding: 14, paddingBottom: 40 },
   card: {
@@ -1690,6 +1911,147 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E2E8F0',
   },
+  sectionHeaderTitle: { fontSize: 15, fontWeight: '800', color: '#0F172A' },
+  subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
+  miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
+
+  // INTERAKTIVE PORTUGAL KARTE STYLES
+  mapGraphicWrapper: {
+    backgroundColor: '#E0F2FE',
+    borderRadius: 14,
+    padding: 8,
+    marginTop: 6,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#BAE6FD',
+  },
+  portugalMapShape: {
+    height: 220,
+    width: '100%',
+    backgroundColor: '#FEF08A',
+    borderRadius: 12,
+    position: 'relative',
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#FDE047',
+  },
+  oceanWaterMark: {
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    opacity: 0.35,
+  },
+  oceanWaterMarkText: { fontSize: 18, fontWeight: '900', color: '#0284C7', letterSpacing: 2 },
+  mapPinContainer: {
+    position: 'absolute',
+    alignItems: 'center',
+    transform: [{ translateX: -12 }, { translateY: -12 }],
+    zIndex: 10,
+  },
+  mapPinContainerActive: { zIndex: 20 },
+  mapPinDot: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 4,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderWidth: 1.5,
+    borderColor: '#0F5132',
+  },
+  mapPinDotActive: {
+    borderColor: '#DC2626',
+    backgroundColor: '#FEE2E2',
+    transform: [{ scale: 1.25 }],
+  },
+  mapPinLabelBadge: {
+    backgroundColor: 'rgba(15,23,42,0.75)',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
+    marginTop: 2,
+  },
+  mapPinLabelBadgeActive: {
+    backgroundColor: '#0F5132',
+  },
+  mapPinLabelText: { fontSize: 9.5, color: '#FFFFFF', fontWeight: 'bold' },
+  mapPinLabelTextActive: { color: '#BBF7D0' },
+  cityFilterScroll: { paddingVertical: 4, gap: 6 },
+  cityChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    backgroundColor: '#F1F5F9',
+  },
+  cityChipActive: { backgroundColor: '#DCFCE7', borderWidth: 1.5, borderColor: '#0F5132' },
+  cityChipText: { fontSize: 12, fontWeight: '700', color: '#334155' },
+  cityChipTextActive: { color: '#0F5132' },
+
+  // AKTIVE STADT & SWIPE ATTRAKTIONEN
+  cityDetailsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+    marginBottom: 6,
+  },
+  activeCityName: { fontSize: 18, fontWeight: '900', color: '#0F172A' },
+  activeCityTagline: { fontSize: 12, color: '#64748B', marginTop: 1 },
+  cityPlacesCounter: { backgroundColor: '#DCFCE7', paddingVertical: 3, paddingHorizontal: 8, borderRadius: 8 },
+  cityPlacesCounterText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
+  attractionsSwipeScroll: { paddingVertical: 4, gap: 12 },
+  attractionCard: {
+    width: width * 0.78,
+    maxWidth: 320,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    overflow: 'hidden',
+    position: 'relative',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+  },
+  attractionImage: { width: '100%', height: 160, backgroundColor: '#E2E8F0' },
+  attractionCategoryBadge: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    backgroundColor: 'rgba(15,23,42,0.85)',
+    paddingVertical: 3,
+    paddingHorizontal: 8,
+    borderRadius: 6,
+  },
+  attractionCategoryText: { color: '#FFFFFF', fontSize: 10.5, fontWeight: 'bold' },
+  attractionBody: { padding: 12 },
+  attractionTitle: { fontSize: 15, fontWeight: '800', color: '#0F172A' },
+  attractionDesc: { fontSize: 12, color: '#475569', marginTop: 4, lineHeight: 17 },
+  attractionTipBox: {
+    flexDirection: 'row',
+    backgroundColor: '#FEF3C7',
+    padding: 8,
+    borderRadius: 8,
+    marginTop: 8,
+    alignItems: 'flex-start',
+  },
+  attractionTipText: { fontSize: 11, color: '#92400E', flex: 1, fontWeight: '600' },
+  openMapBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0F5132',
+    paddingVertical: 8,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  openMapBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
+
+  // ALLGEMEINE FORMULAR- & TAB-STYLES
   checklistHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   progressBadge: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
   progressBadgeText: { fontSize: 11, fontWeight: '700', color: '#0F5132' },
@@ -1700,56 +2062,6 @@ const styles = StyleSheet.create({
   checklistText: { fontSize: 13, fontWeight: '700', color: '#0F172A' },
   checklistTextDone: { textDecorationLine: 'line-through', color: '#64748B' },
   checklistTip: { fontSize: 11, color: '#64748B', marginTop: 2 },
-  miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
-  langScroll: { paddingVertical: 4, gap: 6 },
-  langChip: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 10, backgroundColor: '#F1F5F9' },
-  langChipSelected: { backgroundColor: '#DCFCE7', borderColor: '#0F5132', borderWidth: 1.5 },
-  langChipText: { fontSize: 12, fontWeight: '700', color: '#334155' },
-  langChipTextSelected: { color: '#0F5132' },
-  dividerRow: { alignItems: 'center', marginVertical: 4 },
-  switchButton: { padding: 6, backgroundColor: '#F1F5F9', borderRadius: 15 },
-  inputActionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
-  iconActionBtn: { padding: 6, backgroundColor: '#F1F5F9', borderRadius: 8 },
-  micButton: { padding: 6, backgroundColor: '#F0FDF4', borderRadius: 8, borderWidth: 1, borderColor: '#86EFAC' },
-  micButtonActive: { backgroundColor: '#DC2626', borderColor: '#B91C1C' },
-  recordingText: { fontSize: 12, color: '#DC2626', fontWeight: 'bold', marginVertical: 4 },
-  textInput: {
-    minHeight: 80,
-    fontSize: 15,
-    textAlignVertical: 'top',
-    color: '#0F172A',
-    backgroundColor: '#F8FAFC',
-    borderRadius: 10,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
-  primaryBtn: {
-    backgroundColor: '#0F5132',
-    paddingVertical: 12,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    marginTop: 8,
-  },
-  btnDisabled: { backgroundColor: '#86EFAC' },
-  btnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
-  resultCard: {
-    backgroundColor: '#F0FDF4',
-    borderRadius: 16,
-    padding: 14,
-    borderColor: '#BBF7D0',
-    borderWidth: 1,
-  },
-  resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
-  resultBody: { fontSize: 16, color: '#14532D', fontWeight: '700', marginTop: 4 },
-  slangNote: { fontSize: 12, color: '#0F5132', marginTop: 6, fontStyle: 'italic' },
-  audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
-  audioBtnText: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
-  sectionHeaderTitle: { fontSize: 15, fontWeight: '800', color: '#0F172A' },
-  subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
   fieldInput: {
     backgroundColor: '#FFFFFF',
@@ -1780,14 +2092,18 @@ const styles = StyleSheet.create({
   serviceChipText: { fontSize: 12, fontWeight: '600', color: '#1E293B' },
   uploadBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#F0FDF4', borderWidth: 1, borderColor: '#86EFAC', borderStyle: 'dashed', borderRadius: 10, padding: 10, marginVertical: 3 },
   uploadBtnText: { fontSize: 11, color: '#0F5132', fontWeight: '600' },
-  supportCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 14,
-    padding: 12,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    marginTop: 4,
+  primaryBtn: {
+    backgroundColor: '#0F5132',
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 8,
   },
+  btnDisabled: { backgroundColor: '#86EFAC' },
+  btnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
+  supportCard: { backgroundColor: '#FFFFFF', borderRadius: 14, padding: 12, borderWidth: 1, borderColor: '#E2E8F0', marginTop: 4 },
   supportHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
   supportHeaderTitle: { fontSize: 13, fontWeight: '800', color: '#0F172A' },
   supportHelpText: { fontSize: 12, color: '#64748B', marginBottom: 8 },
@@ -1804,6 +2120,35 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   supportOutlineBtnText: { fontSize: 11, fontWeight: '700', color: '#0F5132' },
+  langScroll: { paddingVertical: 4, gap: 6 },
+  langChip: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 10, backgroundColor: '#F1F5F9' },
+  langChipSelected: { backgroundColor: '#DCFCE7', borderColor: '#0F5132', borderWidth: 1.5 },
+  langChipText: { fontSize: 12, fontWeight: '700', color: '#334155' },
+  langChipTextSelected: { color: '#0F5132' },
+  dividerRow: { alignItems: 'center', marginVertical: 4 },
+  switchButton: { padding: 6, backgroundColor: '#F1F5F9', borderRadius: 15 },
+  inputActionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
+  iconActionBtn: { padding: 6, backgroundColor: '#F1F5F9', borderRadius: 8 },
+  micButton: { padding: 6, backgroundColor: '#F0FDF4', borderRadius: 8, borderWidth: 1, borderColor: '#86EFAC' },
+  micButtonActive: { backgroundColor: '#DC2626', borderColor: '#B91C1C' },
+  recordingText: { fontSize: 12, color: '#DC2626', fontWeight: 'bold', marginVertical: 4 },
+  textInput: {
+    minHeight: 80,
+    fontSize: 15,
+    textAlignVertical: 'top',
+    color: '#0F172A',
+    backgroundColor: '#F8FAFC',
+    borderRadius: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+  },
+  resultCard: { backgroundColor: '#F0FDF4', borderRadius: 16, padding: 14, borderColor: '#BBF7D0', borderWidth: 1 },
+  resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
+  resultBody: { fontSize: 16, color: '#14532D', fontWeight: '700', marginTop: 4 },
+  audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
+  audioBtnText: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
   calcResultCard: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 1, borderColor: '#E2E8F0' },
   netLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
   netValue: { fontSize: 26, fontWeight: '900', color: '#0F5132', marginTop: 2 },
@@ -1840,41 +2185,6 @@ const styles = StyleSheet.create({
   ptText: { fontSize: 14, fontWeight: '700', color: '#0F172A', flex: 1 },
   phText: { fontSize: 12, color: '#64748B', fontStyle: 'italic', marginVertical: 2 },
   deText: { fontSize: 12, color: '#334155' },
-  celebrationCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 24,
-    padding: 24,
-    width: '100%',
-    maxWidth: 360,
-    alignItems: 'center',
-    elevation: 12,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 18,
-  },
-  celebBadge: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: '#FEF3C7',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 14,
-  },
-  celebTitle: { fontSize: 22, fontWeight: '900', color: '#0F172A', textAlign: 'center' },
-  celebSub: { fontSize: 13, fontWeight: '700', color: '#0F5132', textAlign: 'center', marginTop: 4 },
-  celebDesc: { fontSize: 12, color: '#475569', textAlign: 'center', marginTop: 10, lineHeight: 18 },
-  celebBtn: {
-    backgroundColor: '#0F5132',
-    paddingVertical: 13,
-    paddingHorizontal: 22,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 18,
-    width: '100%',
-  },
-  celebBtnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
   onboardingCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
