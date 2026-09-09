@@ -26,7 +26,19 @@ const UI_LANGUAGES = [
   { code: 'uk', label: 'Українська', flag: '🇺🇦' },
 ];
 
-const UI_TEXTS = {
+const TRANSLATOR_LANGUAGES = [
+  { code: 'pt', label: 'PT', flag: '🇵🇹', voice: 'pt-PT' },
+  { code: 'de', label: 'DE', flag: '🇩🇪', voice: 'de-DE' },
+  { code: 'en', label: 'EN', flag: '🇬🇧', voice: 'en-US' },
+  { code: 'es', label: 'ES', flag: '🇪🇸', voice: 'es-ES' },
+  { code: 'fr', label: 'FR', flag: '🇫🇷', voice: 'fr-FR' },
+  { code: 'it', label: 'IT', flag: '🇮🇹', voice: 'it-IT' },
+  { code: 'uk', label: 'UKR', flag: '🇺🇦', voice: 'uk-UA' },
+  { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
+];
+
+// VOLLSTÄNDIGE LOKALISIERUNG FÜR ALLE DETAILS
+const LOCALES = {
   de: {
     title: 'PortuStart',
     sub: 'Dein Relocation-Partner für Portugal',
@@ -36,22 +48,35 @@ const UI_TEXTS = {
     tabGuide: 'Guide',
     from: 'Von:',
     to: 'Nach:',
-    placeholderTrans: 'Text eingeben oder Mikrofon nutzen...',
+    inputLabel: 'Eingabe:',
+    placeholderTrans: 'Text eingeben oder sprechen...',
     btnTrans: 'Übersetzen',
     listenBtn: 'Anhören',
     listeningNotice: '🎙 Höre zu... Sprich jetzt!',
+    resultLabel: 'Ergebnis',
+    nameLabel: 'Vollständiger Name:',
+    namePlaceholder: 'z. B. Julia Schneider',
+    emailLabel: 'E-Mail-Adresse:',
+    emailPlaceholder: 'name@example.com',
+    docsLabel: 'Erforderliche Dokumente:',
     servicesTitle: '📄 Dokumente & Anträge',
     servicesSub: 'Beantrage deine NIF, NISS oder Bankkonto direkt online',
     checklistTitle: '📋 Erste 30 Tage Roadmap',
     checklistSub: 'Dein bürokratischer Ablaufplan für Portugal',
     checklistDone: 'erledigt',
     selectServices: 'Benötigte Services:',
+    serviceLabels: {
+      nif: 'NIF (Steuernummer)',
+      niss: 'NISS (Sozialversicherung)',
+      bank: 'Bankkonto',
+    },
     uploadPass: 'Reisepass / Personalausweis anhängen',
     uploadProof: 'Wohnsitznachweis anhängen',
     submitBtn: 'Dokumente einreichen (portustart@proton.me)',
     fileSelected: 'Bereit: ',
-    supportHelpText: 'Fragen oder Probleme? Unser Support hilft dir:',
-    supportBtn: 'Support kontaktieren',
+    supportTitle: 'Hilfe & Support',
+    supportHelpText: 'Fragen oder Probleme? Unser Support hilft dir gerne:',
+    supportBtn: 'Support kontaktieren (portustart.support@proton.me)',
     calcTitle: '💶 Nettogehalt-Rechner',
     calcSub: 'Für Angestellte, Single ohne Kinder (14 Monatsgehälter).',
     calcGrossLabel: 'Monatliches Bruttogehalt (€):',
@@ -66,22 +91,63 @@ const UI_TEXTS = {
     transitSub: 'Fahrpläne, Netze & Spartickets von Porto bis Faro',
     openLiveTransitBtn: 'Live-Navigation in Google Maps',
     welcomeTitle: 'Bem-vindo zu PortuStart! 🇵🇹',
-    welcomeSub: 'Dein entspannter Begleiter für das Leben und Ankommen in Portugal.',
+    welcomeSub: 'Dein Begleiter für das Ankommen in Portugal.',
     guideStepRoadmapTitle: '1. Erste 30 Tage Roadmap',
-    guideStepRoadmapDesc: 'Interaktiver Schritt-für-Schritt-Ablaufplan durch die Bürokratie.',
+    guideStepRoadmapDesc: 'Interaktiver Schritt-für-Schritt-Plan durch die Bürokratie.',
     guideStepServicesTitle: '2. Papiere & Anträge',
-    guideStepServicesDesc: 'NIF, NISS und Bankkonto direkt über die App anfragen.',
+    guideStepServicesDesc: 'NIF, NISS und Bankkonto direkt online anfordern.',
     guideStepTransitTitle: '3. Landesweiter ÖPNV-Guide',
-    guideStepTransitDesc: 'Metro Porto, Metro Lissabon, CP-Züge und günstige Monatspässe.',
+    guideStepTransitDesc: 'Metro Porto, Metro Lissabon, CP-Züge und Monatskarten.',
     guideStepEmergencyTitle: '4. Notruf & Hotlines',
     guideStepEmergencyDesc: 'Ein-Klick-Direktwahl für Notruf (112) und SNS 24.',
-    guideStepSlangTitle: '5. Slang, Audio & Diktat',
-    guideStepSlangDesc: 'Übersetzer mit Spracheingabe, Vorlesefunktion und Slang-Erkennung.',
+    guideStepSlangTitle: '5. Slang & Audio-Übersetzer',
+    guideStepSlangDesc: 'Spracheingabe, Sprachausgabe und Dialektanpassungen.',
     welcomeBtn: 'Alles klar, los geht\'s!',
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'Du hast alle 7 Schritte der Roadmap gemeistert!',
-    celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das bürokratische Fundament gelegt!',
+    celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das Fundament für dein Leben in Portugal gelegt!',
     celebBtn: 'Muito obrigado! Weiter geht\'s 🚀',
+    checklist: [
+      { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
+      { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für die Chave Móvel Digital und Behörden-SMS.' },
+      { id: 3, title: 'Bankkonto eröffnen', tip: 'Erforderlich für Gehaltseingang und Wohnungskaution.' },
+      { id: 4, title: 'Wohnungsanmietung & Registrierung', tip: 'Der Mietvertrag muss beim Finanzamt (Finanças) gemeldet sein.' },
+      { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für Arbeitsvertrag und Rentenanspruch benötigt.' },
+      { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara Municipal an.' },
+      { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Hausarztsystem und Krankenhäusern.' },
+    ],
+    phrases: [
+      {
+        category: 'Wohnungssuche & Miete (Arrendamento)',
+        color: '#0284C7',
+        items: [
+          { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
+          { trans: 'Wie hoch ist die Kaution / Vorauszahlung?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
+          { trans: 'Ich habe keinen Bürgen (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+        ],
+      },
+      {
+        category: 'Behörden & Papiere (AIMA / Finanças)',
+        color: '#0F5132',
+        items: [
+          { trans: 'Ich brauche eine Steuernummer (NIF).', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'Ich habe einen Termin bei der AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo nah eye-mah' },
+        ],
+      },
+      {
+        category: 'Gastronomie & Unterwegs',
+        color: '#D97706',
+        items: [
+          { trans: 'Ein gezapftes Bier, bitte.', pt: 'Uma imperial, por favor (Lissabon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
+          { trans: 'Die Rechnung, bitte.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+        ],
+      },
+    ],
+    emergencies: [
+      { name: 'Notruf (Polizei & Krankenwagen)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Zentraler EU-Notruf für akute Notfälle.' },
+      { name: 'SNS 24 (Gesundheitshotline)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Medizinische Ersteinschätzung vor Klinikbesuch (auch Englisch).' },
+      { name: 'Linha Migrante (AIMA / Integration)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Auskünfte zu Einwanderung, Dokumenten und Aufenthalt.' },
+    ],
   },
   en: {
     title: 'PortuStart',
@@ -92,22 +158,35 @@ const UI_TEXTS = {
     tabGuide: 'Guide',
     from: 'From:',
     to: 'To:',
-    placeholderTrans: 'Enter text or use microphone...',
+    inputLabel: 'Input:',
+    placeholderTrans: 'Enter text or speak...',
     btnTrans: 'Translate',
     listenBtn: 'Listen',
     listeningNotice: '🎙 Listening... Speak now!',
+    resultLabel: 'Result',
+    nameLabel: 'Full Name:',
+    namePlaceholder: 'e.g. Julia Schneider',
+    emailLabel: 'Email Address:',
+    emailPlaceholder: 'name@example.com',
+    docsLabel: 'Required Documents:',
     servicesTitle: '📄 Document Services',
     servicesSub: 'Request your NIF, NISS or Bank Account online',
     checklistTitle: '📋 First 30 Days Roadmap',
     checklistSub: 'Your step-by-step relocation checklist',
     checklistDone: 'completed',
     selectServices: 'Required Services:',
+    serviceLabels: {
+      nif: 'NIF (Tax Number)',
+      niss: 'NISS (Social Security)',
+      bank: 'Bank Account',
+    },
     uploadPass: 'Attach Passport / ID',
     uploadProof: 'Attach Proof of Address',
     submitBtn: 'Submit Documents (portustart@proton.me)',
     fileSelected: 'Ready: ',
-    supportHelpText: 'Questions or issues? Contact support:',
-    supportBtn: 'Contact Support',
+    supportTitle: 'Help & Support',
+    supportHelpText: 'Questions or issues? Contact support directly:',
+    supportBtn: 'Contact Support (portustart.support@proton.me)',
     calcTitle: '💶 Net Salary Calculator',
     calcSub: 'Single employee, mainland Portugal (14 payments).',
     calcGrossLabel: 'Monthly Gross Salary (€):',
@@ -132,12 +211,53 @@ const UI_TEXTS = {
     guideStepEmergencyTitle: '4. Emergency & Support Dial',
     guideStepEmergencyDesc: 'One-tap dialing for Emergency (112) and SNS 24.',
     guideStepSlangTitle: '5. Voice & Slang Translator',
-    guideStepSlangDesc: 'Speech-to-text, text-to-speech audio and slang detection.',
+    guideStepSlangDesc: 'Speech-to-text, audio pronunciation and slang detection.',
     welcomeBtn: 'Got it, let\'s start!',
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'You completed all 7 roadmap milestones!',
-    celebDesc: 'From your NIF to your SNS healthcare number: you are ready for Portugal!',
+    celebDesc: 'From your NIF and bank account to your SNS healthcare number: you are ready for Portugal!',
     celebBtn: 'Muito obrigado! Let\'s go 🚀',
+    checklist: [
+      { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
+      { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
+      { id: 3, title: 'Open a Portuguese Bank Account', tip: 'Required for salary payouts and rental deposits.' },
+      { id: 4, title: 'Sign Lease & Register Contract', tip: 'Lease must be registered with Finanças for tax purposes.' },
+      { id: 5, title: 'Get Social Security Number (NISS)', tip: 'Mandatory for payroll, pension and healthcare contributions.' },
+      { id: 6, title: 'Residency Registration (CRUE / AIMA)', tip: 'EU citizens register at the local City Hall (Câmara) after 3 months.' },
+      { id: 7, title: 'Get your SNS Healthcare Number', tip: 'Grants access to public primary care clinics (Centro de Saúde).' },
+    ],
+    phrases: [
+      {
+        category: 'Renting & Apartments (Arrendamento)',
+        color: '#0284C7',
+        items: [
+          { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
+          { trans: 'How much is the deposit / upfront months?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
+          { trans: 'I do not have a guarantor (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+        ],
+      },
+      {
+        category: 'Public Services & Paperwork (AIMA / Finanças)',
+        color: '#0F5132',
+        items: [
+          { trans: 'I need to apply for a NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'I have an appointment at AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo nah eye-mah' },
+        ],
+      },
+      {
+        category: 'Dining & Everyday Life',
+        color: '#D97706',
+        items: [
+          { trans: 'A draught beer, please.', pt: 'Uma imperial, por favor (Lisbon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
+          { trans: 'The bill, please.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+        ],
+      },
+    ],
+    emergencies: [
+      { name: 'Emergency (Police & Ambulance)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Central EU emergency dispatch for life-threatening events.' },
+      { name: 'SNS 24 (Public Health Line)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Pre-triage clinical advice in English before hospital visits.' },
+      { name: 'Linha Migrante (AIMA / Integration)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Official guidance on visas, residency and legal paperwork.' },
+    ],
   },
   es: {
     title: 'PortuStart',
@@ -148,22 +268,35 @@ const UI_TEXTS = {
     tabGuide: 'Guía',
     from: 'De:',
     to: 'A:',
-    placeholderTrans: 'Escribe texto o usa el micrófono...',
+    inputLabel: 'Entrada:',
+    placeholderTrans: 'Escribe texto o habla...',
     btnTrans: 'Traducir',
     listenBtn: 'Escuchar',
     listeningNotice: '🎙 Escuchando... ¡Habla ahora!',
+    resultLabel: 'Resultado',
+    nameLabel: 'Nombre completo:',
+    namePlaceholder: 'ej. Julia Schneider',
+    emailLabel: 'Correo electrónico:',
+    emailPlaceholder: 'nombre@ejemplo.com',
+    docsLabel: 'Documentos requeridos:',
     servicesTitle: '📄 Documentos y Trámites',
     servicesSub: 'Solicita NIF, NISS o cuenta bancaria online',
     checklistTitle: '📋 Hoja de ruta primeros 30 días',
     checklistSub: 'Plan burocrático paso a paso para Portugal',
     checklistDone: 'completado',
     selectServices: 'Servicios requeridos:',
+    serviceLabels: {
+      nif: 'NIF (Número Fiscal)',
+      niss: 'NISS (Seguridad Social)',
+      bank: 'Cuenta Bancaria',
+    },
     uploadPass: 'Adjuntar Pasaporte / DNI',
     uploadProof: 'Adjuntar Comprobante de domicilio',
     submitBtn: 'Enviar documentos (portustart@proton.me)',
     fileSelected: 'Listo: ',
+    supportTitle: 'Ayuda y Soporte',
     supportHelpText: '¿Preguntas o problemas? Contacta con soporte:',
-    supportBtn: 'Contactar Soporte',
+    supportBtn: 'Contactar Soporte (portustart.support@proton.me)',
     calcTitle: '💶 Calculadora Salario Neto',
     calcSub: 'Empleado soltero sin hijos (14 pagas al año).',
     calcGrossLabel: 'Salario bruto mensual (€):',
@@ -194,6 +327,47 @@ const UI_TEXTS = {
     celebSub: '¡Has completado los 7 pasos!',
     celebDesc: '¡Ya tienes la base lista para tu nueva vida en Portugal!',
     celebBtn: '¡Muchas gracias! Continuar 🚀',
+    checklist: [
+      { id: 1, title: 'Obtener el NIF (Número Fiscal)', tip: 'La clave para alquilar, contratos de teléfono y banco.' },
+      { id: 2, title: 'Tarjeta SIM portuguesa', tip: 'Imprescindible para la Chave Móvel Digital y trámites oficiales.' },
+      { id: 3, title: 'Abrir cuenta bancaria', tip: 'Necesaria para recibir el sueldo y fianza del alquiler.' },
+      { id: 4, title: 'Contrato de alquiler y registro', tip: 'El contrato debe ser registrado en Finanças.' },
+      { id: 5, title: 'Número de Seguridad Social (NISS)', tip: 'Requerido para trabajar y estar cubierto legalmente.' },
+      { id: 6, title: 'Certificado de residencia (CRUE / AIMA)', tip: 'Los ciudadanos de la UE se registran tras 3 meses en la Câmara.' },
+      { id: 7, title: 'Número SNS (Centro de Saúde)', tip: 'Acceso al sistema público de salud y médicos de cabecera.' },
+    ],
+    phrases: [
+      {
+        category: 'Alquiler y Vivienda (Arrendamento)',
+        color: '#0284C7',
+        items: [
+          { trans: '¿El apartamento sigue disponible?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
+          { trans: '¿Cuánto es la fianza / meses por adelantado?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...' },
+          { trans: 'No tengo avalista (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+        ],
+      },
+      {
+        category: 'Trámites y Administración (Finanças / AIMA)',
+        color: '#0F5132',
+        items: [
+          { trans: 'Necesito solicitar el NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'Tengo una cita en la AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo...' },
+        ],
+      },
+      {
+        category: 'Restaurantes y Día a Día',
+        color: '#D97706',
+        items: [
+          { trans: 'Una cerveza de barril, por favor.', pt: 'Uma imperial, por favor (Lisboa) / Um fino (Oporto).', ph: 'Oo-mah eem-peh-ree-ahl' },
+          { trans: 'La cuenta, por favor.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+        ],
+      },
+    ],
+    emergencies: [
+      { name: 'Emergencias (Policía y Ambulancia)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Número central europeo para emergencias graves.' },
+      { name: 'SNS 24 (Salud Pública)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Orientación médica previa antes de ir a urgencias.' },
+      { name: 'Linha Migrante (AIMA / Integración)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Dudas sobre visados, residencia y extranjería.' },
+    ],
   },
   fr: {
     title: 'PortuStart',
@@ -204,22 +378,35 @@ const UI_TEXTS = {
     tabGuide: 'Guide',
     from: 'De :',
     to: 'À :',
-    placeholderTrans: 'Entrez du texte ou utilisez le micro...',
+    inputLabel: 'Texte :',
+    placeholderTrans: 'Écrivez ou parlez...',
     btnTrans: 'Traduire',
     listenBtn: 'Écouter',
     listeningNotice: '🎙 Écoute en cours... Parlez maintenant !',
+    resultLabel: 'Résultat',
+    nameLabel: 'Nom complet :',
+    namePlaceholder: 'ex. Julia Schneider',
+    emailLabel: 'Adresse e-mail :',
+    emailPlaceholder: 'nom@exemple.com',
+    docsLabel: 'Documents requis :',
     servicesTitle: '📄 Documents & Démarches',
     servicesSub: 'Demandez votre NIF, NISS ou compte bancaire',
     checklistTitle: '📋 Feuille de route 30 premiers jours',
     checklistSub: 'Votre guide administratif pour le Portugal',
     checklistDone: 'terminé',
     selectServices: 'Services nécessaires :',
+    serviceLabels: {
+      nif: 'NIF (Numéro Fiscal)',
+      niss: 'NISS (Sécurité Sociale)',
+      bank: 'Compte Bancaire',
+    },
     uploadPass: 'Joindre Passeport / CNI',
     uploadProof: 'Joindre Justificatif de domicile',
     submitBtn: 'Envoyer les documents (portustart@proton.me)',
     fileSelected: 'Prêt : ',
+    supportTitle: 'Aide & Support',
     supportHelpText: 'Des questions ? Contactez le support :',
-    supportBtn: 'Contacter le Support',
+    supportBtn: 'Contacter le Support (portustart.support@proton.me)',
     calcTitle: '💶 Calculateur de Salaire Net',
     calcSub: 'Célibataire sans enfant (14 mois de salaire).',
     calcGrossLabel: 'Salaire brut mensuel (€) :',
@@ -250,6 +437,47 @@ const UI_TEXTS = {
     celebSub: 'Vous avez complété les 7 étapes !',
     celebDesc: 'Félicitations, vous avez toutes les bases pour vivre au Portugal !',
     celebBtn: 'Merci beaucoup ! Continuer 🚀',
+    checklist: [
+      { id: 1, title: 'Obtenir le NIF (Numéro fiscal)', tip: 'Indispensable pour bail, forfait mobile, banque et travail.' },
+      { id: 2, title: 'Carte SIM portugaise', tip: 'Nécessaire pour les codes SMS des administrations publiques.' },
+      { id: 3, title: 'Ouvrir un compte bancaire', tip: 'Requis pour percevoir le salaire et payer la caution.' },
+      { id: 4, title: 'Contrat de bail et enregistrement', tip: 'Le bail doit être validé auprès des Finanças.' },
+      { id: 5, title: 'Numéro de Sécurité Sociale (NISS)', tip: 'Obligatoire pour travailler et cotiser au Portugal.' },
+      { id: 6, title: 'Certificat de résidence (CRUE / AIMA)', tip: 'Les citoyens UE s\'enregistrent après 3 mois en mairie.' },
+      { id: 7, title: 'Numéro SNS (Santé Publique)', tip: 'Donne accès aux centres de santé publics (Centro de Saúde).' },
+    ],
+    phrases: [
+      {
+        category: 'Location & Logement (Arrendamento)',
+        color: '#0284C7',
+        items: [
+          { trans: 'L\'appartement est-il toujours disponible ?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
+          { trans: 'Combien pour la caution et les mois d\'avance ?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...' },
+          { trans: 'Je n\'ai pas de garant (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+        ],
+      },
+      {
+        category: 'Administrations (Finanças / AIMA)',
+        color: '#0F5132',
+        items: [
+          { trans: 'Je dois demander un NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'J\'ai un rendez-vous à l\'AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo...' },
+        ],
+      },
+      {
+        category: 'Restaurants et Vie quotidienne',
+        color: '#D97706',
+        items: [
+          { trans: 'Une bière pression, s\'il vous plaît.', pt: 'Uma imperial, por favor (Lisbonne) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl' },
+          { trans: 'L\'addition, s\'il vous plaît.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+        ],
+      },
+    ],
+    emergencies: [
+      { name: 'Urgences (Police & Ambulance)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Numéro d\'urgence européen centralisé.' },
+      { name: 'SNS 24 (Santé Publique)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Conseils médicaux préalables avant l\'hôpital.' },
+      { name: 'Linha Migrante (AIMA / Intégration)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Informations visas, titres de séjour et régularisation.' },
+    ],
   },
   it: {
     title: 'PortuStart',
@@ -260,22 +488,35 @@ const UI_TEXTS = {
     tabGuide: 'Guida',
     from: 'Da:',
     to: 'A:',
-    placeholderTrans: 'Scrivi o usa il microfono...',
+    inputLabel: 'Testo:',
+    placeholderTrans: 'Scrivi o parla...',
     btnTrans: 'Traduci',
     listenBtn: 'Ascolta',
     listeningNotice: '🎙 Ascolto in corso... Parla adesso!',
+    resultLabel: 'Risultato',
+    nameLabel: 'Nome e Cognome:',
+    namePlaceholder: 'es. Julia Schneider',
+    emailLabel: 'Indirizzo Email:',
+    emailPlaceholder: 'nome@esempio.com',
+    docsLabel: 'Documenti richiesti:',
     servicesTitle: '📄 Documenti e Richieste',
     servicesSub: 'Richiedi NIF, NISS o conto bancario online',
     checklistTitle: '📋 Primi 30 Giorni Roadmap',
     checklistSub: 'La tua guida burocratica per il Portogallo',
     checklistDone: 'completato',
     selectServices: 'Servizi richiesti:',
+    serviceLabels: {
+      nif: 'NIF (Codice Fiscale)',
+      niss: 'NISS (Previdenza Sociale)',
+      bank: 'Conto Bancario',
+    },
     uploadPass: 'Allega Passaporto / Carta d\'Identità',
     uploadProof: 'Allega Prova di Domicilio',
     submitBtn: 'Invia Documenti (portustart@proton.me)',
     fileSelected: 'Pronto: ',
+    supportTitle: 'Aiuto & Supporto',
     supportHelpText: 'Domande o problemi? Contatta l\'assistenza:',
-    supportBtn: 'Contatta Supporto',
+    supportBtn: 'Contatta Supporto (portustart.support@proton.me)',
     calcTitle: '💶 Calcolatore Stipendio Netto',
     calcSub: 'Dipendente single senza figli (14 mensilità).',
     calcGrossLabel: 'Stipendio lordo mensile (€):',
@@ -306,6 +547,47 @@ const UI_TEXTS = {
     celebSub: 'Hai completato tutti i 7 passaggi!',
     celebDesc: 'Hai completato tutte le pratiche essenziali per iniziare la tua nuova vita!',
     celebBtn: 'Muito obrigado! Avanti 🚀',
+    checklist: [
+      { id: 1, title: 'Ottenere il NIF (Codice Fiscale)', tip: 'Fondamentale per affitto, SIM, lavoro e banca.' },
+      { id: 2, title: 'Scheda SIM portoghese', tip: 'Indispensabile per ricevere gli SMS dalle autorità locali.' },
+      { id: 3, title: 'Aprire un conto bancario', tip: 'Necessario per accreditare lo stipendio e versare la caparra.' },
+      { id: 4, title: 'Contratto di affitto e registrazione', tip: 'Il contratto deve essere registrato presso le Finanças.' },
+      { id: 5, title: 'Numero di Previdenza Sociale (NISS)', tip: 'Obbligatorio per contratti di lavoro e contributi.' },
+      { id: 6, title: 'Certificato di residenza (CRUE / AIMA)', tip: 'I cittadini UE si registrano dopo 3 mesi presso il Comune.' },
+      { id: 7, title: 'Numero SNS (Sanità Pubblica)', tip: 'Garantisce l\'accesso ai centri sanitari pubblici (Centro de Saúde).' },
+    ],
+    phrases: [
+      {
+        category: 'Affitti e Case (Arrendamento)',
+        color: '#0284C7',
+        items: [
+          { trans: 'L\'appartamento è ancora disponibile?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
+          { trans: 'A quanto ammonta la cauzione / anticipo?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...' },
+          { trans: 'Non ho un garante (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+        ],
+      },
+      {
+        category: 'Uffici e Pratiche (Finanças / AIMA)',
+        color: '#0F5132',
+        items: [
+          { trans: 'Devo richiedere il NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'Ho un appuntamento all\'AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo...' },
+        ],
+      },
+      {
+        category: 'Ristoranti e Vita quotidiana',
+        color: '#D97706',
+        items: [
+          { trans: 'Una birra alla spina, per favore.', pt: 'Uma imperial, por favor (Lisbona) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl' },
+          { trans: 'Il conto, per favore.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+        ],
+      },
+    ],
+    emergencies: [
+      { name: 'Emergenze (Polizia e Ambulanza)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Numero unico europeo per emergenze gravi.' },
+      { name: 'SNS 24 (Sanità Pubblica)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Assistenza medica preliminare prima dell\'ospedale.' },
+      { name: 'Linha Migrante (AIMA / Integrazione)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Informazioni su permessi di soggiorno e visti.' },
+    ],
   },
   uk: {
     title: 'PortuStart',
@@ -316,22 +598,35 @@ const UI_TEXTS = {
     tabGuide: 'Гід',
     from: 'З:',
     to: 'На:',
-    placeholderTrans: 'Введіть текст або говоріть у мікрофон...',
+    inputLabel: 'Введення:',
+    placeholderTrans: 'Введіть текст або говоріть...',
     btnTrans: 'Перекласти',
     listenBtn: 'Слухати',
     listeningNotice: '🎙 Слухаю... Говоріть зараз!',
+    resultLabel: 'Результат',
+    nameLabel: 'ПІБ (повне ім\'я):',
+    namePlaceholder: 'напр. Юлія Шнайдер',
+    emailLabel: 'Електронна пошта:',
+    emailPlaceholder: 'name@example.com',
+    docsLabel: 'Необхідні документи:',
     servicesTitle: '📄 Оформлення Документів',
     servicesSub: 'Отримайте NIF, NISS та банківський рахунок онлайн',
     checklistTitle: '📋 План дій на перші 30 днів',
     checklistSub: 'Покроковий гід португальською бюрократією',
     checklistDone: 'виконано',
     selectServices: 'Потрібні послуги:',
+    serviceLabels: {
+      nif: 'NIF (Податковий номер)',
+      niss: 'NISS (Соціальне страхування)',
+      bank: 'Банківський рахунок',
+    },
     uploadPass: 'Додати Закордонний паспорт / ID',
     uploadProof: 'Додати Підтвердження адреси',
     submitBtn: 'Надіслати документи (portustart@proton.me)',
     fileSelected: 'Готово: ',
+    supportTitle: 'Допомога та підтримка',
     supportHelpText: 'Є питання? Зв\'яжіться з нашою підтримкою:',
-    supportBtn: 'Написати в підтримку',
+    supportBtn: 'Написати в підтримку (portustart.support@proton.me)',
     calcTitle: '💶 Калькулятор Чистої Зарплати',
     calcSub: 'Штатний працівник, 14 виплат на рік.',
     calcGrossLabel: 'Місячна зарплата до податків (€):',
@@ -352,68 +647,63 @@ const UI_TEXTS = {
     guideStepServicesTitle: '2. Документи та сервіси',
     guideStepServicesDesc: 'Оформлення NIF, NISS та банківського рахунку.',
     guideStepTransitTitle: '3. Транспорт по всій країні',
-    guideStepTransitDesc: 'Метро Порту, Лісабона, поїзди CP та проїзні за 40€.',
+    guideStepTransitDesc: 'Метро Порту, Лісабона, поїзди CP та проїзні.',
     guideStepEmergencyTitle: '4. Екстрений зв\'язок',
     guideStepEmergencyDesc: 'Швидкий дзвінок на 112 та медичну лінію SNS 24.',
     guideStepSlangTitle: '5. Голосовий перекладач та сленг',
-    guideStepSlangDesc: 'Диктування голосом, озвучування та португальські фрази.',
+    guideStepSlangDesc: 'Диктування голосом, озвучування та корисні фрази.',
     welcomeBtn: 'Зрозуміло, розпочати!',
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'Ви виконали всі 7 кроків!',
-    celebDesc: 'Ви успішно пройшли всі головні бюрократичні кроки!',
+    celebDesc: 'Ви успішно пройшли всі головні бюрократичні кроки в Португалії!',
     celebBtn: 'Muito obrigado! Вперед 🚀',
+    checklist: [
+      { id: 1, title: 'Отримати податковий номер (NIF)', tip: 'Ключ до оренди житла, контракту на інтернет та банку.' },
+      { id: 2, title: 'Місцева португальська SIM-карта', tip: 'Обов\'язкова для реєстрації на держпорталах через SMS.' },
+      { id: 3, title: 'Відкрити банківський рахунок', tip: 'Потрібен для виплати заробітної плати та депозиту за житло.' },
+      { id: 4, title: 'Договір оренди та реєстрація', tip: 'Договір оренди обов\'язково реєструється в Finanças.' },
+      { id: 5, title: 'Номер соцстрахування (NISS)', tip: 'Потрібен для офіційного працевлаштування та виплат.' },
+      { id: 6, title: 'Реєстрація резиденції (CRUE / AIMA)', tip: 'Громадяни ЄС реєструються після 3 місяців у мерії (Câmara).' },
+      { id: 7, title: 'Медичний номер SNS (Centro de Saúde)', tip: 'Доступ до сімейних лікарів та державних лікарень.' },
+    ],
+    phrases: [
+      {
+        category: 'Оренда та житло (Arrendamento)',
+        color: '#0284C7',
+        items: [
+          { trans: 'Квартира ще вільна?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
+          { trans: 'Скільки складає застава та аванс?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...' },
+          { trans: 'У мене немає поручителя (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+        ],
+      },
+      {
+        category: 'Державні органи (Finanças / AIMA)',
+        color: '#0F5132',
+        items: [
+          { trans: 'Мені потрібно оформити NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'У мене запис в AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo...' },
+        ],
+      },
+      {
+        category: 'Кафе, ресторани та побут',
+        color: '#D97706',
+        items: [
+          { trans: 'Розливне пиво, будь ласка.', pt: 'Uma imperial, por favor (Лісабон) / Um fino (Порту).', ph: 'Oo-mah eem-peh-ree-ahl' },
+          { trans: 'Рахунок, будь ласка.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+        ],
+      },
+    ],
+    emergencies: [
+      { name: 'Екстрена допомога (Поліція / Швидка)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Єдиний європейський номер для термінового виклику.' },
+      { name: 'SNS 24 (Медична консультація)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Первинна консультація лікаря (є англійська мова).' },
+      { name: 'Linha Migrante (AIMA / Інтеграція)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Питання документів, легалізації та дозволів на проживання.' },
+    ],
   },
 };
 
-const TRANSLATOR_LANGUAGES = [
-  { code: 'pt', label: 'PT', flag: '🇵🇹', voice: 'pt-PT' },
-  { code: 'de', label: 'DE', flag: '🇩🇪', voice: 'de-DE' },
-  { code: 'en', label: 'EN', flag: '🇬🇧', voice: 'en-US' },
-  { code: 'es', label: 'ES', flag: '🇪🇸', voice: 'es-ES' },
-  { code: 'fr', label: 'FR', flag: '🇫🇷', voice: 'fr-FR' },
-  { code: 'it', label: 'IT', flag: '🇮🇹', voice: 'it-IT' },
-  { code: 'uk', label: 'UKR', flag: '🇺🇦', voice: 'uk-UA' },
-  { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
-];
-
-const EMERGENCY_CONTACTS = [
-  {
-    name: 'Notruf / SOS (Polícia & Ambulância)',
-    num: '112',
-    icon: 'flame',
-    color: '#DC2626',
-    desc: 'Zentraler EU-Notruf für akute Notfälle.',
-  },
-  {
-    name: 'SNS 24 (Saúde Pública)',
-    num: '808242424',
-    icon: 'medkit',
-    color: '#0F5132',
-    desc: 'Medizinische Ersteinschätzung (auch auf Englisch).',
-  },
-  {
-    name: 'Linha Migrante (AIMA)',
-    num: '218106196',
-    icon: 'people',
-    color: '#0284C7',
-    desc: 'Fragen zu Visa, Aufenthalt und Registrierung.',
-  },
-];
-
-const INITIAL_CHECKLIST = [
-  { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.', done: false },
-  { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Essentiell für behördliche SMS-Bestätigungen (MEO, NOS, Vodafone).', done: false },
-  { id: 3, title: 'Bankkonto eröffnen', tip: 'Erforderlich für Gehaltseingang & Wohnungskaution.', done: false },
-  { id: 4, title: 'Wohnungsanmietung & Registrierung', tip: 'Der Mietvertrag muss beim Finanzamt (Finanças) registriert sein.', done: false },
-  { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für den Arbeitsvertrag und Rentenanspruch benötigt.', done: false },
-  { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara Municipal an.', done: false },
-  { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Ermöglicht Zugang zu staatlichen Hausärzten und Kliniken.', done: false },
-];
-
-// Landesweites Verkehrsnetz (Ganz Portugal)
 const NATIONAL_TRANSIT_SYSTEMS = [
   {
-    region: '🇵🇹 Landesweit (National)',
+    region: '🇵🇹 Landesweit / National',
     color: '#0F5132',
     items: [
       {
@@ -434,7 +724,7 @@ const NATIONAL_TRANSIT_SYSTEMS = [
     items: [
       {
         name: 'Metro do Porto (6 Linien A–F)',
-        desc: 'Moderne Stadtbahn, die Porto mit dem Flughafen, Matosinhos, Vila Nova de Gaia & Maia verbindet.',
+        desc: 'Moderne Stadtbahn, die Porto mit dem Flughafen, Matosinhos, Gaia & Maia verbindet.',
         link: 'https://www.metrodoporto.pt/en/',
       },
       {
@@ -460,7 +750,7 @@ const NATIONAL_TRANSIT_SYSTEMS = [
       },
       {
         name: 'Carris & Carris Metropolitana',
-        desc: 'Busse, gelbe Straßenbahnen (z. B. Eléctrico 28) und Überlandbusse bis Setúbal & Cascais.',
+        desc: 'Busse, gelbe Straßenbahnen (z. B. 28E) und Überlandbusse bis Setúbal & Cascais.',
         link: 'https://www.carrismetropolitana.pt/',
       },
       {
@@ -488,34 +778,6 @@ const NATIONAL_TRANSIT_SYSTEMS = [
   },
 ];
 
-const QUICK_PHRASES = [
-  {
-    category: 'Wohnungssuche & Miete (Arrendamento)',
-    color: '#0284C7',
-    items: [
-      { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
-      { trans: 'Wie hoch ist die Kaution / Vorauszahlung?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
-      { trans: 'Ich habe keinen Bürgen (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
-    ],
-  },
-  {
-    category: 'Behörden & Papiere (AIMA / Finanças)',
-    color: '#0F5132',
-    items: [
-      { trans: 'Ich brauche eine Steuernummer (NIF).', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
-      { trans: 'Ich habe einen Termin bei der AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo nah eye-mah' },
-    ],
-  },
-  {
-    category: 'Gastronomie & Unterwegs',
-    color: '#D97706',
-    items: [
-      { trans: 'Ein gezapftes Bier, bitte.', pt: 'Uma imperial, por favor (Lissabon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
-      { trans: 'Die Rechnung, bitte.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
-    ],
-  },
-];
-
 const IDIOM_DICTIONARY = [
   {
     triggers: ['voll cool', 'mega cool', 'voll geil', 'that is so cool', 'really cool'],
@@ -530,7 +792,7 @@ const IDIOM_DICTIONARY = [
   {
     triggers: ['keinen bock', 'kein bock', 'keine lust', 'no mood'],
     pt: 'Não me apetece nada!',
-    explanation: '💡 Typisch portugiesisch für "Ich habe überhaupt keine Lust darauf".',
+    explanation: '💡 Umgangssprachlich für "Ich habe überhaupt keine Lust darauf".',
   },
   {
     triggers: ['was geht', 'wie läuft es', 'whats up'],
@@ -557,11 +819,11 @@ export default function App() {
   const [celebrationModalVisible, setCelebrationModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('services');
 
-  // Sprache sicher auswählen
-  const t = UI_TEXTS[appLang] || UI_TEXTS['de'];
+  // Dynamische Lokalisierungsdaten laden
+  const t = LOCALES[appLang] || LOCALES['de'];
 
-  // Checkliste
-  const [checklist, setChecklist] = useState(INITIAL_CHECKLIST);
+  // Checkliste: Status merken (ID -> Boolean)
+  const [checkedMap, setCheckedMap] = useState({});
 
   // Translator
   const [inputText, setInputText] = useState('');
@@ -583,17 +845,18 @@ export default function App() {
   const [passportFileName, setPassportFileName] = useState('');
   const [proofFileName, setProofFileName] = useState('');
 
+  // Checkliste abhaken
   const toggleChecklistItem = (id) => {
-    const updated = checklist.map((item) => (item.id === id ? { ...item, done: !item.done } : item));
-    setChecklist(updated);
+    const updated = { ...checkedMap, [id]: !checkedMap[id] };
+    setCheckedMap(updated);
 
-    const doneCount = updated.filter((item) => item.done).length;
-    if (doneCount === updated.length) {
+    const doneCount = t.checklist.filter((item) => updated[item.id]).length;
+    if (doneCount === t.checklist.length) {
       setCelebrationModalVisible(true);
     }
   };
 
-  const completedCount = checklist.filter((item) => item.done).length;
+  const completedCount = t.checklist.filter((item) => checkedMap[item.id]).length;
 
   const dialNumber = (number) => {
     const url = `tel:${number}`;
@@ -608,7 +871,7 @@ export default function App() {
     });
   };
 
-  // TEXT-TO-SPEECH (Vorlesen)
+  // TEXT-TO-SPEECH
   const playAudio = (text, langCode = 'pt') => {
     if (!text) return;
     if (Platform.OS === 'web' && typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -624,12 +887,12 @@ export default function App() {
     }
   };
 
-  // SPEECH-TO-TEXT (Spracheingabe / Diktat)
+  // SPEECH-TO-TEXT
   const startSpeechRecognition = () => {
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
-        Alert.alert('Hinweis', 'Spracherkennung wird von diesem Browser nicht unterstützt. Bitte nutze Google Chrome oder Safari.');
+        Alert.alert('Hinweis', 'Spracherkennung wird in diesem Browser nicht unterstützt (bitte Chrome oder Safari nutzen).');
         return;
       }
 
@@ -661,7 +924,7 @@ export default function App() {
         setIsRecording(false);
       }
     } else {
-      Alert.alert('Hinweis', 'Spracheingabe ist in der Web-App über Chrome/Safari verfügbar.');
+      Alert.alert('Hinweis', 'Spracheingabe ist in der Web-App verfügbar.');
     }
   };
 
@@ -679,7 +942,7 @@ export default function App() {
       };
       input.click();
     } else {
-      const mockName = type === 'passport' ? 'reisepass_scan.pdf' : 'wohnsitz_nachweis.pdf';
+      const mockName = type === 'passport' ? 'passport_scan.pdf' : 'proof_of_address.pdf';
       if (type === 'passport') setPassportFileName(mockName);
       if (type === 'proof') setProofFileName(mockName);
       Alert.alert('Datei bereitgestellt', mockName);
@@ -688,7 +951,7 @@ export default function App() {
 
   const handleServiceSubmit = () => {
     if (!userName.trim() || !userEmail.trim()) {
-      Alert.alert('Hinweis', 'Bitte Namen und E-Mail-Adresse angeben.');
+      Alert.alert('Hinweis', 'Bitte Name und E-Mail-Adresse angeben.');
       return;
     }
 
@@ -867,11 +1130,11 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 1: SERVICES & ROADMAP */}
+        {/* TAB 1: SERVICES & CHECKLISTE */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             
-            {/* ROADMAP */}
+            {/* ROADMAP (VOLLSTÄNDIG ÜBERSETZT) */}
             <View style={styles.card}>
               <View style={styles.checklistHeaderRow}>
                 <View>
@@ -880,38 +1143,41 @@ export default function App() {
                 </View>
                 <View style={styles.progressBadge}>
                   <Text style={styles.progressBadgeText}>
-                    {completedCount} / {checklist.length} {t.checklistDone}
+                    {completedCount} / {t.checklist.length} {t.checklistDone}
                   </Text>
                 </View>
               </View>
 
               <View style={styles.progressBarTrack}>
-                <View style={[styles.progressBarFill, { width: `${(completedCount / checklist.length) * 100}%` }]} />
+                <View style={[styles.progressBarFill, { width: `${(completedCount / t.checklist.length) * 100}%` }]} />
               </View>
 
-              {checklist.map((item) => (
-                <TouchableOpacity
-                  key={item.id}
-                  style={[styles.checklistItem, item.done && styles.checklistItemDone]}
-                  onPress={() => toggleChecklistItem(item.id)}
-                >
-                  <Ionicons
-                    name={item.done ? 'checkmark-circle' : 'ellipse-outline'}
-                    size={20}
-                    color={item.done ? '#0F5132' : '#94A3B8'}
-                    style={{ marginRight: 10, marginTop: 2 }}
-                  />
-                  <View style={{ flex: 1 }}>
-                    <Text style={[styles.checklistText, item.done && styles.checklistTextDone]}>
-                      {item.title}
-                    </Text>
-                    <Text style={styles.checklistTip}>{item.tip}</Text>
-                  </View>
-                </TouchableOpacity>
-              ))}
+              {t.checklist.map((item) => {
+                const isDone = !!checkedMap[item.id];
+                return (
+                  <TouchableOpacity
+                    key={item.id}
+                    style={[styles.checklistItem, isDone && styles.checklistItemDone]}
+                    onPress={() => toggleChecklistItem(item.id)}
+                  >
+                    <Ionicons
+                      name={isDone ? 'checkmark-circle' : 'ellipse-outline'}
+                      size={20}
+                      color={isDone ? '#0F5132' : '#94A3B8'}
+                      style={{ marginRight: 10, marginTop: 2 }}
+                    />
+                    <View style={{ flex: 1 }}>
+                      <Text style={[styles.checklistText, isDone && styles.checklistTextDone]}>
+                        {item.title}
+                      </Text>
+                      <Text style={styles.checklistTip}>{item.tip}</Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
             </View>
 
-            {/* SERVICES FORM */}
+            {/* SERVICES ANTRÄGE */}
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
               <Text style={styles.subText}>{t.servicesSub}</Text>
@@ -919,9 +1185,9 @@ export default function App() {
               <Text style={styles.inputFieldLabel}>{t.selectServices}</Text>
               <View style={styles.serviceSelectorRow}>
                 {[
-                  { key: 'nif', label: 'NIF (Steuernummer)' },
-                  { key: 'niss', label: 'NISS (Sozialversicherung)' },
-                  { key: 'bank', label: 'Bankkonto' },
+                  { key: 'nif', label: t.serviceLabels.nif },
+                  { key: 'niss', label: t.serviceLabels.niss },
+                  { key: 'bank', label: t.serviceLabels.bank },
                 ].map((s) => (
                   <TouchableOpacity
                     key={s.key}
@@ -938,20 +1204,20 @@ export default function App() {
                 ))}
               </View>
 
-              <Text style={styles.inputFieldLabel}>Name:</Text>
+              <Text style={styles.inputFieldLabel}>{t.nameLabel}</Text>
               <TextInput
                 style={styles.fieldInput}
-                placeholder="z. B. Julia Schneider"
+                placeholder={t.namePlaceholder}
                 placeholderTextColor="#94A3B8"
                 value={userName}
                 onChangeText={setUserName}
                 autoCorrect={false}
               />
 
-              <Text style={styles.inputFieldLabel}>E-Mail:</Text>
+              <Text style={styles.inputFieldLabel}>{t.emailLabel}</Text>
               <TextInput
                 style={styles.fieldInput}
-                placeholder="name@example.com"
+                placeholder={t.emailPlaceholder}
                 placeholderTextColor="#94A3B8"
                 keyboardType="email-address"
                 autoCapitalize="none"
@@ -960,7 +1226,7 @@ export default function App() {
                 onChangeText={setUserEmail}
               />
 
-              <Text style={styles.inputFieldLabel}>Dokumente:</Text>
+              <Text style={styles.inputFieldLabel}>{t.docsLabel}</Text>
               <TouchableOpacity style={styles.uploadBtn} onPress={() => pickFile('passport')}>
                 <Ionicons name="cloud-upload-outline" size={18} color="#0F5132" style={{ marginRight: 6 }} />
                 <Text style={styles.uploadBtnText}>
@@ -985,18 +1251,18 @@ export default function App() {
             <View style={styles.supportCard}>
               <View style={styles.supportHeaderRow}>
                 <Ionicons name="help-buoy" size={18} color="#0F5132" style={{ marginRight: 6 }} />
-                <Text style={styles.supportHeaderTitle}>Hilfe & Support</Text>
+                <Text style={styles.supportHeaderTitle}>{t.supportTitle}</Text>
               </View>
               <Text style={styles.supportHelpText}>{t.supportHelpText}</Text>
               <TouchableOpacity style={styles.supportOutlineBtn} onPress={handleSupportContact}>
                 <Ionicons name="mail-unread-outline" size={15} color="#0F5132" style={{ marginRight: 6 }} />
-                <Text style={styles.supportOutlineBtnText}>{t.supportBtn} (portustart.support@proton.me)</Text>
+                <Text style={styles.supportOutlineBtnText}>{t.supportBtn}</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
         )}
 
-        {/* TAB 2: TRANSLATOR (MIT SPEECH-TO-TEXT & TEXT-TO-SPEECH) */}
+        {/* TAB 2: TRANSLATOR */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1039,14 +1305,13 @@ export default function App() {
 
             <View style={styles.card}>
               <View style={styles.inputActionRow}>
-                <Text style={styles.miniLabel}>Eingabe:</Text>
+                <Text style={styles.miniLabel}>{t.inputLabel}</Text>
                 <View style={{ flexDirection: 'row', gap: 8 }}>
                   {inputText.trim() ? (
                     <TouchableOpacity onPress={() => playAudio(inputText, sourceLang)} style={styles.iconActionBtn}>
                       <Ionicons name="volume-medium" size={18} color="#0F5132" />
                     </TouchableOpacity>
                   ) : null}
-                  {/* SPEECH-TO-TEXT MIKROFON BUTTON */}
                   <TouchableOpacity
                     onPress={startSpeechRecognition}
                     style={[styles.micButton, isRecording && styles.micButtonActive]}
@@ -1081,8 +1346,7 @@ export default function App() {
             {translatedText ? (
               <View style={styles.resultCard}>
                 <View style={styles.resultHeaderRow}>
-                  <Text style={styles.resultHeader}>Ergebnis ({targetLang.toUpperCase()}):</Text>
-                  {/* TEXT-TO-SPEECH AUDIO BUTTON */}
+                  <Text style={styles.resultHeader}>{t.resultLabel} ({targetLang.toUpperCase()}):</Text>
                   <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText, targetLang)}>
                     <Ionicons name="volume-high" size={16} color="#0F5132" />
                     <Text style={styles.audioBtnText}>{t.listenBtn}</Text>
@@ -1141,11 +1405,11 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 4: GUIDE (LANDESWEITER ÖPNV + NOTRUF + PHRASEN) */}
+        {/* TAB 4: GUIDE */}
         {activeTab === 'guide' && (
           <ScrollView contentContainerStyle={styles.scrollContent}>
             
-            {/* ÖPNV & TRANSIT HUB FÜR GANZ PORTUGAL */}
+            {/* TRANSIT HUB */}
             <View style={styles.card}>
               <View style={styles.transitHeaderRow}>
                 <Ionicons name="train" size={24} color="#0F5132" style={{ marginRight: 8 }} />
@@ -1163,7 +1427,6 @@ export default function App() {
                 <Text style={styles.btnText}>{t.openLiveTransitBtn}</Text>
               </TouchableOpacity>
 
-              {/* REGIONEN & SYSTEME IN GANZ PORTUGAL */}
               {NATIONAL_TRANSIT_SYSTEMS.map((reg, rIdx) => (
                 <View key={rIdx} style={styles.regionCard}>
                   <Text style={[styles.regionTitle, { color: reg.color }]}>{reg.region}</Text>
@@ -1184,10 +1447,10 @@ export default function App() {
               ))}
             </View>
 
-            {/* NOTFALLNUMMERN */}
+            {/* NOTFALLNUMMERN (VOLLSTÄNDIG ÜBERSETZT) */}
             <View style={styles.guideSection}>
               <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
-              {EMERGENCY_CONTACTS.map((item, idx) => (
+              {t.emergencies.map((item, idx) => (
                 <TouchableOpacity
                   key={idx}
                   style={styles.emergencyCard}
@@ -1208,8 +1471,8 @@ export default function App() {
               ))}
             </View>
 
-            {/* REDEWENDUNGEN */}
-            {QUICK_PHRASES.map((sec, i) => (
+            {/* REDEWENDUNGEN (VOLLSTÄNDIG ÜBERSETZT) */}
+            {t.phrases.map((sec, i) => (
               <View key={i} style={styles.guideSection}>
                 <Text style={[styles.sectionTitle, { color: sec.color }]}>{sec.category}</Text>
                 {sec.items.map((item, idx) => (
@@ -1255,7 +1518,7 @@ export default function App() {
           </View>
         </Modal>
 
-        {/* 2. ONBOARDING-GUIDE MODAL */}
+        {/* 2. ONBOARDING MODAL */}
         <Modal
           visible={welcomeModalVisible}
           transparent
@@ -1335,7 +1598,7 @@ export default function App() {
           </View>
         </Modal>
 
-        {/* 3. SPRACHAUSWAHL MODAL (VOLL FUNKTIONSFÄHIG) */}
+        {/* 3. SPRACHAUSWAHL MODAL */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
             <View style={styles.modalCard}>
@@ -1549,15 +1812,12 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 },
   rowLabel: { fontSize: 12, color: '#64748B' },
   rowValue: { fontSize: 12, fontWeight: '600', color: '#0F172A' },
-  
-  // Transit Hub Styles (Portugal-weit)
   transitHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
   regionCard: { backgroundColor: '#F8FAFC', borderRadius: 12, padding: 10, marginBottom: 8, borderWidth: 1, borderColor: '#E2E8F0' },
   regionTitle: { fontSize: 12, fontWeight: '800', marginBottom: 6 },
   transitLinkRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 6, borderBottomWidth: 1, borderBottomColor: '#EDF2F7' },
   transitSystemName: { fontSize: 12, fontWeight: '700', color: '#0F172A' },
   transitSystemDesc: { fontSize: 10.5, color: '#64748B', marginTop: 1 },
-
   guideSection: { marginBottom: 14 },
   sectionTitle: { fontSize: 14, fontWeight: '700', marginBottom: 8, color: '#0F172A' },
   emergencyCard: {
@@ -1580,7 +1840,6 @@ const styles = StyleSheet.create({
   ptText: { fontSize: 14, fontWeight: '700', color: '#0F172A', flex: 1 },
   phText: { fontSize: 12, color: '#64748B', fontStyle: 'italic', marginVertical: 2 },
   deText: { fontSize: 12, color: '#334155' },
-
   celebrationCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
@@ -1616,7 +1875,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   celebBtnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
-
   onboardingCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
@@ -1665,7 +1923,6 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   onboardingBtnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
-
   modalOverlay: { flex: 1, backgroundColor: 'rgba(15,23,42,0.65)', justifyContent: 'center', alignItems: 'center', padding: 20 },
   modalCard: { backgroundColor: '#FFFFFF', borderRadius: 20, padding: 18, width: '100%', maxWidth: 340 },
   modalTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 12, color: '#0F172A' },
