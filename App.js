@@ -22,16 +22,17 @@ const { width } = Dimensions.get('window');
 
 // ==========================================
 // DEINE PARTNER- & AFFILIATE-LINKS
-// Trage hier deine echten Partner-Codes ein!
 // ==========================================
 const AFFILIATE_LINKS = {
-  // e-Residence Partner-Links
-  eResidenceNif: 'https://e-residence.com/?ref=portustart',
-  eResidenceNiss: 'https://e-residence.com/?ref=portustart',
-  eResidenceBank: 'https://e-residence.com/?ref=portustart',
-  eResidenceHealth: 'https://e-residence.com/?ref=portustart', // z. B. Cigna / Expat Health
-  // GetYourGuide Partner-Basis-URL
-  getYourGuidePartnerId: 'DEINE_GYG_PARTNER_ID', // optional: Partner-ID eintragen
+  // e-Residence Partner-Links mit Tracking-Parameter ?via=portustart
+  eResidenceNif: 'https://e-residence.com/nif-portugal-online/?via=portustart',
+  eResidenceNiss: 'https://e-residence.com/niss-portugal-online/?via=portustart',
+  eResidenceBank: 'https://e-residence.com/bank-account-portugal-online/?via=portustart',
+  eResidenceHealth: 'https://e-residence.com/?via=portustart',
+  
+  // GetYourGuide Partner-Parameter
+  getYourGuidePartnerId: 'AJWYURO',
+  getYourGuideCmp: 'share_to_earn',
 };
 
 // UI-Sprachen
@@ -294,7 +295,6 @@ const LOCALES = {
         items: [
           { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
           { trans: 'Wie hoch ist die Kaution / Vorauszahlung?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
-          { trans: 'Ich habe keinen Bürgen (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
         ],
       },
       {
@@ -302,7 +302,6 @@ const LOCALES = {
         color: '#0F5132',
         items: [
           { trans: 'Ich brauche eine Steuernummer (NIF).', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
-          { trans: 'Ich habe einen Termin bei der AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo nah eye-mah' },
         ],
       },
       {
@@ -471,7 +470,7 @@ const LOCALES = {
         name: 'Madeira (Funchal)',
         tagline: 'The flower island of jagged peaks & lush levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'Alpine Trail', desc: 'Thrilling ridge hike above a sea of clouds.', tip: 'Tip: Watch the sunrise.' },
+          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'Alpine Trail', desc: 'Mountain ridge traverse above the cloud line.', tip: 'Tip: Drive up for sunrise.' },
           { id: 'm2', title: '25 Fontes Levada Trail', category: 'UNESCO Nature', desc: 'Canal trail through ancient laurel forest.', tip: 'Tip: Start early.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Black Sand Beach', desc: 'Charming natural cove of dark volcanic sand.', tip: 'Tip: Beautiful contrast.' },
           { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Golden Lagoon', desc: 'Protected twin beach with calm, warm waters.', tip: 'Tip: Great for families.' },
@@ -484,28 +483,11 @@ const LOCALES = {
         color: '#0284C7',
         items: [
           { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
-          { trans: 'How much is the deposit / upfront months?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...?' },
-        ],
-      },
-      {
-        category: 'Public Services & Paperwork (AIMA / Finanças)',
-        color: '#0F5132',
-        items: [
-          { trans: 'I need to apply for a NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
-        ],
-      },
-      {
-        category: 'Dining & Everyday Life',
-        color: '#D97706',
-        items: [
-          { trans: 'A draught beer, please.', pt: 'Uma imperial, por favor (Lisbon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
-          { trans: 'The bill, please.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
         ],
       },
     ],
     emergencies: [
       { name: 'Emergency (Police & Ambulance)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Central EU emergency dispatch.' },
-      { name: 'SNS 24 (Public Health Line)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Clinical guidance before visiting hospitals.' },
     ],
   },
 };
@@ -532,7 +514,7 @@ export default function App() {
   const [grossInput, setGrossInput] = useState('1500');
   const [calcResult, setCalcResult] = useState(null);
 
-  // Aktive Stadt & Attraktionen
+  // Aktive Stadt und Attraktionen
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
   const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
 
@@ -575,7 +557,7 @@ export default function App() {
 
   // GETYOURGUIDE AFFILIATE ACTION
   const openGetYourGuide = (query) => {
-    const partnerParam = AFFILIATE_LINKS.getYourGuidePartnerId ? `&partner_id=${AFFILIATE_LINKS.getYourGuidePartnerId}` : '';
+    const partnerParam = `&partner_id=${AFFILIATE_LINKS.getYourGuidePartnerId}&cmp=${AFFILIATE_LINKS.getYourGuideCmp}`;
     const gygUrl = `https://www.getyourguide.com/s/?q=${encodeURIComponent(query + ' Portugal')}${partnerParam}`;
     openUrl(gygUrl);
   };
@@ -1333,6 +1315,17 @@ const styles = StyleSheet.create({
   checklistTextDone: { textDecorationLine: 'line-through', color: '#64748B' },
   checklistTip: { fontSize: 11, color: '#64748B', marginTop: 2 },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
+  fieldInput: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#CBD5E1',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: '#0F172A',
+    minHeight: 44,
+  },
   salaryInputField: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
