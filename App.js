@@ -20,6 +20,20 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
+// ==========================================
+// DEINE PARTNER- & AFFILIATE-LINKS
+// Trage hier deine echten Partner-Codes ein!
+// ==========================================
+const AFFILIATE_LINKS = {
+  // e-Residence Partner-Links
+  eResidenceNif: 'https://e-residence.com/?ref=portustart',
+  eResidenceNiss: 'https://e-residence.com/?ref=portustart',
+  eResidenceBank: 'https://e-residence.com/?ref=portustart',
+  eResidenceHealth: 'https://e-residence.com/?ref=portustart', // z. B. Cigna / Expat Health
+  // GetYourGuide Partner-Basis-URL
+  getYourGuidePartnerId: 'DEINE_GYG_PARTNER_ID', // optional: Partner-ID eintragen
+};
+
 // UI-Sprachen
 const UI_LANGUAGES = [
   { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
@@ -41,18 +55,18 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
-// REALE GEO-KOORDINATEN FÜR LIVE-KARTEN
+// REALE GEO-KOORDINATEN FÜR DIE INTERAKTIVE LIVE-KARTE
 const CITIES_METADATA = {
   lisboa: {
     lat: 38.7223,
     lng: -9.1393,
     zoom: 12,
     placesMeta: [
-      { id: 'l1', img: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', query: 'Torre de Belem Lisbon' },
-      { id: 'l2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Miradouro de Santa Luzia Lisbon' },
-      { id: 'l3', img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80', query: 'Praca do Comercio Lisbon' },
-      { id: 'lb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia de Carcavelos' },
-      { id: 'lb2', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Praia dos Galapinhos Arrabida' },
+      { id: 'l1', img: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', query: 'Torre de Belem Lisbon', gygQuery: 'Belem Tower Lisbon' },
+      { id: 'l2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Miradouro de Santa Luzia Lisbon', gygQuery: 'Alfama Lisbon Fado' },
+      { id: 'l3', img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80', query: 'Praca do Comercio Lisbon', gygQuery: 'Tagus River cruise Lisbon' },
+      { id: 'lb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia de Carcavelos', gygQuery: 'Carcavelos surf lesson' },
+      { id: 'lb2', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Praia dos Galapinhos Arrabida', gygQuery: 'Arrabida natural park tour' },
     ],
   },
   porto: {
@@ -60,11 +74,11 @@ const CITIES_METADATA = {
     lng: -8.6291,
     zoom: 12,
     placesMeta: [
-      { id: 'p1', img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80', query: 'Dom Luis I Bridge Porto' },
-      { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto' },
-      { id: 'p3', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Port Wine Cellars Gaia Porto' },
-      { id: 'pb1', img: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&q=80', query: 'Praia de Matosinhos' },
-      { id: 'pb2', img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80', query: 'Praia de Miramar Senhor da Pedra' },
+      { id: 'p1', img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80', query: 'Dom Luis I Bridge Porto', gygQuery: 'Douro river cruise Porto' },
+      { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto', gygQuery: 'Livraria Lello Porto ticket' },
+      { id: 'p3', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Port Wine Cellars Gaia Porto', gygQuery: 'Port wine tasting Porto Gaia' },
+      { id: 'pb1', img: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&q=80', query: 'Praia de Matosinhos', gygQuery: 'Matosinhos surf lesson' },
+      { id: 'pb2', img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80', query: 'Praia de Miramar Senhor da Pedra', gygQuery: 'Porto coastal tour' },
     ],
   },
   sintra: {
@@ -72,11 +86,11 @@ const CITIES_METADATA = {
     lng: -9.3817,
     zoom: 12,
     placesMeta: [
-      { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra' },
-      { id: 's2', img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80', query: 'Quinta da Regaleira Sintra' },
-      { id: 's3', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Cabo da Roca Portugal' },
-      { id: 'sb1', img: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', query: 'Praia do Guincho Cascais' },
-      { id: 'sb2', img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&q=80', query: 'Praia da Ursa Sintra' },
+      { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra', gygQuery: 'Pena Palace Sintra ticket' },
+      { id: 's2', img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80', query: 'Quinta da Regaleira Sintra', gygQuery: 'Quinta da Regaleira guided tour' },
+      { id: 's3', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Cabo da Roca Portugal', gygQuery: 'Cabo da Roca Cascais day trip' },
+      { id: 'sb1', img: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', query: 'Praia do Guincho Cascais', gygQuery: 'Guincho surf lesson' },
+      { id: 'sb2', img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&q=80', query: 'Praia da Ursa Sintra', gygQuery: 'Sintra coastal hike' },
     ],
   },
   algarve: {
@@ -84,11 +98,11 @@ const CITIES_METADATA = {
     lng: -7.9322,
     zoom: 10,
     placesMeta: [
-      { id: 'a1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Benagil Cave Algarve' },
-      { id: 'a2', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80', query: 'Ponta da Piedade Lagos' },
-      { id: 'a3', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Ria Formosa Natural Park Faro' },
-      { id: 'ab1', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=800&q=80', query: 'Praia da Marinha Lagoa' },
-      { id: 'ab2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Falesia Albufeira' },
+      { id: 'a1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Benagil Cave Algarve', gygQuery: 'Benagil cave boat tour' },
+      { id: 'a2', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80', query: 'Ponta da Piedade Lagos', gygQuery: 'Ponta da Piedade boat tour Lagos' },
+      { id: 'a3', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Ria Formosa Natural Park Faro', gygQuery: 'Ria Formosa boat tour Faro' },
+      { id: 'ab1', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=800&q=80', query: 'Praia da Marinha Lagoa', gygQuery: 'Seven Hanging Valleys hike Algarve' },
+      { id: 'ab2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Falesia Albufeira', gygQuery: 'Albufeira boat tour' },
     ],
   },
   coimbra: {
@@ -96,10 +110,10 @@ const CITIES_METADATA = {
     lng: -8.4103,
     zoom: 12,
     placesMeta: [
-      { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra' },
-      { id: 'c2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Monastery of Santa Cruz Coimbra' },
-      { id: 'cb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Claridade Figueira da Foz' },
-      { id: 'cb2', img: 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=800&q=80', query: 'Praia de Mira Portugal' },
+      { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra', gygQuery: 'University of Coimbra Joanina library ticket' },
+      { id: 'c2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Monastery of Santa Cruz Coimbra', gygQuery: 'Coimbra walking tour' },
+      { id: 'cb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Claridade Figueira da Foz', gygQuery: 'Figueira da Foz' },
+      { id: 'cb2', img: 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=800&q=80', query: 'Praia de Mira Portugal', gygQuery: 'Aveiro lagoon day trip' },
     ],
   },
   madeira: {
@@ -107,10 +121,10 @@ const CITIES_METADATA = {
     lng: -16.9089,
     zoom: 11,
     placesMeta: [
-      { id: 'm1', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', query: 'Pico do Arieiro Madeira' },
-      { id: 'm2', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', query: '25 Fontes Levada Madeira' },
-      { id: 'mb1', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Prainha do Canical Madeira' },
-      { id: 'mb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Calheta Madeira' },
+      { id: 'm1', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', query: 'Pico do Arieiro Madeira', gygQuery: 'Pico do Arieiro to Pico Ruivo transfer' },
+      { id: 'm2', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', query: '25 Fontes Levada Madeira', gygQuery: 'Rabaçal 25 Fontes levada walk' },
+      { id: 'mb1', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Prainha do Canical Madeira', gygQuery: 'Ponta de Sao Lourenco boat tour' },
+      { id: 'mb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Calheta Madeira', gygQuery: 'Madeira whale watching Calheta' },
     ],
   },
 };
@@ -125,38 +139,59 @@ const LOCALES = {
     tabCalc: 'Gehalt',
     tabGuide: 'Guide',
     placesSectionTitle: '🇵🇹 Interaktive Karte & Highlights',
-    placesSectionSub: 'Live-Karte von Portugal – wähle eine Region oder bewege dich frei:',
-    mapInstruction: '📍 Interaktive Live-Karte:',
-    openInAppMaps: 'In Maps-App öffnen',
-    swipeInstruction: '👉 Horizontal wischen für Highlights & Strände:',
-    openInMapsBtn: 'Route in Maps',
+    placesSectionSub: 'Live-Karte von Portugal – wähle eine Region oder buche Touren:',
+    openInAppMaps: 'In Maps-App',
+    swipeInstruction: '👉 Horizontal wischen für Highlights, Strände & Touren:',
+    openInMapsBtn: 'Route',
+    gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
     placeholderTrans: 'Text eingeben oder sprechen...',
     btnTrans: 'Übersetzen',
     listenBtn: 'Anhören',
-    listeningNotice: '🎙 Höre zu... Sprich jetzt!',
     resultLabel: 'Ergebnis',
-    nameLabel: 'Vollständiger Name:',
-    namePlaceholder: 'z. B. Julia Schneider',
-    emailLabel: 'E-Mail-Adresse:',
-    emailPlaceholder: 'name@example.com',
-    docsLabel: 'Erforderliche Dokumente:',
-    servicesTitle: '📄 Dokumente & Anträge',
-    servicesSub: 'Beantrage deine NIF, NISS oder Bankkonto direkt online',
+    servicesTitle: '📄 Offizielle Services & Anträge',
+    servicesSub: 'Beantrage deine Dokumente & Absicherung 100% digital über unseren Partner e-Residence:',
     checklistTitle: '📋 Erste 30 Tage Roadmap',
     checklistSub: 'Dein bürokratischer Ablaufplan für Portugal',
     checklistDone: 'erledigt',
-    selectServices: 'Benötigte Services:',
-    serviceLabels: { nif: 'NIF (Steuernummer)', niss: 'NISS (Sozialversicherung)', bank: 'Bankkonto' },
-    uploadPass: 'Reisepass / Personalausweis anhängen',
-    uploadProof: 'Wohnsitznachweis anhängen',
-    submitBtn: 'Dokumente einreichen (portustart@proton.me)',
-    fileSelected: 'Bereit: ',
-    supportTitle: 'Hilfe & Support',
-    supportHelpText: 'Fragen oder Probleme? Unser Support hilft dir gerne:',
-    supportBtn: 'Support kontaktieren (portustart.support@proton.me)',
+    applyOnlineBtn: 'Jetzt online beantragen ↗',
+    affiliateDisclosure: 'Transparenz: Über diese Links erhältst du geprüfte Express-Bearbeitung bei e-Residence. Wir erhalten eine kleine Vermittlungsprovision – für dich bleibt der Preis unverändert.',
+    affiliateCards: [
+      {
+        key: 'nif',
+        title: 'NIF (Portugiesische Steuernummer)',
+        badge: 'Schritt 1 • Pflicht',
+        desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto. 100% online ohne Gang zum Finanzamt.',
+        link: AFFILIATE_LINKS.eResidenceNif,
+        icon: 'document-text',
+      },
+      {
+        key: 'bank',
+        title: 'Portugiesisches Bankkonto',
+        badge: 'Schritt 2 • IBAN',
+        desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken mit persönlicher IBAN.',
+        link: AFFILIATE_LINKS.eResidenceBank,
+        icon: 'card',
+      },
+      {
+        key: 'niss',
+        title: 'NISS (Sozialversicherungsnummer)',
+        badge: 'Schritt 3 • Arbeit',
+        desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge in Portugal.',
+        link: AFFILIATE_LINKS.eResidenceNiss,
+        icon: 'shield-checkmark',
+      },
+      {
+        key: 'health',
+        title: 'Internationale Krankenversicherung',
+        badge: 'Schritt 4 • Visum & Schutz',
+        desc: 'Visum-konforme Auslandskrankenversicherung (für D7, D8 Nomad-Visum oder Festanstellung) vor dem SNS-Zugang.',
+        link: AFFILIATE_LINKS.eResidenceHealth,
+        icon: 'medkit',
+      },
+    ],
     calcTitle: '💶 Nettogehalt-Rechner',
     calcSub: 'Für Angestellte, Single ohne Kinder (14 Monatsgehälter).',
     calcGrossLabel: 'Monatliches Bruttogehalt (€):',
@@ -175,7 +210,7 @@ const LOCALES = {
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
       { id: 3, title: 'Bankkonto eröffnen', tip: 'Erforderlich für Gehaltseingang und Wohnungskaution.' },
-      { id: 4, title: 'Wohnungsanmietung & Registrierung', tip: 'Der Mietvertrag muss beim Finanzamt (Finanças) gemeldet sein.' },
+      { id: 4, title: 'Krankenversicherung abschließen', tip: 'Notwendig für Visum und Übergangszeit bis zur SNS-Nummer.' },
       { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für Arbeitsvertrag und Rentenanspruch benötigt.' },
       { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara an.' },
       { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Gesundheitssystem & Hausarzt.' },
@@ -295,38 +330,59 @@ const LOCALES = {
     tabCalc: 'Salary',
     tabGuide: 'Guide',
     placesSectionTitle: '🇵🇹 Interactive Map & Sights',
-    placesSectionSub: 'Live map of Portugal – choose a region or explore freely:',
-    mapInstruction: '📍 Interactive Live Map:',
+    placesSectionSub: 'Live map of Portugal – choose a region or book tours:',
     openInAppMaps: 'Open in Maps App',
-    swipeInstruction: '👉 Swipe horizontally to discover sights & beaches:',
-    openInMapsBtn: 'Route in Maps',
+    swipeInstruction: '👉 Swipe horizontally for sights, beaches & tours:',
+    openInMapsBtn: 'Route',
+    gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
     placeholderTrans: 'Enter text or speak...',
     btnTrans: 'Translate',
     listenBtn: 'Listen',
-    listeningNotice: '🎙 Listening... Speak now!',
     resultLabel: 'Result',
-    nameLabel: 'Full Name:',
-    namePlaceholder: 'e.g. Julia Schneider',
-    emailLabel: 'Email Address:',
-    emailPlaceholder: 'name@example.com',
-    docsLabel: 'Required Documents:',
-    servicesTitle: '📄 Document Services',
-    servicesSub: 'Request your NIF, NISS or Bank Account online',
+    servicesTitle: '📄 Official Relocation Services',
+    servicesSub: 'Order essential documents & coverage 100% online through our partner e-Residence:',
     checklistTitle: '📋 First 30 Days Roadmap',
     checklistSub: 'Your step-by-step relocation checklist',
     checklistDone: 'completed',
-    selectServices: 'Required Services:',
-    serviceLabels: { nif: 'NIF (Tax Number)', niss: 'NISS (Social Security)', bank: 'Bank Account' },
-    uploadPass: 'Attach Passport / ID',
-    uploadProof: 'Attach Proof of Address',
-    submitBtn: 'Submit Documents (portustart@proton.me)',
-    fileSelected: 'Ready: ',
-    supportTitle: 'Help & Support',
-    supportHelpText: 'Questions or issues? Contact support directly:',
-    supportBtn: 'Contact Support (portustart.support@proton.me)',
+    applyOnlineBtn: 'Apply online now ↗',
+    affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
+    affiliateCards: [
+      {
+        key: 'nif',
+        title: 'NIF (Portuguese Tax Number)',
+        badge: 'Step 1 • Essential',
+        desc: 'The master key for renting, SIM cards, jobs and bank accounts. 100% remote without queueing at tax offices.',
+        link: AFFILIATE_LINKS.eResidenceNif,
+        icon: 'document-text',
+      },
+      {
+        key: 'bank',
+        title: 'Portuguese Bank Account',
+        badge: 'Step 2 • IBAN',
+        desc: 'Open a compliant local bank account with Portuguese IBAN at leading national banks remotely.',
+        link: AFFILIATE_LINKS.eResidenceBank,
+        icon: 'card',
+      },
+      {
+        key: 'niss',
+        title: 'NISS (Social Security Number)',
+        badge: 'Step 3 • Employment',
+        desc: 'Mandatory for payroll processing, employment contracts and local social contributions in Portugal.',
+        link: AFFILIATE_LINKS.eResidenceNiss,
+        icon: 'shield-checkmark',
+      },
+      {
+        key: 'health',
+        title: 'International Expat Health Insurance',
+        badge: 'Step 4 • Visa & Care',
+        desc: 'Compliant health coverage required for D7/D8 nomad visas and private healthcare prior to public SNS access.',
+        link: AFFILIATE_LINKS.eResidenceHealth,
+        icon: 'medkit',
+      },
+    ],
     calcTitle: '💶 Net Salary Calculator',
     calcSub: 'Single employee, mainland Portugal (14 payments).',
     calcGrossLabel: 'Monthly Gross Salary (€):',
@@ -345,7 +401,7 @@ const LOCALES = {
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
       { id: 3, title: 'Open a Portuguese Bank Account', tip: 'Required for salary payouts and rental deposits.' },
-      { id: 4, title: 'Sign Lease & Register Contract', tip: 'Lease must be registered with Finanças for tax purposes.' },
+      { id: 4, title: 'Get Expat Health Insurance', tip: 'Essential for visa processing and pre-SNS medical care.' },
       { id: 5, title: 'Get Social Security Number (NISS)', tip: 'Mandatory for payroll, pension and healthcare contributions.' },
       { id: 6, title: 'Residency Registration (CRUE / AIMA)', tip: 'EU citizens register at the local City Hall (Câmara) after 3 months.' },
       { id: 7, title: 'Get your SNS Healthcare Number', tip: 'Grants access to public primary care clinics (Centro de Saúde).' },
@@ -427,8 +483,8 @@ const LOCALES = {
         category: 'Renting & Apartments (Arrendamento)',
         color: '#0284C7',
         items: [
-          { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
-          { trans: 'How much is the deposit / upfront months?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
+          { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
+          { trans: 'How much is the deposit / upfront months?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...?' },
         ],
       },
       {
@@ -444,7 +500,6 @@ const LOCALES = {
         items: [
           { trans: 'A draught beer, please.', pt: 'Uma imperial, por favor (Lisbon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
           { trans: 'The bill, please.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
-          { trans: 'An espresso, please.', pt: 'Um café / Uma bica, por favor.', ph: 'Oom kah-feh / Oo-mah bee-kah' },
         ],
       },
     ],
@@ -477,12 +532,7 @@ export default function App() {
   const [grossInput, setGrossInput] = useState('1500');
   const [calcResult, setCalcResult] = useState(null);
 
-  // Services Formular
-  const [selectedServices, setSelectedServices] = useState({ nif: true, niss: false, bank: false });
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-
-  // Aktive Stadt und Attraktionen
+  // Aktive Stadt & Attraktionen
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
   const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
 
@@ -492,6 +542,7 @@ export default function App() {
       ...place,
       img: meta.img,
       query: meta.query,
+      gygQuery: meta.gygQuery || place.title,
     };
   });
 
@@ -522,6 +573,13 @@ export default function App() {
     });
   };
 
+  // GETYOURGUIDE AFFILIATE ACTION
+  const openGetYourGuide = (query) => {
+    const partnerParam = AFFILIATE_LINKS.getYourGuidePartnerId ? `&partner_id=${AFFILIATE_LINKS.getYourGuidePartnerId}` : '';
+    const gygUrl = `https://www.getyourguide.com/s/?q=${encodeURIComponent(query + ' Portugal')}${partnerParam}`;
+    openUrl(gygUrl);
+  };
+
   const playAudio = (text, langCode = 'pt') => {
     if (!text) return;
     if (Platform.OS === 'web' && typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -534,22 +592,6 @@ export default function App() {
     } else {
       Alert.alert('Audio', `🗣 "${text}"`);
     }
-  };
-
-  const handleServiceSubmit = () => {
-    if (!userName.trim() || !userEmail.trim()) {
-      Alert.alert('Hinweis', 'Bitte Name und E-Mail angeben.');
-      return;
-    }
-    const servicesList = Object.keys(selectedServices)
-      .filter((k) => selectedServices[k])
-      .map((s) => s.toUpperCase())
-      .join(', ');
-    const subject = encodeURIComponent(`Neuer Auftrag: ${servicesList} - ${userName}`);
-    const body = encodeURIComponent(`Hallo PortuStart,\n\nServices: ${servicesList}\nName: ${userName}\nE-Mail: ${userEmail}`);
-    Linking.openURL(`mailto:portustart@proton.me?subject=${subject}&body=${body}`).catch(() => {
-      Alert.alert('E-Mail', 'Bitte schreibe an: portustart@proton.me');
-    });
   };
 
   const handleTranslate = async () => {
@@ -586,7 +628,6 @@ export default function App() {
     });
   };
 
-  // Google Maps Embed URL für die Region
   const mapEmbedUrl = `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
 
   return (
@@ -658,9 +699,10 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 1: SERVICES & 30-TAGE ROADMAP */}
+        {/* TAB 1: SERVICES & E-RESIDENCE AFFILIATE LINKS */}
         {activeTab === 'services' && (
-          <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            {/* 30-TAGE ROADMAP */}
             <View style={styles.card}>
               <View style={styles.checklistHeaderRow}>
                 <View>
@@ -703,67 +745,48 @@ export default function App() {
               })}
             </View>
 
+            {/* E-RESIDENCE SERVICES KARTEN (AFFILIATE MONETARISIERUNG) */}
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
               <Text style={styles.subText}>{t.servicesSub}</Text>
 
-              <Text style={styles.inputFieldLabel}>{t.selectServices}</Text>
-              <View style={styles.serviceSelectorRow}>
-                {[
-                  { key: 'nif', label: t.serviceLabels.nif },
-                  { key: 'niss', label: t.serviceLabels.niss },
-                  { key: 'bank', label: t.serviceLabels.bank },
-                ].map((s) => (
+              {t.affiliateCards.map((srv) => (
+                <View key={srv.key} style={styles.affiliateServiceCard}>
+                  <View style={styles.affiliateTopRow}>
+                    <View style={styles.affiliateIconBadge}>
+                      <Ionicons name={srv.icon} size={20} color="#0F5132" />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.affiliateBadgeText}>{srv.badge}</Text>
+                      <Text style={styles.affiliateTitle}>{srv.title}</Text>
+                    </View>
+                  </View>
+                  
+                  <Text style={styles.affiliateDesc}>{srv.desc}</Text>
+
                   <TouchableOpacity
-                    key={s.key}
-                    style={[styles.serviceCheckChip, selectedServices[s.key] && styles.serviceCheckChipActive]}
-                    onPress={() => setSelectedServices({ ...selectedServices, [s.key]: !selectedServices[s.key] })}
+                    style={styles.affiliateActionBtn}
+                    onPress={() => openUrl(srv.link)}
                   >
-                    <Ionicons
-                      name={selectedServices[s.key] ? 'checkbox' : 'square-outline'}
-                      size={17}
-                      color={selectedServices[s.key] ? '#0F5132' : '#64748B'}
-                    />
-                    <Text style={styles.serviceChipText}>{s.label}</Text>
+                    <Text style={styles.affiliateActionBtnText}>{t.applyOnlineBtn}</Text>
+                    <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
                   </TouchableOpacity>
-                ))}
-              </View>
+                </View>
+              ))}
 
-              <Text style={styles.inputFieldLabel}>{t.nameLabel}</Text>
-              <TextInput
-                style={styles.fieldInput}
-                placeholder={t.namePlaceholder}
-                placeholderTextColor="#94A3B8"
-                value={userName}
-                onChangeText={setUserName}
-              />
-
-              <Text style={styles.inputFieldLabel}>{t.emailLabel}</Text>
-              <TextInput
-                style={styles.fieldInput}
-                placeholder={t.emailPlaceholder}
-                placeholderTextColor="#94A3B8"
-                keyboardType="email-address"
-                value={userEmail}
-                onChangeText={setUserEmail}
-              />
-
-              <TouchableOpacity style={styles.primaryBtn} onPress={handleServiceSubmit}>
-                <Ionicons name="paper-plane" size={16} color="#fff" style={{ marginRight: 6 }} />
-                <Text style={styles.btnText}>{t.submitBtn}</Text>
-              </TouchableOpacity>
+              <Text style={styles.disclosureText}>{t.affiliateDisclosure}</Text>
             </View>
           </ScrollView>
         )}
 
-        {/* TAB 2: PLACES / ECHTE INTERAKTIVE LIVE-KARTE */}
+        {/* TAB 2: PLACES / LIVE-KARTE & GETYOURGUIDE TOUREN */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
               <Text style={styles.subText}>{t.placesSectionSub}</Text>
 
-              {/* Städte-Filter zur Steuerung der Live-Karte */}
+              {/* Städte-Filter */}
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
                 {t.cities.map((city) => {
                   const isSelected = selectedCityId === city.id;
@@ -787,7 +810,7 @@ export default function App() {
                 })}
               </ScrollView>
 
-              {/* INTERAKTIVES LIVE-KARTENFENSTER (ZOOMBAR & VOLL FUNKTIONAL) */}
+              {/* LIVE MAP IFRAME */}
               <View style={styles.liveMapWrapper}>
                 {Platform.OS === 'web' ? (
                   <iframe
@@ -804,7 +827,6 @@ export default function App() {
                   </View>
                 )}
                 
-                {/* Button zum Öffnen in nativer Apple/Google Maps App */}
                 <TouchableOpacity
                   style={styles.floatingOpenMapsBtn}
                   onPress={() => openCityInNativeMaps(currentCityMeta.lat, currentCityMeta.lng, currentCityText.name)}
@@ -815,7 +837,7 @@ export default function App() {
               </View>
             </View>
 
-            {/* Aktive Region Titel & Zähler */}
+            {/* Region Title */}
             <View style={styles.cityDetailsHeader}>
               <View style={{ flex: 1 }}>
                 <Text style={styles.activeCityName}>{currentCityText.name}</Text>
@@ -830,7 +852,7 @@ export default function App() {
               {t.swipeInstruction}
             </Text>
 
-            {/* Swipe-Karussell mit Highlights & Stränden */}
+            {/* HORIZONTALES SWIPE-KARUSSELL MIT GETYOURGUIDE BUTTON */}
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -858,11 +880,21 @@ export default function App() {
                       <Text style={styles.attractionTipText}>{place.tip}</Text>
                     </View>
 
+                    {/* GETYOURGUIDE PARTNER-BUTTON */}
+                    <TouchableOpacity
+                      style={styles.gygBtn}
+                      onPress={() => openGetYourGuide(place.gygQuery)}
+                    >
+                      <Ionicons name="ticket-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
+                      <Text style={styles.gygBtnText}>{t.gygBtn}</Text>
+                    </TouchableOpacity>
+
+                    {/* Route Button */}
                     <TouchableOpacity
                       style={styles.openMapBtn}
                       onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`)}
                     >
-                      <Ionicons name="navigate-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
+                      <Ionicons name="navigate-outline" size={13} color="#475569" style={{ marginRight: 4 }} />
                       <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
                     </TouchableOpacity>
                   </View>
@@ -987,7 +1019,7 @@ export default function App() {
 
         {/* TAB 5: GUIDE (TRANSIT + NOTRUF + STANDARD-SÄTZE) */}
         {activeTab === 'guide' && (
-          <ScrollView contentContainerStyle={styles.scrollContent}>
+          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             {/* Transit Hub */}
             <View style={styles.card}>
               <View style={styles.transitHeaderRow}>
@@ -1027,7 +1059,7 @@ export default function App() {
               ))}
             </View>
 
-            {/* WICHTIGE SÄTZE & REDEWENDUNGEN (VOLLSTÄNDIG WIEDER DA) */}
+            {/* Standard-Sätze & Vokabeln */}
             <View style={styles.guideSection}>
               <Text style={styles.sectionTitle}>{t.phrasesTitle}</Text>
               {t.phrases.map((sec, i) => (
@@ -1051,7 +1083,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* SPRACHAUSWAHL MODAL */}
+        {/* MODAL SPRACHAUSWAHL */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
             <View style={styles.modalCard}>
@@ -1141,7 +1173,40 @@ const styles = StyleSheet.create({
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
 
-  // INTERAKTIVE LIVE-MAP
+  // E-RESIDENCE AFFILIATE CARDS
+  affiliateServiceCard: {
+    backgroundColor: '#F8FAFC',
+    borderRadius: 14,
+    padding: 12,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+  },
+  affiliateTopRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  affiliateIconBadge: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: '#DCFCE7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  affiliateBadgeText: { fontSize: 10, fontWeight: '800', color: '#0F5132', textTransform: 'uppercase' },
+  affiliateTitle: { fontSize: 13.5, fontWeight: '800', color: '#0F172A' },
+  affiliateDesc: { fontSize: 11.5, color: '#64748B', marginTop: 6, lineHeight: 16 },
+  affiliateActionBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0F5132',
+    paddingVertical: 9,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  affiliateActionBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
+  disclosureText: { fontSize: 10, color: '#94A3B8', textAlign: 'center', marginTop: 6, lineHeight: 14 },
+
+  // LIVE MAP STYLES
   liveMapWrapper: {
     height: 270,
     width: '100%',
@@ -1153,22 +1218,9 @@ const styles = StyleSheet.create({
     borderColor: '#CBD5E1',
     backgroundColor: '#E2E8F0',
   },
-  mapIframe: {
-    width: '100%',
-    height: '100%',
-    border: 'none',
-  },
-  nativeMapFallback: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  nativeMapText: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#0F5132',
-    marginTop: 6,
-  },
+  mapIframe: { width: '100%', height: '100%', border: 'none' },
+  nativeMapFallback: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  nativeMapText: { fontSize: 13, fontWeight: '700', color: '#0F5132', marginTop: 6 },
   floatingOpenMapsBtn: {
     position: 'absolute',
     bottom: 10,
@@ -1249,16 +1301,26 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   attractionTipText: { fontSize: 11, color: '#92400E', flex: 1, fontWeight: '600' },
-  openMapBtn: {
+  gygBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#0F5132',
+    backgroundColor: '#FF5533', // GetYourGuide Signature Orange
     paddingVertical: 8,
     borderRadius: 10,
     marginTop: 10,
   },
-  openMapBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
+  gygBtnText: { color: '#FFFFFF', fontSize: 11.5, fontWeight: '800' },
+  openMapBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F1F5F9',
+    paddingVertical: 6,
+    borderRadius: 8,
+    marginTop: 6,
+  },
+  openMapBtnText: { color: '#475569', fontSize: 11, fontWeight: '600' },
 
   checklistHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   progressBadge: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
@@ -1271,17 +1333,6 @@ const styles = StyleSheet.create({
   checklistTextDone: { textDecorationLine: 'line-through', color: '#64748B' },
   checklistTip: { fontSize: 11, color: '#64748B', marginTop: 2 },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
-  fieldInput: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#CBD5E1',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    fontSize: 15,
-    color: '#0F172A',
-    minHeight: 44,
-  },
   salaryInputField: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
@@ -1294,10 +1345,6 @@ const styles = StyleSheet.create({
     color: '#0F5132',
     minHeight: 44,
   },
-  serviceSelectorRow: { flexDirection: 'column', gap: 6, marginBottom: 4 },
-  serviceCheckChip: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, paddingHorizontal: 10, borderRadius: 10, backgroundColor: '#F1F5F9', gap: 8 },
-  serviceCheckChipActive: { backgroundColor: '#DCFCE7', borderColor: '#0F5132', borderWidth: 1 },
-  serviceChipText: { fontSize: 12, fontWeight: '600', color: '#1E293B' },
   primaryBtn: {
     backgroundColor: '#0F5132',
     paddingVertical: 12,
