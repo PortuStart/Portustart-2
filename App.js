@@ -41,214 +41,62 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
-// STÄDTE & ATTRAKTIONEN (PORTUGAL-MAP & SWIPE)
-const CITIES_DATA = [
-  {
-    id: 'lisboa',
-    name: 'Lisboa (Lissabon)',
-    region: 'Zentral / Tejo',
-    tagline: 'Die Stadt der 7 Hügel, Fado & Aussichtspunkte',
+// STATISCHE METADATEN DER STÄDTE (Koordinaten & Fotos)
+const CITIES_METADATA = {
+  lisboa: {
     mapCoords: { top: '56%', left: '26%' },
-    places: [
-      {
-        id: 'l1',
-        title: 'Torre de Belém & Mosteiro dos Jerónimos',
-        category: 'UNESCO Welterbe',
-        img: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80',
-        desc: 'Das Meisterwerk des manuelinischen Stils direkt an der Mündung des Tejo. Gleich nebenan gibt es die originalen Pastéis de Belém.',
-        tip: 'Tipp: Vor 10:00 Uhr kommen, um die Warteschlangen zu vermeiden.',
-        query: 'Torre de Belem Lisbon',
-      },
-      {
-        id: 'l2',
-        title: 'Miradouro de Santa Luzia & Alfama',
-        category: 'Aussicht & Altstadt',
-        img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80',
-        desc: 'Bougainvillea-Blüten, Kacheln (Azulejos) und ein atemberaubender Blick über die bunten Dächer der Alfama bis hin zum Tejo.',
-        tip: 'Tipp: Bei Sonnenuntergang den Straßenmusikern mit einer Bica lauschen.',
-        query: 'Miradouro de Santa Luzia Lisbon',
-      },
-      {
-        id: 'l3',
-        title: 'Praça do Comércio & Cais das Colunas',
-        category: 'Historischer Platz',
-        img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80',
-        desc: 'Der riesige, zum Fluss hin offene Palastplatz. Einst das Tor der Seefahrer zur Neuen Welt.',
-        tip: 'Tipp: Perfekter Ausgangspunkt für Spaziergänge entlang der Uferpromenade.',
-        query: 'Praca do Comercio Lisbon',
-      },
+    placesMeta: [
+      { id: 'l1', img: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', query: 'Torre de Belem Lisbon' },
+      { id: 'l2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Miradouro de Santa Luzia Lisbon' },
+      { id: 'l3', img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80', query: 'Praca do Comercio Lisbon' },
     ],
   },
-  {
-    id: 'porto',
-    name: 'Porto',
-    region: 'Norden / Douro',
-    tagline: 'Granit, Portwein und dramatische Brücken',
+  porto: {
     mapCoords: { top: '22%', left: '32%' },
-    places: [
-      {
-        id: 'p1',
-        title: 'Ponte Luís I & Ribeira',
-        category: 'Wahrzeichen & Ufer',
-        img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80',
-        desc: 'Die zweistöckige Eisenbrücke von Gustave Eiffels Partner Theophile Seyrig. Oben fährt die Metro, unten flanieren Fußgänger.',
-        tip: 'Tipp: Zu Fuß über das obere Deck gehen für die beste Aussicht auf Vila Nova de Gaia.',
-        query: 'Dom Luis I Bridge Porto',
-      },
-      {
-        id: 'p2',
-        title: 'Livraria Lello & Clérigos-Turm',
-        category: 'Kultur & Architektur',
-        img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80',
-        desc: 'Eine der schönsten Buchhandlungen weltweit mit ikonischer roter Treppe und neugotischer Holzschnitzerei.',
-        tip: 'Tipp: Ticket-Gutschein online vorab buchen, wird beim Buchkauf angerechnet.',
-        query: 'Livraria Lello Porto',
-      },
-      {
-        id: 'p3',
-        title: 'Portweinkeller in Vila Nova de Gaia',
-        category: 'Genuss & Tradition',
-        img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80',
-        desc: 'Historische Weinkeller berühmter Portwein-Häuser (Taylor’s, Sandeman, Cálem) mit traditionellen Rabelo-Booten am Ufer.',
-        tip: 'Tipp: Führung mit anschließender Verkostung buchen.',
-        query: 'Port Wine Cellars Gaia Porto',
-      },
+    placesMeta: [
+      { id: 'p1', img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80', query: 'Dom Luis I Bridge Porto' },
+      { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto' },
+      { id: 'p3', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Port Wine Cellars Gaia Porto' },
     ],
   },
-  {
-    id: 'sintra',
-    name: 'Sintra & Cascais',
-    region: 'Küste von Lissabon',
-    tagline: 'Märchenschlösser im Nebelwald & Ozeanklippen',
+  sintra: {
     mapCoords: { top: '53%', left: '20%' },
-    places: [
-      {
-        id: 's1',
-        title: 'Palácio Nacional da Pena',
-        category: 'Märchenschloss',
-        img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80',
-        desc: 'Buntes Meisterwerk der Romantik auf den Gipfeln des Sintra-Gebirges. Leuchtendes Gelb und Rot über dichten Wäldern.',
-        tip: 'Tipp: Feste Einlasszeiten online reservieren, morgens ist der Park am ruhigsten.',
-        query: 'Pena Palace Sintra',
-      },
-      {
-        id: 's2',
-        title: 'Quinta da Regaleira & Initiationsbrunnen',
-        category: 'Mystik & Gärten',
-        img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80',
-        desc: 'Verwunschenes Anwesen mit unterirdischen Gängen, Höhlen und der berühmten 27 Meter tiefen Wendeltreppe.',
-        tip: 'Tipp: Taschenlampe auf dem Smartphone bereithalten für die Höhlengänge.',
-        query: 'Quinta da Regaleira Sintra',
-      },
-      {
-        id: 's3',
-        title: 'Cabo da Roca',
-        category: 'Naturwunder',
-        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
-        desc: 'Der westlichste Punkt des europäischen Festlands: 140 Meter hohe Steilklippen, an denen der Atlantik tobt.',
-        tip: 'Tipp: Winddichte Jacke einpacken, hier weht fast immer eine kräftige Brise.',
-        query: 'Cabo da Roca Portugal',
-      },
+    placesMeta: [
+      { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra' },
+      { id: 's2', img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80', query: 'Quinta da Regaleira Sintra' },
+      { id: 's3', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Cabo da Roca Portugal' },
     ],
   },
-  {
-    id: 'algarve',
-    name: 'Faro & Algarve',
-    region: 'Südküste',
-    tagline: 'Goldene Sandsteinklippen, Grotten & 300 Sonnentage',
+  algarve: {
     mapCoords: { top: '82%', left: '46%' },
-    places: [
-      {
-        id: 'a1',
-        title: 'Benagil Meereshöhle (Algar de Benagil)',
-        category: 'Grotten & Strand',
-        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
-        desc: 'Die spektakulärste Brandungshöhle Europas mit kreisrundem Natur-Dachfenster und goldenem Sandstrand im Inneren.',
-        tip: 'Tipp: Mit dem Stand-up-Paddleboard oder Kajak am frühen Morgen erkunden.',
-        query: 'Benagil Cave Algarve',
-      },
-      {
-        id: 'a2',
-        title: 'Ponta da Piedade (Lagos)',
-        category: 'Klippenlandschaft',
-        img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80',
-        desc: 'Bizarre Kalksteinformationen, natürliche Felstore und türkisblaues Wasser. Einer der schönsten Küstenpfade Europas.',
-        tip: 'Tipp: Eine kleine Fischerboot-Tour durch die engen Felsbögen unternehmen.',
-        query: 'Ponta da Piedade Lagos',
-      },
-      {
-        id: 'a3',
-        title: 'Ria Formosa Naturpark (Faro/Olhão)',
-        category: 'Lagune & Inseln',
-        img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80',
-        desc: 'Riesiges Labyrinth aus Gezeiteninseln, Sandbänken und Seepferdchen-Schutzgebieten mit endlosen, ruhigen Stränden.',
-        tip: 'Tipp: Die Fähre von Olhão zur autofreien Insel Ilha da Armona nehmen.',
-        query: 'Ria Formosa Natural Park Faro',
-      },
+    placesMeta: [
+      { id: 'a1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Benagil Cave Algarve' },
+      { id: 'a2', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80', query: 'Ponta da Piedade Lagos' },
+      { id: 'a3', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Ria Formosa Natural Park Faro' },
     ],
   },
-  {
-    id: 'coimbra',
-    name: 'Coimbra & Centro',
-    region: 'Zentralportugal',
-    tagline: 'Alte Königsstadt & eine der ältesten Universitäten Europas',
+  coimbra: {
     mapCoords: { top: '38%', left: '38%' },
-    places: [
-      {
-        id: 'c1',
-        title: 'Biblioteca Joanina (Universität Coimbra)',
-        category: 'Historische Bibliothek',
-        img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80',
-        desc: 'Barockes Meisterwerk aus dem 18. Jahrhundert mit Goldverzierungen und seltenen Handschriften, bewacht von einer Fledermauskolonie.',
-        tip: 'Tipp: Kombiticket mit Königspalast und Universitätskapelle São Miguel buchen.',
-        query: 'Biblioteca Joanina Coimbra',
-      },
-      {
-        id: 'c2',
-        title: 'Kloster Santa Cruz & Coimbra Altstadt',
-        category: 'Geschichte & Fado',
-        img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80',
-        desc: 'Ruhestätte der ersten beiden portugiesischen Könige. Ursprung des melodischen, studentischen Coimbra-Fados.',
-        tip: 'Tipp: Ein Fado-Konzert in einer traditionellen "Casa de Fado" am Abend erleben.',
-        query: 'Monastery of Santa Cruz Coimbra',
-      },
+    placesMeta: [
+      { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra' },
+      { id: 'c2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Monastery of Santa Cruz Coimbra' },
     ],
   },
-  {
-    id: 'madeira',
-    name: 'Madeira (Funchal)',
-    region: 'Atlantikinsel',
-    tagline: 'Die Blumeninsel mit schroffen Gipfeln und Levadas',
+  madeira: {
     mapCoords: { top: '88%', left: '16%' },
-    places: [
-      {
-        id: 'm1',
-        title: 'Pico do Arieiro bis Pico Ruivo',
-        category: 'Hochgebirgswanderung',
-        img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
-        desc: 'Spektakuläre Gratwanderung über den Wolken zwischen den höchsten Berggipfeln Madeiras mit Tunneln und Steilwänden.',
-        tip: 'Tipp: Zum Sonnenaufgang auf dem Pico do Arieiro sein (mit Auto erreichbar).',
-        query: 'Pico do Arieiro Madeira',
-      },
-      {
-        id: 'm2',
-        title: 'Levada das 25 Fontes & Lorbeerwald',
-        category: 'UNESCO Naturerbe',
-        img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
-        desc: 'Wanderung entlang historischer Wasserkanäle durch den uralten Laurisilva-Wald zu einem Talkessel mit 25 Quellen.',
-        tip: 'Tipp: Früh starten, um Gegenverkehr auf den schmalen Pfaden zu meiden.',
-        query: '25 Fontes Levada Madeira',
-      },
+    placesMeta: [
+      { id: 'm1', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', query: 'Pico do Arieiro Madeira' },
+      { id: 'm2', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', query: '25 Fontes Levada Madeira' },
     ],
   },
-];
+};
 
 const LOCALES = {
   de: {
     title: 'PortuStart',
     sub: 'Dein Relocation-Partner für Portugal',
-    tabPlaces: 'Entdecken',
     tabServices: 'Services',
+    tabPlaces: 'Entdecken',
     tabTrans: 'Translator',
     tabCalc: 'Gehalt',
     tabGuide: 'Guide',
@@ -323,6 +171,66 @@ const LOCALES = {
       { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara Municipal an.' },
       { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Hausarztsystem und Kliniken.' },
     ],
+    cities: [
+      {
+        id: 'lisboa',
+        name: 'Lisboa (Lissabon)',
+        tagline: 'Die Stadt der 7 Hügel, Fado & Aussichtspunkte',
+        places: [
+          { id: 'l1', title: 'Torre de Belém & Mosteiro dos Jerónimos', category: 'UNESCO Welterbe', desc: 'Meisterwerk des manuelinischen Stils am Tejo. Gleich nebenan gibt es die echten Pastéis de Belém.', tip: 'Tipp: Vor 10:00 Uhr kommen, um die Warteschlangen zu vermeiden.' },
+          { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Aussicht & Altstadt', desc: 'Bougainvillea-Blüten, Fliesen (Azulejos) und ein Panoramablick über die Alfama bis zum Tejo.', tip: 'Tipp: Bei Sonnenuntergang den Straßenmusikern mit einer Bica lauschen.' },
+          { id: 'l3', title: 'Praça do Comércio & Cais das Colunas', category: 'Historischer Platz', desc: 'Der riesige Palastplatz direkt am Wasser. Einst das Tor der Seefahrer zur Neuen Welt.', tip: 'Tipp: Perfekter Ausgangspunkt für Spaziergänge entlang der Uferpromenade.' },
+        ],
+      },
+      {
+        id: 'porto',
+        name: 'Porto',
+        tagline: 'Granit, Portwein und dramatische Brücken',
+        places: [
+          { id: 'p1', title: 'Ponte Luís I & Ribeira', category: 'Wahrzeichen & Ufer', desc: 'Zweistöckige Eisenbrücke von Gustave Eiffels Partner Seyrig. Oben fährt die Metro, unten flanieren Fußgänger.', tip: 'Tipp: Zu Fuß über das obere Deck gehen für beste Sicht auf Vila Nova de Gaia.' },
+          { id: 'p2', title: 'Livraria Lello & Clérigos-Turm', category: 'Kultur & Architektur', desc: 'Ikonische Buchhandlung mit weltberühmter roter Holztreppe und neugotischer Schnitzkunst.', tip: 'Tipp: Ticket-Gutschein vorab online reservieren.' },
+          { id: 'p3', title: 'Portweinkeller in Gaia', category: 'Genuss & Tradition', desc: 'Historische Reifekeller traditionsreicher Häuser mit traditionellen Holzbooten am Fluss.', tip: 'Tipp: Kellerführung mit anschließender Portwein-Verkostung buchen.' },
+        ],
+      },
+      {
+        id: 'sintra',
+        name: 'Sintra & Cascais',
+        tagline: 'Märchenschlösser im Nebelwald & Atlantikklippen',
+        places: [
+          { id: 's1', title: 'Palácio Nacional da Pena', category: 'Märchenschloss', desc: 'Farbenfrohes Romantik-Schloss auf den Bergkämmen über dichten, nebelverhangenen Wäldern.', tip: 'Tipp: Feste Einlasszeiten online buchen, morgens ist es am ruhigsten.' },
+          { id: 's2', title: 'Quinta da Regaleira', category: 'Mystik & Gärten', desc: 'Verzaubertes Anwesen mit Höhlen, Grotten und dem 27 Meter tiefen Initiationsbrunnen.', tip: 'Tipp: Smartphone-Taschenlampe für die Tunnelgänge bereithalten.' },
+          { id: 's3', title: 'Cabo da Roca', category: 'Naturwunder', desc: 'Der westlichste Punkt des europäischen Festlands mit tosender Atlantikbrandung an 140 m Steilklippen.', tip: 'Tipp: Winddichte Jacke einpacken, hier weht fast immer Wind.' },
+        ],
+      },
+      {
+        id: 'algarve',
+        name: 'Faro & Algarve',
+        tagline: 'Goldene Sandsteinklippen & 300 Sonnentage',
+        places: [
+          { id: 'a1', title: 'Benagil Meereshöhle', category: 'Grotten & Strand', desc: 'Die berühmteste Naturfelsengrotte Portugals mit rundem Deckenauge und Sandstrand.', tip: 'Tipp: Am besten früh morgens per Stand-up-Paddleboard oder Kajak anfahren.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Klippenlandschaft', desc: 'Bizarre Felstürme, Bögen und türkisblaues Wasser an der spektakulärsten Klippenküste.', tip: 'Tipp: Eine kleine Fischerbootfahrt durch die Felsbögen unternehmen.' },
+          { id: 'a3', title: 'Ria Formosa Naturpark', category: 'Lagune & Inseln', desc: 'Riesiges Gezeitenschutzgebiet mit vorgelagerten autofreien Inseln und stillen Stränden.', tip: 'Tipp: Fähre von Olhão zur Sandinsel Ilha da Armona nehmen.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Coimbra & Centro',
+        tagline: 'Alte Königsstadt & Universitätsgeschichte',
+        places: [
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Historische Bibliothek', desc: 'Barockes Prunkjuwel aus dem 18. Jahrhundert mit Goldverzierungen und seltenen Folianten.', tip: 'Tipp: Kombiticket mit Königspalast und Kapelle buchen.' },
+          { id: 'c2', title: 'Kloster Santa Cruz & Altstadt', category: 'Geschichte & Fado', desc: 'Ruhestätte der ersten Könige Portugals und Ursprungsort des Coimbra-Fados.', tip: 'Tipp: Ein abendliches Konzert in einer Casa de Fado besuchen.' },
+        ],
+      },
+      {
+        id: 'madeira',
+        name: 'Madeira (Funchal)',
+        tagline: 'Die Blumeninsel mit schroffen Gipfeln und Levadas',
+        places: [
+          { id: 'm1', title: 'Pico do Arieiro bis Pico Ruivo', category: 'Hochgebirgswanderung', desc: 'Gratwanderung über den Wolken zwischen den höchsten Bergen Madeiras mit Tunneln.', tip: 'Tipp: Zum Sonnenaufgang auf den Gipfel fahren (Auto bis oben möglich).' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'UNESCO Naturerbe', desc: 'Wanderung entlang historischer Bewässerungskanäle durch den uralten Lorbeerwald.', tip: 'Tipp: Sehr früh starten, um Gegenverkehr auf schmalen Wegen zu meiden.' },
+        ],
+      },
+    ],
     phrases: [
       {
         category: 'Wohnungssuche & Miete (Arrendamento)',
@@ -359,8 +267,8 @@ const LOCALES = {
   en: {
     title: 'PortuStart',
     sub: 'Your Relocation Partner for Portugal',
-    tabPlaces: 'Explore',
     tabServices: 'Services',
+    tabPlaces: 'Explore',
     tabTrans: 'Translator',
     tabCalc: 'Salary',
     tabGuide: 'Guide',
@@ -435,6 +343,66 @@ const LOCALES = {
       { id: 6, title: 'Residency Registration (CRUE / AIMA)', tip: 'EU citizens register at the local City Hall (Câmara) after 3 months.' },
       { id: 7, title: 'Get your SNS Healthcare Number', tip: 'Grants access to public primary care clinics (Centro de Saúde).' },
     ],
+    cities: [
+      {
+        id: 'lisboa',
+        name: 'Lisbon',
+        tagline: 'City of 7 hills, Fado & scenic viewpoints',
+        places: [
+          { id: 'l1', title: 'Belém Tower & Jerónimos Monastery', category: 'UNESCO World Heritage', desc: 'Manueline masterpiece perched along the Tagus River. Right next door to the authentic Pastéis de Belém bakery.', tip: 'Tip: Arrive before 10:00 AM to skip long queues.' },
+          { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Viewpoint & Old Town', desc: 'Bougainvillea blossoms, handcrafted tiles (azulejos), and a panoramic overlook of terracotta roofs down to the river.', tip: 'Tip: Enjoy the sunset while listening to live acoustic street fado.' },
+          { id: 'l3', title: 'Praça do Comércio & Riverfront', category: 'Historic Square', desc: 'Grand harbor square opening toward the river. Historically the naval gateway to the New World.', tip: 'Tip: The best departure spot for scenic waterfront promenades.' },
+        ],
+      },
+      {
+        id: 'porto',
+        name: 'Porto',
+        tagline: 'Granite architecture, Port wine & dramatic bridges',
+        places: [
+          { id: 'p1', title: 'Dom Luís I Bridge & Ribeira', category: 'Landmark & Riverside', desc: 'Iconic double-deck iron arched bridge designed by Théophile Seyrig. Upper level carries the metro, lower level connects pedestrians.', tip: 'Tip: Walk across the top deck for panoramic views of Vila Nova de Gaia.' },
+          { id: 'p2', title: 'Livraria Lello & Clérigos Tower', category: 'Culture & Architecture', desc: 'Celebrated neo-gothic bookstore known for its ornate crimson staircase and sculpted woodwork.', tip: 'Tip: Purchase your ticket voucher online in advance.' },
+          { id: 'p3', title: 'Port Wine Cellars in Gaia', category: 'Heritage & Tasting', desc: 'Centuries-old aging cellars lined with oak barrels and traditional wooden rabelo boats on the river.', tip: 'Tip: Book a guided tour with an expert port tasting flight.' },
+        ],
+      },
+      {
+        id: 'sintra',
+        name: 'Sintra & Cascais',
+        tagline: 'Fairytale palaces in misty cloud forests & ocean cliffs',
+        places: [
+          { id: 's1', title: 'Pena National Palace', category: 'Romantic Palace', desc: 'Vibrant yellow and red Romanticist castle sitting on the highest crest of the Sintra mountains.', tip: 'Tip: Reserve timed entry slots in advance; mornings are peaceful.' },
+          { id: 's2', title: 'Quinta da Regaleira', category: 'Mystical Estate', desc: 'Enchanted park filled with hidden underground grottoes, tunnels, and the famous 27-meter Initiation Well.', tip: 'Tip: Use your phone flashlight to navigate subterranean labyrinth tunnels.' },
+          { id: 's3', title: 'Cabo da Roca', category: 'Natural Wonder', desc: 'The westernmost edge of mainland Europe with 140m high granite cliffs battered by the wild Atlantic ocean.', tip: 'Tip: Bring a windbreaker jacket; oceanic gusts are frequent.' },
+        ],
+      },
+      {
+        id: 'algarve',
+        name: 'Faro & Algarve',
+        tagline: 'Golden sandstone sea cliffs & 300 days of sunshine',
+        places: [
+          { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave with a natural skylight and secluded sandy beach inside.', tip: 'Tip: Paddle in early morning by kayak or paddleboard to beat tour boats.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Sculptured limestone stacks, natural arches, and crystal-clear turquoise waters along Portugal’s southern coast.', tip: 'Tip: Board a small traditional fisherman’s skiff to navigate narrow arches.' },
+          { id: 'a3', title: 'Ria Formosa Coastal Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with barrier islands, flamingo sanctuaries, and quiet unspoiled beaches.', tip: 'Tip: Catch the local ferry from Olhão to car-free Armona Island.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Coimbra & Central',
+        tagline: 'Ancient royal capital & one of Europe\'s oldest universities',
+        places: [
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Baroque Library', desc: 'Magnificent 18th-century gilded library holding priceless historical manuscripts, protected by a resident bat colony.', tip: 'Tip: Book combined tickets covering the Royal Palace and St. Michael’s Chapel.' },
+          { id: 'c2', title: 'Santa Cruz Monastery & Old Town', category: 'History & Fado', desc: 'Final resting place of the first two Portuguese monarchs and the birthplace of serenading Coimbra-style Fado.', tip: 'Tip: Reserve seats for an evening performance at a traditional Fado House.' },
+        ],
+      },
+      {
+        id: 'madeira',
+        name: 'Madeira (Funchal)',
+        tagline: 'The flower island of jagged peaks & lush levadas',
+        places: [
+          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'High Alpine Trail', desc: 'Thrilling mountain ridge traverse above the cloud line connecting Madeira’s highest volcanic summits.', tip: 'Tip: Drive up to Pico do Arieiro early to watch sunrise over sea of clouds.' },
+          { id: 'm2', title: '25 Fontes Levada Trail', category: 'UNESCO Nature Heritage', desc: 'Iconic water canal trail winding through centuries-old laurel forest into an amphitheater fed by 25 springs.', tip: 'Tip: Begin right after sunrise to avoid pedestrian congestion on narrow paths.' },
+        ],
+      },
+    ],
     phrases: [
       {
         category: 'Renting & Apartments (Arrendamento)',
@@ -471,8 +439,8 @@ const LOCALES = {
   es: {
     title: 'PortuStart',
     sub: 'Tu socio de reubicación en Portugal',
-    tabPlaces: 'Descubrir',
     tabServices: 'Servicios',
+    tabPlaces: 'Descubrir',
     tabTrans: 'Traductor',
     tabCalc: 'Salario',
     tabGuide: 'Guía',
@@ -547,6 +515,66 @@ const LOCALES = {
       { id: 6, title: 'Certificado de residencia (CRUE / AIMA)', tip: 'Los ciudadanos de la UE se registran tras 3 meses en la Câmara.' },
       { id: 7, title: 'Número SNS (Centro de Saúde)', tip: 'Acceso al sistema público de salud y médicos de cabecera.' },
     ],
+    cities: [
+      {
+        id: 'lisboa',
+        name: 'Lisboa',
+        tagline: 'Ciudad de las 7 colinas, fado y miradores',
+        places: [
+          { id: 'l1', title: 'Torre de Belém y Monasterio de los Jerónimos', category: 'Patrimonio UNESCO', desc: 'Obra maestra manuelina junto al Tajo. Justo al lado de los auténticos Pastéis de Belém.', tip: 'Consejo: Llegar antes de las 10:00 para evitar colas.' },
+          { id: 'l2', title: 'Mirador de Santa Luzia y Alfama', category: 'Mirador y Casco Antiguo', desc: 'Buganvillas, azulejos tradicionales y vistas panorámicas sobre los tejados de Alfama.', tip: 'Consejo: Disfruta del atardecer con un café bica escuchando fado callejero.' },
+          { id: 'l3', title: 'Praça do Comércio y Ribera', category: 'Plaza Histórica', desc: 'Gran plaza portuaria abierta al estuario, antigua puerta marítima de los descubridores.', tip: 'Consejo: Punto de inicio perfecto para pasear junto al río.' },
+        ],
+      },
+      {
+        id: 'porto',
+        name: 'Oporto',
+        tagline: 'Granito, vino de Oporto y puentes monumentales',
+        places: [
+          { id: 'p1', title: 'Puente Don Luis I y Ribeira', category: 'Icono y Ribera', desc: 'Puente de hierro de dos niveles diseñado por Théophile Seyrig. Arriba circula el metro y abajo peatones.', tip: 'Consejo: Cruza por la plataforma superior para la mejor vista de Gaia.' },
+          { id: 'p2', title: 'Librería Lello y Torre de los Clérigos', category: 'Cultura y Arquitectura', desc: 'Famosa librería neogótica con su icónica escalera carmesí de madera tallada.', tip: 'Consejo: Compra el bono de entrada online por adelantado.' },
+          { id: 'p3', title: 'Bodegas de Oporto en Gaia', category: 'Enoturismo y Tradición', desc: 'Bodegas centenarias con barricas de roble y barcos rabelo tradicionales fondeados.', tip: 'Consejo: Reserva visita guiada con cata de oportos.' },
+        ],
+      },
+      {
+        id: 'sintra',
+        name: 'Sintra y Cascais',
+        tagline: 'Palacios de ensueño en bosques neblinosos y acantilados',
+        places: [
+          { id: 's1', title: 'Palacio Nacional de Pena', category: 'Palacio Romántico', desc: 'Castillo de vivos colores amarillos y rojos sobre las cumbres de la sierra de Sintra.', tip: 'Consejo: Reserva franja horaria previa; las mañanas son más tranquilas.' },
+          { id: 's2', title: 'Quinta da Regaleira', category: 'Jardines Místicos', desc: 'Finca mágica con grutas subterráneas y el célebre pozo iniciático de 27 metros.', tip: 'Consejo: Ten a mano la linterna del móvil para las galerías subterráneas.' },
+          { id: 's3', title: 'Cabo da Roca', category: 'Monumento Natural', desc: 'El punto más occidental de la Europa continental frente a los acantilados de 140 m.', tip: 'Consejo: Lleva cortavientos, las ráfagas del Atlántico son constantes.' },
+        ],
+      },
+      {
+        id: 'algarve',
+        name: 'Faro y Algarve',
+        tagline: 'Acantilados dorados y más de 300 días de sol',
+        places: [
+          { id: 'a1', title: 'Cueva Marina de Benagil', category: 'Cuevas y Playas', desc: 'La gruta marina más impresionante de Europa con claraboya natural y playa interior.', tip: 'Consejo: Sal temprano en kayak o paddle surf para evitar masificaciones.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Costas y Acantilados', desc: 'Columnas calizas, arcos marinos y aguas turquesas en la costa sur portuguesa.', tip: 'Consejo: Toma una lancha de pescadores para cruzar los arcos de piedra.' },
+          { id: 'a3', title: 'Parque Natural de Ria Formosa', category: 'Lagunas e Islas', desc: 'Extenso humedal con islas barrera sin coches, flamencos y playas vírgenes.', tip: 'Consejo: Toma el ferri de Olhão a la isla de Armona.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Coímbra y Centro',
+        tagline: 'Antigua capital real y cuna universitaria de Europa',
+        places: [
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Biblioteca Barroca', desc: 'Joya barroca dorada del siglo XVIII con manuscritos protegidos por murciélagos.', tip: 'Consejo: Compra el billete conjunto con el Palacio Real y capilla.' },
+          { id: 'c2', title: 'Monasterio de Santa Cruz', category: 'Historia y Fado', desc: 'Panteón de los primeros reyes lusos y cuna del melancólico fado de Coímbra.', tip: 'Consejo: Asiste a un recital nocturno en una Casa de Fado.' },
+        ],
+      },
+      {
+        id: 'madeira',
+        name: 'Madeira (Funchal)',
+        tagline: 'Isla de flores, picos escarpados y frondosas levadas',
+        places: [
+          { id: 'm1', title: 'Del Pico do Arieiro al Pico Ruivo', category: 'Ruta de Alta Montaña', desc: 'Paso por crestas sobre el mar de nubes entre las mayores cumbres de Madeira.', tip: 'Consejo: Sube en coche antes del amanecer al mirador de Arieiro.' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Patrimonio Natural UNESCO', desc: 'Paseo por canales de riego históricos a través del milenario bosque de laurisilva.', tip: 'Consejo: Empieza muy temprano para evitar cruces en sendas estrechas.' },
+        ],
+      },
+    ],
     phrases: [
       {
         category: 'Alquiler y Vivienda (Arrendamento)',
@@ -554,7 +582,7 @@ const LOCALES = {
         items: [
           { trans: '¿El apartamento sigue disponible?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
           { trans: '¿Cuánto es la fianza / meses por adelantado?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...' },
-          { trans: 'No tengo avalista (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+          { trans: 'No tengo avalista (Fiador).', pt: 'Não tengo fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
         ],
       },
       {
@@ -583,8 +611,8 @@ const LOCALES = {
   fr: {
     title: 'PortuStart',
     sub: 'Votre partenaire de relocation au Portugal',
-    tabPlaces: 'Découvrir',
     tabServices: 'Services',
+    tabPlaces: 'Découvrir',
     tabTrans: 'Traducteur',
     tabCalc: 'Salaire',
     tabGuide: 'Guide',
@@ -659,6 +687,66 @@ const LOCALES = {
       { id: 6, title: 'Certificat de résidence (CRUE / AIMA)', tip: 'Les citoyens UE s\'enregistrent après 3 mois en mairie.' },
       { id: 7, title: 'Numéro SNS (Santé Publique)', tip: 'Donne accès aux centres de santé publics (Centro de Saúde).' },
     ],
+    cities: [
+      {
+        id: 'lisboa',
+        name: 'Lisbonne',
+        tagline: 'La ville aux 7 collines, au fado et aux belvédères',
+        places: [
+          { id: 'l1', title: 'Tour de Belém & Monastère des Hiéronymites', category: 'Patrimoine mondial UNESCO', desc: 'Joyau de l\'art manuélin au bord du Tage. À deux pas de la fabrique des véritables Pastéis de Belém.', tip: 'Conseil : Arrivez avant 10h00 pour éviter les files.' },
+          { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Panorama & Vieille Ville', desc: 'Bougainvilliers, azulejos traditionnels et vue plongeante sur les toits ocres de l\'Alfama.', tip: 'Conseil : Admirez le coucher du soleil au son du fado acoustique.' },
+          { id: 'l3', title: 'Praça do Comércio & Quai des Colonnes', category: 'Place Historique', desc: 'Immense esplanade royale ouverte sur le fleuve, porte d\'entrée historique des navigateurs.', tip: 'Conseil : Point de départ idéal pour une promenade le long des quais.' },
+        ],
+      },
+      {
+        id: 'porto',
+        name: 'Porto',
+        tagline: 'Granit, vin de Porto et ponts majestueux',
+        places: [
+          { id: 'p1', title: 'Pont Dom-Luís & Ribeira', category: 'Emblème & Berges', desc: 'Pont métallique à double tablier conçu par Théophile Seyrig. Métro en haut, piétons en bas.', tip: 'Conseil : Traversez le tablier supérieur pour une vue imprenable sur Gaia.' },
+          { id: 'p2', title: 'Librairie Lello & Tour des Clercs', category: 'Culture & Architecture', desc: 'Merveilleuse librairie néogothique réputée pour son spectaculaire escalier double écarlate.', tip: 'Conseil : Réservez votre billet d\'entrée coupe-file sur Internet.' },
+          { id: 'p3', title: 'Caves de Porto à Vila Nova de Gaia', category: 'Tradition & Dégustation', desc: 'Caves d\'élevage historiques bordées de foudres de chêne et de barques traditionnelles rabelos.', tip: 'Conseil : Réservez une visite guidée avec dégustation commentée.' },
+        ],
+      },
+      {
+        id: 'sintra',
+        name: 'Sintra & Cascais',
+        tagline: 'Palais féeriques dans la brume et falaises atlantiques',
+        places: [
+          { id: 's1', title: 'Palais national de Pena', category: 'Château Romantique', desc: 'Château flamboyant aux façades jaunes et rouges perché au sommet de la serra de Sintra.', tip: 'Conseil : Réservez un créneau horaire fixe ; les matins sont plus calmes.' },
+          { id: 's2', title: 'Quinta da Regaleira', category: 'Jardins & Ésotérisme', desc: 'Domaine mystérieux avec souterrains, grottes et le puits initiatique profond de 27 mètres.', tip: 'Conseil : Munissez-vous de la lampe torche de votre téléphone pour les tunnels.' },
+          { id: 's3', title: 'Cabo da Roca', category: 'Site Naturel', desc: 'Le cap le plus occidental du continent européen, avec ses falaises abruptes de 140 m.', tip: 'Conseil : Prévoyez un coupe-vent, le vent de l\'océan souffle en continu.' },
+        ],
+      },
+      {
+        id: 'algarve',
+        name: 'Faro & Algarve',
+        tagline: 'Falaises dorées et 300 jours d\'ensoleillement',
+        places: [
+          { id: 'a1', title: 'Grotte marine de Benagil', category: 'Grottes & Plages', desc: 'La plus célèbre caverne d\'Europe avec son dôme naturel et sa plage de sable intérieure.', tip: 'Conseil : Partez tôt le matin en kayak ou paddle pour profiter du calme.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Falaises & Calanques', desc: 'Aiguilles de calcaire doré, arches marines et eaux turquoise limpides.', tip: 'Conseil : Montez à bord d\'une barque de pêcheur pour traverser les arches.' },
+          { id: 'a3', title: 'Parc naturel de la Ria Formosa', category: 'Lagune & Îles', desc: 'Lagune côtière protégée avec îles barrières sans voitures et plages sauvages.', tip: 'Conseil : Prenez le bac à Olhão vers l\'île paisible d\'Armona.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Coimbra & Centre',
+        tagline: 'Ancienne capitale royale et prestigieuse cité universitaire',
+        places: [
+          { id: 'c1', title: 'Bibliothèque Joanina', category: 'Bibliothèque Baroque', desc: 'Chef-d\'œuvre baroque doré du XVIIIe siècle abritant des manuscrits inestimables.', tip: 'Conseil : Prenez le billet combiné avec le Palais Royal et la chapelle.' },
+          { id: 'c2', title: 'Monastère de Santa Cruz & Vieille Ville', category: 'Histoire & Fado', desc: 'Tombeau des premiers souverains portugais et berceau du fado mélodique de Coimbra.', tip: 'Conseil : Assistez à un concert intime dans une Casa de Fado.' },
+        ],
+      },
+      {
+        id: 'madeira',
+        name: 'Madère (Funchal)',
+        tagline: 'L\'île aux fleurs, sommets volcaniques et levadas',
+        places: [
+          { id: 'm1', title: 'Du Pico do Arieiro au Pico Ruivo', category: 'Randonnée Alpine', desc: 'Traversée vertigineuse au-dessus des nuages entre les plus hauts pics de Madère.', tip: 'Conseil : Arrivez en voiture avant l\'aube au sommet de l\'Arieiro.' },
+          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Patrimoine Naturel UNESCO', desc: 'Chemin le long des canaux d\'irrigation dans la forêt primitive de lauriers.', tip: 'Conseil : Commencez dès les premières lueurs pour éviter les croisements étroits.' },
+        ],
+      },
+    ],
     phrases: [
       {
         category: 'Location & Logement (Arrendamento)',
@@ -695,8 +783,8 @@ const LOCALES = {
   it: {
     title: 'PortuStart',
     sub: 'Il tuo partner per il trasferimento in Portogallo',
-    tabPlaces: 'Scopri',
     tabServices: 'Servizi',
+    tabPlaces: 'Scopri',
     tabTrans: 'Traduttore',
     tabCalc: 'Stipendio',
     tabGuide: 'Guida',
@@ -771,6 +859,66 @@ const LOCALES = {
       { id: 6, title: 'Certificato di residenza (CRUE / AIMA)', tip: 'I cittadini UE si registrano dopo 3 mesi presso il Comune.' },
       { id: 7, title: 'Numero SNS (Sanità Pubblica)', tip: 'Garantisce l\'accesso ai centri sanitari pubblici (Centro de Saúde).' },
     ],
+    cities: [
+      {
+        id: 'lisboa',
+        name: 'Lisbona',
+        tagline: 'Città dei 7 colli, del fado e dei belvedere panoramici',
+        places: [
+          { id: 'l1', title: 'Torre di Belém e Monastero dos Jerónimos', category: 'Patrimonio UNESCO', desc: 'Capolavoro di stile manuelino lungo il fiume Tago, a pochi passi dai veri Pastéis de Belém.', tip: 'Consiglio: Arriva prima delle 10:00 per evitare code.' },
+          { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Belvedere e Centro Storico', desc: 'Bouganville, azulejos e una terrazza con panorama sui tetti rossi di Alfama.', tip: 'Consiglio: Goditi il tramonto ascoltando i musicisti di fado di strada.' },
+          { id: 'l3', title: 'Praça do Comércio e Lungofiume', category: 'Piazza Storica', desc: 'Imponente piazza reale aperta sull\'estuario, storica porta di approdo dei navigatori.', tip: 'Consiglio: Punto di partenza ideale per passeggiate lungo il Tago.' },
+        ],
+      },
+      {
+        id: 'porto',
+        name: 'Porto',
+        tagline: 'Granito, vino di Porto e ponti spettacolari',
+        places: [
+          { id: 'p1', title: 'Ponte Dom Luís I e Ribeira', category: 'Simbolo e Lungofiume', desc: 'Ponte in ferro a due livelli progettato da Théophile Seyrig. Sopra la metro, sotto i pedoni.', tip: 'Consiglio: Attraversa a piedi la passerella superiore per una vista mozzafiato.' },
+          { id: 'p2', title: 'Libreria Lello e Torre dos Clérigos', category: 'Cultura e Architettura', desc: 'Libreria neogotica celebre in tutto il mondo per la sua imponente scalinata rossa in legno.', tip: 'Consiglio: Prenota il voucher d\'ingresso online.' },
+          { id: 'p3', title: 'Cantine di Porto a Gaia', category: 'Enoturismo e Tradizione', desc: 'Cantine storiche di affinamento con enormi botti e barche tradizionali rabelo sul fiume.', tip: 'Consiglio: Prenota una visita guidata con degustazione.' },
+        ],
+      },
+      {
+        id: 'sintra',
+        name: 'Sintra e Cascais',
+        tagline: 'Castelli fiabeschi nei boschi e scogliere sull\'Oceano',
+        places: [
+          { id: 's1', title: 'Palácio Nacional da Pena', category: 'Castello Romantico', desc: 'Castello romantico giallo e rosso sulla vetta della serra di Sintra.', tip: 'Consiglio: Prenota la fascia oraria online; al mattino c\'è meno affollamento.' },
+          { id: 's2', title: 'Quinta da Regaleira', category: 'Giardini Misteriosi', desc: 'Tenuta magica con gallerie sotterranee, grotte e il pozzo iniziatico profondo 27 metri.', tip: 'Consiglio: Usa la torcia del telefono per esplorare le caverne.' },
+          { id: 's3', title: 'Cabo da Roca', category: 'Monumento Naturale', desc: 'Il punto più a ovest del continente europeo con scogliere di 140 m sferzate dall\'Atlantico.', tip: 'Consiglio: Indossa una giacca a vento, le raffiche sono continue.' },
+        ],
+      },
+      {
+        id: 'algarve',
+        name: 'Faro e Algarve',
+        tagline: 'Falesie dorate e 300 giorni di sole all\'anno',
+        places: [
+          { id: 'a1', title: 'Grotta marina di Benagil', category: 'Grotte e Spiagge', desc: 'La grotta marina più spettacolare d\'Europa con volta forata naturale e spiaggia interna.', tip: 'Consiglio: Raggiungila al mattino presto in kayak o paddleboard.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Scogliere e Archi', desc: 'Pinnacoli di roccia calcarea, archi naturali e acqua turchese limpida.', tip: 'Consiglio: Fai un\'escursione su una barca di pescatori tra le gole di roccia.' },
+          { id: 'a3', title: 'Parco Naturale di Ria Formosa', category: 'Laguna e Isole', desc: 'Estesa riserva lagunare con isole senza auto, fenicotteri e spiagge incontaminate.', tip: 'Consiglio: Prendi il traghetto da Olhão per l\'isola di Armona.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Coimbra e Centro',
+        tagline: 'Antica capitale reale e prestigiosa città universitaria',
+        places: [
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Biblioteca Barocca', desc: 'Capolavoro barocco del XVIII secolo con decorazioni dorate e rari manoscritti.', tip: 'Consiglio: Acquista il biglietto combinato con il Palazzo Reale e cappella.' },
+          { id: 'c2', title: 'Monastero di Santa Cruz', category: 'Storia e Fado', desc: 'Tomba dei primi sovrani del Portogallo e culla del suggestivo fado di Coimbra.', tip: 'Consiglio: Ascolta un concerto serale in una tradizionale Casa de Fado.' },
+        ],
+      },
+      {
+        id: 'madeira',
+        name: 'Madeira (Funchal)',
+        tagline: 'L\'isola dei fiori tra vette vulcaniche e levadas',
+        places: [
+          { id: 'm1', title: 'Da Pico do Arieiro a Pico Ruivo', category: 'Trekking d\'Alta Quota', desc: 'Sentiero sui crinali rocciosi sopra il mare di nuvole tra le cime più alte di Madeira.', tip: 'Consiglio: Sali in auto prima dell\'alba al belvedere di Arieiro.' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Patrimonio UNESCO', desc: 'Escursione lungo i canali d\'irrigazione nella foresta primordiale di laurisilva.', tip: 'Consiglio: Parti all\'alba per evitare incroci sui sentieri stretti.' },
+        ],
+      },
+    ],
     phrases: [
       {
         category: 'Affitti e Case (Arrendamento)',
@@ -807,8 +955,8 @@ const LOCALES = {
   uk: {
     title: 'PortuStart',
     sub: 'Ваш помічник для переїзду в Португалію',
-    tabPlaces: 'Локації',
     tabServices: 'Сервіси',
+    tabPlaces: 'Локації',
     tabTrans: 'Перекладач',
     tabCalc: 'Зарплата',
     tabGuide: 'Гід',
@@ -883,6 +1031,66 @@ const LOCALES = {
       { id: 6, title: 'Реєстрація резиденції (CRUE / AIMA)', tip: 'Громадяни ЄС реєструються після 3 місяців у мерії (Câmara).' },
       { id: 7, title: 'Медичний номер SNS (Centro de Saúde)', tip: 'Доступ до сімейних лікарів та державних лікарень.' },
     ],
+    cities: [
+      {
+        id: 'lisboa',
+        name: 'Лісабон',
+        tagline: 'Місто 7 пагорбів, фаду та панорамних оглядових майданчиків',
+        places: [
+          { id: 'l1', title: 'Башта Белен та Монастир Жеронімуш', category: 'Спадщина ЮНЕСКО', desc: 'Шедевр стилю мануеліно на березі Тежу. Поруч із легендарною пекарнею Pastéis de Belém.', tip: 'Порада: Приходьте до 10:00, щоб уникнути довгих черг.' },
+          { id: 'l2', title: 'Мірадору Санта-Лузія та Алфама', category: 'Оглядовий майданчик', desc: 'Бугенвілії, азулежу та захопливий краєвид на червоні черепичні дахи Алфами.', tip: 'Порада: Зустріньте захід сонця під звуки вуличного фаду з кавою біка.' },
+          { id: 'l3', title: 'Площа Комерції та Набережна', category: 'Історична площа', desc: 'Грандіозна палацова площа біля річки, колишні морські ворота до Нового Світу.', tip: 'Порада: Чудове місце для прогулянок набережною вздовж річки.' },
+        ],
+      },
+      {
+        id: 'porto',
+        name: 'Порту',
+        tagline: 'Гранітна архітектура, портвейн та монументальні мости',
+        places: [
+          { id: 'p1', title: 'Міст Луїша I та Рібейра', category: 'Символ міста та Набережна', desc: 'Дворівневий залізний міст учня Ейфеля. Зверху курсує метро, а знизу ходять пішоходи.', tip: 'Порада: Пройдіться верхнім ярусом мосту заради найкращої панорами на Гайю.' },
+          { id: 'p2', title: 'Книгарня Лелло та Вежа Клерігуш', category: 'Культура та Архітектура', desc: 'Знаменита неоготична книгарня з червоними сходами та різьбленим деревом.', tip: 'Порада: Купуйте квиток онлайн заздалегідь.' },
+          { id: 'p3', title: 'Винні погреби портвейну в Гайї', category: 'Традиції та Дегустація', desc: 'Історичні підвали з дубовими бочками та традиційними човнами рабелу на річці.', tip: 'Порада: Замовте екскурсію з дегустацією витриманого портвейну.' },
+        ],
+      },
+      {
+        id: 'sintra',
+        name: 'Сінтра та Кашкайш',
+        tagline: 'Казкові палаци в туманних лісах та океанські скелі',
+        places: [
+          { id: 's1', title: 'Національний палац Пена', category: 'Романтичний замок', desc: 'Яскравий жовто-червоний замок на вершинах гір Сінтри над хмарами.', tip: 'Порада: Бронюйте конкретний час візиту онлайн; вранці тут найспокійніше.' },
+          { id: 's2', title: 'Кінта да Регалейра', category: 'Містичні сади', desc: 'Загадковий маєток із підземними тунелями, гротами та 27-метровим Колодцем Ініціації.', tip: 'Порада: Увімкніть ліхтарик на телефоні для дослідження печер.' },
+          { id: 's3', title: 'Мис Рока (Cabo da Roca)', category: 'Природне диво', desc: 'Найзахідніша точка континентальної Європи: 140-метрові скелі над бурхливим океаном.', tip: 'Порада: Візьміть вітрозахисну куртку, тут постійно дме сильний вітер.' },
+        ],
+      },
+      {
+        id: 'algarve',
+        name: 'Фару та Алгарве',
+        tagline: 'Золотисті скелі та понад 300 сонячних днів на рік',
+        places: [
+          { id: 'a1', title: 'Морська печера Бенагіл', category: 'Печери та Пляжі', desc: 'Найвідоміша печера Європи з природним круглим склепінням та пляжем усередині.', tip: 'Порада: Вирушайте вранці на сапборді чи каяку до прибуття моторних човнів.' },
+          { id: 'a2', title: 'Понта-да-П\'єдаде (Лагуш)', category: 'Скелясте узбережжя', desc: 'Вапнякові арки, скельні стовпи та кришталево чиста бірюзова вода.', tip: 'Порада: Пропливіть крізь вузькі кам\'яні гроти на рибальському човні.' },
+          { id: 'a3', title: 'Природний парк Ріа-Формоза', category: 'Лагуни та Острови', desc: 'Величезна заповідна лагуна з островами без автомобілів і піщаними косами.', tip: 'Порада: Сядьте на пором з Ольяу на спокійний острів Армона.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Коїмбра та Центр',
+        tagline: 'Давня королівська столиця та університетська історія',
+        places: [
+          { id: 'c1', title: 'Бібліотека Жоаніна', category: 'Барокова бібліотека', desc: 'Розкішний зал XVIII століття із золотим оздобленням та рідкісними книгами.', tip: 'Порада: Беріть комплексний квиток з королівським палацом і каплицею.' },
+          { id: 'c2', title: 'Монастир Санта-Круз', category: 'Історія та Фаду', desc: 'Місце спочинку перших королів Португалії та батьківщина академічного фаду.', tip: 'Порада: Завітайте ввечері на концерт у традиційний будинок фаду.' },
+        ],
+      },
+      {
+        id: 'madeira',
+        name: 'Мадейра (Фуншал)',
+        tagline: 'Острів вічної весни, гірських вершин та левад',
+        places: [
+          { id: 'm1', title: 'Від Піку-ду-Аріейру до Піку-Руйву', category: 'Високогірний трекінг', desc: 'Стежка по гірському хребту над хмарами між найвищими піками Мадейри.', tip: 'Порада: Підніміться на авто на світанку, щоб побачити море хмар знизу.' },
+          { id: 'm2', title: 'Левада 25 джерел (25 Fontes)', category: 'Спадщина ЮНЕСКО', desc: 'Маршрут вздовж зрошувальних каналів крізь реліктовий лавровий ліс.', tip: 'Порада: Виходьте на світанку, щоб уникнути зустрічного потоку на вузьких стежках.' },
+        ],
+      },
+    ],
     phrases: [
       {
         category: 'Оренда та житло (Arrendamento)',
@@ -923,74 +1131,34 @@ const NATIONAL_TRANSIT_SYSTEMS = [
     region: '🇵🇹 Landesweit / National',
     color: '#0F5132',
     items: [
-      {
-        name: 'CP - Comboios de Portugal (Bahn)',
-        desc: 'Alfa Pendular (Schnellzug), Intercidades & Regionalzüge zwischen Lissabon, Porto, Coimbra, Braga & Faro.',
-        link: 'https://www.cp.pt/passageiros/en',
-      },
-      {
-        name: 'Rede Expressos (Fernbusse)',
-        desc: 'Das größte Busnetz Portugals mit günstigen Verbindungen in jede Stadt und jedes Dorf.',
-        link: 'https://rede-expressos.pt/en',
-      },
+      { name: 'CP - Comboios de Portugal (Bahn)', desc: 'Alfa Pendular, Intercidades & Regionalzüge zwischen Lissabon, Porto, Coimbra & Faro.', link: 'https://www.cp.pt/passageiros/en' },
+      { name: 'Rede Expressos (Fernbusse)', desc: 'Das größte Busnetz Portugals mit günstigen Verbindungen in jede Stadt.', link: 'https://rede-expressos.pt/en' },
     ],
   },
   {
     region: '🍷 Porto & Nordportugal',
     color: '#0284C7',
     items: [
-      {
-        name: 'Metro do Porto (6 Linien A–F)',
-        desc: 'Moderne Stadtbahn, die Porto mit dem Flughafen, Matosinhos, Gaia & Maia verbindet.',
-        link: 'https://www.metrodoporto.pt/en/',
-      },
-      {
-        name: 'STCP (Stadtbusse & Trams Porto)',
-        desc: 'Umfassendes Busnetz im Großraum Porto.',
-        link: 'https://www.stcp.pt/en/travel/',
-      },
-      {
-        name: 'Andante Ticket & App Anda',
-        desc: 'Einheitliches Zonenkartensystem für alle Verkehrsmittel im Großraum Porto.',
-        link: 'https://andante.pt/en/',
-      },
+      { name: 'Metro do Porto (Linien A–F)', desc: 'Moderne Stadtbahn: Porto, Flughafen, Gaia & Matosinhos.', link: 'https://www.metrodoporto.pt/en/' },
+      { name: 'STCP (Stadtbusse & Trams Porto)', desc: 'Umfassendes Busnetz im Großraum Porto.', link: 'https://www.stcp.pt/en/travel/' },
+      { name: 'Andante Ticket & App Anda', desc: 'Einheitliches Zonenkartensystem für den Großraum Porto.', link: 'https://andante.pt/en/' },
     ],
   },
   {
     region: '☀️ Lissabon & Tejo-Region',
     color: '#D97706',
     items: [
-      {
-        name: 'Metro Lisboa (4 Linien)',
-        desc: 'Blau, Gelb, Grün, Rot – verbindet Zentrum, Bahnhof Oriente & Flughafen Lissabon.',
-        link: 'https://www.metrolisboa.pt/en/',
-      },
-      {
-        name: 'Carris & Carris Metropolitana',
-        desc: 'Busse, gelbe Straßenbahnen (z. B. 28E) und Überlandbusse bis Setúbal & Cascais.',
-        link: 'https://www.carrismetropolitana.pt/',
-      },
-      {
-        name: 'Navegante Pass (40 € Flatrate)',
-        desc: 'Monatskarte für ausnahmslos alle Metros, Busse, Tejo-Fähren und CP-Züge (Sintra/Cascais).',
-        link: 'https://www.navegante.pt/',
-      },
+      { name: 'Metro Lisboa (4 Linien)', desc: 'Blau, Gelb, Grün, Rot – Zentrum, Bahnhof Oriente & Flughafen.', link: 'https://www.metrolisboa.pt/en/' },
+      { name: 'Carris & Carris Metropolitana', desc: 'Busse, historische Trams (28E) und Überlandbusse bis Setúbal & Cascais.', link: 'https://www.carrismetropolitana.pt/' },
+      { name: 'Navegante Pass (40 € Flatrate)', desc: 'Monatskarte für alle Metros, Busse, Tejo-Fähren und CP-Vorortzüge.', link: 'https://www.navegante.pt/' },
     ],
   },
   {
     region: '🏖 Algarve & Inseln',
     color: '#7C3AED',
     items: [
-      {
-        name: 'VAMUS Algarve (Busnetz Südportugal)',
-        desc: 'Linienbusse zwischen Faro, Albufeira, Lagos, Portimão und Tavira.',
-        link: 'https://vamusalgarve.pt/#/pt/vamus%20algarve/routes',
-      },
-      {
-        name: 'SIGA Madeira (ÖPNV Funchal & Insel)',
-        desc: 'Neues integriertes Busnetz für die gesamte Insel Madeira.',
-        link: 'https://siga.madeira.gov.pt/',
-      },
+      { name: 'VAMUS Algarve (Busnetz Südportugal)', desc: 'Linienbusse zwischen Faro, Albufeira, Lagos, Portimão und Tavira.', link: 'https://vamusalgarve.pt/#/pt/vamus%20algarve/routes' },
+      { name: 'SIGA Madeira (ÖPNV Funchal & Insel)', desc: 'Neues integriertes Busnetz für die gesamte Insel Madeira.', link: 'https://siga.madeira.gov.pt/' },
     ],
   },
 ];
@@ -1001,8 +1169,8 @@ export default function App() {
   const [welcomeModalVisible, setWelcomeModalVisible] = useState(true);
   const [celebrationModalVisible, setCelebrationModalVisible] = useState(false);
   
-  // Tabs: 'places' | 'services' | 'trans' | 'calc' | 'guide'
-  const [activeTab, setActiveTab] = useState('places');
+  // STANDARD-TAB: 'services' ist der Startbildschirm beim Öffnen
+  const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
 
   const t = LOCALES[appLang] || LOCALES['de'];
@@ -1015,7 +1183,6 @@ export default function App() {
   const [sourceLang, setSourceLang] = useState('de');
   const [targetLang, setTargetLang] = useState('pt');
   const [translatedText, setTranslatedText] = useState('');
-  const [slangNote, setSlangNote] = useState('');
   const [loading, setLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
 
@@ -1030,7 +1197,18 @@ export default function App() {
   const [passportFileName, setPassportFileName] = useState('');
   const [proofFileName, setProofFileName] = useState('');
 
-  const activeCity = CITIES_DATA.find((c) => c.id === selectedCityId) || CITIES_DATA[0];
+  // Aktive Stadt und Attraktionen
+  const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
+  const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
+
+  const dynamicPlaces = currentCityText.places.map((place, index) => {
+    const meta = currentCityMeta.placesMeta[index] || currentCityMeta.placesMeta[0];
+    return {
+      ...place,
+      img: meta.img,
+      query: meta.query,
+    };
+  });
 
   const toggleChecklistItem = (id) => {
     const updated = { ...checkedMap, [id]: !checkedMap[id] };
@@ -1045,21 +1223,15 @@ export default function App() {
   const completedCount = t.checklist.filter((item) => checkedMap[item.id]).length;
 
   const dialNumber = (number) => {
-    const url = `tel:${number}`;
-    Linking.openURL(url).catch(() => {
-      Alert.alert('Info', `Nummer wählen: ${number}`);
-    });
+    Linking.openURL(`tel:${number}`).catch(() => Alert.alert('Info', `Nummer wählen: ${number}`));
   };
 
   const openUrl = (url) => {
-    Linking.openURL(url).catch(() => {
-      Alert.alert('Fehler', 'Link konnte nicht geöffnet werden.');
-    });
+    Linking.openURL(url).catch(() => Alert.alert('Fehler', 'Link konnte nicht geöffnet werden.'));
   };
 
   const openPlaceInMaps = (query) => {
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
-    openUrl(url);
+    openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`);
   };
 
   const playAudio = (text, langCode = 'pt') => {
@@ -1070,7 +1242,6 @@ export default function App() {
       const voiceObj = TRANSLATOR_LANGUAGES.find((l) => l.code === langCode);
       utterance.lang = voiceObj ? voiceObj.voice : 'pt-PT';
       utterance.rate = 0.95;
-      utterance.pitch = 1.0;
       window.speechSynthesis.speak(utterance);
     } else {
       Alert.alert('Audio', `🗣 "${text}"`);
@@ -1095,8 +1266,7 @@ export default function App() {
         setIsRecording(true);
 
         recognition.onresult = (event) => {
-          const spokenText = event.results[0][0].transcript;
-          setInputText(spokenText);
+          setInputText(event.results[0][0].transcript);
           setIsRecording(false);
         };
 
@@ -1162,18 +1332,8 @@ export default function App() {
       `Bitte prüft meine Daten und sendet mir die Auftragsbestätigung.`
     );
 
-    const mailtoUrl = `mailto:portustart@proton.me?subject=${subject}&body=${body}`;
-    Linking.openURL(mailtoUrl).catch(() => {
+    Linking.openURL(`mailto:portustart@proton.me?subject=${subject}&body=${body}`).catch(() => {
       Alert.alert('E-Mail', 'Bitte schreibe an: portustart@proton.me');
-    });
-  };
-
-  const handleSupportContact = () => {
-    const subject = encodeURIComponent('PortuStart Support-Anfrage');
-    const body = encodeURIComponent('Hallo Support-Team,\n\nich habe eine Frage bezüglich:\n\n');
-    const mailtoUrl = `mailto:portustart.support@proton.me?subject=${subject}&body=${body}`;
-    Linking.openURL(mailtoUrl).catch(() => {
-      Alert.alert('Support-Kontakt', 'Schreibe an: portustart.support@proton.me');
     });
   };
 
@@ -1181,7 +1341,6 @@ export default function App() {
     if (!inputText.trim()) return;
     setLoading(true);
     setTranslatedText('');
-    setSlangNote('');
 
     try {
       const langPair = `${sourceLang}|${targetLang}`;
@@ -1250,17 +1409,10 @@ export default function App() {
           </View>
         </View>
 
-        {/* 5-Fach Menüleiste (Inkl. Entdecken/Places) */}
+        {/* 5-Fach Menüleiste: Services steht jetzt an Position 1 */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
-            <TouchableOpacity
-              style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]}
-              onPress={() => setActiveTab('places')}
-            >
-              <Ionicons name="map" size={13} color={activeTab === 'places' ? '#fff' : '#64748B'} />
-              <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
-            </TouchableOpacity>
-
+            {/* TAB 1: SERVICES (STANDARD-START) */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]}
               onPress={() => setActiveTab('services')}
@@ -1269,6 +1421,16 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
             </TouchableOpacity>
 
+            {/* TAB 2: ENTDECKEN / PLACES */}
+            <TouchableOpacity
+              style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]}
+              onPress={() => setActiveTab('places')}
+            >
+              <Ionicons name="map" size={13} color={activeTab === 'places' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
+            </TouchableOpacity>
+
+            {/* TAB 3: TRANSLATOR */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]}
               onPress={() => setActiveTab('trans')}
@@ -1277,6 +1439,7 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
+            {/* TAB 4: GEHALTSRECHNER */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]}
               onPress={() => {
@@ -1288,6 +1451,7 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
 
+            {/* TAB 5: GUIDE & TRANSIT */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'guide' && styles.tabButtonActive]}
               onPress={() => setActiveTab('guide')}
@@ -1298,133 +1462,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 0: PLACES & SEHENSWÜRDIGKEITEN (INTERAKTIVE MAP + SWIPE) */}
-        {activeTab === 'places' && (
-          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            
-            {/* Header Karte */}
-            <View style={styles.card}>
-              <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
-              <Text style={styles.subText}>{t.placesSectionSub}</Text>
-              <Text style={styles.miniLabel}>{t.mapInstruction}</Text>
-
-              {/* STILISIERTE INTERAKTIVE PORTUGAL-KARTE */}
-              <View style={styles.mapGraphicWrapper}>
-                {/* Silhouette / Hintergrund der Karte */}
-                <View style={styles.portugalMapShape}>
-                  <View style={styles.oceanWaterMark}>
-                    <Text style={styles.oceanWaterMarkText}>ATLÂNTICO</Text>
-                  </View>
-
-                  {/* Interaktive Pins auf der Karte */}
-                  {CITIES_DATA.map((city) => {
-                    const isSelected = selectedCityId === city.id;
-                    return (
-                      <TouchableOpacity
-                        key={city.id}
-                        style={[
-                          styles.mapPinContainer,
-                          { top: city.mapCoords.top, left: city.mapCoords.left },
-                          isSelected && styles.mapPinContainerActive,
-                        ]}
-                        onPress={() => setSelectedCityId(city.id)}
-                      >
-                        <View style={[styles.mapPinDot, isSelected && styles.mapPinDotActive]}>
-                          <Ionicons name="location" size={isSelected ? 16 : 12} color={isSelected ? '#DC2626' : '#0F5132'} />
-                        </View>
-                        <View style={[styles.mapPinLabelBadge, isSelected && styles.mapPinLabelBadgeActive]}>
-                          <Text style={[styles.mapPinLabelText, isSelected && styles.mapPinLabelTextActive]}>
-                            {city.name.split(' ')[0]}
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-              </View>
-
-              {/* Städte-Schnellwahlliste (Chips) */}
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
-                {CITIES_DATA.map((city) => {
-                  const isSelected = selectedCityId === city.id;
-                  return (
-                    <TouchableOpacity
-                      key={city.id}
-                      style={[styles.cityChip, isSelected && styles.cityChipActive]}
-                      onPress={() => setSelectedCityId(city.id)}
-                    >
-                      <Ionicons
-                        name="business-outline"
-                        size={13}
-                        color={isSelected ? '#0F5132' : '#64748B'}
-                        style={{ marginRight: 4 }}
-                      />
-                      <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>
-                        {city.name}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
-            </View>
-
-            {/* AKTIVE STADT & SWIPEBEDINGTER HORIZONTALER SCROLLBEREICH */}
-            <View style={styles.cityDetailsHeader}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.activeCityName}>{activeCity.name}</Text>
-                <Text style={styles.activeCityTagline}>{activeCity.tagline}</Text>
-              </View>
-              <View style={styles.cityPlacesCounter}>
-                <Text style={styles.cityPlacesCounterText}>{activeCity.places.length} Highlights</Text>
-              </View>
-            </View>
-
-            <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>
-              {t.swipeInstruction}
-            </Text>
-
-            {/* HORIZONTALES SWIPE-VERFAHREN FÜR ATTRAKTIONEN */}
-            <ScrollView
-              horizontal
-              pagingEnabled={false}
-              showsHorizontalScrollIndicator={false}
-              snapToAlignment="start"
-              decelerationRate="fast"
-              contentContainerStyle={styles.attractionsSwipeScroll}
-            >
-              {activeCity.places.map((place) => (
-                <View key={place.id} style={styles.attractionCard}>
-                  <Image source={{ uri: place.img }} style={styles.attractionImage} />
-                  
-                  <View style={styles.attractionCategoryBadge}>
-                    <Text style={styles.attractionCategoryText}>{place.category}</Text>
-                  </View>
-
-                  <View style={styles.attractionBody}>
-                    <Text style={styles.attractionTitle}>{place.title}</Text>
-                    <Text style={styles.attractionDesc}>{place.desc}</Text>
-
-                    <View style={styles.attractionTipBox}>
-                      <Ionicons name="sparkles" size={13} color="#D97706" style={{ marginRight: 4, marginTop: 1 }} />
-                      <Text style={styles.attractionTipText}>{place.tip}</Text>
-                    </View>
-
-                    <TouchableOpacity
-                      style={styles.openMapBtn}
-                      onPress={() => openPlaceInMaps(place.query)}
-                    >
-                      <Ionicons name="navigate-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
-                      <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
-            </ScrollView>
-
-          </ScrollView>
-        )}
-
-        {/* TAB 1: SERVICES & CHECKLISTE */}
+        {/* TAB 1: SERVICES (DIREKT BEIM APP-START SICHTBAR) */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1544,7 +1582,10 @@ export default function App() {
                 <Text style={styles.supportHeaderTitle}>{t.supportTitle}</Text>
               </View>
               <Text style={styles.supportHelpText}>{t.supportHelpText}</Text>
-              <TouchableOpacity style={styles.supportOutlineBtn} onPress={handleSupportContact}>
+              <TouchableOpacity
+                style={styles.supportOutlineBtn}
+                onPress={() => Linking.openURL('mailto:portustart.support@proton.me')}
+              >
                 <Ionicons name="mail-unread-outline" size={15} color="#0F5132" style={{ marginRight: 6 }} />
                 <Text style={styles.supportOutlineBtnText}>{t.supportBtn}</Text>
               </TouchableOpacity>
@@ -1552,7 +1593,128 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: TRANSLATOR */}
+        {/* TAB 2: PLACES / ENTDECKEN */}
+        {activeTab === 'places' && (
+          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            <View style={styles.card}>
+              <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
+              <Text style={styles.subText}>{t.placesSectionSub}</Text>
+              <Text style={styles.miniLabel}>{t.mapInstruction}</Text>
+
+              {/* Interaktive Reliefkarte mit Pins */}
+              <View style={styles.mapGraphicWrapper}>
+                <View style={styles.portugalMapShape}>
+                  <View style={styles.oceanWaterMark}>
+                    <Text style={styles.oceanWaterMarkText}>ATLÂNTICO</Text>
+                  </View>
+
+                  {t.cities.map((city) => {
+                    const isSelected = selectedCityId === city.id;
+                    const meta = CITIES_METADATA[city.id] || CITIES_METADATA['lisboa'];
+                    return (
+                      <TouchableOpacity
+                        key={city.id}
+                        style={[
+                          styles.mapPinContainer,
+                          { top: meta.mapCoords.top, left: meta.mapCoords.left },
+                          isSelected && styles.mapPinContainerActive,
+                        ]}
+                        onPress={() => setSelectedCityId(city.id)}
+                      >
+                        <View style={[styles.mapPinDot, isSelected && styles.mapPinDotActive]}>
+                          <Ionicons name="location" size={isSelected ? 16 : 12} color={isSelected ? '#DC2626' : '#0F5132'} />
+                        </View>
+                        <View style={[styles.mapPinLabelBadge, isSelected && styles.mapPinLabelBadgeActive]}>
+                          <Text style={[styles.mapPinLabelText, isSelected && styles.mapPinLabelTextActive]}>
+                            {city.name.split(' ')[0]}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+
+              {/* Städte-Filter Chips */}
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
+                {t.cities.map((city) => {
+                  const isSelected = selectedCityId === city.id;
+                  return (
+                    <TouchableOpacity
+                      key={city.id}
+                      style={[styles.cityChip, isSelected && styles.cityChipActive]}
+                      onPress={() => setSelectedCityId(city.id)}
+                    >
+                      <Ionicons
+                        name="business-outline"
+                        size={13}
+                        color={isSelected ? '#0F5132' : '#64748B'}
+                        style={{ marginRight: 4 }}
+                      />
+                      <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>
+                        {city.name}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
+            </View>
+
+            {/* Aktive Stadt Details */}
+            <View style={styles.cityDetailsHeader}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.activeCityName}>{currentCityText.name}</Text>
+                <Text style={styles.activeCityTagline}>{currentCityText.tagline}</Text>
+              </View>
+              <View style={styles.cityPlacesCounter}>
+                <Text style={styles.cityPlacesCounterText}>{dynamicPlaces.length} Highlights</Text>
+              </View>
+            </View>
+
+            <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>
+              {t.swipeInstruction}
+            </Text>
+
+            {/* Horizontales Karussell mit Attraktionen */}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              snapToAlignment="start"
+              decelerationRate="fast"
+              contentContainerStyle={styles.attractionsSwipeScroll}
+            >
+              {dynamicPlaces.map((place) => (
+                <View key={place.id} style={styles.attractionCard}>
+                  <Image source={{ uri: place.img }} style={styles.attractionImage} />
+                  
+                  <View style={styles.attractionCategoryBadge}>
+                    <Text style={styles.attractionCategoryText}>{place.category}</Text>
+                  </View>
+
+                  <View style={styles.attractionBody}>
+                    <Text style={styles.attractionTitle}>{place.title}</Text>
+                    <Text style={styles.attractionDesc}>{place.desc}</Text>
+
+                    <View style={styles.attractionTipBox}>
+                      <Ionicons name="sparkles" size={13} color="#D97706" style={{ marginRight: 4, marginTop: 1 }} />
+                      <Text style={styles.attractionTipText}>{place.tip}</Text>
+                    </View>
+
+                    <TouchableOpacity
+                      style={styles.openMapBtn}
+                      onPress={() => openPlaceInMaps(place.query)}
+                    >
+                      <Ionicons name="navigate-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
+                      <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ))}
+            </ScrollView>
+          </ScrollView>
+        )}
+
+        {/* TAB 3: TRANSLATOR */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1646,7 +1808,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: GEHALT */}
+        {/* TAB 4: GEHALTSRECHNER */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1692,7 +1854,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 4: GUIDE */}
+        {/* TAB 5: GUIDE & TRANSIT */}
         {activeTab === 'guide' && (
           <ScrollView contentContainerStyle={styles.scrollContent}>
             <View style={styles.card}>
@@ -1771,6 +1933,23 @@ export default function App() {
           </ScrollView>
         )}
 
+        {/* CELEBRATION MODAL */}
+        <Modal visible={celebrationModalVisible} transparent animationType="fade" onRequestClose={() => setCelebrationModalVisible(false)}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.celebrationCard}>
+              <View style={styles.celebBadge}>
+                <Ionicons name="trophy" size={32} color="#D97706" />
+              </View>
+              <Text style={styles.celebTitle}>{t.celebTitle}</Text>
+              <Text style={styles.celebSub}>{t.celebSub}</Text>
+              <Text style={styles.celebDesc}>{t.celebDesc}</Text>
+              <TouchableOpacity style={styles.celebBtn} onPress={() => setCelebrationModalVisible(false)}>
+                <Text style={styles.celebBtnText}>{t.celebBtn}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
         {/* ONBOARDING MODAL */}
         <Modal visible={welcomeModalVisible} transparent animationType="slide" onRequestClose={() => setWelcomeModalVisible(false)}>
           <View style={styles.modalOverlay}>
@@ -1786,17 +1965,7 @@ export default function App() {
               <ScrollView style={styles.onboardingScroll} showsVerticalScrollIndicator={false}>
                 <View style={styles.onboardingFeatureRow}>
                   <View style={[styles.featureIconWrap, { backgroundColor: '#DCFCE7' }]}>
-                    <Ionicons name="map" size={20} color="#0F5132" />
-                  </View>
-                  <View style={styles.featureTextWrap}>
-                    <Text style={styles.featureTitle}>Sehenswürdigkeiten & Schöne Orte</Text>
-                    <Text style={styles.featureDesc}>Interaktive Karte & Swipe-Verfahren durch ganz Portugal.</Text>
-                  </View>
-                </View>
-
-                <View style={styles.onboardingFeatureRow}>
-                  <View style={[styles.featureIconWrap, { backgroundColor: '#E0F2FE' }]}>
-                    <Ionicons name="checkbox" size={20} color="#0284C7" />
+                    <Ionicons name="checkbox" size={20} color="#0F5132" />
                   </View>
                   <View style={styles.featureTextWrap}>
                     <Text style={styles.featureTitle}>{t.guideStepRoadmapTitle}</Text>
@@ -1805,12 +1974,12 @@ export default function App() {
                 </View>
 
                 <View style={styles.onboardingFeatureRow}>
-                  <View style={[styles.featureIconWrap, { backgroundColor: '#EDE9FE' }]}>
-                    <Ionicons name="chatbubbles" size={20} color="#7C3AED" />
+                  <View style={[styles.featureIconWrap, { backgroundColor: '#E0F2FE' }]}>
+                    <Ionicons name="map" size={20} color="#0284C7" />
                   </View>
                   <View style={styles.featureTextWrap}>
-                    <Text style={styles.featureTitle}>{t.guideStepSlangTitle}</Text>
-                    <Text style={styles.featureDesc}>{t.guideStepSlangDesc}</Text>
+                    <Text style={styles.featureTitle}>Sehenswürdigkeiten & Schöne Orte</Text>
+                    <Text style={styles.featureDesc}>Interaktive Karte & Highlights von Porto bis Faro.</Text>
                   </View>
                 </View>
               </ScrollView>
@@ -2051,7 +2220,7 @@ const styles = StyleSheet.create({
   },
   openMapBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
 
-  // ALLGEMEINE FORMULAR- & TAB-STYLES
+  // FORMULAR- & TAB-STYLES
   checklistHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   progressBadge: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
   progressBadgeText: { fontSize: 11, fontWeight: '700', color: '#0F5132' },
@@ -2185,6 +2354,41 @@ const styles = StyleSheet.create({
   ptText: { fontSize: 14, fontWeight: '700', color: '#0F172A', flex: 1 },
   phText: { fontSize: 12, color: '#64748B', fontStyle: 'italic', marginVertical: 2 },
   deText: { fontSize: 12, color: '#334155' },
+  celebrationCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    padding: 24,
+    width: '100%',
+    maxWidth: 360,
+    alignItems: 'center',
+    elevation: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 18,
+  },
+  celebBadge: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#FEF3C7',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  celebTitle: { fontSize: 22, fontWeight: '900', color: '#0F172A', textAlign: 'center' },
+  celebSub: { fontSize: 13, fontWeight: '700', color: '#0F5132', textAlign: 'center', marginTop: 4 },
+  celebDesc: { fontSize: 12, color: '#475569', textAlign: 'center', marginTop: 10, lineHeight: 18 },
+  celebBtn: {
+    backgroundColor: '#0F5132',
+    paddingVertical: 13,
+    paddingHorizontal: 22,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 18,
+    width: '100%',
+  },
+  celebBtnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
   onboardingCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
