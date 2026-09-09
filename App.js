@@ -24,21 +24,17 @@ const { width } = Dimensions.get('window');
 // DEINE PARTNER- & AFFILIATE-LINKS
 // ==========================================
 const AFFILIATE_LINKS = {
-  // e-Residence Partner-Links (Ausfallsicher direkt auf Hauptseite mit Tracking)
   eResidenceNif: 'https://e-residence.com/?via=portustart',
   eResidenceNiss: 'https://e-residence.com/?via=portustart',
   eResidenceBank: 'https://e-residence.com/?via=portustart',
   eResidenceHealth: 'https://e-residence.com/?via=portustart',
   
-  // GetYourGuide Partner-Parameter
   getYourGuidePartnerId: 'AJWYURO',
   getYourGuideCmp: 'share_to_earn',
 
-  // italki Sprachlern-Affiliate-Link
   italkiLang: 'https://www.italki.com/affshare?ref=af33636608',
 };
 
-// UI-Sprachen
 const UI_LANGUAGES = [
   { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -59,7 +55,6 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
-// REALE GEO-KOORDINATEN FÜR DIE INTERAKTIVE LIVE-KARTE
 const CITIES_METADATA = {
   lisboa: {
     lat: 38.7223,
@@ -166,38 +161,10 @@ const LOCALES = {
     applyOnlineBtn: 'Jetzt online beantragen ↗',
     affiliateDisclosure: 'Transparenz: Über diese Links erhältst du geprüfte Express-Bearbeitung bei e-Residence. Wir erhalten eine kleine Vermittlungsprovision – für dich bleibt der Preis unverändert.',
     affiliateCards: [
-      {
-        key: 'nif',
-        title: 'NIF (Portugiesische Steuernummer)',
-        badge: 'Schritt 1 • Pflicht',
-        desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto. 100% online ohne Gang zum Finanzamt.',
-        link: AFFILIATE_LINKS.eResidenceNif,
-        icon: 'document-text',
-      },
-      {
-        key: 'bank',
-        title: 'Portugiesisches Bankkonto',
-        badge: 'Schritt 2 • IBAN',
-        desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken mit persönlicher IBAN.',
-        link: AFFILIATE_LINKS.eResidenceBank,
-        icon: 'card',
-      },
-      {
-        key: 'niss',
-        title: 'NISS (Sozialversicherungsnummer)',
-        badge: 'Schritt 3 • Arbeit',
-        desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge in Portugal.',
-        link: AFFILIATE_LINKS.eResidenceNiss,
-        icon: 'shield-checkmark',
-      },
-      {
-        key: 'health',
-        title: 'Internationale Krankenversicherung',
-        badge: 'Schritt 4 • Visum & Schutz',
-        desc: 'Visum-konforme Auslandskrankenversicherung (für D7, D8 Nomad-Visum oder Festanstellung) vor dem SNS-Zugang.',
-        link: AFFILIATE_LINKS.eResidenceHealth,
-        icon: 'medkit',
-      },
+      { key: 'nif', title: 'NIF (Portugiesische Steuernummer)', badge: 'Schritt 1 • Pflicht', desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Portugiesisches Bankkonto', badge: 'Schritt 2 • IBAN', desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
     calcTitle: '💶 Nettogehalt-Rechner',
     calcSub: 'Für Angestellte, Single ohne Kinder (14 Monatsgehälter).',
@@ -301,7 +268,6 @@ const LOCALES = {
         items: [
           { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
           { trans: 'Wie hoch ist die Kaution / Vorauszahlung?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
-          { trans: 'Ich habe keinen Bürgen (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
         ],
       },
       {
@@ -309,7 +275,6 @@ const LOCALES = {
         color: '#0F5132',
         items: [
           { trans: 'Ich brauche eine Steuernummer (NIF).', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
-          { trans: 'Ich habe einen Termin bei der AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo nah eye-mah' },
         ],
       },
       {
@@ -318,7 +283,6 @@ const LOCALES = {
         items: [
           { trans: 'Ein gezapftes Bier, bitte.', pt: 'Uma imperial, por favor (Lissabon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
           { trans: 'Die Rechnung, bitte.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
-          { trans: 'Einen Espresso, bitte.', pt: 'Um café / Uma bica, por favor.', ph: 'Oom kah-feh / Oo-mah bee-kah' },
         ],
       },
     ],
@@ -360,38 +324,10 @@ const LOCALES = {
     applyOnlineBtn: 'Apply online now ↗',
     affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
     affiliateCards: [
-      {
-        key: 'nif',
-        title: 'NIF (Portuguese Tax Number)',
-        badge: 'Step 1 • Essential',
-        desc: 'The master key for renting, SIM cards, jobs and bank accounts. 100% remote without queueing at tax offices.',
-        link: AFFILIATE_LINKS.eResidenceNif,
-        icon: 'document-text',
-      },
-      {
-        key: 'bank',
-        title: 'Portuguese Bank Account',
-        badge: 'Step 2 • IBAN',
-        desc: 'Open a compliant local bank account with Portuguese IBAN at leading national banks remotely.',
-        link: AFFILIATE_LINKS.eResidenceBank,
-        icon: 'card',
-      },
-      {
-        key: 'niss',
-        title: 'NISS (Social Security Number)',
-        badge: 'Step 3 • Employment',
-        desc: 'Mandatory for payroll processing, employment contracts and local social contributions in Portugal.',
-        link: AFFILIATE_LINKS.eResidenceNiss,
-        icon: 'shield-checkmark',
-      },
-      {
-        key: 'health',
-        title: 'International Expat Health Insurance',
-        badge: 'Step 4 • Visa & Care',
-        desc: 'Compliant health coverage required for D7/D8 nomad visas and private healthcare prior to public SNS access.',
-        link: AFFILIATE_LINKS.eResidenceHealth,
-        icon: 'medkit',
-      },
+      { key: 'nif', title: 'NIF (Portuguese Tax Number)', badge: 'Step 1 • Essential', desc: 'The master key for renting, SIM cards, jobs and bank accounts.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Portuguese Bank Account', badge: 'Step 2 • IBAN', desc: 'Open a compliant local bank account with Portuguese IBAN.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Social Security Number)', badge: 'Step 3 • Employment', desc: 'Mandatory for payroll processing and employment contracts.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'International Expat Health Insurance', badge: 'Step 4 • Visa & Care', desc: 'Compliant health coverage required for D7/D8 nomad visas.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
     calcTitle: '💶 Net Salary Calculator',
     calcSub: 'Single employee, mainland Portugal (14 payments).',
@@ -496,25 +432,9 @@ const LOCALES = {
           { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
         ],
       },
-      {
-        category: 'Public Services & Paperwork (AIMA / Finanças)',
-        color: '#0F5132',
-        items: [
-          { trans: 'I need to apply for a NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
-        ],
-      },
-      {
-        category: 'Dining & Everyday Life',
-        color: '#D97706',
-        items: [
-          { trans: 'A draught beer, please.', pt: 'Uma imperial, por favor (Lisbon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
-          { trans: 'The bill, please.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
-        ],
-      },
     ],
     emergencies: [
       { name: 'Emergency (Police & Ambulance)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Central EU emergency dispatch.' },
-      { name: 'SNS 24 (Public Health Line)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Clinical guidance before visiting hospitals.' },
     ],
   },
 };
@@ -527,21 +447,15 @@ export default function App() {
 
   const t = LOCALES[appLang] || LOCALES['de'];
 
-  // Checkliste
   const [checkedMap, setCheckedMap] = useState({});
-
-  // Translator
   const [inputText, setInputText] = useState('');
   const [sourceLang, setSourceLang] = useState('de');
   const [targetLang, setTargetLang] = useState('pt');
   const [translatedText, setTranslatedText] = useState('');
   const [loading, setLoading] = useState(false);
-
-  // Gehaltsrechner
   const [grossInput, setGrossInput] = useState('1500');
   const [calcResult, setCalcResult] = useState(null);
 
-  // Aktive Stadt und Attraktionen
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
   const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
 
@@ -663,7 +577,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* 5-Fach Menüleiste */}
+        {/* Menüleiste */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity
@@ -711,10 +625,9 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 1: SERVICES & E-RESIDENCE AFFILIATE LINKS */}
+        {/* TAB 1: SERVICES */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            {/* 30-TAGE ROADMAP */}
             <View style={styles.card}>
               <View style={styles.checklistHeaderRow}>
                 <View>
@@ -757,7 +670,6 @@ export default function App() {
               })}
             </View>
 
-            {/* E-RESIDENCE SERVICES KARTEN (AFFILIATE MONETARISIERUNG) */}
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
               <Text style={styles.subText}>{t.servicesSub}</Text>
@@ -791,14 +703,13 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: PLACES / LIVE-KARTE & GETYOURGUIDE TOUREN */}
+        {/* TAB 2: PLACES */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
               <Text style={styles.subText}>{t.placesSectionSub}</Text>
 
-              {/* Städte-Filter */}
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
                 {t.cities.map((city) => {
                   const isSelected = selectedCityId === city.id;
@@ -808,30 +719,16 @@ export default function App() {
                       style={[styles.cityChip, isSelected && styles.cityChipActive]}
                       onPress={() => setSelectedCityId(city.id)}
                     >
-                      <Ionicons
-                        name="location"
-                        size={13}
-                        color={isSelected ? '#0F5132' : '#64748B'}
-                        style={{ marginRight: 4 }}
-                      />
-                      <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>
-                        {city.name}
-                      </Text>
+                      <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                      <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
                     </TouchableOpacity>
                   );
                 })}
               </ScrollView>
 
-              {/* LIVE MAP IFRAME */}
               <View style={styles.liveMapWrapper}>
                 {Platform.OS === 'web' ? (
-                  <iframe
-                    title="Portugal Interactive Map"
-                    src={mapEmbedUrl}
-                    style={styles.mapIframe}
-                    loading="lazy"
-                    allowFullScreen
-                  />
+                  <iframe title="Portugal Interactive Map" src={mapEmbedUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
                 ) : (
                   <View style={styles.nativeMapFallback}>
                     <Ionicons name="map-outline" size={40} color="#0F5132" />
@@ -849,7 +746,6 @@ export default function App() {
               </View>
             </View>
 
-            {/* Region Title */}
             <View style={styles.cityDetailsHeader}>
               <View style={{ flex: 1 }}>
                 <Text style={styles.activeCityName}>{currentCityText.name}</Text>
@@ -860,26 +756,14 @@ export default function App() {
               </View>
             </View>
 
-            <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>
-              {t.swipeInstruction}
-            </Text>
+            <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
 
-            {/* HORIZONTALES SWIPE-KARUSSELL MIT GETYOURGUIDE BUTTON */}
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              snapToAlignment="start"
-              decelerationRate="fast"
-              contentContainerStyle={styles.attractionsSwipeScroll}
-            >
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.attractionsSwipeScroll}>
               {dynamicPlaces.map((place) => (
                 <View key={place.id} style={styles.attractionCard}>
                   <Image source={{ uri: place.img }} style={styles.attractionImage} />
                   
-                  <View style={[
-                    styles.attractionCategoryBadge,
-                    place.category.includes('🏖') && { backgroundColor: '#0284C7' },
-                  ]}>
+                  <View style={[styles.attractionCategoryBadge, place.category.includes('🏖') && { backgroundColor: '#0284C7' }]}>
                     <Text style={styles.attractionCategoryText}>{place.category}</Text>
                   </View>
 
@@ -892,20 +776,12 @@ export default function App() {
                       <Text style={styles.attractionTipText}>{place.tip}</Text>
                     </View>
 
-                    {/* GETYOURGUIDE PARTNER-BUTTON */}
-                    <TouchableOpacity
-                      style={styles.gygBtn}
-                      onPress={() => openGetYourGuide(place.gygQuery)}
-                    >
+                    <TouchableOpacity style={styles.gygBtn} onPress={() => openGetYourGuide(place.gygQuery)}>
                       <Ionicons name="ticket-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
                       <Text style={styles.gygBtnText}>{t.gygBtn}</Text>
                     </TouchableOpacity>
 
-                    {/* Route Button */}
-                    <TouchableOpacity
-                      style={styles.openMapBtn}
-                      onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`)}
-                    >
+                    <TouchableOpacity style={styles.openMapBtn} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`)}>
                       <Ionicons name="navigate-outline" size={13} color="#475569" style={{ marginRight: 4 }} />
                       <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
                     </TouchableOpacity>
@@ -916,21 +792,15 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: TRANSLATOR (MIT ITALKI AFFILIATE BANNER) */}
+        {/* TAB 3: TRANSLATOR */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
               <Text style={styles.miniLabel}>{t.from}</Text>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
                 {TRANSLATOR_LANGUAGES.map((l) => (
-                  <TouchableOpacity
-                    key={`src-${l.code}`}
-                    onPress={() => setSourceLang(l.code)}
-                    style={[styles.langChip, sourceLang === l.code && styles.langChipSelected]}
-                  >
-                    <Text style={[styles.langChipText, sourceLang === l.code && styles.langChipTextSelected]}>
-                      {l.flag} {l.label}
-                    </Text>
+                  <TouchableOpacity key={`src-${l.code}`} onPress={() => setSourceLang(l.code)} style={[styles.langChip, sourceLang === l.code && styles.langChipSelected]}>
+                    <Text style={[styles.langChipText, sourceLang === l.code && styles.langChipTextSelected]}>{l.flag} {l.label}</Text>
                   </TouchableOpacity>
                 ))}
               </ScrollView>
@@ -938,32 +808,15 @@ export default function App() {
               <Text style={[styles.miniLabel, { marginTop: 10 }]}>{t.to}</Text>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
                 {TRANSLATOR_LANGUAGES.map((l) => (
-                  <TouchableOpacity
-                    key={`tgt-${l.code}`}
-                    onPress={() => setTargetLang(l.code)}
-                    style={[styles.langChip, targetLang === l.code && styles.langChipSelected]}
-                  >
-                    <Text style={[styles.langChipText, targetLang === l.code && styles.langChipTextSelected]}>
-                      {l.flag} {l.label}
-                    </Text>
+                  <TouchableOpacity key={`tgt-${l.code}`} onPress={() => setTargetLang(l.code)} style={[styles.langChip, targetLang === l.code && styles.langChipSelected]}>
+                    <Text style={[styles.langChipText, targetLang === l.code && styles.langChipTextSelected]}>{l.flag} {l.label}</Text>
                   </TouchableOpacity>
                 ))}
               </ScrollView>
 
-              <TextInput
-                style={[styles.textInput, { marginTop: 10 }]}
-                placeholder={t.placeholderTrans}
-                placeholderTextColor="#94A3B8"
-                value={inputText}
-                onChangeText={setInputText}
-                multiline
-              />
+              <TextInput style={[styles.textInput, { marginTop: 10 }]} placeholder={t.placeholderTrans} placeholderTextColor="#94A3B8" value={inputText} onChangeText={setInputText} multiline />
 
-              <TouchableOpacity
-                style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]}
-                onPress={handleTranslate}
-                disabled={loading || !inputText.trim()}
-              >
+              <TouchableOpacity style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]} onPress={handleTranslate} disabled={loading || !inputText.trim()}>
                 {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.btnTrans}</Text>}
               </TouchableOpacity>
             </View>
@@ -981,7 +834,6 @@ export default function App() {
               </View>
             ) : null}
 
-            {/* ITALKI SPRACHLERNER-BANNER */}
             <View style={styles.italkiBannerCard}>
               <View style={styles.italkiTopRow}>
                 <View style={styles.italkiIconBadge}>
@@ -1001,7 +853,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 4: GEHALTSRECHNER */}
+        {/* TAB 4: CALC */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1009,15 +861,7 @@ export default function App() {
               <Text style={styles.subText}>{t.calcSub}</Text>
 
               <Text style={styles.inputFieldLabel}>{t.calcGrossLabel}</Text>
-              <TextInput
-                style={styles.salaryInputField}
-                keyboardType="numeric"
-                value={grossInput}
-                onChangeText={(val) => {
-                  setGrossInput(val);
-                  calculateNetSalary(val);
-                }}
-              />
+              <TextInput style={styles.salaryInputField} keyboardType="numeric" value={grossInput} onChangeText={(val) => { setGrossInput(val); calculateNetSalary(val); }} />
 
               <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalary(grossInput)}>
                 <Text style={styles.btnText}>{t.calcBtn}</Text>
@@ -1047,10 +891,9 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: GUIDE (TRANSIT + NOTRUF + STANDARD-SÄTZE) */}
+        {/* TAB 5: GUIDE */}
         {activeTab === 'guide' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            {/* Transit Hub */}
             <View style={styles.card}>
               <View style={styles.transitHeaderRow}>
                 <Ionicons name="train" size={24} color="#0F5132" style={{ marginRight: 8 }} />
@@ -1060,16 +903,12 @@ export default function App() {
                 </View>
               </View>
 
-              <TouchableOpacity
-                style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginBottom: 6 }]}
-                onPress={() => openUrl('https://www.google.com/maps/dir/?api=1&travelmode=transit')}
-              >
+              <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginBottom: 6 }]} onPress={() => openUrl('https://www.google.com/maps/dir/?api=1&travelmode=transit')}>
                 <Ionicons name="navigate-circle" size={18} color="#fff" style={{ marginRight: 6 }} />
                 <Text style={styles.btnText}>{t.openLiveTransitBtn}</Text>
               </TouchableOpacity>
             </View>
 
-            {/* Notfallkontakte */}
             <View style={styles.guideSection}>
               <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
               {t.emergencies.map((item, idx) => (
@@ -1089,7 +928,6 @@ export default function App() {
               ))}
             </View>
 
-            {/* Standard-Sätze & Vokabeln */}
             <View style={styles.guideSection}>
               <Text style={styles.sectionTitle}>{t.phrasesTitle}</Text>
               {t.phrases.map((sec, i) => (
@@ -1138,6 +976,9 @@ export default function App() {
             </View>
           </View>
         </Modal>
+
+        {/* GETYOURGUIDE VERIFIZIERUNGS-TAG (UNSICHTBAR INTEGRIERT) */}
+        <Text style={{ fontSize: 1, color: '#F8FAFC', opacity: 0.01, height: 1 }}>795dbaf6-de69-4f37-bae1-7e67ab1f4e47</Text>
 
       </View>
     </SafeAreaView>
@@ -1203,7 +1044,6 @@ const styles = StyleSheet.create({
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
 
-  // E-RESIDENCE & ITALKI AFFILIATE CARDS
   affiliateServiceCard: {
     backgroundColor: '#F8FAFC',
     borderRadius: 14,
@@ -1267,7 +1107,6 @@ const styles = StyleSheet.create({
   },
   italkiActionBtnText: { color: '#FFFFFF', fontSize: 12.5, fontWeight: '700' },
 
-  // LIVE MAP STYLES
   liveMapWrapper: {
     height: 270,
     width: '100%',
