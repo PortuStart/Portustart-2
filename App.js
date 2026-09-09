@@ -24,7 +24,7 @@ const { width } = Dimensions.get('window');
 // DEINE PARTNER- & AFFILIATE-LINKS
 // ==========================================
 const AFFILIATE_LINKS = {
-  // e-Residence Partner-Links (Ausfallsicher direkt auf die Hauptseite mit Tracking)
+  // e-Residence Partner-Links (Ausfallsicher direkt auf Hauptseite mit Tracking)
   eResidenceNif: 'https://e-residence.com/?via=portustart',
   eResidenceNiss: 'https://e-residence.com/?via=portustart',
   eResidenceBank: 'https://e-residence.com/?via=portustart',
@@ -33,6 +33,9 @@ const AFFILIATE_LINKS = {
   // GetYourGuide Partner-Parameter
   getYourGuidePartnerId: 'AJWYURO',
   getYourGuideCmp: 'share_to_earn',
+
+  // italki Sprachlern-Affiliate-Link
+  italkiLang: 'https://www.italki.com/affshare?ref=af33636608',
 };
 
 // UI-Sprachen
@@ -145,6 +148,9 @@ const LOCALES = {
     swipeInstruction: '👉 Horizontal wischen für Highlights, Strände & Touren:',
     openInMapsBtn: 'Route',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
+    italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
+    italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
+    italkiBtn: 'Muttersprachler finden (italki) ↗',
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
@@ -295,6 +301,7 @@ const LOCALES = {
         items: [
           { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
           { trans: 'Wie hoch ist die Kaution / Vorauszahlung?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
+          { trans: 'Ich habe keinen Bürgen (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
         ],
       },
       {
@@ -302,6 +309,7 @@ const LOCALES = {
         color: '#0F5132',
         items: [
           { trans: 'Ich brauche eine Steuernummer (NIF).', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'Ich habe einen Termin bei der AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo nah eye-mah' },
         ],
       },
       {
@@ -334,6 +342,9 @@ const LOCALES = {
     swipeInstruction: '👉 Swipe horizontally for sights, beaches & tours:',
     openInMapsBtn: 'Route',
     gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
+    italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
+    italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
+    italkiBtn: 'Find Native Tutors (italki) ↗',
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
@@ -485,9 +496,25 @@ const LOCALES = {
           { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
         ],
       },
+      {
+        category: 'Public Services & Paperwork (AIMA / Finanças)',
+        color: '#0F5132',
+        items: [
+          { trans: 'I need to apply for a NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+        ],
+      },
+      {
+        category: 'Dining & Everyday Life',
+        color: '#D97706',
+        items: [
+          { trans: 'A draught beer, please.', pt: 'Uma imperial, por favor (Lisbon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
+          { trans: 'The bill, please.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+        ],
+      },
     ],
     emergencies: [
       { name: 'Emergency (Police & Ambulance)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Central EU emergency dispatch.' },
+      { name: 'SNS 24 (Public Health Line)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Clinical guidance before visiting hospitals.' },
     ],
   },
 };
@@ -555,11 +582,14 @@ export default function App() {
     });
   };
 
-  // GETYOURGUIDE AFFILIATE ACTION (Mit deinen Partner-Parametern)
   const openGetYourGuide = (query) => {
     const partnerParam = `&partner_id=${AFFILIATE_LINKS.getYourGuidePartnerId}&cmp=${AFFILIATE_LINKS.getYourGuideCmp}`;
     const gygUrl = `https://www.getyourguide.com/s/?q=${encodeURIComponent(query + ' Portugal')}${partnerParam}`;
     openUrl(gygUrl);
+  };
+
+  const openItalki = () => {
+    openUrl(AFFILIATE_LINKS.italkiLang);
   };
 
   const playAudio = (text, langCode = 'pt') => {
@@ -886,7 +916,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: TRANSLATOR */}
+        {/* TAB 3: TRANSLATOR (MIT ITALKI AFFILIATE BANNER) */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -950,6 +980,24 @@ export default function App() {
                 <Text style={styles.resultBody}>{translatedText}</Text>
               </View>
             ) : null}
+
+            {/* ITALKI SPRACHLERNER-BANNER */}
+            <View style={styles.italkiBannerCard}>
+              <View style={styles.italkiTopRow}>
+                <View style={styles.italkiIconBadge}>
+                  <Ionicons name="school" size={20} color="#0F5132" />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.italkiBadgeText}>Empfehlung</Text>
+                  <Text style={styles.italkiTitle}>{t.italkiBannerTitle}</Text>
+                </View>
+              </View>
+              <Text style={styles.italkiDesc}>{t.italkiBannerDesc}</Text>
+              <TouchableOpacity style={styles.italkiActionBtn} onPress={openItalki}>
+                <Text style={styles.italkiActionBtnText}>{t.italkiBtn}</Text>
+                <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         )}
 
@@ -1155,7 +1203,7 @@ const styles = StyleSheet.create({
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
 
-  // E-RESIDENCE AFFILIATE CARDS
+  // E-RESIDENCE & ITALKI AFFILIATE CARDS
   affiliateServiceCard: {
     backgroundColor: '#F8FAFC',
     borderRadius: 14,
@@ -1187,6 +1235,37 @@ const styles = StyleSheet.create({
   },
   affiliateActionBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
   disclosureText: { fontSize: 10, color: '#94A3B8', textAlign: 'center', marginTop: 6, lineHeight: 14 },
+
+  italkiBannerCard: {
+    backgroundColor: '#F0FDF4',
+    borderRadius: 16,
+    padding: 14,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#86EFAC',
+  },
+  italkiTopRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  italkiIconBadge: {
+    width: 38,
+    height: 38,
+    borderRadius: 11,
+    backgroundColor: '#DCFCE7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  italkiBadgeText: { fontSize: 10, fontWeight: '800', color: '#166534', textTransform: 'uppercase' },
+  italkiTitle: { fontSize: 14, fontWeight: '800', color: '#14532D' },
+  italkiDesc: { fontSize: 12, color: '#166534', marginTop: 6, lineHeight: 17 },
+  italkiActionBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0F5132',
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginTop: 12,
+  },
+  italkiActionBtnText: { color: '#FFFFFF', fontSize: 12.5, fontWeight: '700' },
 
   // LIVE MAP STYLES
   liveMapWrapper: {
@@ -1315,17 +1394,6 @@ const styles = StyleSheet.create({
   checklistTextDone: { textDecorationLine: 'line-through', color: '#64748B' },
   checklistTip: { fontSize: 11, color: '#64748B', marginTop: 2 },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
-  fieldInput: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#CBD5E1',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    fontSize: 15,
-    color: '#0F172A',
-    minHeight: 44,
-  },
   salaryInputField: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
