@@ -14,6 +14,7 @@ import {
   Platform,
   Linking,
   Image,
+  ImageBackground,
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -41,52 +42,64 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
-// STATISCHE METADATEN DER STÄDTE (Koordinaten & Fotos)
+// REALE GEO-KOORDINATEN & METADATEN (INKL. STRÄNDE)
 const CITIES_METADATA = {
   lisboa: {
-    mapCoords: { top: '56%', left: '26%' },
+    mapCoords: { top: '53%', left: '33%' },
     placesMeta: [
       { id: 'l1', img: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', query: 'Torre de Belem Lisbon' },
       { id: 'l2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Miradouro de Santa Luzia Lisbon' },
       { id: 'l3', img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80', query: 'Praca do Comercio Lisbon' },
+      { id: 'lb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia de Carcavelos' },
+      { id: 'lb2', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Praia dos Galapinhos Arrabida' },
     ],
   },
   porto: {
-    mapCoords: { top: '22%', left: '32%' },
+    mapCoords: { top: '22%', left: '42%' },
     placesMeta: [
       { id: 'p1', img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80', query: 'Dom Luis I Bridge Porto' },
       { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto' },
       { id: 'p3', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Port Wine Cellars Gaia Porto' },
+      { id: 'pb1', img: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&q=80', query: 'Praia de Matosinhos' },
+      { id: 'pb2', img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80', query: 'Praia de Miramar Senhor da Pedra' },
     ],
   },
   sintra: {
-    mapCoords: { top: '53%', left: '20%' },
+    mapCoords: { top: '50%', left: '26%' },
     placesMeta: [
       { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra' },
       { id: 's2', img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80', query: 'Quinta da Regaleira Sintra' },
       { id: 's3', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Cabo da Roca Portugal' },
+      { id: 'sb1', img: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', query: 'Praia do Guincho Cascais' },
+      { id: 'sb2', img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&q=80', query: 'Praia da Ursa Sintra' },
     ],
   },
   algarve: {
-    mapCoords: { top: '82%', left: '46%' },
+    mapCoords: { top: '80%', left: '50%' },
     placesMeta: [
       { id: 'a1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Benagil Cave Algarve' },
       { id: 'a2', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80', query: 'Ponta da Piedade Lagos' },
       { id: 'a3', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Ria Formosa Natural Park Faro' },
+      { id: 'ab1', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=800&q=80', query: 'Praia da Marinha Lagoa' },
+      { id: 'ab2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Falesia Albufeira' },
     ],
   },
   coimbra: {
-    mapCoords: { top: '38%', left: '38%' },
+    mapCoords: { top: '36%', left: '46%' },
     placesMeta: [
       { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra' },
       { id: 'c2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Monastery of Santa Cruz Coimbra' },
+      { id: 'cb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Claridade Figueira da Foz' },
+      { id: 'cb2', img: 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=800&q=80', query: 'Praia de Mira Portugal' },
     ],
   },
   madeira: {
-    mapCoords: { top: '88%', left: '16%' },
+    mapCoords: { top: '82%', left: '16%' },
     placesMeta: [
       { id: 'm1', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', query: 'Pico do Arieiro Madeira' },
       { id: 'm2', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', query: '25 Fontes Levada Madeira' },
+      { id: 'mb1', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Prainha do Canical Madeira' },
+      { id: 'mb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Calheta Madeira' },
     ],
   },
 };
@@ -100,10 +113,10 @@ const LOCALES = {
     tabTrans: 'Translator',
     tabCalc: 'Gehalt',
     tabGuide: 'Guide',
-    placesSectionTitle: '🇵🇹 Sehenswürdigkeiten & Schöne Orte',
-    placesSectionSub: 'Tippe auf eine Stadt auf der Karte und swipe durch die schönsten Highlights:',
-    mapInstruction: '📍 Wähle eine Region auf der Karte:',
-    swipeInstruction: '👉 Horizontal wischen für weitere Orte in dieser Stadt:',
+    placesSectionTitle: '🇵🇹 Highlights & Traumstrände',
+    placesSectionSub: 'Tippe auf eine Stadt auf der Karte und swipe durch die schönsten Sehenswürdigkeiten & Strände:',
+    mapInstruction: '📍 Wähle eine Region auf der Landkarte:',
+    swipeInstruction: '👉 Horizontal wischen für Orte & Strände in dieser Region:',
     openInMapsBtn: 'Route in Maps öffnen',
     from: 'Von:',
     to: 'Nach:',
@@ -180,6 +193,8 @@ const LOCALES = {
           { id: 'l1', title: 'Torre de Belém & Mosteiro dos Jerónimos', category: 'UNESCO Welterbe', desc: 'Meisterwerk des manuelinischen Stils am Tejo. Gleich nebenan gibt es die echten Pastéis de Belém.', tip: 'Tipp: Vor 10:00 Uhr kommen, um die Warteschlangen zu vermeiden.' },
           { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Aussicht & Altstadt', desc: 'Bougainvillea-Blüten, Fliesen (Azulejos) und ein Panoramablick über die Alfama bis zum Tejo.', tip: 'Tipp: Bei Sonnenuntergang den Straßenmusikern mit einer Bica lauschen.' },
           { id: 'l3', title: 'Praça do Comércio & Cais das Colunas', category: 'Historischer Platz', desc: 'Der riesige Palastplatz direkt am Wasser. Einst das Tor der Seefahrer zur Neuen Welt.', tip: 'Tipp: Perfekter Ausgangspunkt für Spaziergänge entlang der Uferpromenade.' },
+          { id: 'lb1', title: 'Praha de Carcavelos (Strand)', category: '🏖 Stadt- & Surfstrand', desc: 'Größter Sandstrand an der Bahnlinie nach Cascais mit Surfschulen, Promenade und lebhaften Strandbars.', tip: 'Tipp: Nur 25 Min. mit dem Zug ab Bahnhof Cais do Sodré.' },
+          { id: 'lb2', title: 'Praia dos Galapinhos (Arrábida)', category: '🏖 Karibik-Naturstrand', desc: 'Kristallklares, ruhiges Wasser vor den steilen, bewaldeten Kalksteinfelsen des Arrábida-Naturparks.', tip: 'Tipp: Früh morgens anreisen, Parkplätze im Sommer streng reglementiert.' },
         ],
       },
       {
@@ -190,6 +205,8 @@ const LOCALES = {
           { id: 'p1', title: 'Ponte Luís I & Ribeira', category: 'Wahrzeichen & Ufer', desc: 'Zweistöckige Eisenbrücke von Gustave Eiffels Partner Seyrig. Oben fährt die Metro, unten flanieren Fußgänger.', tip: 'Tipp: Zu Fuß über das obere Deck gehen für beste Sicht auf Vila Nova de Gaia.' },
           { id: 'p2', title: 'Livraria Lello & Clérigos-Turm', category: 'Kultur & Architektur', desc: 'Ikonische Buchhandlung mit weltberühmter roter Holztreppe und neugotischer Schnitzkunst.', tip: 'Tipp: Ticket-Gutschein vorab online reservieren.' },
           { id: 'p3', title: 'Portweinkeller in Gaia', category: 'Genuss & Tradition', desc: 'Historische Reifekeller traditionsreicher Häuser mit traditionellen Holzbooten am Fluss.', tip: 'Tipp: Kellerführung mit anschließender Portwein-Verkostung buchen.' },
+          { id: 'pb1', title: 'Praia de Matosinhos (Strand)', category: '🏖 Metro-Strand & Surfen', desc: 'Breiter Atlantikstrand direkt an der blauen Metro-Endstation. Berühmt für Surfer und erstklassige Fischgrills.', tip: 'Tipp: Nach dem Strandtag fangfrischen Wolfsbarsch in den Gassen essen.' },
+          { id: 'pb2', title: 'Praia de Miramar (Senhor da Pedra)', category: '🏖 Ikonische Kapelle', desc: 'Wunderschöner Sandstrand mit einer hexagonalen Wallfahrtskapelle, die direkt auf einem Felsen im Meer steht.', tip: 'Tipp: Tolles Fotomotiv zur goldenen Stunde vor Sonnenuntergang.' },
         ],
       },
       {
@@ -200,6 +217,8 @@ const LOCALES = {
           { id: 's1', title: 'Palácio Nacional da Pena', category: 'Märchenschloss', desc: 'Farbenfrohes Romantik-Schloss auf den Bergkämmen über dichten, nebelverhangenen Wäldern.', tip: 'Tipp: Feste Einlasszeiten online buchen, morgens ist es am ruhigsten.' },
           { id: 's2', title: 'Quinta da Regaleira', category: 'Mystik & Gärten', desc: 'Verzaubertes Anwesen mit Höhlen, Grotten und dem 27 Meter tiefen Initiationsbrunnen.', tip: 'Tipp: Smartphone-Taschenlampe für die Tunnelgänge bereithalten.' },
           { id: 's3', title: 'Cabo da Roca', category: 'Naturwunder', desc: 'Der westlichste Punkt des europäischen Festlands mit tosender Atlantikbrandung an 140 m Steilklippen.', tip: 'Tipp: Winddichte Jacke einpacken, hier weht fast immer Wind.' },
+          { id: 'sb1', title: 'Praia do Guincho (Strand)', category: '🏖 Wilder Dünenstrand', desc: 'Weltbekannter Surf- & Kitesurf-Strand vor der Kulisse des Sintra-Gebirges mit tosenden Wellen.', tip: 'Tipp: Spektakulärer Panoramaspaziergang auf Holzstegen über die Dünen.' },
+          { id: 'sb2', title: 'Praia da Ursa (Naturstrand)', category: '🏖 Versteckte Traumbucht', desc: 'Unberührte Bucht mit zwei gigantischen Felsnadeln im Meer. Nur über einen steilen Wanderpfad erreichbar.', tip: 'Tipp: Feste Schuhe anziehen und ausreichend Trinkwasser mitnehmen.' },
         ],
       },
       {
@@ -210,6 +229,8 @@ const LOCALES = {
           { id: 'a1', title: 'Benagil Meereshöhle', category: 'Grotten & Strand', desc: 'Die berühmteste Naturfelsengrotte Portugals mit rundem Deckenauge und Sandstrand.', tip: 'Tipp: Am besten früh morgens per Stand-up-Paddleboard oder Kajak anfahren.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Klippenlandschaft', desc: 'Bizarre Felstürme, Bögen und türkisblaues Wasser an der spektakulärsten Klippenküste.', tip: 'Tipp: Eine kleine Fischerbootfahrt durch die Felsbögen unternehmen.' },
           { id: 'a3', title: 'Ria Formosa Naturpark', category: 'Lagune & Inseln', desc: 'Riesiges Gezeitenschutzgebiet mit vorgelagerten autofreien Inseln und stillen Stränden.', tip: 'Tipp: Fähre von Olhão zur Sandinsel Ilha da Armona nehmen.' },
+          { id: 'ab1', title: 'Praia da Marinha (Strand)', category: '🏖 Top-Strand Europas', desc: 'Ikonische Felsformationen mit Doppelbögen und smaragdgrünem Wasser, perfekt zum Schnorcheln.', tip: 'Tipp: Startpunkt des Wanderwegs "Seven Hanging Valleys Trail".' },
+          { id: 'ab2', title: 'Praia da Falésia (Strand)', category: '🏖 Rote Sandsteinküste', desc: 'Über 6 km feiner Sandstrand unter riesigen roten und ockerfarbenen Steilklippen mit Pinienkronen.', tip: 'Tipp: Herrlich für endlose Barfuß-Spaziergänge bei Ebbe.' },
         ],
       },
       {
@@ -219,6 +240,8 @@ const LOCALES = {
         places: [
           { id: 'c1', title: 'Biblioteca Joanina', category: 'Historische Bibliothek', desc: 'Barockes Prunkjuwel aus dem 18. Jahrhundert mit Goldverzierungen und seltenen Folianten.', tip: 'Tipp: Kombiticket mit Königspalast und Kapelle buchen.' },
           { id: 'c2', title: 'Kloster Santa Cruz & Altstadt', category: 'Geschichte & Fado', desc: 'Ruhestätte der ersten Könige Portugals und Ursprungsort des Coimbra-Fados.', tip: 'Tipp: Ein abendliches Konzert in einer Casa de Fado besuchen.' },
+          { id: 'cb1', title: 'Praia da Claridade (Figueira da Foz)', category: '🏖 Breitester Sandstrand', desc: 'Gigantische Sandfläche mit Holzwegen zum Meer. Seit dem 19. Jahrhundert die "Königin der Strände".', tip: 'Tipp: Nur 40 Min. mit dem Zug von Coimbra direkt ans Wasser.' },
+          { id: 'cb2', title: 'Praia de Mira (Strand)', category: '🏖 Tradition & Dünen', desc: 'Malerischer Strand mit bunten Holzstreifenhäusern und traditionellen Fischerbooten (Arte Xávega).', tip: 'Tipp: Frittierte Calamares in den kleinen Tavernen probieren.' },
         ],
       },
       {
@@ -228,6 +251,8 @@ const LOCALES = {
         places: [
           { id: 'm1', title: 'Pico do Arieiro bis Pico Ruivo', category: 'Hochgebirgswanderung', desc: 'Gratwanderung über den Wolken zwischen den höchsten Bergen Madeiras mit Tunneln.', tip: 'Tipp: Zum Sonnenaufgang auf den Gipfel fahren (Auto bis oben möglich).' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'UNESCO Naturerbe', desc: 'Wanderung entlang historischer Bewässerungskanäle durch den uralten Lorbeerwald.', tip: 'Tipp: Sehr früh starten, um Gegenverkehr auf schmalen Wegen zu meiden.' },
+          { id: 'mb1', title: 'Prainha do Caniçal (Strand)', category: '🏖 Schwarzer Lavasand', desc: 'Kleine, natürliche Traumbucht mit dunklem Vulkansand nahe der wilden Halbinsel Ponta de São Lourenço.', tip: 'Tipp: Wunderschöner Kontrast zwischen azurblauem Meer und dunklem Sand.' },
+          { id: 'mb2', title: 'Praia da Calheta (Strand)', category: '🏖 Goldener Sandstrand', desc: 'Geschützte Zwillingsbucht mit feinem, goldgelbem Sand und zwei Wellenbrechern zum ruhigen Schwimmen.', tip: 'Tipp: Perfekt für Familien und windgeschütztes Sonnenbaden.' },
         ],
       },
     ],
@@ -272,10 +297,10 @@ const LOCALES = {
     tabTrans: 'Translator',
     tabCalc: 'Salary',
     tabGuide: 'Guide',
-    placesSectionTitle: '🇵🇹 Attractions & Beautiful Places',
-    placesSectionSub: 'Tap a city on the map and swipe through its best sights:',
+    placesSectionTitle: '🇵🇹 Sights & Golden Beaches',
+    placesSectionSub: 'Tap a city on the map and swipe through its best attractions and beaches:',
     mapInstruction: '📍 Select a region on the map:',
-    swipeInstruction: '👉 Swipe horizontally to discover more spots in this city:',
+    swipeInstruction: '👉 Swipe horizontally to discover spots and beaches in this region:',
     openInMapsBtn: 'Open Route in Maps',
     from: 'From:',
     to: 'To:',
@@ -352,6 +377,8 @@ const LOCALES = {
           { id: 'l1', title: 'Belém Tower & Jerónimos Monastery', category: 'UNESCO World Heritage', desc: 'Manueline masterpiece perched along the Tagus River. Right next door to the authentic Pastéis de Belém bakery.', tip: 'Tip: Arrive before 10:00 AM to skip long queues.' },
           { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Viewpoint & Old Town', desc: 'Bougainvillea blossoms, handcrafted tiles (azulejos), and a panoramic overlook of terracotta roofs down to the river.', tip: 'Tip: Enjoy the sunset while listening to live acoustic street fado.' },
           { id: 'l3', title: 'Praça do Comércio & Riverfront', category: 'Historic Square', desc: 'Grand harbor square opening toward the river. Historically the naval gateway to the New World.', tip: 'Tip: The best departure spot for scenic waterfront promenades.' },
+          { id: 'lb1', title: 'Praia de Carcavelos (Beach)', category: '🏖 City & Surf Beach', desc: 'The largest beach on the Cascais train line with surf academies, broad sand and buzzing sunset lounges.', tip: 'Tip: Only 25 minutes by train from Cais do Sodré station.' },
+          { id: 'lb2', title: 'Praia dos Galapinhos (Arrábida)', category: '🏖 Caribbean-like Bay', desc: 'Sheltered azure waters resting beneath the dramatic limestone mountain slopes of Arrábida Park.', tip: 'Tip: Arrive very early; summer parking is strictly capped.' },
         ],
       },
       {
@@ -362,6 +389,8 @@ const LOCALES = {
           { id: 'p1', title: 'Dom Luís I Bridge & Ribeira', category: 'Landmark & Riverside', desc: 'Iconic double-deck iron arched bridge designed by Théophile Seyrig. Upper level carries the metro, lower level connects pedestrians.', tip: 'Tip: Walk across the top deck for panoramic views of Vila Nova de Gaia.' },
           { id: 'p2', title: 'Livraria Lello & Clérigos Tower', category: 'Culture & Architecture', desc: 'Celebrated neo-gothic bookstore known for its ornate crimson staircase and sculpted woodwork.', tip: 'Tip: Purchase your ticket voucher online in advance.' },
           { id: 'p3', title: 'Port Wine Cellars in Gaia', category: 'Heritage & Tasting', desc: 'Centuries-old aging cellars lined with oak barrels and traditional wooden rabelo boats on the river.', tip: 'Tip: Book a guided tour with an expert port tasting flight.' },
+          { id: 'pb1', title: 'Praia de Matosinhos (Beach)', category: '🏖 Metro Access & Surf', desc: 'Vast Atlantic beach directly at the blue metro terminus, renowned for surf lessons and fresh seafood grills.', tip: 'Tip: Try the charcoal-grilled sea bass right behind the beach.' },
+          { id: 'pb2', title: 'Praia de Miramar (Senhor da Pedra)', category: '🏖 Iconic Chapel Beach', desc: 'Sweeping golden sand beach famous for a hexagonal 17th-century chapel built directly on wave-lashed rocks.', tip: 'Tip: Exceptional photography spot during sunset golden hour.' },
         ],
       },
       {
@@ -372,6 +401,8 @@ const LOCALES = {
           { id: 's1', title: 'Pena National Palace', category: 'Romantic Palace', desc: 'Vibrant yellow and red Romanticist castle sitting on the highest crest of the Sintra mountains.', tip: 'Tip: Reserve timed entry slots in advance; mornings are peaceful.' },
           { id: 's2', title: 'Quinta da Regaleira', category: 'Mystical Estate', desc: 'Enchanted park filled with hidden underground grottoes, tunnels, and the famous 27-meter Initiation Well.', tip: 'Tip: Use your phone flashlight to navigate subterranean labyrinth tunnels.' },
           { id: 's3', title: 'Cabo da Roca', category: 'Natural Wonder', desc: 'The westernmost edge of mainland Europe with 140m high granite cliffs battered by the wild Atlantic ocean.', tip: 'Tip: Bring a windbreaker jacket; oceanic gusts are frequent.' },
+          { id: 'sb1', title: 'Praia do Guincho (Beach)', category: '🏖 Wild Surf Dunes', desc: 'World-renowned windsurfing and surfing haven framed by dramatic sand dunes and the Serra de Sintra.', tip: 'Tip: Take the scenic elevated wooden boardwalk trail across the dunes.' },
+          { id: 'sb2', title: 'Praia da Ursa (Cove)', category: '🏖 Secluded Wild Beach', desc: 'Pristine secret cove dominated by colossal sea stacks. Accessible only via a steep hiking path.', tip: 'Tip: Wear sneakers and pack your own water; there are no bars.' },
         ],
       },
       {
@@ -382,6 +413,8 @@ const LOCALES = {
           { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave with a natural skylight and secluded sandy beach inside.', tip: 'Tip: Paddle in early morning by kayak or paddleboard to beat tour boats.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Sculptured limestone stacks, natural arches, and crystal-clear turquoise waters along Portugal’s southern coast.', tip: 'Tip: Board a small traditional fisherman’s skiff to navigate narrow arches.' },
           { id: 'a3', title: 'Ria Formosa Coastal Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with barrier islands, flamingo sanctuaries, and quiet unspoiled beaches.', tip: 'Tip: Catch the local ferry from Olhão to car-free Armona Island.' },
+          { id: 'ab1', title: 'Praia da Marinha (Beach)', category: '🏖 Top European Beach', desc: 'Quintessential Algarve coastline featuring iconic double sea arches and turquoise snorkeling waters.', tip: 'Tip: Trailhead of the famous Seven Hanging Valleys clifftop hike.' },
+          { id: 'ab2', title: 'Praia da Falésia (Beach)', category: '🏖 Red Cliff Coast', desc: 'Over 6 km of unbroken sand sheltered beneath towering red and white sandstone cliffs topped with pine trees.', tip: 'Tip: Heavenly for barefoot distance strolls at low tide.' },
         ],
       },
       {
@@ -391,6 +424,8 @@ const LOCALES = {
         places: [
           { id: 'c1', title: 'Biblioteca Joanina', category: 'Baroque Library', desc: 'Magnificent 18th-century gilded library holding priceless historical manuscripts, protected by a resident bat colony.', tip: 'Tip: Book combined tickets covering the Royal Palace and St. Michael’s Chapel.' },
           { id: 'c2', title: 'Santa Cruz Monastery & Old Town', category: 'History & Fado', desc: 'Final resting place of the first two Portuguese monarchs and the birthplace of serenading Coimbra-style Fado.', tip: 'Tip: Reserve seats for an evening performance at a traditional Fado House.' },
+          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Widest Sand Beach', desc: 'Immense expanse of sand equipped with boardwalks, famously hailed as the Queen of Portugal’s beaches.', tip: 'Tip: Just 40 minutes by commuter train directly from Coimbra.' },
+          { id: 'cb2', title: 'Praia de Mira (Beach)', category: '🏖 Fishermen Heritage', desc: 'Picturesque beach with striped wooden huts (palheiros) and traditional wooden trawler fishing.', tip: 'Tip: Sample fresh fried calamari in the seaside taverns.' },
         ],
       },
       {
@@ -400,6 +435,8 @@ const LOCALES = {
         places: [
           { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'High Alpine Trail', desc: 'Thrilling mountain ridge traverse above the cloud line connecting Madeira’s highest volcanic summits.', tip: 'Tip: Drive up to Pico do Arieiro early to watch sunrise over sea of clouds.' },
           { id: 'm2', title: '25 Fontes Levada Trail', category: 'UNESCO Nature Heritage', desc: 'Iconic water canal trail winding through centuries-old laurel forest into an amphitheater fed by 25 springs.', tip: 'Tip: Begin right after sunrise to avoid pedestrian congestion on narrow paths.' },
+          { id: 'mb1', title: 'Prainha do Caniçal (Beach)', category: '🏖 Black Volcanic Sand', desc: 'Enchanting natural cove featuring dark volcanic sands close to the rugged Ponta de São Lourenço peninsula.', tip: 'Tip: Breathtaking visual contrast between azure water and dark sand.' },
+          { id: 'mb2', title: 'Praia da Calheta (Beach)', category: '🏖 Golden Sand Lagoon', desc: 'Twin golden-sand beach protected by double sea breakwaters, offering warm, placid swimming waters.', tip: 'Tip: Top spot for families seeking sheltered ocean swimming.' },
         ],
       },
     ],
@@ -444,10 +481,10 @@ const LOCALES = {
     tabTrans: 'Traductor',
     tabCalc: 'Salario',
     tabGuide: 'Guía',
-    placesSectionTitle: '🇵🇹 Atracciones y Lugares Hermosos',
-    placesSectionSub: 'Toca una ciudad en el mapa y desliza para ver sus atractivos:',
+    placesSectionTitle: '🇵🇹 Monumentos y Playas Paradisíacas',
+    placesSectionSub: 'Toca una ciudad en el mapa y desliza para ver sus atractivos y playas:',
     mapInstruction: '📍 Elige una región en el mapa:',
-    swipeInstruction: '👉 Desliza horizontalmente para ver más sitios en esta ciudad:',
+    swipeInstruction: '👉 Desliza horizontalmente para ver lugares y playas:',
     openInMapsBtn: 'Abrir ruta en Maps',
     from: 'De:',
     to: 'A:',
@@ -524,6 +561,8 @@ const LOCALES = {
           { id: 'l1', title: 'Torre de Belém y Monasterio de los Jerónimos', category: 'Patrimonio UNESCO', desc: 'Obra maestra manuelina junto al Tajo. Justo al lado de los auténticos Pastéis de Belém.', tip: 'Consejo: Llegar antes de las 10:00 para evitar colas.' },
           { id: 'l2', title: 'Mirador de Santa Luzia y Alfama', category: 'Mirador y Casco Antiguo', desc: 'Buganvillas, azulejos tradicionales y vistas panorámicas sobre los tejados de Alfama.', tip: 'Consejo: Disfruta del atardecer con un café bica escuchando fado callejero.' },
           { id: 'l3', title: 'Praça do Comércio y Ribera', category: 'Plaza Histórica', desc: 'Gran plaza portuaria abierta al estuario, antigua puerta marítima de los descubridores.', tip: 'Consejo: Punto de inicio perfecto para pasear junto al río.' },
+          { id: 'lb1', title: 'Praia de Carcavelos (Playa)', category: '🏖 Playa de Surf y Ciudad', desc: 'La playa de arena más grande del tren de Cascais con escuelas de surf y chiringuitos animados.', tip: 'Consejo: A solo 25 min en tren desde la estación de Cais do Sodré.' },
+          { id: 'lb2', title: 'Praia dos Galapinhos (Arrábida)', category: '🏖 Paraíso Natural', desc: 'Aguas cristalinas y tranquilas al pie de los acantilados del Parque Natural de Arrábida.', tip: 'Consejo: Llegar muy temprano por el aparcamiento limitado en verano.' },
         ],
       },
       {
@@ -534,6 +573,8 @@ const LOCALES = {
           { id: 'p1', title: 'Puente Don Luis I y Ribeira', category: 'Icono y Ribera', desc: 'Puente de hierro de dos niveles diseñado por Théophile Seyrig. Arriba circula el metro y abajo peatones.', tip: 'Consejo: Cruza por la plataforma superior para la mejor vista de Gaia.' },
           { id: 'p2', title: 'Librería Lello y Torre de los Clérigos', category: 'Cultura y Arquitectura', desc: 'Famosa librería neogótica con su icónica escalera carmesí de madera tallada.', tip: 'Consejo: Compra el bono de entrada online por adelantado.' },
           { id: 'p3', title: 'Bodegas de Oporto en Gaia', category: 'Enoturismo y Tradición', desc: 'Bodegas centenarias con barricas de roble y barcos rabelo tradicionales fondeados.', tip: 'Consejo: Reserva visita guiada con cata de oportos.' },
+          { id: 'pb1', title: 'Praia de Matosinhos (Playa)', category: '🏖 Metro y Surf', desc: 'Amplia playa atlántica al final de la línea azul del metro, ideal para surfear y comer pescado fresco.', tip: 'Consejo: Prueba la lubina a la brasa en las calles cercanas.' },
+          { id: 'pb2', title: 'Praia de Miramar (Senhor da Pedra)', category: '🏖 Capilla en el Mar', desc: 'Extensa playa con una ermita hexagonal del siglo XVII erigida sobre una roca batida por las olas.', tip: 'Consejo: Lugar idílico para fotos durante el atardecer.' },
         ],
       },
       {
@@ -544,6 +585,8 @@ const LOCALES = {
           { id: 's1', title: 'Palacio Nacional de Pena', category: 'Palacio Romántico', desc: 'Castillo de vivos colores amarillos y rojos sobre las cumbres de la sierra de Sintra.', tip: 'Consejo: Reserva franja horaria previa; las mañanas son más tranquilas.' },
           { id: 's2', title: 'Quinta da Regaleira', category: 'Jardines Místicos', desc: 'Finca mágica con grutas subterráneas y el célebre pozo iniciático de 27 metros.', tip: 'Consejo: Ten a mano la linterna del móvil para las galerías subterráneas.' },
           { id: 's3', title: 'Cabo da Roca', category: 'Monumento Natural', desc: 'El punto más occidental de la Europa continental frente a los acantilados de 140 m.', tip: 'Consejo: Lleva cortavientos, las ráfagas del Atlántico son constantes.' },
+          { id: 'sb1', title: 'Praia do Guincho (Playa)', category: '🏖 Dunas y Surf Salvaje', desc: 'Playa mítica de surf y kitesurf entre dunas naturales frente a la sierra de Sintra.', tip: 'Consejo: Paseo espectacular por las pasarelas de madera.' },
+          { id: 'sb2', title: 'Praia da Ursa (Cala)', category: '🏖 Cala Secreta Virgen', desc: 'Cala virgen dominada por dos enormes monolitos rocosos. Acceso por un sendero empinado.', tip: 'Consejo: Usa zapatillas y lleva agua potable.' },
         ],
       },
       {
@@ -554,6 +597,8 @@ const LOCALES = {
           { id: 'a1', title: 'Cueva Marina de Benagil', category: 'Cuevas y Playas', desc: 'La gruta marina más impresionante de Europa con claraboya natural y playa interior.', tip: 'Consejo: Sal temprano en kayak o paddle surf para evitar masificaciones.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Costas y Acantilados', desc: 'Columnas calizas, arcos marinos y aguas turquesas en la costa sur portuguesa.', tip: 'Consejo: Toma una lancha de pescadores para cruzar los arcos de piedra.' },
           { id: 'a3', title: 'Parque Natural de Ria Formosa', category: 'Lagunas e Islas', desc: 'Extenso humedal con islas barrera sin coches, flamencos y playas vírgenes.', tip: 'Consejo: Toma el ferri de Olhão a la isla de Armona.' },
+          { id: 'ab1', title: 'Praia da Marinha (Playa)', category: '🏖 Icono del Algarve', desc: 'Famosa por sus dobles arcos naturales en el mar y aguas transparentes para hacer esnórquel.', tip: 'Consejo: Inicio del sendero panorámico "Seven Hanging Valleys".' },
+          { id: 'ab2', title: 'Praia da Falésia (Playa)', category: '🏖 Acantilados Rojos', desc: 'Más de 6 km de arena fina al pie de espectaculares farallones rojizos coronados por pinos.', tip: 'Consejo: Perfecta para paseos descalzo durante la marea baja.' },
         ],
       },
       {
@@ -563,6 +608,8 @@ const LOCALES = {
         places: [
           { id: 'c1', title: 'Biblioteca Joanina', category: 'Biblioteca Barroca', desc: 'Joya barroca dorada del siglo XVIII con manuscritos protegidos por murciélagos.', tip: 'Consejo: Compra el billete conjunto con el Palacio Real y capilla.' },
           { id: 'c2', title: 'Monasterio de Santa Cruz', category: 'Historia y Fado', desc: 'Panteón de los primeros reyes lusos y cuna del melancólico fado de Coímbra.', tip: 'Consejo: Asiste a un recital nocturno en una Casa de Fado.' },
+          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Playa Inmensa', desc: 'Extensa lengua de arena con pasarelas de madera, apodada la "Reina de las playas".', tip: 'Consejo: Tren directo desde Coimbra en solo 40 minutos.' },
+          { id: 'cb2', title: 'Praia de Mira (Playa)', category: '🏖 Tradición Marinera', desc: 'Playa con coloridas casas de madera rayadas y pesca tradicional con bueyes y barcos de madera.', tip: 'Consejo: Degusta chipirones fritos en las tabernas de la orilla.' },
         ],
       },
       {
@@ -572,6 +619,8 @@ const LOCALES = {
         places: [
           { id: 'm1', title: 'Del Pico do Arieiro al Pico Ruivo', category: 'Ruta de Alta Montaña', desc: 'Paso por crestas sobre el mar de nubes entre las mayores cumbres de Madeira.', tip: 'Consejo: Sube en coche antes del amanecer al mirador de Arieiro.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Patrimonio Natural UNESCO', desc: 'Paseo por canales de riego históricos a través del milenario bosque de laurisilva.', tip: 'Consejo: Empieza muy temprano para evitar cruces en sendas estrechas.' },
+          { id: 'mb1', title: 'Prainha do Caniçal (Playa)', category: '🏖 Arena Negra Volcánica', desc: 'Hermosa cala natural de arena negra volcánica cerca de la península de São Lourenço.', tip: 'Consejo: Contraste sublime entre el agua turquesa y el basalto negro.' },
+          { id: 'mb2', title: 'Praia da Calheta (Playa)', category: '🏖 Arena Dorada Resguardada', desc: 'Bahía gemela protegida por diques con arena dorada traída de Marruecos, ideal para nadar.', tip: 'Consejo: Muy recomendada para familias con niños.' },
         ],
       },
     ],
@@ -582,7 +631,7 @@ const LOCALES = {
         items: [
           { trans: '¿El apartamento sigue disponible?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
           { trans: '¿Cuánto es la fianza / meses por adelantado?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow...' },
-          { trans: 'No tengo avalista (Fiador).', pt: 'Não tengo fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
+          { trans: 'No tengo avalista (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
         ],
       },
       {
@@ -616,10 +665,10 @@ const LOCALES = {
     tabTrans: 'Traducteur',
     tabCalc: 'Salaire',
     tabGuide: 'Guide',
-    placesSectionTitle: '🇵🇹 Lieux & Attractions Touristiques',
-    placesSectionSub: 'Touchez une ville sur la carte et faites défiler les incontournables :',
+    placesSectionTitle: '🇵🇹 Monuments & Plages de Rêve',
+    placesSectionSub: 'Touchez une ville sur la carte pour explorer ses trésors et ses plages :',
     mapInstruction: '📍 Choisissez une région sur la carte :',
-    swipeInstruction: '👉 Balayez horizontalement pour découvrir plus d\'endroits :',
+    swipeInstruction: '👉 Balayez horizontalement pour voir sites et plages :',
     openInMapsBtn: 'Itinéraire dans Maps',
     from: 'De :',
     to: 'À :',
@@ -696,6 +745,8 @@ const LOCALES = {
           { id: 'l1', title: 'Tour de Belém & Monastère des Hiéronymites', category: 'Patrimoine mondial UNESCO', desc: 'Joyau de l\'art manuélin au bord du Tage. À deux pas de la fabrique des véritables Pastéis de Belém.', tip: 'Conseil : Arrivez avant 10h00 pour éviter les files.' },
           { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Panorama & Vieille Ville', desc: 'Bougainvilliers, azulejos traditionnels et vue plongeante sur les toits ocres de l\'Alfama.', tip: 'Conseil : Admirez le coucher du soleil au son du fado acoustique.' },
           { id: 'l3', title: 'Praça do Comércio & Quai des Colonnes', category: 'Place Historique', desc: 'Immense esplanade royale ouverte sur le fleuve, porte d\'entrée historique des navigateurs.', tip: 'Conseil : Point de départ idéal pour une promenade le long des quais.' },
+          { id: 'lb1', title: 'Praia de Carcavelos (Plage)', category: '🏖 Plage Urbaine & Surf', desc: 'Grande plage animée accessible en train avec écoles de surf et terrasses lounge.', tip: 'Conseil : À seulement 25 min en train de Cais do Sodré.' },
+          { id: 'lb2', title: 'Praia dos Galapinhos (Arrábida)', category: '🏖 Crique Sauvage', desc: 'Eaux turquoise calmes nichées au pied des falaises verdoyantes du parc d\'Arrábida.', tip: 'Conseil : Venez tôt le matin en raison du stationnement limité.' },
         ],
       },
       {
@@ -706,6 +757,8 @@ const LOCALES = {
           { id: 'p1', title: 'Pont Dom-Luís & Ribeira', category: 'Emblème & Berges', desc: 'Pont métallique à double tablier conçu par Théophile Seyrig. Métro en haut, piétons en bas.', tip: 'Conseil : Traversez le tablier supérieur pour une vue imprenable sur Gaia.' },
           { id: 'p2', title: 'Librairie Lello & Tour des Clercs', category: 'Culture & Architecture', desc: 'Merveilleuse librairie néogothique réputée pour son spectaculaire escalier double écarlate.', tip: 'Conseil : Réservez votre billet d\'entrée coupe-file sur Internet.' },
           { id: 'p3', title: 'Caves de Porto à Vila Nova de Gaia', category: 'Tradition & Dégustation', desc: 'Caves d\'élevage historiques bordées de foudres de chêne et de barques traditionnelles rabelos.', tip: 'Conseil : Réservez une visite guidée avec dégustation commentée.' },
+          { id: 'pb1', title: 'Praia de Matosinhos (Plage)', category: '🏖 Métro & Poissons Frais', desc: 'Vaste plage océanique au terminus du métro, réputée pour ses vagues et ses grillades de poisson.', tip: 'Conseil : Dégustez un loup de mer grillé dans les ruelles du port.' },
+          { id: 'pb2', title: 'Praia de Miramar (Senhor da Pedra)', category: '🏖 Chapelle Océane', desc: 'Plage préservée ornée d\'une chapelle baroque du XVIIe siècle bâtie sur un rocher battu par les flots.', tip: 'Conseil : Superbe spot photo pour le coucher de soleil.' },
         ],
       },
       {
@@ -716,6 +769,8 @@ const LOCALES = {
           { id: 's1', title: 'Palais national de Pena', category: 'Château Romantique', desc: 'Château flamboyant aux façades jaunes et rouges perché au sommet de la serra de Sintra.', tip: 'Conseil : Réservez un créneau horaire fixe ; les matins sont plus calmes.' },
           { id: 's2', title: 'Quinta da Regaleira', category: 'Jardins & Ésotérisme', desc: 'Domaine mystérieux avec souterrains, grottes et le puits initiatique profond de 27 mètres.', tip: 'Conseil : Munissez-vous de la lampe torche de votre téléphone pour les tunnels.' },
           { id: 's3', title: 'Cabo da Roca', category: 'Site Naturel', desc: 'Le cap le plus occidental du continent européen, avec ses falaises abruptes de 140 m.', tip: 'Conseil : Prévoyez un coupe-vent, le vent de l\'océan souffle en continu.' },
+          { id: 'sb1', title: 'Praia do Guincho (Plage)', category: '🏖 Dunes Sauvages & Surf', desc: 'Plage atlantique sauvage réputée pour le surf et le kitesurf avec vue sur la montagne de Sintra.', tip: 'Conseil : Belle promenade sur les passerelles en bois sur les dunes.' },
+          { id: 'sb2', title: 'Praia da Ursa (Crique)', category: '🏖 Crique Secrète', desc: 'Crique sauvage aux rochers pyramidaux majestueux, accessible par un sentier escarpé.', tip: 'Conseil : Portez de bonnes baskets et prévoyez de l\'eau.' },
         ],
       },
       {
@@ -726,6 +781,8 @@ const LOCALES = {
           { id: 'a1', title: 'Grotte marine de Benagil', category: 'Grottes & Plages', desc: 'La plus célèbre caverne d\'Europe avec son dôme naturel et sa plage de sable intérieure.', tip: 'Conseil : Partez tôt le matin en kayak ou paddle pour profiter du calme.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Falaises & Calanques', desc: 'Aiguilles de calcaire doré, arches marines et eaux turquoise limpides.', tip: 'Conseil : Montez à bord d\'une barque de pêcheur pour traverser les arches.' },
           { id: 'a3', title: 'Parc naturel de la Ria Formosa', category: 'Lagune & Îles', desc: 'Lagune côtière protégée avec îles barrières sans voitures et plages sauvages.', tip: 'Conseil : Prenez le bac à Olhão vers l\'île paisible d\'Armona.' },
+          { id: 'ab1', title: 'Praia da Marinha (Plage)', category: '🏖 Fleuron de l\'Algarve', desc: 'Plage emblématique aux falaises ocres et doubles arches, idéale pour le masque et tuba.', tip: 'Conseil : Départ de la magnifique randonnée des Sept Vallées Suspendues.' },
+          { id: 'ab2', title: 'Praia da Falésia (Plage)', category: '🏖 Falaises Ocres', desc: 'Plus de 6 km de sable fin dominés par d\'immenses falaises rouges coiffées de pins.', tip: 'Conseil : Idéale pour les balades les pieds dans l\'eau à marée basse.' },
         ],
       },
       {
@@ -735,6 +792,8 @@ const LOCALES = {
         places: [
           { id: 'c1', title: 'Bibliothèque Joanina', category: 'Bibliothèque Baroque', desc: 'Chef-d\'œuvre baroque doré du XVIIIe siècle abritant des manuscrits inestimables.', tip: 'Conseil : Prenez le billet combiné avec le Palais Royal et la chapelle.' },
           { id: 'c2', title: 'Monastère de Santa Cruz & Vieille Ville', category: 'Histoire & Fado', desc: 'Tombeau des premiers souverains portugais et berceau du fado mélodique de Coimbra.', tip: 'Conseil : Assistez à un concert intime dans une Casa de Fado.' },
+          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Plage Immense', desc: 'Étendue de sable colossale avec passerelles menant aux vagues, jadis surnommée la Reine des plages.', tip: 'Conseil : Accessible en train direct depuis Coimbra en 40 minutes.' },
+          { id: 'cb2', title: 'Praia de Mira (Plage)', category: '🏖 Tradition de Pêche', desc: 'Plage bordée de maisons de pêcheurs peintes en bois et bateaux traditionnels colorés.', tip: 'Conseil : Goûtez aux beignets d\'encornets dans les guinguettes locales.' },
         ],
       },
       {
@@ -744,6 +803,8 @@ const LOCALES = {
         places: [
           { id: 'm1', title: 'Du Pico do Arieiro au Pico Ruivo', category: 'Randonnée Alpine', desc: 'Traversée vertigineuse au-dessus des nuages entre les plus hauts pics de Madère.', tip: 'Conseil : Arrivez en voiture avant l\'aube au sommet de l\'Arieiro.' },
           { id: 'm2', title: 'Levada des 25 Fontes', category: 'Patrimoine Naturel UNESCO', desc: 'Chemin le long des canaux d\'irrigation dans la forêt primitive de lauriers.', tip: 'Conseil : Commencez dès les premières lueurs pour éviter les croisements étroits.' },
+          { id: 'mb1', title: 'Prainha do Caniçal (Plage)', category: '🏖 Sable Noir Volcanique', desc: 'Charmante crique naturelle de sable noir nichée près de la presqu\'île de São Lourenço.', tip: 'Conseil : Contraste saisissant entre l\'océan turquoise et le basalte sombre.' },
+          { id: 'mb2', title: 'Praia da Calheta (Plage)', category: '🏖 Sable Doré & Calme', desc: 'Plage artificielle bordée de digues protectrices, offrant des eaux calmes et tièdes.', tip: 'Conseil : Parfaite pour les familles et la baignade en toute sécurité.' },
         ],
       },
     ],
@@ -788,10 +849,10 @@ const LOCALES = {
     tabTrans: 'Traduttore',
     tabCalc: 'Stipendio',
     tabGuide: 'Guida',
-    placesSectionTitle: '🇵🇹 Attrazioni e Luoghi Imperdibili',
-    placesSectionSub: 'Tocca una città sulla mappa e scorri le attrazioni principali:',
+    placesSectionTitle: '🇵🇹 Attrazioni e Spiagge da Sogno',
+    placesSectionSub: 'Tocca una città sulla mappa ed esplora monumenti e spiagge:',
     mapInstruction: '📍 Scegli una regione sulla mappa:',
-    swipeInstruction: '👉 Scorri in orizzontale per scoprire i luoghi di questa città:',
+    swipeInstruction: '👉 Scorri in orizzontale per scoprire luoghi e spiagge:',
     openInMapsBtn: 'Apri percorso in Maps',
     from: 'Da:',
     to: 'A:',
@@ -868,6 +929,8 @@ const LOCALES = {
           { id: 'l1', title: 'Torre di Belém e Monastero dos Jerónimos', category: 'Patrimonio UNESCO', desc: 'Capolavoro di stile manuelino lungo il fiume Tago, a pochi passi dai veri Pastéis de Belém.', tip: 'Consiglio: Arriva prima delle 10:00 per evitare code.' },
           { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Belvedere e Centro Storico', desc: 'Bouganville, azulejos e una terrazza con panorama sui tetti rossi di Alfama.', tip: 'Consiglio: Goditi il tramonto ascoltando i musicisti di fado di strada.' },
           { id: 'l3', title: 'Praça do Comércio e Lungofiume', category: 'Piazza Storica', desc: 'Imponente piazza reale aperta sull\'estuario, storica porta di approdo dei navigatori.', tip: 'Consiglio: Punto di partenza ideale per passeggiate lungo il Tago.' },
+          { id: 'lb1', title: 'Praia de Carcavelos (Spiaggia)', category: '🏖 Spiaggia Cittadina & Surf', desc: 'La spiaggia sabbiosa più estesa della linea di Cascais, con accademie di surf e chioschi vivaci.', tip: 'Consiglio: A soli 25 minuti di treno dalla stazione Cais do Sodré.' },
+          { id: 'lb2', title: 'Praia dos Galapinhos (Arrábida)', category: '🏖 Baia Caraibica', desc: 'Acqua limpida e quieta ai piedi delle pareti rocciose del Parco Naturale di Arrábida.', tip: 'Consiglio: Arriva molto presto: in estate i posti auto sono limitati.' },
         ],
       },
       {
@@ -878,6 +941,8 @@ const LOCALES = {
           { id: 'p1', title: 'Ponte Dom Luís I e Ribeira', category: 'Simbolo e Lungofiume', desc: 'Ponte in ferro a due livelli progettato da Théophile Seyrig. Sopra la metro, sotto i pedoni.', tip: 'Consiglio: Attraversa a piedi la passerella superiore per una vista mozzafiato.' },
           { id: 'p2', title: 'Libreria Lello e Torre dos Clérigos', category: 'Cultura e Architettura', desc: 'Libreria neogotica celebre in tutto il mondo per la sua imponente scalinata rossa in legno.', tip: 'Consiglio: Prenota il voucher d\'ingresso online.' },
           { id: 'p3', title: 'Cantine di Porto a Gaia', category: 'Enoturismo e Tradizione', desc: 'Cantine storiche di affinamento con enormi botti e barche tradizionali rabelo sul fiume.', tip: 'Consiglio: Prenota una visita guidata con degustazione.' },
+          { id: 'pb1', title: 'Praia de Matosinhos (Spiaggia)', category: '🏖 Metro e Ristoranti di Pesce', desc: 'Ampia spiaggia atlantica al capolinea della metro blu, famosa per il surf e le grigliate di pesce.', tip: 'Consiglio: Assapora il branzino alla griglia nei ristorantini adiacenti.' },
+          { id: 'pb2', title: 'Praia de Miramar (Senhor da Pedra)', category: '🏖 Cappella sulle Onde', desc: 'Spiaggia incantevole dominata da una cappella seicentesca costruita su uno scoglio in mezzo al mare.', tip: 'Consiglio: Posto magnifico per le foto al tramonto.' },
         ],
       },
       {
@@ -888,6 +953,8 @@ const LOCALES = {
           { id: 's1', title: 'Palácio Nacional da Pena', category: 'Castello Romantico', desc: 'Castello romantico giallo e rosso sulla vetta della serra di Sintra.', tip: 'Consiglio: Prenota la fascia oraria online; al mattino c\'è meno affollamento.' },
           { id: 's2', title: 'Quinta da Regaleira', category: 'Giardini Misteriosi', desc: 'Tenuta magica con gallerie sotterranee, grotte e il pozzo iniziatico profondo 27 metri.', tip: 'Consiglio: Usa la torcia del telefono per esplorare le caverne.' },
           { id: 's3', title: 'Cabo da Roca', category: 'Monumento Naturale', desc: 'Il punto più a ovest del continente europeo con scogliere di 140 m sferzate dall\'Atlantico.', tip: 'Consiglio: Indossa una giacca a vento, le raffiche sono continue.' },
+          { id: 'sb1', title: 'Praia do Guincho (Spiaggia)', category: '🏖 Dune Selvagge & Surf', desc: 'Famosa spiaggia atlantica ideale per il surf e il kitesurf davanti alle montagne di Sintra.', tip: 'Consiglio: Splendida passeggiata sulle passerelle di legno tra le dune.' },
+          { id: 'sb2', title: 'Praia da Ursa (Cala)', category: '🏖 Cala Incontaminata', desc: 'Cala selvaggia dominata da due imponenti faraglioni rocciosi, raggiungibile con sentiero ripido.', tip: 'Consiglio: Indossa scarpe da trekking e porta acqua potabile.' },
         ],
       },
       {
@@ -898,6 +965,8 @@ const LOCALES = {
           { id: 'a1', title: 'Grotta marina di Benagil', category: 'Grotte e Spiagge', desc: 'La grotta marina più spettacolare d\'Europa con volta forata naturale e spiaggia interna.', tip: 'Consiglio: Raggiungila al mattino presto in kayak o paddleboard.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Scogliere e Archi', desc: 'Pinnacoli di roccia calcarea, archi naturali e acqua turchese limpida.', tip: 'Consiglio: Fai un\'escursione su una barca di pescatori tra le gole di roccia.' },
           { id: 'a3', title: 'Parco Naturale di Ria Formosa', category: 'Laguna e Isole', desc: 'Estesa riserva lagunare con isole senza auto, fenicotteri e spiagge incontaminate.', tip: 'Consiglio: Prendi il traghetto da Olhão per l\'isola di Armona.' },
+          { id: 'ab1', title: 'Praia da Marinha (Spiaggia)', category: '🏖 Icona dell\'Algarve', desc: 'Falesie dorate con archi doppi e mare limpido verde smeraldo, imperdibile per lo snorkeling.', tip: 'Consiglio: Partenza del sentiero panoramico "Seven Hanging Valleys".' },
+          { id: 'ab2', title: 'Praia da Falésia (Spiaggia)', category: '🏖 Falesie Rosse', desc: 'Oltre 6 km di sabbia dorata sovrastata da altissime pareti di arenaria rossa e pini marittimi.', tip: 'Consiglio: Magnifica per camminare a piedi nudi durante la bassa marea.' },
         ],
       },
       {
@@ -907,6 +976,8 @@ const LOCALES = {
         places: [
           { id: 'c1', title: 'Biblioteca Joanina', category: 'Biblioteca Barocca', desc: 'Capolavoro barocco del XVIII secolo con decorazioni dorate e rari manoscritti.', tip: 'Consiglio: Acquista il biglietto combinato con il Palazzo Reale e cappella.' },
           { id: 'c2', title: 'Monastero di Santa Cruz', category: 'Storia e Fado', desc: 'Tomba dei primi sovrani del Portogallo e culla del suggestivo fado di Coimbra.', tip: 'Consiglio: Ascolta un concerto serale in una tradizionale Casa de Fado.' },
+          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Spiaggia Immensa', desc: 'Arenile vastissimo dotato di passerelle di legno, nota come la "Regina delle spiagge".', tip: 'Consiglio: Treno diretto da Coimbra in appena 40 minuti.' },
+          { id: 'cb2', title: 'Praia de Mira (Spiaggia)', category: '🏖 Tradizione di Pesca', desc: 'Caratteristica spiaggia con capanne di legno a strisce colorate e barche storiche da pesca.', tip: 'Consiglio: Assaggia i calamari fritti nelle osterie lungomare.' },
         ],
       },
       {
@@ -916,6 +987,8 @@ const LOCALES = {
         places: [
           { id: 'm1', title: 'Da Pico do Arieiro a Pico Ruivo', category: 'Trekking d\'Alta Quota', desc: 'Sentiero sui crinali rocciosi sopra il mare di nuvole tra le cime più alte di Madeira.', tip: 'Consiglio: Sali in auto prima dell\'alba al belvedere di Arieiro.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Patrimonio UNESCO', desc: 'Escursione lungo i canali d\'irrigazione nella foresta primordiale di laurisilva.', tip: 'Consiglio: Parti all\'alba per evitare incroci sui sentieri stretti.' },
+          { id: 'mb1', title: 'Prainha do Caniçal (Spiaggia)', category: '🏖 Sabbia Nera Vulcanica', desc: 'Suggestiva insenatura di sabbia scura vicino alla scenografica penisola di Ponta de São Lourenço.', tip: 'Consiglio: Contrasto cromatico straordinario tra mare turchese e sabbia scura.' },
+          { id: 'mb2', title: 'Praia da Calheta (Spiaggia)', category: '🏖 Sabbia Dorata & Relax', desc: 'Spiaggia protetta da scogliere frangiflutti con sabbia dorata, ideale per il nuoto calmo.', tip: 'Consiglio: Ottima per le famiglie con bambini.' },
         ],
       },
     ],
@@ -960,10 +1033,10 @@ const LOCALES = {
     tabTrans: 'Перекладач',
     tabCalc: 'Зарплата',
     tabGuide: 'Гід',
-    placesSectionTitle: '🇵🇹 Пам\'ятки та красиві локації',
-    placesSectionSub: 'Оберіть місто на карті та гортайте найкращі пам\'ятки:',
+    placesSectionTitle: '🇵🇹 Пам\'ятки та Райські Пляжі',
+    placesSectionSub: 'Оберіть місто на карті та гортайте пам\'ятки та мальовничі пляжі:',
     mapInstruction: '📍 Оберіть регіон на карті:',
-    swipeInstruction: '👉 Свайпайте вбік, щоб побачити більше локацій:',
+    swipeInstruction: '👉 Свайпайте вбік, щоб побачити локації та пляжі:',
     openInMapsBtn: 'Маршрут у Google Maps',
     from: 'З:',
     to: 'На:',
@@ -1040,6 +1113,8 @@ const LOCALES = {
           { id: 'l1', title: 'Башта Белен та Монастир Жеронімуш', category: 'Спадщина ЮНЕСКО', desc: 'Шедевр стилю мануеліно на березі Тежу. Поруч із легендарною пекарнею Pastéis de Belém.', tip: 'Порада: Приходьте до 10:00, щоб уникнути довгих черг.' },
           { id: 'l2', title: 'Мірадору Санта-Лузія та Алфама', category: 'Оглядовий майданчик', desc: 'Бугенвілії, азулежу та захопливий краєвид на червоні черепичні дахи Алфами.', tip: 'Порада: Зустріньте захід сонця під звуки вуличного фаду з кавою біка.' },
           { id: 'l3', title: 'Площа Комерції та Набережна', category: 'Історична площа', desc: 'Грандіозна палацова площа біля річки, колишні морські ворота до Нового Світу.', tip: 'Порада: Чудове місце для прогулянок набережною вздовж річки.' },
+          { id: 'lb1', title: 'Пляж Каркавелуш (Praia de Carcavelos)', category: '🏖 Серфінг та Міський пляж', desc: 'Найбільший піщаний пляж на лінії електрички до Кашкайша з серф-школами та барами.', tip: 'Порада: Лише 25 хвилин на поїзді з вокзалу Cais do Sodré.' },
+          { id: 'lb2', title: 'Пляж Галапіньюш (Arrábida)', category: '🏖 Райська бухта', desc: 'Прозора смарагдова вода під мальовничими скелями заповідника Аррабіда.', tip: 'Порада: Приїжджайте вранці через суворі обмеження паркування влітку.' },
         ],
       },
       {
@@ -1050,6 +1125,8 @@ const LOCALES = {
           { id: 'p1', title: 'Міст Луїша I та Рібейра', category: 'Символ міста та Набережна', desc: 'Дворівневий залізний міст учня Ейфеля. Зверху курсує метро, а знизу ходять пішоходи.', tip: 'Порада: Пройдіться верхнім ярусом мосту заради найкращої панорами на Гайю.' },
           { id: 'p2', title: 'Книгарня Лелло та Вежа Клерігуш', category: 'Культура та Архітектура', desc: 'Знаменита неоготична книгарня з червоними сходами та різьбленим деревом.', tip: 'Порада: Купуйте квиток онлайн заздалегідь.' },
           { id: 'p3', title: 'Винні погреби портвейну в Гайї', category: 'Традиції та Дегустація', desc: 'Історичні підвали з дубовими бочками та традиційними човнами рабелу на річці.', tip: 'Порада: Замовте екскурсію з дегустацією витриманого портвейну.' },
+          { id: 'pb1', title: 'Пляж Матозіньюш (Praia de Matosinhos)', category: '🏖 Метро та Рибні ресторани', desc: 'Широкий пляж прямо біля кінцевої станції синьої гілки метро, центр серфінгу.', tip: 'Порада: Скуштуйте свіжого сібаса на грилі у сусідніх рибальських вуличках.' },
+          { id: 'pb2', title: 'Пляж Мірамар (Senhor da Pedra)', category: '🏖 Каплиця на скелях', desc: 'Прекрасний пляж із шестикутною каплицею XVII століття, спорудженою на скелі в океані.', tip: 'Порада: Дивовижне місце для фотографій на заході сонця.' },
         ],
       },
       {
@@ -1060,6 +1137,8 @@ const LOCALES = {
           { id: 's1', title: 'Національний палац Пена', category: 'Романтичний замок', desc: 'Яскравий жовто-червоний замок на вершинах гір Сінтри над хмарами.', tip: 'Порада: Бронюйте конкретний час візиту онлайн; вранці тут найспокійніше.' },
           { id: 's2', title: 'Кінта да Регалейра', category: 'Містичні сади', desc: 'Загадковий маєток із підземними тунелями, гротами та 27-метровим Колодцем Ініціації.', tip: 'Порада: Увімкніть ліхтарик на телефоні для дослідження печер.' },
           { id: 's3', title: 'Мис Рока (Cabo da Roca)', category: 'Природне диво', desc: 'Найзахідніша точка континентальної Європи: 140-метрові скелі над бурхливим океаном.', tip: 'Порада: Візьміть вітрозахисну куртку, тут постійно дме сильний вітер.' },
+          { id: 'sb1', title: 'Пляж Гіншу (Praia do Guincho)', category: '🏖 Дикі дюни та Серфінг', desc: 'Світовий центр серфінгу та віндсерфінгу з високими хвилями на тлі гір Сінтри.', tip: 'Порада: Прогуляйтеся дерев\'яними еко-стежками над піщаними дюнами.' },
+          { id: 'sb2', title: 'Пляж Урса (Praia da Ursa)', category: '🏖 Затишна дика бухта', desc: 'Незаймана бухта з двома гігантськими гостроверхими скелями. Спуск крутою стежкою.', tip: 'Порада: Одягайте кросівки та беріть із собою запас питної води.' },
         ],
       },
       {
@@ -1070,6 +1149,8 @@ const LOCALES = {
           { id: 'a1', title: 'Морська печера Бенагіл', category: 'Печери та Пляжі', desc: 'Найвідоміша печера Європи з природним круглим склепінням та пляжем усередині.', tip: 'Порада: Вирушайте вранці на сапборді чи каяку до прибуття моторних човнів.' },
           { id: 'a2', title: 'Понта-да-П\'єдаде (Лагуш)', category: 'Скелясте узбережжя', desc: 'Вапнякові арки, скельні стовпи та кришталево чиста бірюзова вода.', tip: 'Порада: Пропливіть крізь вузькі кам\'яні гроти на рибальському човні.' },
           { id: 'a3', title: 'Природний парк Ріа-Формоза', category: 'Лагуни та Острови', desc: 'Величезна заповідна лагуна з островами без автомобілів і піщаними косами.', tip: 'Порада: Сядьте на пором з Ольяу на спокійний острів Армона.' },
+          { id: 'ab1', title: 'Пляж Маринья (Praia da Marinha)', category: '🏖 Перлина Алгарве', desc: 'Візитівка Португалії: подвійні кам\'яні арки та кришталева вода для снорклінгу.', tip: 'Порада: Початок відомого пішохідного маршруту "Seven Hanging Valleys".' },
+          { id: 'ab2', title: 'Пляж Фалезія (Praia da Falésia)', category: '🏖 Червоні скелі', desc: 'Понад 6 км золотого піску під величними червоно-вохристими скелями з соснами.', tip: 'Порада: Ідеальне місце для довгих прогулянок босоніж під час відпливу.' },
         ],
       },
       {
@@ -1079,6 +1160,8 @@ const LOCALES = {
         places: [
           { id: 'c1', title: 'Бібліотека Жоаніна', category: 'Барокова бібліотека', desc: 'Розкішний зал XVIII століття із золотим оздобленням та рідкісними книгами.', tip: 'Порада: Беріть комплексний квиток з королівським палацом і каплицею.' },
           { id: 'c2', title: 'Монастир Санта-Круз', category: 'Історія та Фаду', desc: 'Місце спочинку перших королів Португалії та батьківщина академічного фаду.', tip: 'Порада: Завітайте ввечері на концерт у традиційний будинок фаду.' },
+          { id: 'cb1', title: 'Пляж Кларидаде (Figueira da Foz)', category: '🏖 Найширший піщаний пляж', desc: 'Колосальний простір піску з дерев\'яними настилами, історична "Королева пляжів".', tip: 'Порада: Прямий поїзд з Коїмбри до пляжу доїжджає за 40 хвилин.' },
+          { id: 'cb2', title: 'Пляж Міра (Praia de Mira)', category: '🏖 Смугасті будиночки', desc: 'Мальовничий берег із традиційними дерев\'яними будиночками та автентичними рибальськими човнами.', tip: 'Порада: Скуштуйте смажених кальмарів у місцевих тавернах на набережній.' },
         ],
       },
       {
@@ -1088,6 +1171,8 @@ const LOCALES = {
         places: [
           { id: 'm1', title: 'Від Піку-ду-Аріейру до Піку-Руйву', category: 'Високогірний трекінг', desc: 'Стежка по гірському хребту над хмарами між найвищими піками Мадейри.', tip: 'Порада: Підніміться на авто на світанку, щоб побачити море хмар знизу.' },
           { id: 'm2', title: 'Левада 25 джерел (25 Fontes)', category: 'Спадщина ЮНЕСКО', desc: 'Маршрут вздовж зрошувальних каналів крізь реліктовий лавровий ліс.', tip: 'Порада: Виходьте на світанку, щоб уникнути зустрічного потоку на вузьких стежках.' },
+          { id: 'mb1', title: 'Праїнья-ду-Канісал (Пляж)', category: '🏖 Чорний вулканічний пісок', desc: 'Затишна дика бухта з темним піском неподалік скелястого мису Сан-Лоренсу.', tip: 'Порада: Фантастичний контраст бірюзового океану та чорного базальту.' },
+          { id: 'mb2', title: 'Пляж Кальєта (Praia da Calheta)', category: '🏖 Золотий піщаний пляж', desc: 'Захищена хвилерізами лагуна з ніжним золотистим піском і спокійними теплими хвилями.', tip: 'Порада: Найкраще місце на острові для безпечного сімейного купання.' },
         ],
       },
     ],
@@ -1169,7 +1254,7 @@ export default function App() {
   const [welcomeModalVisible, setWelcomeModalVisible] = useState(true);
   const [celebrationModalVisible, setCelebrationModalVisible] = useState(false);
   
-  // STANDARD-TAB: 'services' ist der Startbildschirm beim Öffnen
+  // STANDARD-START TAB IST SERVICES
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
 
@@ -1197,7 +1282,7 @@ export default function App() {
   const [passportFileName, setPassportFileName] = useState('');
   const [proofFileName, setProofFileName] = useState('');
 
-  // Aktive Stadt und Attraktionen
+  // Aktive Stadt und Attraktionen inkl. Strände
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
   const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
 
@@ -1409,10 +1494,9 @@ export default function App() {
           </View>
         </View>
 
-        {/* 5-Fach Menüleiste: Services steht jetzt an Position 1 */}
+        {/* 5-Fach Menüleiste */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
-            {/* TAB 1: SERVICES (STANDARD-START) */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]}
               onPress={() => setActiveTab('services')}
@@ -1421,7 +1505,6 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
             </TouchableOpacity>
 
-            {/* TAB 2: ENTDECKEN / PLACES */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]}
               onPress={() => setActiveTab('places')}
@@ -1430,7 +1513,6 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
             </TouchableOpacity>
 
-            {/* TAB 3: TRANSLATOR */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]}
               onPress={() => setActiveTab('trans')}
@@ -1439,7 +1521,6 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
-            {/* TAB 4: GEHALTSRECHNER */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]}
               onPress={() => {
@@ -1451,7 +1532,6 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
 
-            {/* TAB 5: GUIDE & TRANSIT */}
             <TouchableOpacity
               style={[styles.tabButton, activeTab === 'guide' && styles.tabButtonActive]}
               onPress={() => setActiveTab('guide')}
@@ -1462,7 +1542,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 1: SERVICES (DIREKT BEIM APP-START SICHTBAR) */}
+        {/* TAB 1: SERVICES */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1593,7 +1673,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: PLACES / ENTDECKEN */}
+        {/* TAB 2: PLACES / LANDKARTE & STRÄNDE */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -1601,11 +1681,18 @@ export default function App() {
               <Text style={styles.subText}>{t.placesSectionSub}</Text>
               <Text style={styles.miniLabel}>{t.mapInstruction}</Text>
 
-              {/* Interaktive Reliefkarte mit Pins */}
-              <View style={styles.mapGraphicWrapper}>
-                <View style={styles.portugalMapShape}>
+              {/* REALISTISCHE LANDKARTE MIT INTERAKTIVEN PINS */}
+              <View style={styles.mapContainerFrame}>
+                <ImageBackground
+                  source={{ uri: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80' }}
+                  style={styles.realMapBackground}
+                  imageStyle={styles.realMapImageStyle}
+                >
+                  <View style={styles.mapOverlayTint} />
+
                   <View style={styles.oceanWaterMark}>
-                    <Text style={styles.oceanWaterMarkText}>ATLÂNTICO</Text>
+                    <Ionicons name="compass-outline" size={20} color="#0284C7" />
+                    <Text style={styles.oceanWaterMarkText}>OCEANO ATLÂNTICO</Text>
                   </View>
 
                   {t.cities.map((city) => {
@@ -1622,7 +1709,11 @@ export default function App() {
                         onPress={() => setSelectedCityId(city.id)}
                       >
                         <View style={[styles.mapPinDot, isSelected && styles.mapPinDotActive]}>
-                          <Ionicons name="location" size={isSelected ? 16 : 12} color={isSelected ? '#DC2626' : '#0F5132'} />
+                          <Ionicons
+                            name={isSelected ? 'location' : 'pin'}
+                            size={isSelected ? 16 : 12}
+                            color={isSelected ? '#DC2626' : '#0F5132'}
+                          />
                         </View>
                         <View style={[styles.mapPinLabelBadge, isSelected && styles.mapPinLabelBadgeActive]}>
                           <Text style={[styles.mapPinLabelText, isSelected && styles.mapPinLabelTextActive]}>
@@ -1632,10 +1723,10 @@ export default function App() {
                       </TouchableOpacity>
                     );
                   })}
-                </View>
+                </ImageBackground>
               </View>
 
-              {/* Städte-Filter Chips */}
+              {/* Filter-Leiste */}
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
                 {t.cities.map((city) => {
                   const isSelected = selectedCityId === city.id;
@@ -1667,7 +1758,7 @@ export default function App() {
                 <Text style={styles.activeCityTagline}>{currentCityText.tagline}</Text>
               </View>
               <View style={styles.cityPlacesCounter}>
-                <Text style={styles.cityPlacesCounterText}>{dynamicPlaces.length} Highlights</Text>
+                <Text style={styles.cityPlacesCounterText}>{dynamicPlaces.length} Highlights & Strände</Text>
               </View>
             </View>
 
@@ -1675,7 +1766,7 @@ export default function App() {
               {t.swipeInstruction}
             </Text>
 
-            {/* Horizontales Karussell mit Attraktionen */}
+            {/* Swipe-Karussell mit Highlights & Stränden */}
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -1687,7 +1778,10 @@ export default function App() {
                 <View key={place.id} style={styles.attractionCard}>
                   <Image source={{ uri: place.img }} style={styles.attractionImage} />
                   
-                  <View style={styles.attractionCategoryBadge}>
+                  <View style={[
+                    styles.attractionCategoryBadge,
+                    place.category.includes('🏖') && { backgroundColor: '#0284C7' },
+                  ]}>
                     <Text style={styles.attractionCategoryText}>{place.category}</Text>
                   </View>
 
@@ -1808,7 +1902,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 4: GEHALTSRECHNER */}
+        {/* TAB 4: GEHALT */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1854,7 +1948,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: GUIDE & TRANSIT */}
+        {/* TAB 5: GUIDE */}
         {activeTab === 'guide' && (
           <ScrollView contentContainerStyle={styles.scrollContent}>
             <View style={styles.card}>
@@ -1978,8 +2072,8 @@ export default function App() {
                     <Ionicons name="map" size={20} color="#0284C7" />
                   </View>
                   <View style={styles.featureTextWrap}>
-                    <Text style={styles.featureTitle}>Sehenswürdigkeiten & Schöne Orte</Text>
-                    <Text style={styles.featureDesc}>Interaktive Karte & Highlights von Porto bis Faro.</Text>
+                    <Text style={styles.featureTitle}>Highlights & Traumstrände</Text>
+                    <Text style={styles.featureDesc}>Interaktive Landkarte & Strände von Porto bis Faro.</Text>
                   </View>
                 </View>
               </ScrollView>
@@ -2084,49 +2178,62 @@ const styles = StyleSheet.create({
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
 
-  // INTERAKTIVE PORTUGAL KARTE STYLES
-  mapGraphicWrapper: {
-    backgroundColor: '#E0F2FE',
-    borderRadius: 14,
-    padding: 8,
-    marginTop: 6,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#BAE6FD',
-  },
-  portugalMapShape: {
-    height: 220,
-    width: '100%',
-    backgroundColor: '#FEF08A',
-    borderRadius: 12,
-    position: 'relative',
+  // REALISTISCHE LANDKARTE STYLES
+  mapContainerFrame: {
+    borderRadius: 16,
     overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: '#FDE047',
+    marginTop: 8,
+    marginBottom: 10,
+    borderWidth: 1.5,
+    borderColor: '#BAE6FD',
+    elevation: 4,
+    shadowColor: '#0284C7',
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+  },
+  realMapBackground: {
+    height: 250,
+    width: '100%',
+    position: 'relative',
+    justifyContent: 'flex-start',
+  },
+  realMapImageStyle: {
+    borderRadius: 14,
+    resizeMode: 'cover',
+  },
+  mapOverlayTint: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(2, 132, 199, 0.06)',
   },
   oceanWaterMark: {
     position: 'absolute',
-    bottom: 8,
-    left: 8,
-    opacity: 0.35,
+    bottom: 10,
+    left: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+    paddingVertical: 3,
+    paddingHorizontal: 7,
+    borderRadius: 8,
+    gap: 4,
   },
-  oceanWaterMarkText: { fontSize: 18, fontWeight: '900', color: '#0284C7', letterSpacing: 2 },
+  oceanWaterMarkText: { fontSize: 10, fontWeight: '800', color: '#0284C7', letterSpacing: 1 },
   mapPinContainer: {
     position: 'absolute',
     alignItems: 'center',
-    transform: [{ translateX: -12 }, { translateY: -12 }],
+    transform: [{ translateX: -14 }, { translateY: -14 }],
     zIndex: 10,
   },
-  mapPinContainerActive: { zIndex: 20 },
+  mapPinContainerActive: { zIndex: 30 },
   mapPinDot: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 4,
-    elevation: 3,
+    borderRadius: 14,
+    padding: 5,
+    elevation: 4,
     shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    borderWidth: 1.5,
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    borderWidth: 2,
     borderColor: '#0F5132',
   },
   mapPinDotActive: {
@@ -2135,7 +2242,7 @@ const styles = StyleSheet.create({
     transform: [{ scale: 1.25 }],
   },
   mapPinLabelBadge: {
-    backgroundColor: 'rgba(15,23,42,0.75)',
+    backgroundColor: 'rgba(15, 23, 42, 0.85)',
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 6,
@@ -2159,7 +2266,7 @@ const styles = StyleSheet.create({
   cityChipText: { fontSize: 12, fontWeight: '700', color: '#334155' },
   cityChipTextActive: { color: '#0F5132' },
 
-  // AKTIVE STADT & SWIPE ATTRAKTIONEN
+  // ATTRAKTIONEN & STRÄNDE
   cityDetailsHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -2220,7 +2327,7 @@ const styles = StyleSheet.create({
   },
   openMapBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
 
-  // FORMULAR- & TAB-STYLES
+  // FORMULAR & TABS
   checklistHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   progressBadge: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
   progressBadgeText: { fontSize: 11, fontWeight: '700', color: '#0F5132' },
