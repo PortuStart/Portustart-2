@@ -24,10 +24,10 @@ const { width } = Dimensions.get('window');
 // DEINE PARTNER- & AFFILIATE-LINKS
 // ==========================================
 const AFFILIATE_LINKS = {
-  // e-Residence Partner-Links mit Tracking-Parameter ?via=portustart
-  eResidenceNif: 'https://e-residence.com/nif-portugal-online/?via=portustart',
-  eResidenceNiss: 'https://e-residence.com/niss-portugal-online/?via=portustart',
-  eResidenceBank: 'https://e-residence.com/bank-account-portugal-online/?via=portustart',
+  // e-Residence Partner-Links (Ausfallsicher direkt auf die Hauptseite mit Tracking)
+  eResidenceNif: 'https://e-residence.com/?via=portustart',
+  eResidenceNiss: 'https://e-residence.com/?via=portustart',
+  eResidenceBank: 'https://e-residence.com/?via=portustart',
   eResidenceHealth: 'https://e-residence.com/?via=portustart',
   
   // GetYourGuide Partner-Parameter
@@ -470,7 +470,7 @@ const LOCALES = {
         name: 'Madeira (Funchal)',
         tagline: 'The flower island of jagged peaks & lush levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'Alpine Trail', desc: 'Mountain ridge traverse above the cloud line.', tip: 'Tip: Drive up for sunrise.' },
+          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'Alpine Trail', desc: 'Mountain ridge traverse above the cloud line.', tip: 'Tip: Watch the sunrise.' },
           { id: 'm2', title: '25 Fontes Levada Trail', category: 'UNESCO Nature', desc: 'Canal trail through ancient laurel forest.', tip: 'Tip: Start early.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Black Sand Beach', desc: 'Charming natural cove of dark volcanic sand.', tip: 'Tip: Beautiful contrast.' },
           { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Golden Lagoon', desc: 'Protected twin beach with calm, warm waters.', tip: 'Tip: Great for families.' },
@@ -555,7 +555,7 @@ export default function App() {
     });
   };
 
-  // GETYOURGUIDE AFFILIATE ACTION
+  // GETYOURGUIDE AFFILIATE ACTION (Mit deinen Partner-Parametern)
   const openGetYourGuide = (query) => {
     const partnerParam = `&partner_id=${AFFILIATE_LINKS.getYourGuidePartnerId}&cmp=${AFFILIATE_LINKS.getYourGuideCmp}`;
     const gygUrl = `https://www.getyourguide.com/s/?q=${encodeURIComponent(query + ' Portugal')}${partnerParam}`;
@@ -1287,7 +1287,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FF5533', // GetYourGuide Signature Orange
+    backgroundColor: '#FF5533',
     paddingVertical: 8,
     borderRadius: 10,
     marginTop: 10,
