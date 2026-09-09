@@ -36,8 +36,10 @@ const UI_TEXTS = {
     tabGuide: 'Guide',
     from: 'Von:',
     to: 'Nach:',
-    placeholderTrans: 'Text oder Slang eingeben...',
+    placeholderTrans: 'Text eingeben oder Mikrofon nutzen...',
     btnTrans: 'Übersetzen',
+    listenBtn: 'Anhören',
+    listeningNotice: '🎙 Höre zu... Sprich jetzt!',
     servicesTitle: '📄 Dokumente & Anträge',
     servicesSub: 'Beantrage deine NIF, NISS oder Bankkonto direkt online',
     checklistTitle: '📋 Erste 30 Tage Roadmap',
@@ -59,28 +61,26 @@ const UI_TEXTS = {
     calcGrossRow: 'Brutto / Monat:',
     calcSSRow: 'Sozialversicherung (-11%):',
     calcIRSRow: 'IRS Steuerabzug:',
-    calcAnnualNet: 'Jahresnetto (14 Gehälter):',
     emergencyTitle: '🚨 Notfall- & Behördenkontakte',
-    transitTitle: '🚇 Bus, Metro & Bahn (Transit Hub)',
-    transitSub: 'Tickets, das 40€-Monatsticket & Live-Fahrpläne',
-    openLiveTransitBtn: 'Live-Route in Google Maps öffnen',
-    metroAppBtn: 'Offizielle Metro Lisboa Website',
+    transitTitle: '🚆 Bus, Bahn & Metro (Ganz Portugal)',
+    transitSub: 'Fahrpläne, Netze & Spartickets von Porto bis Faro',
+    openLiveTransitBtn: 'Live-Navigation in Google Maps',
     welcomeTitle: 'Bem-vindo zu PortuStart! 🇵🇹',
     welcomeSub: 'Dein entspannter Begleiter für das Leben und Ankommen in Portugal.',
-    guideStepRoadmapTitle: '1. First 30 Days Roadmap',
-    guideStepRoadmapDesc: 'Interaktiver Schritt-für-Schritt-Ablaufplan durch die Bürokratie mit Fortschrittsbalken.',
+    guideStepRoadmapTitle: '1. Erste 30 Tage Roadmap',
+    guideStepRoadmapDesc: 'Interaktiver Schritt-für-Schritt-Ablaufplan durch die Bürokratie.',
     guideStepServicesTitle: '2. Papiere & Anträge',
-    guideStepServicesDesc: 'NIF, NISS und Bankkonto direkt über die App anfragen und per Mail an uns senden.',
-    guideStepTransitTitle: '3. ÖPNV & 40€-Ticket Guide',
-    guideStepTransitDesc: 'Erfahre, wie du mit dem Navegante-Ticket für 40€ im Monat alle Metros, Busse und Züge nutzt.',
+    guideStepServicesDesc: 'NIF, NISS und Bankkonto direkt über die App anfragen.',
+    guideStepTransitTitle: '3. Landesweiter ÖPNV-Guide',
+    guideStepTransitDesc: 'Metro Porto, Metro Lissabon, CP-Züge und günstige Monatspässe.',
     guideStepEmergencyTitle: '4. Notruf & Hotlines',
-    guideStepEmergencyDesc: 'Ein-Klick-Direktwahl für Notruf (112), SNS 24 (Gesundheit) und Einwanderungshilfe.',
-    guideStepSlangTitle: '5. Lissabon-Slang & Audio',
-    guideStepSlangDesc: 'Übersetzer für 8 Sprachen mit lokaler Dialektanpassung und Sprachausgabe.',
+    guideStepEmergencyDesc: 'Ein-Klick-Direktwahl für Notruf (112) und SNS 24.',
+    guideStepSlangTitle: '5. Slang, Audio & Diktat',
+    guideStepSlangDesc: 'Übersetzer mit Spracheingabe, Vorlesefunktion und Slang-Erkennung.',
     welcomeBtn: 'Alles klar, los geht\'s!',
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'Du hast alle 7 Schritte der Roadmap gemeistert!',
-    celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das bürokratische Fundament gelegt und bist nun offiziell startklar für dein neues Leben in Portugal!',
+    celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das bürokratische Fundament gelegt!',
     celebBtn: 'Muito obrigado! Weiter geht\'s 🚀',
   },
   en: {
@@ -92,8 +92,10 @@ const UI_TEXTS = {
     tabGuide: 'Guide',
     from: 'From:',
     to: 'To:',
-    placeholderTrans: 'Enter text or slang...',
+    placeholderTrans: 'Enter text or use microphone...',
     btnTrans: 'Translate',
+    listenBtn: 'Listen',
+    listeningNotice: '🎙 Listening... Speak now!',
     servicesTitle: '📄 Document Services',
     servicesSub: 'Request your NIF, NISS or Bank Account online',
     checklistTitle: '📋 First 30 Days Roadmap',
@@ -115,82 +117,375 @@ const UI_TEXTS = {
     calcGrossRow: 'Monthly Gross:',
     calcSSRow: 'Social Security (-11%):',
     calcIRSRow: 'IRS Withholding:',
-    calcAnnualNet: 'Annual Net (14 salaries):',
     emergencyTitle: '🚨 Emergency & Support Contacts',
-    transitTitle: '🚇 Bus, Metro & Trains (Transit Hub)',
-    transitSub: 'Tickets, the 40€ monthly pass & live timetables',
-    openLiveTransitBtn: 'Open Live Transit in Maps',
-    metroAppBtn: 'Official Metro Lisboa Website',
+    transitTitle: '🚆 Bus, Train & Metro (All Portugal)',
+    transitSub: 'Schedules, network maps & passes from Porto to Faro',
+    openLiveTransitBtn: 'Live Navigation in Google Maps',
     welcomeTitle: 'Welcome to PortuStart! 🇵🇹',
     welcomeSub: 'Your relaxed companion for settling into life in Portugal.',
     guideStepRoadmapTitle: '1. First 30 Days Roadmap',
-    guideStepRoadmapDesc: 'Interactive checklist guiding you through Portuguese paperwork.',
+    guideStepRoadmapDesc: 'Interactive checklist guiding you through paperwork.',
     guideStepServicesTitle: '2. Document Services',
     guideStepServicesDesc: 'Apply for NIF, NISS & bank accounts right in the app.',
-    guideStepTransitTitle: '3. Public Transport & 40€ Pass',
-    guideStepTransitDesc: 'Everything about the Navegante card and navigating buses, trains and metro.',
+    guideStepTransitTitle: '3. Nationwide Transit Guide',
+    guideStepTransitDesc: 'Porto Metro, Lisbon Metro, CP trains and regional bus passes.',
     guideStepEmergencyTitle: '4. Emergency & Support Dial',
-    guideStepEmergencyDesc: 'One-tap dialing for Emergency (112), SNS 24 and immigration hotlines.',
-    guideStepSlangTitle: '5. Authentic Lisbon Slang',
-    guideStepSlangDesc: '8-language translator tailored to local dialect with audio.',
+    guideStepEmergencyDesc: 'One-tap dialing for Emergency (112) and SNS 24.',
+    guideStepSlangTitle: '5. Voice & Slang Translator',
+    guideStepSlangDesc: 'Speech-to-text, text-to-speech audio and slang detection.',
     welcomeBtn: 'Got it, let\'s start!',
     celebTitle: 'Parabéns! 🇵🇹🎉',
     celebSub: 'You completed all 7 roadmap milestones!',
-    celebDesc: 'From your NIF and bank account to your SNS healthcare number: you conquered Portuguese paperwork and are ready to thrive!',
+    celebDesc: 'From your NIF to your SNS healthcare number: you are ready for Portugal!',
     celebBtn: 'Muito obrigado! Let\'s go 🚀',
+  },
+  es: {
+    title: 'PortuStart',
+    sub: 'Tu socio de reubicación en Portugal',
+    tabTrans: 'Traductor',
+    tabServices: 'Servicios',
+    tabCalc: 'Salario',
+    tabGuide: 'Guía',
+    from: 'De:',
+    to: 'A:',
+    placeholderTrans: 'Escribe texto o usa el micrófono...',
+    btnTrans: 'Traducir',
+    listenBtn: 'Escuchar',
+    listeningNotice: '🎙 Escuchando... ¡Habla ahora!',
+    servicesTitle: '📄 Documentos y Trámites',
+    servicesSub: 'Solicita NIF, NISS o cuenta bancaria online',
+    checklistTitle: '📋 Hoja de ruta primeros 30 días',
+    checklistSub: 'Plan burocrático paso a paso para Portugal',
+    checklistDone: 'completado',
+    selectServices: 'Servicios requeridos:',
+    uploadPass: 'Adjuntar Pasaporte / DNI',
+    uploadProof: 'Adjuntar Comprobante de domicilio',
+    submitBtn: 'Enviar documentos (portustart@proton.me)',
+    fileSelected: 'Listo: ',
+    supportHelpText: '¿Preguntas o problemas? Contacta con soporte:',
+    supportBtn: 'Contactar Soporte',
+    calcTitle: '💶 Calculadora Salario Neto',
+    calcSub: 'Empleado soltero sin hijos (14 pagas al año).',
+    calcGrossLabel: 'Salario bruto mensual (€):',
+    calcBtn: 'Calcular',
+    calcNetMonthly: 'Neto estimado (al mes):',
+    calc14Notice: 'Base: 14 mensualidades (incluye pagas extras)',
+    calcGrossRow: 'Bruto mensual:',
+    calcSSRow: 'Seguridad Social (-11%):',
+    calcIRSRow: 'Retención IRS:',
+    emergencyTitle: '🚨 Contactos de Emergencia',
+    transitTitle: '🚆 Bus, Tren y Metro (Todo Portugal)',
+    transitSub: 'Horarios, líneas y abonos de Oporto a Faro',
+    openLiveTransitBtn: 'Navegación en Google Maps',
+    welcomeTitle: '¡Bienvenido a PortuStart! 🇵🇹',
+    welcomeSub: 'Tu compañero ideal para instalarte en Portugal.',
+    guideStepRoadmapTitle: '1. Hoja de ruta 30 días',
+    guideStepRoadmapDesc: 'Plan interactivo con barra de progreso.',
+    guideStepServicesTitle: '2. Documentos y Servicios',
+    guideStepServicesDesc: 'Pide tu NIF, NISS y cuenta bancaria fácilmente.',
+    guideStepTransitTitle: '3. Transporte en Portugal',
+    guideStepTransitDesc: 'Metro de Oporto, Lisboa, trenes CP y abonos baratos.',
+    guideStepEmergencyTitle: '4. Teléfonos de Emergencia',
+    guideStepEmergencyDesc: 'Llamada directa al 112 y SNS 24.',
+    guideStepSlangTitle: '5. Voz y Traductor de Jerga',
+    guideStepSlangDesc: 'Dictado por voz, audio y adaptación lingüística.',
+    welcomeBtn: '¡Entendido, vamos!',
+    celebTitle: '¡Parabéns! 🇵🇹🎉',
+    celebSub: '¡Has completado los 7 pasos!',
+    celebDesc: '¡Ya tienes la base lista para tu nueva vida en Portugal!',
+    celebBtn: '¡Muchas gracias! Continuar 🚀',
+  },
+  fr: {
+    title: 'PortuStart',
+    sub: 'Votre partenaire de relocation au Portugal',
+    tabTrans: 'Traducteur',
+    tabServices: 'Services',
+    tabCalc: 'Salaire',
+    tabGuide: 'Guide',
+    from: 'De :',
+    to: 'À :',
+    placeholderTrans: 'Entrez du texte ou utilisez le micro...',
+    btnTrans: 'Traduire',
+    listenBtn: 'Écouter',
+    listeningNotice: '🎙 Écoute en cours... Parlez maintenant !',
+    servicesTitle: '📄 Documents & Démarches',
+    servicesSub: 'Demandez votre NIF, NISS ou compte bancaire',
+    checklistTitle: '📋 Feuille de route 30 premiers jours',
+    checklistSub: 'Votre guide administratif pour le Portugal',
+    checklistDone: 'terminé',
+    selectServices: 'Services nécessaires :',
+    uploadPass: 'Joindre Passeport / CNI',
+    uploadProof: 'Joindre Justificatif de domicile',
+    submitBtn: 'Envoyer les documents (portustart@proton.me)',
+    fileSelected: 'Prêt : ',
+    supportHelpText: 'Des questions ? Contactez le support :',
+    supportBtn: 'Contacter le Support',
+    calcTitle: '💶 Calculateur de Salaire Net',
+    calcSub: 'Célibataire sans enfant (14 mois de salaire).',
+    calcGrossLabel: 'Salaire brut mensuel (€) :',
+    calcBtn: 'Calculer',
+    calcNetMonthly: 'Net estimé (par mois) :',
+    calc14Notice: 'Base : 14 versements par an',
+    calcGrossRow: 'Brut mensuel :',
+    calcSSRow: 'Sécurité Sociale (-11%) :',
+    calcIRSRow: 'Retenue IRS :',
+    emergencyTitle: '🚨 Numéros d\'urgence',
+    transitTitle: '🚆 Bus, Train & Métro (Tout le Portugal)',
+    transitSub: 'Horaires, réseaux et forfaits de Porto à Faro',
+    openLiveTransitBtn: 'Navigation en direct dans Maps',
+    welcomeTitle: 'Bienvenue sur PortuStart ! 🇵🇹',
+    welcomeSub: 'Votre guide pour vous installer sereinement au Portugal.',
+    guideStepRoadmapTitle: '1. Feuille de route',
+    guideStepRoadmapDesc: 'Checklist pas à pas pour votre installation.',
+    guideStepServicesTitle: '2. Services Administratifs',
+    guideStepServicesDesc: 'Obtenez NIF, NISS et compte bancaire.',
+    guideStepTransitTitle: '3. Transports Nationaux',
+    guideStepTransitDesc: 'Métro Porto, Lisbonne, trains CP et pass Navegante/Andante.',
+    guideStepEmergencyTitle: '4. Numéros d\'Urgence',
+    guideStepEmergencyDesc: 'Appel direct vers 112 et SNS 24.',
+    guideStepSlangTitle: '5. Vocal & Argot Local',
+    guideStepSlangDesc: 'Saisie vocale, synthèse vocale et expressions typiques.',
+    welcomeBtn: 'C\'est parti !',
+    celebTitle: 'Parabéns ! 🇵🇹🎉',
+    celebSub: 'Vous avez complété les 7 étapes !',
+    celebDesc: 'Félicitations, vous avez toutes les bases pour vivre au Portugal !',
+    celebBtn: 'Merci beaucoup ! Continuer 🚀',
+  },
+  it: {
+    title: 'PortuStart',
+    sub: 'Il tuo partner per il trasferimento in Portogallo',
+    tabTrans: 'Traduttore',
+    tabServices: 'Servizi',
+    tabCalc: 'Stipendio',
+    tabGuide: 'Guida',
+    from: 'Da:',
+    to: 'A:',
+    placeholderTrans: 'Scrivi o usa il microfono...',
+    btnTrans: 'Traduci',
+    listenBtn: 'Ascolta',
+    listeningNotice: '🎙 Ascolto in corso... Parla adesso!',
+    servicesTitle: '📄 Documenti e Richieste',
+    servicesSub: 'Richiedi NIF, NISS o conto bancario online',
+    checklistTitle: '📋 Primi 30 Giorni Roadmap',
+    checklistSub: 'La tua guida burocratica per il Portogallo',
+    checklistDone: 'completato',
+    selectServices: 'Servizi richiesti:',
+    uploadPass: 'Allega Passaporto / Carta d\'Identità',
+    uploadProof: 'Allega Prova di Domicilio',
+    submitBtn: 'Invia Documenti (portustart@proton.me)',
+    fileSelected: 'Pronto: ',
+    supportHelpText: 'Domande o problemi? Contatta l\'assistenza:',
+    supportBtn: 'Contatta Supporto',
+    calcTitle: '💶 Calcolatore Stipendio Netto',
+    calcSub: 'Dipendente single senza figli (14 mensilità).',
+    calcGrossLabel: 'Stipendio lordo mensile (€):',
+    calcBtn: 'Calcola',
+    calcNetMonthly: 'Netto stimato (al mese):',
+    calc14Notice: 'Su base 14 mensilità',
+    calcGrossRow: 'Lordo mensile:',
+    calcSSRow: 'Previdenza Sociale (-11%):',
+    calcIRSRow: 'Ritenuta IRS:',
+    emergencyTitle: '🚨 Numeri di Emergenza',
+    transitTitle: '🚆 Bus, Treni e Metro (Tutto il Portogallo)',
+    transitSub: 'Orari, linee e abbonamenti da Porto a Faro',
+    openLiveTransitBtn: 'Navigazione su Google Maps',
+    welcomeTitle: 'Bem-vindo a PortuStart! 🇵🇹',
+    welcomeSub: 'Il tuo compagno ideale per vivere in Portogallo.',
+    guideStepRoadmapTitle: '1. Roadmap 30 Giorni',
+    guideStepRoadmapDesc: 'Guida burocratica passo dopo passo.',
+    guideStepServicesTitle: '2. Servizi Documenti',
+    guideStepServicesDesc: 'Richiedi NIF, NISS e conto corrente.',
+    guideStepTransitTitle: '3. Trasporti Pubblici',
+    guideStepTransitDesc: 'Metro Porto, Lisbona, treni CP e abbonamenti economici.',
+    guideStepEmergencyTitle: '4. Numeri di Emergenza',
+    guideStepEmergencyDesc: 'Chiamata rapida per 112 e SNS 24.',
+    guideStepSlangTitle: '5. Sintesi Vocale e Slang',
+    guideStepSlangDesc: 'Microfono, ascolto audio e dialetto portoghese.',
+    welcomeBtn: 'Ottimo, andiamo!',
+    celebTitle: 'Parabéns! 🇵🇹🎉',
+    celebSub: 'Hai completato tutti i 7 passaggi!',
+    celebDesc: 'Hai completato tutte le pratiche essenziali per iniziare la tua nuova vita!',
+    celebBtn: 'Muito obrigado! Avanti 🚀',
+  },
+  uk: {
+    title: 'PortuStart',
+    sub: 'Ваш помічник для переїзду в Португалію',
+    tabTrans: 'Перекладач',
+    tabServices: 'Сервіси',
+    tabCalc: 'Зарплата',
+    tabGuide: 'Гід',
+    from: 'З:',
+    to: 'На:',
+    placeholderTrans: 'Введіть текст або говоріть у мікрофон...',
+    btnTrans: 'Перекласти',
+    listenBtn: 'Слухати',
+    listeningNotice: '🎙 Слухаю... Говоріть зараз!',
+    servicesTitle: '📄 Оформлення Документів',
+    servicesSub: 'Отримайте NIF, NISS та банківський рахунок онлайн',
+    checklistTitle: '📋 План дій на перші 30 днів',
+    checklistSub: 'Покроковий гід португальською бюрократією',
+    checklistDone: 'виконано',
+    selectServices: 'Потрібні послуги:',
+    uploadPass: 'Додати Закордонний паспорт / ID',
+    uploadProof: 'Додати Підтвердження адреси',
+    submitBtn: 'Надіслати документи (portustart@proton.me)',
+    fileSelected: 'Готово: ',
+    supportHelpText: 'Є питання? Зв\'яжіться з нашою підтримкою:',
+    supportBtn: 'Написати в підтримку',
+    calcTitle: '💶 Калькулятор Чистої Зарплати',
+    calcSub: 'Штатний працівник, 14 виплат на рік.',
+    calcGrossLabel: 'Місячна зарплата до податків (€):',
+    calcBtn: 'Розрахувати',
+    calcNetMonthly: 'Чистими на місяць:',
+    calc14Notice: 'Розраховано на 14 виплат (з відпускними)',
+    calcGrossRow: 'Брутто на місяць:',
+    calcSSRow: 'Соціальний внесок (-11%):',
+    calcIRSRow: 'Податок IRS:',
+    emergencyTitle: '🚨 Важливі контакти та екстрені служби',
+    transitTitle: '🚆 Транспорт: Поїзди, Автобуси, Метро',
+    transitSub: 'Розклад, схеми ліній та проїзні по всій Португалії',
+    openLiveTransitBtn: 'Маршрут у Google Maps',
+    welcomeTitle: 'Ласкаво просимо до PortuStart! 🇵🇹',
+    welcomeSub: 'Ваш комфортний старт для життя в Португалії.',
+    guideStepRoadmapTitle: '1. Перші 30 днів',
+    guideStepRoadmapDesc: 'Покроковий чек-лист оформлення документів.',
+    guideStepServicesTitle: '2. Документи та сервіси',
+    guideStepServicesDesc: 'Оформлення NIF, NISS та банківського рахунку.',
+    guideStepTransitTitle: '3. Транспорт по всій країні',
+    guideStepTransitDesc: 'Метро Порту, Лісабона, поїзди CP та проїзні за 40€.',
+    guideStepEmergencyTitle: '4. Екстрений зв\'язок',
+    guideStepEmergencyDesc: 'Швидкий дзвінок на 112 та медичну лінію SNS 24.',
+    guideStepSlangTitle: '5. Голосовий перекладач та сленг',
+    guideStepSlangDesc: 'Диктування голосом, озвучування та португальські фрази.',
+    welcomeBtn: 'Зрозуміло, розпочати!',
+    celebTitle: 'Parabéns! 🇵🇹🎉',
+    celebSub: 'Ви виконали всі 7 кроків!',
+    celebDesc: 'Ви успішно пройшли всі головні бюрократичні кроки!',
+    celebBtn: 'Muito obrigado! Вперед 🚀',
   },
 };
 
 const TRANSLATOR_LANGUAGES = [
-  { code: 'pt', label: 'PT', flag: '🇵🇹' },
-  { code: 'de', label: 'DE', flag: '🇩🇪' },
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
-  { code: 'es', label: 'ES', flag: '🇪🇸' },
-  { code: 'fr', label: 'FR', flag: '🇫🇷' },
-  { code: 'it', label: 'IT', flag: '🇮🇹' },
-  { code: 'uk', label: 'UKR', flag: '🇺🇦' },
-  { code: 'hi', label: 'HIN', flag: '🇮🇳' },
+  { code: 'pt', label: 'PT', flag: '🇵🇹', voice: 'pt-PT' },
+  { code: 'de', label: 'DE', flag: '🇩🇪', voice: 'de-DE' },
+  { code: 'en', label: 'EN', flag: '🇬🇧', voice: 'en-US' },
+  { code: 'es', label: 'ES', flag: '🇪🇸', voice: 'es-ES' },
+  { code: 'fr', label: 'FR', flag: '🇫🇷', voice: 'fr-FR' },
+  { code: 'it', label: 'IT', flag: '🇮🇹', voice: 'it-IT' },
+  { code: 'uk', label: 'UKR', flag: '🇺🇦', voice: 'uk-UA' },
+  { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
 const EMERGENCY_CONTACTS = [
   {
-    name: 'Notruf (Polizei & Krankenwagen)',
+    name: 'Notruf / SOS (Polícia & Ambulância)',
     num: '112',
     icon: 'flame',
     color: '#DC2626',
     desc: 'Zentraler EU-Notruf für akute Notfälle.',
   },
   {
-    name: 'SNS 24 (Gesundheitshotline)',
+    name: 'SNS 24 (Saúde Pública)',
     num: '808242424',
     icon: 'medkit',
     color: '#0F5132',
-    desc: 'Medizinische Beratung vor Klinikbesuch (auch Englisch).',
+    desc: 'Medizinische Ersteinschätzung (auch auf Englisch).',
   },
   {
-    name: 'Linha Migrante (AIMA / Integration)',
+    name: 'Linha Migrante (AIMA)',
     num: '218106196',
     icon: 'people',
     color: '#0284C7',
-    desc: 'Auskünfte zu Einwanderung, Dokumenten und Aufenthalt.',
+    desc: 'Fragen zu Visa, Aufenthalt und Registrierung.',
   },
 ];
 
 const INITIAL_CHECKLIST = [
-  { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für alles in Portugal (Miete, Vertrag, SIM).', done: false },
-  { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für die mobile Autorisierung bei Ämtern (MEO, NOS, Vodafone).', done: false },
+  { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.', done: false },
+  { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Essentiell für behördliche SMS-Bestätigungen (MEO, NOS, Vodafone).', done: false },
   { id: 3, title: 'Bankkonto eröffnen', tip: 'Erforderlich für Gehaltseingang & Wohnungskaution.', done: false },
-  { id: 4, title: 'Wohnungsanmietung & Registrierung', tip: 'Mietvertrag muss von Finanças registriert sein.', done: false },
-  { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für Arbeitsantritt & Absicherung benötigt.', done: false },
-  { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara Municipal.', done: false },
-  { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Gesundheitssystem sichern.', done: false },
+  { id: 4, title: 'Wohnungsanmietung & Registrierung', tip: 'Der Mietvertrag muss beim Finanzamt (Finanças) registriert sein.', done: false },
+  { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für den Arbeitsvertrag und Rentenanspruch benötigt.', done: false },
+  { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara Municipal an.', done: false },
+  { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Ermöglicht Zugang zu staatlichen Hausärzten und Kliniken.', done: false },
 ];
 
-const METRO_LINES = [
-  { name: 'Linha Azul (Blau)', code: 'Santa Apolónia ↔ Reboleira', color: '#0284C7' },
-  { name: 'Linha Amarela (Gelb)', code: 'Rato ↔ Odivelas', color: '#EAB308' },
-  { name: 'Linha Verde (Grün)', code: 'Cais do Sodré ↔ Telheiras', color: '#10B981' },
-  { name: 'Linha Vermelha (Rot)', code: 'São Sebastião ↔ Aeroporto (Flughafen)', color: '#EF4444' },
+// Landesweites Verkehrsnetz (Ganz Portugal)
+const NATIONAL_TRANSIT_SYSTEMS = [
+  {
+    region: '🇵🇹 Landesweit (National)',
+    color: '#0F5132',
+    items: [
+      {
+        name: 'CP - Comboios de Portugal (Bahn)',
+        desc: 'Alfa Pendular (Schnellzug), Intercidades & Regionalzüge zwischen Lissabon, Porto, Coimbra, Braga & Faro.',
+        link: 'https://www.cp.pt/passageiros/en',
+      },
+      {
+        name: 'Rede Expressos (Fernbusse)',
+        desc: 'Das größte Busnetz Portugals mit günstigen Verbindungen in jede Stadt und jedes Dorf.',
+        link: 'https://rede-expressos.pt/en',
+      },
+    ],
+  },
+  {
+    region: '🍷 Porto & Nordportugal',
+    color: '#0284C7',
+    items: [
+      {
+        name: 'Metro do Porto (6 Linien A–F)',
+        desc: 'Moderne Stadtbahn, die Porto mit dem Flughafen, Matosinhos, Vila Nova de Gaia & Maia verbindet.',
+        link: 'https://www.metrodoporto.pt/en/',
+      },
+      {
+        name: 'STCP (Stadtbusse & Trams Porto)',
+        desc: 'Umfassendes Busnetz im Großraum Porto.',
+        link: 'https://www.stcp.pt/en/travel/',
+      },
+      {
+        name: 'Andante Ticket & App Anda',
+        desc: 'Einheitliches Zonenkartensystem für alle Verkehrsmittel im Großraum Porto.',
+        link: 'https://andante.pt/en/',
+      },
+    ],
+  },
+  {
+    region: '☀️ Lissabon & Tejo-Region',
+    color: '#D97706',
+    items: [
+      {
+        name: 'Metro Lisboa (4 Linien)',
+        desc: 'Blau, Gelb, Grün, Rot – verbindet Zentrum, Bahnhof Oriente & Flughafen Lissabon.',
+        link: 'https://www.metrolisboa.pt/en/',
+      },
+      {
+        name: 'Carris & Carris Metropolitana',
+        desc: 'Busse, gelbe Straßenbahnen (z. B. Eléctrico 28) und Überlandbusse bis Setúbal & Cascais.',
+        link: 'https://www.carrismetropolitana.pt/',
+      },
+      {
+        name: 'Navegante Pass (40 € Flatrate)',
+        desc: 'Monatskarte für ausnahmslos alle Metros, Busse, Tejo-Fähren und CP-Züge (Sintra/Cascais).',
+        link: 'https://www.navegante.pt/',
+      },
+    ],
+  },
+  {
+    region: '🏖 Algarve & Inseln',
+    color: '#7C3AED',
+    items: [
+      {
+        name: 'VAMUS Algarve (Busnetz Südportugal)',
+        desc: 'Linienbusse zwischen Faro, Albufeira, Lagos, Portimão und Tavira.',
+        link: 'https://vamusalgarve.pt/#/pt/vamus%20algarve/routes',
+      },
+      {
+        name: 'SIGA Madeira (ÖPNV Funchal & Insel)',
+        desc: 'Neues integriertes Busnetz für die gesamte Insel Madeira.',
+        link: 'https://siga.madeira.gov.pt/',
+      },
+    ],
+  },
 ];
 
 const QUICK_PHRASES = [
@@ -199,7 +494,7 @@ const QUICK_PHRASES = [
     color: '#0284C7',
     items: [
       { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
-      { trans: 'Wie hoch ist die Kaution / Monatsmieten im Voraus?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh meh-zesh...?' },
+      { trans: 'Wie hoch ist die Kaution / Vorauszahlung?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
       { trans: 'Ich habe keinen Bürgen (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
     ],
   },
@@ -215,7 +510,7 @@ const QUICK_PHRASES = [
     category: 'Gastronomie & Unterwegs',
     color: '#D97706',
     items: [
-      { trans: 'Ein gezapftes Bier, bitte.', pt: 'Uma imperial, por favor.', ph: 'Oo-mah eem-peh-ree-ahl, poor fah-vor' },
+      { trans: 'Ein gezapftes Bier, bitte.', pt: 'Uma imperial, por favor (Lissabon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
       { trans: 'Die Rechnung, bitte.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
     ],
   },
@@ -229,18 +524,18 @@ const IDIOM_DICTIONARY = [
   },
   {
     triggers: ['bier trinken', 'lass ein bier trinken', 'have a beer', 'grab a beer'],
-    pt: 'Bora beber uma imperial!',
-    explanation: '💡 In Lissabon bestellt man Bier vom Fass als "imperial" (nicht "chope").',
+    pt: 'Bora beber uma imperial / um fino!',
+    explanation: '💡 In Lissabon "imperial", im Norden rund um Porto sagt man "um fino".',
   },
   {
     triggers: ['keinen bock', 'kein bock', 'keine lust', 'no mood'],
-    pt: 'Nicht Lust darauf.',
-    explanation: '💡 Umgangssprachlich für "Ich habe überhaupt keine Lust darauf".',
+    pt: 'Não me apetece nada!',
+    explanation: '💡 Typisch portugiesisch für "Ich habe überhaupt keine Lust darauf".',
   },
   {
     triggers: ['was geht', 'wie läuft es', 'whats up'],
     pt: 'Tudo bem, pá? Então, como é?',
-    explanation: '💡 "Pá" ist das typischste Füllwort in Lissabon (wie "Alter" oder "Mensch").',
+    explanation: '💡 "Pá" ist das meistgenutzte Füllwort in Portugal (wie "Alter" oder "Mensch").',
   },
 ];
 
@@ -262,7 +557,8 @@ export default function App() {
   const [celebrationModalVisible, setCelebrationModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('services');
 
-  const t = UI_TEXTS[appLang] || UI_TEXTS['en'];
+  // Sprache sicher auswählen
+  const t = UI_TEXTS[appLang] || UI_TEXTS['de'];
 
   // Checkliste
   const [checklist, setChecklist] = useState(INITIAL_CHECKLIST);
@@ -274,6 +570,7 @@ export default function App() {
   const [translatedText, setTranslatedText] = useState('');
   const [slangNote, setSlangNote] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
 
   // Gehaltsrechner
   const [grossInput, setGrossInput] = useState('1500');
@@ -301,7 +598,7 @@ export default function App() {
   const dialNumber = (number) => {
     const url = `tel:${number}`;
     Linking.openURL(url).catch(() => {
-      Alert.alert('Hinweis', `Wähle die Nummer manuell: ${number}`);
+      Alert.alert('Info', `Nummer wählen: ${number}`);
     });
   };
 
@@ -311,17 +608,60 @@ export default function App() {
     });
   };
 
-  const playAudio = (text) => {
+  // TEXT-TO-SPEECH (Vorlesen)
+  const playAudio = (text, langCode = 'pt') => {
     if (!text) return;
     if (Platform.OS === 'web' && typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'pt-PT';
-      utterance.rate = 1.0;
+      const voiceObj = TRANSLATOR_LANGUAGES.find((l) => l.code === langCode);
+      utterance.lang = voiceObj ? voiceObj.voice : 'pt-PT';
+      utterance.rate = 0.95;
       utterance.pitch = 1.0;
       window.speechSynthesis.speak(utterance);
     } else {
       Alert.alert('Audio', `🗣 "${text}"`);
+    }
+  };
+
+  // SPEECH-TO-TEXT (Spracheingabe / Diktat)
+  const startSpeechRecognition = () => {
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        Alert.alert('Hinweis', 'Spracherkennung wird von diesem Browser nicht unterstützt. Bitte nutze Google Chrome oder Safari.');
+        return;
+      }
+
+      try {
+        const recognition = new SpeechRecognition();
+        const srcObj = TRANSLATOR_LANGUAGES.find((l) => l.code === sourceLang);
+        recognition.lang = srcObj ? srcObj.voice : 'de-DE';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        setIsRecording(true);
+
+        recognition.onresult = (event) => {
+          const spokenText = event.results[0][0].transcript;
+          setInputText(spokenText);
+          setIsRecording(false);
+        };
+
+        recognition.onerror = () => {
+          setIsRecording(false);
+        };
+
+        recognition.onend = () => {
+          setIsRecording(false);
+        };
+
+        recognition.start();
+      } catch {
+        setIsRecording(false);
+      }
+    } else {
+      Alert.alert('Hinweis', 'Spracheingabe ist in der Web-App über Chrome/Safari verfügbar.');
     }
   };
 
@@ -342,7 +682,7 @@ export default function App() {
       const mockName = type === 'passport' ? 'reisepass_scan.pdf' : 'wohnsitz_nachweis.pdf';
       if (type === 'passport') setPassportFileName(mockName);
       if (type === 'proof') setProofFileName(mockName);
-      Alert.alert('Datei ausgewählt', mockName);
+      Alert.alert('Datei bereitgestellt', mockName);
     }
   };
 
@@ -365,20 +705,19 @@ export default function App() {
     const subject = encodeURIComponent(`Neuer Auftrag: ${servicesList} - ${userName}`);
     const body = encodeURIComponent(
       `Hallo PortuStart Team,\n\n` +
-      `ich möchte folgende Dienstleistungen in Auftrag geben:\n\n` +
+      `ich möchte folgende Dienstleistungen anfragen:\n\n` +
       `📌 Services: ${servicesList}\n` +
       `👤 Name: ${userName}\n` +
       `📧 E-Mail: ${userEmail}\n\n` +
-      `📁 Bereitgestellte Dokumente:\n` +
-      `- Ausweis / Pass: ${passportFileName || 'Wird per E-Mail angehängt'}\n` +
-      `- Wohnsitznachweis: ${proofFileName || 'Wird per E-Mail angehängt'}\n\n` +
+      `📁 Anhänge:\n` +
+      `- Ausweis / Pass: ${passportFileName || 'Wird separat gemailt'}\n` +
+      `- Wohnsitznachweis: ${proofFileName || 'Wird separat gemailt'}\n\n` +
       `Bitte prüft meine Daten und sendet mir die Auftragsbestätigung.`
     );
 
     const mailtoUrl = `mailto:portustart@proton.me?subject=${subject}&body=${body}`;
-
     Linking.openURL(mailtoUrl).catch(() => {
-      Alert.alert('E-Mail', 'Bitte sende deine Unterlagen an: portustart@proton.me');
+      Alert.alert('E-Mail', 'Bitte schreibe an: portustart@proton.me');
     });
   };
 
@@ -386,7 +725,6 @@ export default function App() {
     const subject = encodeURIComponent('PortuStart Support-Anfrage');
     const body = encodeURIComponent('Hallo Support-Team,\n\nich habe eine Frage bezüglich:\n\n');
     const mailtoUrl = `mailto:portustart.support@proton.me?subject=${subject}&body=${body}`;
-
     Linking.openURL(mailtoUrl).catch(() => {
       Alert.alert('Support-Kontakt', 'Schreibe an: portustart.support@proton.me');
     });
@@ -427,7 +765,7 @@ export default function App() {
               notes.push(`"${PT_PT_REPLACEMENTS[key]}"`);
             }
           });
-          if (notes.length > 0) setSlangNote(`🇵🇹 Für Lissabon angepasst: ${notes.join(', ')}`);
+          if (notes.length > 0) setSlangNote(`🇵🇹 Portugiesisch angepasst: ${notes.join(', ')}`);
         }
         setTranslatedText(result);
       } else {
@@ -480,7 +818,7 @@ export default function App() {
                 <Ionicons name="help-circle-outline" size={18} color="#fff" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
-                <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
+                <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 4 }} />
                 <Text style={styles.langSwitchHeaderText}>
                   {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
                 </Text>
@@ -489,7 +827,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* Menüleiste */}
+        {/* Navigation Tabs */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity
@@ -523,13 +861,13 @@ export default function App() {
               style={[styles.tabButton, activeTab === 'guide' && styles.tabButtonActive]}
               onPress={() => setActiveTab('guide')}
             >
-              <Ionicons name="book" size={14} color={activeTab === 'guide' ? '#fff' : '#64748B'} />
+              <Ionicons name="compass" size={14} color={activeTab === 'guide' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'guide' && styles.tabTextActive]}>{t.tabGuide}</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* TAB: SERVICES */}
+        {/* TAB 1: SERVICES & ROADMAP */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             
@@ -573,7 +911,7 @@ export default function App() {
               ))}
             </View>
 
-            {/* ANTRAGS-FORMULAR */}
+            {/* SERVICES FORM */}
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
               <Text style={styles.subText}>{t.servicesSub}</Text>
@@ -600,7 +938,7 @@ export default function App() {
                 ))}
               </View>
 
-              <Text style={styles.inputFieldLabel}>Vollständiger Name:</Text>
+              <Text style={styles.inputFieldLabel}>Name:</Text>
               <TextInput
                 style={styles.fieldInput}
                 placeholder="z. B. Julia Schneider"
@@ -608,11 +946,9 @@ export default function App() {
                 value={userName}
                 onChangeText={setUserName}
                 autoCorrect={false}
-                autoCapitalize="words"
-                editable={true}
               />
 
-              <Text style={styles.inputFieldLabel}>E-Mail-Adresse:</Text>
+              <Text style={styles.inputFieldLabel}>E-Mail:</Text>
               <TextInput
                 style={styles.fieldInput}
                 placeholder="name@example.com"
@@ -622,10 +958,9 @@ export default function App() {
                 autoCorrect={false}
                 value={userEmail}
                 onChangeText={setUserEmail}
-                editable={true}
               />
 
-              <Text style={styles.inputFieldLabel}>Erforderliche Dokumente:</Text>
+              <Text style={styles.inputFieldLabel}>Dokumente:</Text>
               <TouchableOpacity style={styles.uploadBtn} onPress={() => pickFile('passport')}>
                 <Ionicons name="cloud-upload-outline" size={18} color="#0F5132" style={{ marginRight: 6 }} />
                 <Text style={styles.uploadBtnText}>
@@ -661,7 +996,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB: TRANSLATOR */}
+        {/* TAB 2: TRANSLATOR (MIT SPEECH-TO-TEXT & TEXT-TO-SPEECH) */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -703,6 +1038,28 @@ export default function App() {
             </View>
 
             <View style={styles.card}>
+              <View style={styles.inputActionRow}>
+                <Text style={styles.miniLabel}>Eingabe:</Text>
+                <View style={{ flexDirection: 'row', gap: 8 }}>
+                  {inputText.trim() ? (
+                    <TouchableOpacity onPress={() => playAudio(inputText, sourceLang)} style={styles.iconActionBtn}>
+                      <Ionicons name="volume-medium" size={18} color="#0F5132" />
+                    </TouchableOpacity>
+                  ) : null}
+                  {/* SPEECH-TO-TEXT MIKROFON BUTTON */}
+                  <TouchableOpacity
+                    onPress={startSpeechRecognition}
+                    style={[styles.micButton, isRecording && styles.micButtonActive]}
+                  >
+                    <Ionicons name={isRecording ? 'mic' : 'mic-outline'} size={18} color={isRecording ? '#fff' : '#0F5132'} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              {isRecording ? (
+                <Text style={styles.recordingText}>{t.listeningNotice}</Text>
+              ) : null}
+
               <TextInput
                 style={styles.textInput}
                 placeholder={t.placeholderTrans}
@@ -710,8 +1067,8 @@ export default function App() {
                 value={inputText}
                 onChangeText={setInputText}
                 multiline
-                editable={true}
               />
+
               <TouchableOpacity
                 style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]}
                 onPress={handleTranslate}
@@ -725,12 +1082,11 @@ export default function App() {
               <View style={styles.resultCard}>
                 <View style={styles.resultHeaderRow}>
                   <Text style={styles.resultHeader}>Ergebnis ({targetLang.toUpperCase()}):</Text>
-                  {targetLang === 'pt' && (
-                    <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText)}>
-                      <Ionicons name="volume-high" size={16} color="#0F5132" />
-                      <Text style={styles.audioBtnText}>Anhören</Text>
-                    </TouchableOpacity>
-                  )}
+                  {/* TEXT-TO-SPEECH AUDIO BUTTON */}
+                  <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText, targetLang)}>
+                    <Ionicons name="volume-high" size={16} color="#0F5132" />
+                    <Text style={styles.audioBtnText}>{t.listenBtn}</Text>
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.resultBody}>{translatedText}</Text>
                 {slangNote ? <Text style={styles.slangNote}>{slangNote}</Text> : null}
@@ -739,7 +1095,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB: GEHALT */}
+        {/* TAB 3: GEHALT */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -755,7 +1111,6 @@ export default function App() {
                   setGrossInput(val);
                   calculateNetSalary(val);
                 }}
-                editable={true}
               />
 
               <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalary(grossInput)}>
@@ -786,62 +1141,47 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB: GUIDE */}
+        {/* TAB 4: GUIDE (LANDESWEITER ÖPNV + NOTRUF + PHRASEN) */}
         {activeTab === 'guide' && (
           <ScrollView contentContainerStyle={styles.scrollContent}>
             
-            {/* ÖPNV & TRANSIT HUB */}
+            {/* ÖPNV & TRANSIT HUB FÜR GANZ PORTUGAL */}
             <View style={styles.card}>
               <View style={styles.transitHeaderRow}>
-                <Ionicons name="train" size={22} color="#0F5132" style={{ marginRight: 8 }} />
+                <Ionicons name="train" size={24} color="#0F5132" style={{ marginRight: 8 }} />
                 <View style={{ flex: 1 }}>
                   <Text style={styles.sectionHeaderTitle}>{t.transitTitle}</Text>
                   <Text style={styles.subText}>{t.transitSub}</Text>
                 </View>
               </View>
 
-              <View style={styles.naveganteCard}>
-                <View style={styles.naveganteTop}>
-                  <Text style={styles.naveganteBadge}>Spar-Tipp: 40 € / Monat</Text>
-                  <Text style={styles.naveganteTitle}>Navegante Metropolitano</Text>
-                </View>
-                <Text style={styles.naveganteText}>
-                  Gilt unbegrenzt für Metro, Busse (Carris), Vorortzüge (CP nach Cascais & Sintra, Fertagus) und Fähren in allen 18 Bezirken rund um Lissabon.
-                </Text>
-                <View style={styles.zappingRow}>
-                  <Ionicons name="card-outline" size={16} color="#0F5132" style={{ marginRight: 6 }} />
-                  <Text style={styles.zappingText}>
-                    <Text style={{ fontWeight: 'bold' }}>Zapping:</Text> Lade 5–40 € auf die grüne Viva-Karte. Einzelfahrten kosten so ca. 1,61 € statt 2,00 €+ beim Busfahrer.
-                  </Text>
-                </View>
-              </View>
-
-              <Text style={[styles.inputFieldLabel, { marginTop: 10 }]}>Metro Lissabon Liniennetz:</Text>
-              <View style={styles.metroLinesContainer}>
-                {METRO_LINES.map((m, idx) => (
-                  <View key={idx} style={styles.metroLineRow}>
-                    <View style={[styles.metroDot, { backgroundColor: m.color }]} />
-                    <Text style={styles.metroLineName}>{m.name}:</Text>
-                    <Text style={styles.metroLineCode}>{m.code}</Text>
-                  </View>
-                ))}
-              </View>
-
               <TouchableOpacity
-                style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginTop: 12 }]}
+                style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginBottom: 12 }]}
                 onPress={() => openUrl('https://www.google.com/maps/dir/?api=1&travelmode=transit')}
               >
                 <Ionicons name="navigate-circle" size={18} color="#fff" style={{ marginRight: 6 }} />
                 <Text style={styles.btnText}>{t.openLiveTransitBtn}</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.supportOutlineBtn}
-                onPress={() => openUrl('https://www.metrolisboa.pt/en/')}
-              >
-                <Ionicons name="globe-outline" size={15} color="#0F5132" style={{ marginRight: 6 }} />
-                <Text style={styles.supportOutlineBtnText}>{t.metroAppBtn}</Text>
-              </TouchableOpacity>
+              {/* REGIONEN & SYSTEME IN GANZ PORTUGAL */}
+              {NATIONAL_TRANSIT_SYSTEMS.map((reg, rIdx) => (
+                <View key={rIdx} style={styles.regionCard}>
+                  <Text style={[styles.regionTitle, { color: reg.color }]}>{reg.region}</Text>
+                  {reg.items.map((sys, sIdx) => (
+                    <TouchableOpacity
+                      key={sIdx}
+                      style={styles.transitLinkRow}
+                      onPress={() => openUrl(sys.link)}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.transitSystemName}>{sys.name}</Text>
+                        <Text style={styles.transitSystemDesc}>{sys.desc}</Text>
+                      </View>
+                      <Ionicons name="open-outline" size={16} color="#0F5132" style={{ marginLeft: 6 }} />
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              ))}
             </View>
 
             {/* NOTFALLNUMMERN */}
@@ -868,7 +1208,7 @@ export default function App() {
               ))}
             </View>
 
-            {/* PHRASEN */}
+            {/* REDEWENDUNGEN */}
             {QUICK_PHRASES.map((sec, i) => (
               <View key={i} style={styles.guideSection}>
                 <Text style={[styles.sectionTitle, { color: sec.color }]}>{sec.category}</Text>
@@ -876,7 +1216,7 @@ export default function App() {
                   <View key={idx} style={styles.phraseCard}>
                     <View style={styles.phraseHeaderRow}>
                       <Text style={styles.ptText}>{item.pt}</Text>
-                      <TouchableOpacity onPress={() => playAudio(item.pt)} style={{ padding: 4 }}>
+                      <TouchableOpacity onPress={() => playAudio(item.pt, 'pt')} style={{ padding: 4 }}>
                         <Ionicons name="volume-medium" size={18} color="#0F5132" />
                       </TouchableOpacity>
                     </View>
@@ -995,7 +1335,7 @@ export default function App() {
           </View>
         </Modal>
 
-        {/* 3. SPRACHAUSWAHL MODAL */}
+        {/* 3. SPRACHAUSWAHL MODAL (VOLL FUNKTIONSFÄHIG) */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
             <View style={styles.modalCard}>
@@ -1105,6 +1445,11 @@ const styles = StyleSheet.create({
   langChipTextSelected: { color: '#0F5132' },
   dividerRow: { alignItems: 'center', marginVertical: 4 },
   switchButton: { padding: 6, backgroundColor: '#F1F5F9', borderRadius: 15 },
+  inputActionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
+  iconActionBtn: { padding: 6, backgroundColor: '#F1F5F9', borderRadius: 8 },
+  micButton: { padding: 6, backgroundColor: '#F0FDF4', borderRadius: 8, borderWidth: 1, borderColor: '#86EFAC' },
+  micButtonActive: { backgroundColor: '#DC2626', borderColor: '#B91C1C' },
+  recordingText: { fontSize: 12, color: '#DC2626', fontWeight: 'bold', marginVertical: 4 },
   textInput: {
     minHeight: 80,
     fontSize: 15,
@@ -1205,20 +1550,13 @@ const styles = StyleSheet.create({
   rowLabel: { fontSize: 12, color: '#64748B' },
   rowValue: { fontSize: 12, fontWeight: '600', color: '#0F172A' },
   
-  // Transit Hub Styles
+  // Transit Hub Styles (Portugal-weit)
   transitHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
-  naveganteCard: { backgroundColor: '#F0FDF4', padding: 12, borderRadius: 12, borderWidth: 1, borderColor: '#BBF7D0', marginVertical: 6 },
-  naveganteTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
-  naveganteBadge: { fontSize: 10, fontWeight: '800', color: '#0F5132', backgroundColor: '#DCFCE7', paddingVertical: 2, paddingHorizontal: 6, borderRadius: 6 },
-  naveganteTitle: { fontSize: 12, fontWeight: '800', color: '#166534' },
-  naveganteText: { fontSize: 11, color: '#14532D', lineHeight: 15 },
-  zappingRow: { flexDirection: 'row', alignItems: 'center', marginTop: 6, paddingTop: 6, borderTopWidth: 1, borderTopColor: '#DCFCE7' },
-  zappingText: { fontSize: 10.5, color: '#15803D', flex: 1 },
-  metroLinesContainer: { gap: 4, marginTop: 4 },
-  metroLineRow: { flexDirection: 'row', alignItems: 'center' },
-  metroDot: { width: 8, height: 8, borderRadius: 4, marginRight: 6 },
-  metroLineName: { fontSize: 11, fontWeight: '700', color: '#0F172A', marginRight: 4 },
-  metroLineCode: { fontSize: 11, color: '#64748B', flex: 1 },
+  regionCard: { backgroundColor: '#F8FAFC', borderRadius: 12, padding: 10, marginBottom: 8, borderWidth: 1, borderColor: '#E2E8F0' },
+  regionTitle: { fontSize: 12, fontWeight: '800', marginBottom: 6 },
+  transitLinkRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 6, borderBottomWidth: 1, borderBottomColor: '#EDF2F7' },
+  transitSystemName: { fontSize: 12, fontWeight: '700', color: '#0F172A' },
+  transitSystemDesc: { fontSize: 10.5, color: '#64748B', marginTop: 1 },
 
   guideSection: { marginBottom: 14 },
   sectionTitle: { fontSize: 14, fontWeight: '700', marginBottom: 8, color: '#0F172A' },
