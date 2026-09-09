@@ -41,50 +41,75 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
-// EXAKTE GEOGRAFISCHE KOORDINATEN AUF DEM PORTUGAL-VEKTOR
+// REALE GEO-KOORDINATEN FÜR LIVE-KARTEN
 const CITIES_METADATA = {
-  porto: {
-    mapCoords: { top: '18%', left: '50%' },
-    placesMeta: [
-      { id: 'p1', img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80', query: 'Dom Luis I Bridge Porto' },
-      { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto' },
-      { id: 'pb1', img: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&q=80', query: 'Praia de Matosinhos' },
-    ],
-  },
-  coimbra: {
-    mapCoords: { top: '38%', left: '54%' },
-    placesMeta: [
-      { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra' },
-      { id: 'cb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Claridade Figueira da Foz' },
-    ],
-  },
-  sintra: {
-    mapCoords: { top: '56%', left: '40%' },
-    placesMeta: [
-      { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra' },
-      { id: 'sb1', img: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', query: 'Praia do Guincho Cascais' },
-    ],
-  },
   lisboa: {
-    mapCoords: { top: '61%', left: '46%' },
+    lat: 38.7223,
+    lng: -9.1393,
+    zoom: 12,
     placesMeta: [
       { id: 'l1', img: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', query: 'Torre de Belem Lisbon' },
       { id: 'l2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Miradouro de Santa Luzia Lisbon' },
+      { id: 'l3', img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800&q=80', query: 'Praca do Comercio Lisbon' },
       { id: 'lb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia de Carcavelos' },
+      { id: 'lb2', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Praia dos Galapinhos Arrabida' },
+    ],
+  },
+  porto: {
+    lat: 41.1579,
+    lng: -8.6291,
+    zoom: 12,
+    placesMeta: [
+      { id: 'p1', img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80', query: 'Dom Luis I Bridge Porto' },
+      { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto' },
+      { id: 'p3', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Port Wine Cellars Gaia Porto' },
+      { id: 'pb1', img: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&q=80', query: 'Praia de Matosinhos' },
+      { id: 'pb2', img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80', query: 'Praia de Miramar Senhor da Pedra' },
+    ],
+  },
+  sintra: {
+    lat: 38.8029,
+    lng: -9.3817,
+    zoom: 12,
+    placesMeta: [
+      { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra' },
+      { id: 's2', img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80', query: 'Quinta da Regaleira Sintra' },
+      { id: 's3', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Cabo da Roca Portugal' },
+      { id: 'sb1', img: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', query: 'Praia do Guincho Cascais' },
+      { id: 'sb2', img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&q=80', query: 'Praia da Ursa Sintra' },
     ],
   },
   algarve: {
-    mapCoords: { top: '88%', left: '55%' },
+    lat: 37.0194,
+    lng: -7.9322,
+    zoom: 10,
     placesMeta: [
       { id: 'a1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Benagil Cave Algarve' },
+      { id: 'a2', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80', query: 'Ponta da Piedade Lagos' },
+      { id: 'a3', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Ria Formosa Natural Park Faro' },
       { id: 'ab1', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=800&q=80', query: 'Praia da Marinha Lagoa' },
       { id: 'ab2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Falesia Albufeira' },
     ],
   },
+  coimbra: {
+    lat: 40.2033,
+    lng: -8.4103,
+    zoom: 12,
+    placesMeta: [
+      { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra' },
+      { id: 'c2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Monastery of Santa Cruz Coimbra' },
+      { id: 'cb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Claridade Figueira da Foz' },
+      { id: 'cb2', img: 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=800&q=80', query: 'Praia de Mira Portugal' },
+    ],
+  },
   madeira: {
-    mapCoords: { top: '82%', left: '14%' },
+    lat: 32.6500,
+    lng: -16.9089,
+    zoom: 11,
     placesMeta: [
       { id: 'm1', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', query: 'Pico do Arieiro Madeira' },
+      { id: 'm2', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', query: '25 Fontes Levada Madeira' },
+      { id: 'mb1', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Prainha do Canical Madeira' },
       { id: 'mb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Calheta Madeira' },
     ],
   },
@@ -99,11 +124,12 @@ const LOCALES = {
     tabTrans: 'Translator',
     tabCalc: 'Gehalt',
     tabGuide: 'Guide',
-    placesSectionTitle: '🇵🇹 Highlights & Traumstrände',
-    placesSectionSub: 'Tippe auf eine Stadt auf der Karte Portugals:',
-    mapInstruction: '📍 Portugal-Karte (Echte Geographie):',
+    placesSectionTitle: '🇵🇹 Interaktive Karte & Highlights',
+    placesSectionSub: 'Live-Karte von Portugal – wähle eine Region oder bewege dich frei:',
+    mapInstruction: '📍 Interaktive Live-Karte:',
+    openInAppMaps: 'In Maps-App öffnen',
     swipeInstruction: '👉 Horizontal wischen für Highlights & Strände:',
-    openInMapsBtn: 'Route in Maps öffnen',
+    openInMapsBtn: 'Route in Maps',
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
@@ -144,51 +170,39 @@ const LOCALES = {
     transitTitle: '🚆 Bus, Bahn & Metro (Ganz Portugal)',
     transitSub: 'Fahrpläne, Netze & Spartickets von Porto bis Faro',
     openLiveTransitBtn: 'Live-Navigation in Google Maps',
-    welcomeTitle: 'Bem-vindo zu PortuStart! 🇵🇹',
-    welcomeSub: 'Dein Begleiter für das Ankommen in Portugal.',
-    guideStepRoadmapTitle: '1. Erste 30 Tage Roadmap',
-    guideStepRoadmapDesc: 'Interaktiver Schritt-für-Schritt-Plan durch die Bürokratie.',
-    guideStepServicesTitle: '2. Papiere & Anträge',
-    guideStepServicesDesc: 'NIF, NISS und Bankkonto direkt online anfordern.',
-    guideStepTransitTitle: '3. Landesweiter ÖPNV-Guide',
-    guideStepTransitDesc: 'Metro Porto, Metro Lissabon, CP-Züge und Monatskarten.',
-    guideStepEmergencyTitle: '4. Notruf & Hotlines',
-    guideStepEmergencyDesc: 'Ein-Klick-Direktwahl für Notruf (112) und SNS 24.',
-    guideStepSlangTitle: '5. Slang & Audio-Übersetzer',
-    guideStepSlangDesc: 'Spracheingabe, Sprachausgabe und Dialektanpassungen.',
-    welcomeBtn: 'Alles klar, los geht\'s!',
-    celebTitle: 'Parabéns! 🇵🇹🎉',
-    celebSub: 'Du hast alle 7 Schritte der Roadmap gemeistert!',
-    celebDesc: 'Vom NIF über das Bankkonto bis zur SNS-Gesundheitsnummer: Du hast das Fundament gelegt!',
-    celebBtn: 'Muito obrigado! Weiter geht\'s 🚀',
+    phrasesTitle: '🗣 Wichtige Sätze & Vokabeln für den Start',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
-      { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für die Chave Móvel Digital und Behörden-SMS.' },
+      { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
       { id: 3, title: 'Bankkonto eröffnen', tip: 'Erforderlich für Gehaltseingang und Wohnungskaution.' },
       { id: 4, title: 'Wohnungsanmietung & Registrierung', tip: 'Der Mietvertrag muss beim Finanzamt (Finanças) gemeldet sein.' },
       { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für Arbeitsvertrag und Rentenanspruch benötigt.' },
-      { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara Municipal an.' },
-      { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Hausarztsystem und Kliniken.' },
+      { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara an.' },
+      { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Gesundheitssystem & Hausarzt.' },
     ],
     cities: [
       {
         id: 'lisboa',
         name: 'Lisboa (Lissabon)',
-        tagline: 'Die Stadt der 7 Hügel, Fado & Tejo-Mündung',
+        tagline: 'Die Stadt der 7 Hügel, Fado & Aussichtspunkte',
         places: [
-          { id: 'l1', title: 'Torre de Belém & Mosteiro dos Jerónimos', category: 'UNESCO Welterbe', desc: 'Meisterwerk des manuelinischen Stils am Tejo. Gleich nebenan gibt es die echten Pastéis de Belém.', tip: 'Tipp: Vor 10:00 Uhr kommen, um die Warteschlangen zu vermeiden.' },
-          { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Aussichtspunkt', desc: 'Bougainvillea-Blüten, Azulejos und Panoramablick über die roten Dächer der Alfama.', tip: 'Tipp: Bei Sonnenuntergang den Straßenmusikern mit einer Bica lauschen.' },
-          { id: 'lb1', title: 'Praia de Carcavelos (Strand)', category: '🏖 Surf- & Stadtstrand', desc: 'Größter Sandstrand an der Bahnlinie nach Cascais mit Surfschulen und Strandbars.', tip: 'Tipp: Nur 25 Min. mit dem Zug ab Bahnhof Cais do Sodré.' },
+          { id: 'l1', title: 'Torre de Belém & Mosteiro dos Jerónimos', category: 'UNESCO Welterbe', desc: 'Meisterwerk des manuelinischen Stils am Tejo.', tip: 'Tipp: Vor 10:00 Uhr kommen.' },
+          { id: 'l2', title: 'Miradouro de Santa Luzia & Alfama', category: 'Aussichtspunkt', desc: 'Bougainvillea-Blüten und Blick über die bunten Dächer der Alfama.', tip: 'Tipp: Bei Sonnenuntergang besuchen.' },
+          { id: 'l3', title: 'Praça do Comércio', category: 'Historischer Platz', desc: 'Riesiger Palastplatz direkt am Ufer des Tejo.', tip: 'Tipp: Spaziergang am Ufer starten.' },
+          { id: 'lb1', title: 'Praia de Carcavelos', category: '🏖 Surf- & Stadtstrand', desc: 'Größter Sandstrand an der Bahnlinie nach Cascais.', tip: 'Tipp: 25 Min. mit dem Zug ab Cais do Sodré.' },
+          { id: 'lb2', title: 'Praia dos Galapinhos', category: '🏖 Naturstrand Arrábida', desc: 'Kristallklares, ruhiges Wasser vor den Felsen des Naturparks.', tip: 'Tipp: Früh morgens anreisen.' },
         ],
       },
       {
         id: 'porto',
-        name: 'Porto & Douro',
-        tagline: 'Granit, Portwein und die Brücke Ponte Luís I',
+        name: 'Porto',
+        tagline: 'Granit, Portwein und dramatische Brücken',
         places: [
-          { id: 'p1', title: 'Ponte Luís I & Ribeira', category: 'Wahrzeichen', desc: 'Zweistöckige Eisenbrücke von Gustave Eiffels Partner Seyrig über den Douro.', tip: 'Tipp: Zu Fuß über das obere Deck gehen für beste Sicht auf Vila Nova de Gaia.' },
-          { id: 'p2', title: 'Livraria Lello & Clérigos-Turm', category: 'Kultur & Architektur', desc: 'Ikonische Buchhandlung mit weltberühmter roter Holztreppe und neugotischer Schnitzkunst.', tip: 'Tipp: Ticket-Gutschein vorab online reservieren.' },
-          { id: 'pb1', title: 'Praia de Matosinhos (Strand)', category: '🏖 Metro-Strand & Surfen', desc: 'Breiter Atlantikstrand direkt an der Metro. Berühmt für Surfer und Fischgrills.', tip: 'Tipp: Nach dem Surfen gegrillten Wolfsbarsch in den Gassen essen.' },
+          { id: 'p1', title: 'Ponte Luís I & Ribeira', category: 'Wahrzeichen', desc: 'Zweistöckige Eisenbrücke von Gustave Eiffels Partner Seyrig.', tip: 'Tipp: Zu Fuß über das obere Deck gehen.' },
+          { id: 'p2', title: 'Livraria Lello & Clérigos-Turm', category: 'Kultur & Architektur', desc: 'Weltberühmte Buchhandlung mit roter Holztreppe.', tip: 'Tipp: Ticket online reservieren.' },
+          { id: 'p3', title: 'Portweinkeller in Gaia', category: 'Genuss & Tradition', desc: 'Historische Reifekeller mit Rabelo-Booten am Ufer.', tip: 'Tipp: Führung mit Verkostung buchen.' },
+          { id: 'pb1', title: 'Praia de Matosinhos', category: '🏖 Metro-Strand', desc: 'Breiter Strand direkt an der Metro, ideal zum Surfen.', tip: 'Tipp: Frischen Fischgrill probieren.' },
+          { id: 'pb2', title: 'Praia de Miramar', category: '🏖 Kapelle im Meer', desc: 'Wunderschöne Kapelle Senhor da Pedra auf einem Meeresfelsen.', tip: 'Tipp: Tolles Sonnenuntergangsmotiv.' },
         ],
       },
       {
@@ -196,17 +210,11 @@ const LOCALES = {
         name: 'Sintra & Cascais',
         tagline: 'Märchenschlösser im Nebelwald & Atlantikklippen',
         places: [
-          { id: 's1', title: 'Palácio Nacional da Pena', category: 'Märchenschloss', desc: 'Farbenfrohes Romantik-Schloss auf den Bergkämmen über dichten Wäldern.', tip: 'Tipp: Feste Einlasszeiten online buchen, morgens ist es am ruhigsten.' },
-          { id: 'sb1', title: 'Praia do Guincho (Strand)', category: '🏖 Wilder Dünenstrand', desc: 'Weltbekannter Surf- & Kitesurf-Strand vor der Kulisse des Sintra-Gebirges.', tip: 'Tipp: Panoramaspaziergang auf Holzstegen über die Dünen.' },
-        ],
-      },
-      {
-        id: 'coimbra',
-        name: 'Coimbra & Centro',
-        tagline: 'Alte Königsstadt & Universitätsgeschichte',
-        places: [
-          { id: 'c1', title: 'Biblioteca Joanina', category: 'Barockbibliothek', desc: 'Barockes Prunkjuwel aus dem 18. Jahrhundert mit Goldverzierungen und seltenen Büchern.', tip: 'Tipp: Kombiticket mit Königspalast und Kapelle buchen.' },
-          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Riesiger Sandstrand', desc: 'Gigantische Sandfläche mit Holzwegen zum Meer, die "Königin der Strände".', tip: 'Tipp: Nur 40 Min. mit dem Zug von Coimbra direkt ans Wasser.' },
+          { id: 's1', title: 'Palácio Nacional da Pena', category: 'Märchenschloss', desc: 'Farbenfrohes Romantik-Schloss auf den Bergkämmen.', tip: 'Tipp: Zeitfenster online buchen.' },
+          { id: 's2', title: 'Quinta da Regaleira', category: 'Mystik & Gärten', desc: 'Verzaubertes Anwesen mit dem berühmten Initiationsbrunnen.', tip: 'Tipp: Taschenlampe bereithalten.' },
+          { id: 's3', title: 'Cabo da Roca', category: 'Naturwunder', desc: 'Westlichster Punkt des europäischen Festlands.', tip: 'Tipp: Windjacke mitnehmen.' },
+          { id: 'sb1', title: 'Praia do Guincho', category: '🏖 Surf-Dünenstrand', desc: 'Weltbekannter Surfstrand vor der Kulisse der Sintra-Berge.', tip: 'Tipp: Holzstege über den Dünen nutzen.' },
+          { id: 'sb2', title: 'Praia da Ursa', category: '🏖 Wilde Bucht', desc: 'Spektakuläre Felsnadeln, erreichbar über einen Wanderpfad.', tip: 'Tipp: Feste Schuhe anziehen.' },
         ],
       },
       {
@@ -214,18 +222,33 @@ const LOCALES = {
         name: 'Faro & Algarve',
         tagline: 'Goldene Sandsteinklippen & 300 Sonnentage',
         places: [
-          { id: 'a1', title: 'Benagil Meereshöhle', category: 'Grotten & Strand', desc: 'Die berühmteste Felsengrotte Portugals mit kreisrundem Deckenauge und Sandstrand.', tip: 'Tipp: Früh morgens per Stand-up-Paddleboard anfahren.' },
-          { id: 'ab1', title: 'Praia da Marinha (Strand)', category: '🏖 Top-Strand Europas', desc: 'Ikonische Felsformationen mit Doppelbögen und smaragdgrünem Wasser zum Schnorcheln.', tip: 'Tipp: Startpunkt des Wanderwegs "Seven Hanging Valleys".' },
-          { id: 'ab2', title: 'Praia da Falésia (Strand)', category: '🏖 Rote Klippenküste', desc: 'Über 6 km feiner Sandstrand unter riesigen roten Steilklippen mit Pinienkronen.', tip: 'Tipp: Herrlich für Barfuß-Spaziergänge bei Ebbe.' },
+          { id: 'a1', title: 'Benagil Meereshöhle', category: 'Grotten & Strand', desc: 'Berühmte Brandungshöhle mit kreisrundem Naturfenster.', tip: 'Tipp: Früh mit dem Kajak erkunden.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Klippenlandschaft', desc: 'Bizarre Felstürme, Bögen und türkisblaues Wasser.', tip: 'Tipp: Fischerboottour machen.' },
+          { id: 'a3', title: 'Ria Formosa Naturpark', category: 'Lagune & Inseln', desc: 'Riesiges Gezeitenschutzgebiet mit autofreien Inseln.', tip: 'Tipp: Fähre nach Armona nehmen.' },
+          { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top-Strand Europas', desc: 'Doppelfelsbögen und kristallklares Schnorchel-Wasser.', tip: 'Tipp: Seven Hanging Valleys Trail.' },
+          { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Rote Klippenküste', desc: 'Über 6 km Sandstrand unter roten Steilklippen.', tip: 'Tipp: Barfuß-Wanderungen bei Ebbe.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Coimbra & Centro',
+        tagline: 'Alte Königsstadt & Universitätsgeschichte',
+        places: [
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Historische Bibliothek', desc: 'Barockes Prunkjuwel mit Goldverzierungen aus dem 18. Jh.', tip: 'Tipp: Kombiticket buchen.' },
+          { id: 'c2', title: 'Kloster Santa Cruz', category: 'Geschichte & Fado', desc: 'Ruhestätte der ersten portugiesischen Könige.', tip: 'Tipp: Fado-Konzert besuchen.' },
+          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Breitester Sandstrand', desc: 'Gigantische Sandfläche mit Holzwegen zum Wasser.', tip: 'Tipp: 40 Min. Zug ab Coimbra.' },
+          { id: 'cb2', title: 'Praia de Mira', category: '🏖 Tradition & Dünen', desc: 'Malerischer Strand mit bunten Holzstreifenhäusern.', tip: 'Tipp: Frische Calamares probieren.' },
         ],
       },
       {
         id: 'madeira',
         name: 'Madeira (Funchal)',
-        tagline: 'Die Blumeninsel mit schroffen Gipfeln & Levadas',
+        tagline: 'Die Blumeninsel mit schroffen Gipfeln und Levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro bis Pico Ruivo', category: 'Hochgebirgswanderung', desc: 'Gratwanderung über den Wolken zwischen den höchsten Bergen Madeiras.', tip: 'Tipp: Zum Sonnenaufgang auf den Gipfel fahren.' },
-          { id: 'mb2', title: 'Praia da Calheta (Strand)', category: '🏖 Goldener Sandstrand', desc: 'Geschützte Bucht mit feinem, goldgelbem Sand und zwei Wellenbrechern zum Schwimmen.', tip: 'Tipp: Perfekt für Familien und windgeschütztes Sonnenbaden.' },
+          { id: 'm1', title: 'Pico do Arieiro bis Pico Ruivo', category: 'Hochgebirgswanderung', desc: 'Spektakuläre Gratwanderung über den Wolken.', tip: 'Tipp: Zum Sonnenaufgang starten.' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'UNESCO Naturerbe', desc: 'Wanderung entlang historischer Kanäle im Lorbeerwald.', tip: 'Tipp: Früh loswandern.' },
+          { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Schwarzer Lavasand', desc: 'Versteckte Bucht nahe der Ponta de São Lourenço.', tip: 'Tipp: Toller Farbkontrast.' },
+          { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Goldener Sandstrand', desc: 'Geschützte Zwillingsbucht mit ruhigem Wasser.', tip: 'Tipp: Ideal zum Schwimmen.' },
         ],
       },
     ],
@@ -236,6 +259,7 @@ const LOCALES = {
         items: [
           { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
           { trans: 'Wie hoch ist die Kaution / Vorauszahlung?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
+          { trans: 'Ich habe keinen Bürgen (Fiador).', pt: 'Não tenho fiador.', ph: 'Nowng teng-yoo fee-ah-dor.' },
         ],
       },
       {
@@ -243,12 +267,23 @@ const LOCALES = {
         color: '#0F5132',
         items: [
           { trans: 'Ich brauche eine Steuernummer (NIF).', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+          { trans: 'Ich habe einen Termin bei der AIMA.', pt: 'Tenho uma marcação na AIMA.', ph: 'Ten-yoo oo-mah mar-kah-sah-oo nah eye-mah' },
+        ],
+      },
+      {
+        category: 'Gastronomie & Unterwegs',
+        color: '#D97706',
+        items: [
+          { trans: 'Ein gezapftes Bier, bitte.', pt: 'Uma imperial, por favor (Lissabon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
+          { trans: 'Die Rechnung, bitte.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+          { trans: 'Einen Espresso, bitte.', pt: 'Um café / Uma bica, por favor.', ph: 'Oom kah-feh / Oo-mah bee-kah' },
         ],
       },
     ],
     emergencies: [
-      { name: 'Notruf (Polizei & Krankenwagen)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Zentraler EU-Notruf für akute Notfälle.' },
-      { name: 'SNS 24 (Gesundheitshotline)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Medizinische Beratung vor Klinikbesuch.' },
+      { name: 'Notruf (Polizei & Krankenwagen)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Zentraler EU-Notruf für Notfälle.' },
+      { name: 'SNS 24 (Gesundheitshotline)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Medizinische Ersteinschätzung vor Klinikbesuch.' },
+      { name: 'Linha Migrante (AIMA)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Auskünfte zu Einwanderung & Dokumenten.' },
     ],
   },
   en: {
@@ -259,11 +294,12 @@ const LOCALES = {
     tabTrans: 'Translator',
     tabCalc: 'Salary',
     tabGuide: 'Guide',
-    placesSectionTitle: '🇵🇹 Sights & Golden Beaches',
-    placesSectionSub: 'Tap a city on the map of Portugal:',
-    mapInstruction: '📍 Portugal Map (True Geography):',
-    swipeInstruction: '👉 Swipe horizontally to discover spots & beaches:',
-    openInMapsBtn: 'Open Route in Maps',
+    placesSectionTitle: '🇵🇹 Interactive Map & Sights',
+    placesSectionSub: 'Live map of Portugal – choose a region or explore freely:',
+    mapInstruction: '📍 Interactive Live Map:',
+    openInAppMaps: 'Open in Maps App',
+    swipeInstruction: '👉 Swipe horizontally to discover sights & beaches:',
+    openInMapsBtn: 'Route in Maps',
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
@@ -304,23 +340,7 @@ const LOCALES = {
     transitTitle: '🚆 Bus, Train & Metro (All Portugal)',
     transitSub: 'Schedules, network maps & passes from Porto to Faro',
     openLiveTransitBtn: 'Live Navigation in Google Maps',
-    welcomeTitle: 'Welcome to PortuStart! 🇵🇹',
-    welcomeSub: 'Your relaxed companion for settling into life in Portugal.',
-    guideStepRoadmapTitle: '1. First 30 Days Roadmap',
-    guideStepRoadmapDesc: 'Interactive checklist guiding you through paperwork.',
-    guideStepServicesTitle: '2. Document Services',
-    guideStepServicesDesc: 'Apply for NIF, NISS & bank accounts right in the app.',
-    guideStepTransitTitle: '3. Nationwide Transit Guide',
-    guideStepTransitDesc: 'Porto Metro, Lisbon Metro, CP trains and regional bus passes.',
-    guideStepEmergencyTitle: '4. Emergency & Support Dial',
-    guideStepEmergencyDesc: 'One-tap dialing for Emergency (112) and SNS 24.',
-    guideStepSlangTitle: '5. Voice & Slang Translator',
-    guideStepSlangDesc: 'Speech-to-text, audio pronunciation and slang detection.',
-    welcomeBtn: 'Got it, let\'s start!',
-    celebTitle: 'Parabéns! 🇵🇹🎉',
-    celebSub: 'You completed all 7 roadmap milestones!',
-    celebDesc: 'From your NIF to your SNS healthcare number: you are ready for Portugal!',
-    celebBtn: 'Muito obrigado! Let\'s go 🚀',
+    phrasesTitle: '🗣 Key Phrases for Everyday Life',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -334,21 +354,25 @@ const LOCALES = {
       {
         id: 'lisboa',
         name: 'Lisbon',
-        tagline: 'City of 7 hills, Fado & Tagus River Estuary',
+        tagline: 'City of 7 hills, Fado & scenic viewpoints',
         places: [
-          { id: 'l1', title: 'Belém Tower & Jerónimos Monastery', category: 'UNESCO World Heritage', desc: 'Manueline masterpiece perched along the Tagus River.', tip: 'Tip: Arrive before 10:00 AM to skip queues.' },
-          { id: 'l2', title: 'Miradouro de Santa Luzia', category: 'Scenic Overlook', desc: 'Bougainvillea blossoms and terracotta rooftops overlooking the river.', tip: 'Tip: Great sunset listening to live fado.' },
-          { id: 'lb1', title: 'Praia de Carcavelos (Beach)', category: '🏖 Surf & City Beach', desc: 'Largest sand beach on the Cascais train line with surf schools.', tip: 'Tip: 25 minutes by train from Cais do Sodré.' },
+          { id: 'l1', title: 'Belém Tower & Jerónimos Monastery', category: 'UNESCO World Heritage', desc: 'Manueline masterpiece perched along the Tagus River.', tip: 'Tip: Arrive before 10:00 AM.' },
+          { id: 'l2', title: 'Miradouro de Santa Luzia', category: 'Viewpoint', desc: 'Bougainvillea blossoms overlooking terracotta roofs.', tip: 'Tip: Visit during sunset.' },
+          { id: 'l3', title: 'Praça do Comércio', category: 'Historic Square', desc: 'Grand harbor square opening toward the river.', tip: 'Tip: Great start for walks.' },
+          { id: 'lb1', title: 'Praia de Carcavelos', category: '🏖 City & Surf Beach', desc: 'Largest beach on the Cascais train line with surf schools.', tip: 'Tip: 25 min train ride.' },
+          { id: 'lb2', title: 'Praia dos Galapinhos', category: '🏖 Arrábida Nature', desc: 'Crystal-clear waters beneath the cliffs of Arrábida.', tip: 'Tip: Arrive early in summer.' },
         ],
       },
       {
         id: 'porto',
-        name: 'Porto & Douro',
-        tagline: 'Granite architecture, Port wine & Dom Luís I bridge',
+        name: 'Porto',
+        tagline: 'Granite architecture, Port wine & dramatic bridges',
         places: [
-          { id: 'p1', title: 'Dom Luís I Bridge & Ribeira', category: 'Landmark', desc: 'Iconic double-deck arched bridge designed by Gustave Eiffel’s partner.', tip: 'Tip: Walk the upper deck for Gaia views.' },
-          { id: 'p2', title: 'Livraria Lello Bookstore', category: 'Architecture', desc: 'Celebrated bookstore with ornate crimson staircase.', tip: 'Tip: Buy tickets online in advance.' },
-          { id: 'pb1', title: 'Praia de Matosinhos (Beach)', category: '🏖 Metro & Surf', desc: 'Vast beach at the blue metro terminus, renowned for seafood grills.', tip: 'Tip: Try the fresh sea bass nearby.' },
+          { id: 'p1', title: 'Dom Luís I Bridge & Ribeira', category: 'Landmark', desc: 'Iconic double-deck iron arched bridge over the Douro.', tip: 'Tip: Walk the top deck.' },
+          { id: 'p2', title: 'Livraria Lello Bookstore', category: 'Architecture', desc: 'Celebrated neo-gothic bookstore with red staircase.', tip: 'Tip: Book tickets online.' },
+          { id: 'p3', title: 'Port Wine Cellars in Gaia', category: 'Tasting & Heritage', desc: 'Centuries-old aging cellars with traditional boats.', tip: 'Tip: Book a guided tasting.' },
+          { id: 'pb1', title: 'Praia de Matosinhos', category: '🏖 Metro Beach', desc: 'Broad beach at the metro terminus, famous for fresh seafood.', tip: 'Tip: Try the grilled sea bass.' },
+          { id: 'pb2', title: 'Praia de Miramar', category: '🏖 Seaside Chapel', desc: 'Seventeenth-century chapel perched on ocean rocks.', tip: 'Tip: Great sunset photo spot.' },
         ],
       },
       {
@@ -356,17 +380,11 @@ const LOCALES = {
         name: 'Sintra & Cascais',
         tagline: 'Fairytale palaces in misty cloud forests & ocean cliffs',
         places: [
-          { id: 's1', title: 'Pena National Palace', category: 'Romantic Palace', desc: 'Vibrant yellow and red Romanticist castle sitting on high peaks.', tip: 'Tip: Reserve morning entry slots.' },
-          { id: 'sb1', title: 'Praia do Guincho (Beach)', category: '🏖 Wild Surf Dunes', desc: 'World-renowned surfing haven framed by coastal dunes.', tip: 'Tip: Walk the elevated boardwalk trail.' },
-        ],
-      },
-      {
-        id: 'coimbra',
-        name: 'Coimbra & Central',
-        tagline: 'Ancient royal capital & one of Europe\'s oldest universities',
-        places: [
-          { id: 'c1', title: 'Biblioteca Joanina', category: 'Baroque Library', desc: 'Magnificent 18th-century gilded library holding historical manuscripts.', tip: 'Tip: Book combined tickets.' },
-          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Broad Sand Beach', desc: 'Immense expanse of sand equipped with boardwalks.', tip: 'Tip: 40 minutes by train from Coimbra.' },
+          { id: 's1', title: 'Pena National Palace', category: 'Romantic Palace', desc: 'Vibrant yellow and red castle on the high peaks of Sintra.', tip: 'Tip: Book morning slots.' },
+          { id: 's2', title: 'Quinta da Regaleira', category: 'Mystical Estate', desc: 'Enchanted park with grottoes and Initiation Well.', tip: 'Tip: Bring a flashlight.' },
+          { id: 's3', title: 'Cabo da Roca', category: 'Natural Wonder', desc: 'The westernmost point of continental Europe.', tip: 'Tip: Pack a windbreaker.' },
+          { id: 'sb1', title: 'Praia do Guincho', category: '🏖 Wild Surf Dunes', desc: 'World-renowned surfing haven framed by dunes.', tip: 'Tip: Walk the wooden trail.' },
+          { id: 'sb2', title: 'Praia da Ursa', category: '🏖 Secret Cove', desc: 'Secluded wild beach flanked by gigantic sea stacks.', tip: 'Tip: Wear hiking shoes.' },
         ],
       },
       {
@@ -374,9 +392,22 @@ const LOCALES = {
         name: 'Faro & Algarve',
         tagline: 'Golden sandstone sea cliffs & 300 days of sunshine',
         places: [
-          { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Paddle early morning by kayak.' },
-          { id: 'ab1', title: 'Praia da Marinha (Beach)', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and turquoise snorkeling waters.', tip: 'Tip: Trailhead of Seven Hanging Valleys hike.' },
-          { id: 'ab2', title: 'Praia da Falésia (Beach)', category: '🏖 Red Cliff Coast', desc: 'Over 6 km of sand beneath towering red cliffs.', tip: 'Tip: Heavenly for distance strolls.' },
+          { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Rent a kayak early.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Tip: Take a small boat tour.' },
+          { id: 'a3', title: 'Ria Formosa Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
+          { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and snorkeling waters.', tip: 'Tip: Hanging Valleys Trail.' },
+          { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Red Cliffs', desc: 'Over 6 km of sand sheltered by red sandstone cliffs.', tip: 'Tip: Low-tide strolls.' },
+        ],
+      },
+      {
+        id: 'coimbra',
+        name: 'Coimbra & Central',
+        tagline: 'Ancient royal capital & university history',
+        places: [
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Baroque Library', desc: 'Gilded library holding rare historical manuscripts.', tip: 'Tip: Book combined tickets.' },
+          { id: 'c2', title: 'Santa Cruz Monastery', category: 'History & Fado', desc: 'Resting place of the first Portuguese kings.', tip: 'Tip: Catch an evening fado.' },
+          { id: 'cb1', title: 'Praia da Claridade (Figueira)', category: '🏖 Vast Beach', desc: 'Massive sand beach equipped with wooden boardwalks.', tip: 'Tip: 40 min train.' },
+          { id: 'cb2', title: 'Praia de Mira', category: '🏖 Traditional Fishing', desc: 'Picturesque beach with striped wooden cottages.', tip: 'Tip: Taste fried calamari.' },
         ],
       },
       {
@@ -384,8 +415,10 @@ const LOCALES = {
         name: 'Madeira (Funchal)',
         tagline: 'The flower island of jagged peaks & lush levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'Alpine Trail', desc: 'Mountain ridge traverse above the cloud line.', tip: 'Tip: Drive up for sunrise.' },
-          { id: 'mb2', title: 'Praia da Calheta (Beach)', category: '🏖 Golden Sand Lagoon', desc: 'Twin golden-sand beach protected by double sea breakwaters.', tip: 'Tip: Sheltered ocean swimming.' },
+          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'Alpine Trail', desc: 'Thrilling ridge hike above a sea of clouds.', tip: 'Tip: Watch the sunrise.' },
+          { id: 'm2', title: '25 Fontes Levada Trail', category: 'UNESCO Nature', desc: 'Canal trail through ancient laurel forest.', tip: 'Tip: Start early.' },
+          { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Black Sand Beach', desc: 'Charming natural cove of dark volcanic sand.', tip: 'Tip: Beautiful contrast.' },
+          { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Golden Lagoon', desc: 'Protected twin beach with calm, warm waters.', tip: 'Tip: Great for families.' },
         ],
       },
     ],
@@ -394,12 +427,30 @@ const LOCALES = {
         category: 'Renting & Apartments (Arrendamento)',
         color: '#0284C7',
         items: [
-          { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
+          { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
+          { trans: 'How much is the deposit / upfront months?', pt: 'Quanto é a caução e quantos meses adiantados?', ph: 'Kwan-too eh ah kow-sow ee kwan-toosh...?' },
+        ],
+      },
+      {
+        category: 'Public Services & Paperwork (AIMA / Finanças)',
+        color: '#0F5132',
+        items: [
+          { trans: 'I need to apply for a NIF.', pt: 'Preciso de pedir o NIF nas Finanças.', ph: 'Preh-see-zoo deh peh-deer oo neef...' },
+        ],
+      },
+      {
+        category: 'Dining & Everyday Life',
+        color: '#D97706',
+        items: [
+          { trans: 'A draught beer, please.', pt: 'Uma imperial, por favor (Lisbon) / Um fino (Porto).', ph: 'Oo-mah eem-peh-ree-ahl / Oom fee-noo' },
+          { trans: 'The bill, please.', pt: 'A conta, por favor.', ph: 'Ah kon-tah, poor fah-vor' },
+          { trans: 'An espresso, please.', pt: 'Um café / Uma bica, por favor.', ph: 'Oom kah-feh / Oo-mah bee-kah' },
         ],
       },
     ],
     emergencies: [
       { name: 'Emergency (Police & Ambulance)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Central EU emergency dispatch.' },
+      { name: 'SNS 24 (Public Health Line)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Clinical guidance before visiting hospitals.' },
     ],
   },
 };
@@ -407,10 +458,6 @@ const LOCALES = {
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
-  const [welcomeModalVisible, setWelcomeModalVisible] = useState(false);
-  const [celebrationModalVisible, setCelebrationModalVisible] = useState(false);
-  
-  // STANDARD-START TAB: Services
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
 
@@ -434,8 +481,6 @@ export default function App() {
   const [selectedServices, setSelectedServices] = useState({ nif: true, niss: false, bank: false });
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
-  const [passportFileName, setPassportFileName] = useState('');
-  const [proofFileName, setProofFileName] = useState('');
 
   // Aktive Stadt und Attraktionen
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
@@ -451,13 +496,7 @@ export default function App() {
   });
 
   const toggleChecklistItem = (id) => {
-    const updated = { ...checkedMap, [id]: !checkedMap[id] };
-    setCheckedMap(updated);
-
-    const doneCount = t.checklist.filter((item) => updated[item.id]).length;
-    if (doneCount === t.checklist.length) {
-      setCelebrationModalVisible(true);
-    }
+    setCheckedMap({ ...checkedMap, [id]: !checkedMap[id] });
   };
 
   const completedCount = t.checklist.filter((item) => checkedMap[item.id]).length;
@@ -470,8 +509,17 @@ export default function App() {
     Linking.openURL(url).catch(() => Alert.alert('Fehler', 'Link konnte nicht geöffnet werden.'));
   };
 
-  const openPlaceInMaps = (query) => {
-    openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`);
+  const openCityInNativeMaps = (lat, lng, label) => {
+    const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+    const latLng = `${lat},${lng}`;
+    const url = Platform.select({
+      ios: `${scheme}${label}@${latLng}`,
+      android: `${scheme}${latLng}(${label})`,
+      web: `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
+    });
+    Linking.openURL(url).catch(() => {
+      openUrl(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`);
+    });
   };
 
   const playAudio = (text, langCode = 'pt') => {
@@ -483,25 +531,22 @@ export default function App() {
       utterance.lang = voiceObj ? voiceObj.voice : 'pt-PT';
       utterance.rate = 0.95;
       window.speechSynthesis.speak(utterance);
+    } else {
+      Alert.alert('Audio', `🗣 "${text}"`);
     }
   };
 
   const handleServiceSubmit = () => {
     if (!userName.trim() || !userEmail.trim()) {
-      Alert.alert('Hinweis', 'Bitte Name und E-Mail-Adresse angeben.');
+      Alert.alert('Hinweis', 'Bitte Name und E-Mail angeben.');
       return;
     }
-
     const servicesList = Object.keys(selectedServices)
       .filter((k) => selectedServices[k])
       .map((s) => s.toUpperCase())
       .join(', ');
-
     const subject = encodeURIComponent(`Neuer Auftrag: ${servicesList} - ${userName}`);
-    const body = encodeURIComponent(
-      `Hallo PortuStart Team,\n\nServices: ${servicesList}\nName: ${userName}\nE-Mail: ${userEmail}\n\nDokumente: ${passportFileName || 'Separat'}`
-    );
-
+    const body = encodeURIComponent(`Hallo PortuStart,\n\nServices: ${servicesList}\nName: ${userName}\nE-Mail: ${userEmail}`);
     Linking.openURL(`mailto:portustart@proton.me?subject=${subject}&body=${body}`).catch(() => {
       Alert.alert('E-Mail', 'Bitte schreibe an: portustart@proton.me');
     });
@@ -541,6 +586,9 @@ export default function App() {
     });
   };
 
+  // Google Maps Embed URL für die Region
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#0F5132" />
@@ -553,17 +601,12 @@ export default function App() {
               <Text style={styles.headerTitle}>{t.title}</Text>
               <Text style={styles.headerSubtitle}>{t.sub}</Text>
             </View>
-            <View style={styles.headerActions}>
-              <TouchableOpacity style={styles.guideIconBtn} onPress={() => setWelcomeModalVisible(true)}>
-                <Ionicons name="help-circle-outline" size={18} color="#fff" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
-                <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 4 }} />
-                <Text style={styles.langSwitchHeaderText}>
-                  {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
+              <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 4 }} />
+              <Text style={styles.langSwitchHeaderText}>
+                {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -713,73 +756,14 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: PLACES / ECHTE GEOGRAFISCHE PORTUGAL-KARTE */}
+        {/* TAB 2: PLACES / ECHTE INTERAKTIVE LIVE-KARTE */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
               <Text style={styles.subText}>{t.placesSectionSub}</Text>
-              <Text style={styles.miniLabel}>{t.mapInstruction}</Text>
 
-              {/* MASSSTABSGETREUE PORTUGAL-LANDKARTE (VEKTOR) */}
-              <View style={styles.portugalMapBox}>
-                {/* Meereshintergrund */}
-                <View style={styles.oceanWaterMark}>
-                  <Text style={styles.oceanWaterMarkText}>ATLÂNTICO</Text>
-                </View>
-
-                {/* Kontur Festland Portugal */}
-                <View style={styles.portugalMainlandShape}>
-                  {/* Region Norte */}
-                  <View style={styles.geoNorte} />
-                  {/* Region Centro */}
-                  <View style={styles.geoCentro} />
-                  {/* Region Tejo & Lisboa */}
-                  <View style={styles.geoLisboa} />
-                  {/* Region Alentejo */}
-                  <View style={styles.geoAlentejo} />
-                  {/* Region Algarve */}
-                  <View style={styles.geoAlgarve} />
-                </View>
-
-                {/* Madeira Insel-Box */}
-                <View style={styles.madeiraIslandBox}>
-                  <Text style={styles.madeiraBoxTitle}>MADEIRA</Text>
-                  <View style={styles.madeiraIslandShape} />
-                </View>
-
-                {/* Interaktive Pins auf den echten geographischen Punkten */}
-                {t.cities.map((city) => {
-                  const isSelected = selectedCityId === city.id;
-                  const meta = CITIES_METADATA[city.id] || CITIES_METADATA['lisboa'];
-                  return (
-                    <TouchableOpacity
-                      key={city.id}
-                      style={[
-                        styles.mapPinContainer,
-                        { top: meta.mapCoords.top, left: meta.mapCoords.left },
-                        isSelected && styles.mapPinContainerActive,
-                      ]}
-                      onPress={() => setSelectedCityId(city.id)}
-                    >
-                      <View style={[styles.mapPinDot, isSelected && styles.mapPinDotActive]}>
-                        <Ionicons
-                          name="location"
-                          size={isSelected ? 16 : 12}
-                          color={isSelected ? '#DC2626' : '#0F5132'}
-                        />
-                      </View>
-                      <View style={[styles.mapPinLabelBadge, isSelected && styles.mapPinLabelBadgeActive]}>
-                        <Text style={[styles.mapPinLabelText, isSelected && styles.mapPinLabelTextActive]}>
-                          {city.name.split(' ')[0]}
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-
-              {/* Filter-Leiste */}
+              {/* Städte-Filter zur Steuerung der Live-Karte */}
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
                 {t.cities.map((city) => {
                   const isSelected = selectedCityId === city.id;
@@ -790,7 +774,7 @@ export default function App() {
                       onPress={() => setSelectedCityId(city.id)}
                     >
                       <Ionicons
-                        name="business-outline"
+                        name="location"
                         size={13}
                         color={isSelected ? '#0F5132' : '#64748B'}
                         style={{ marginRight: 4 }}
@@ -802,16 +786,43 @@ export default function App() {
                   );
                 })}
               </ScrollView>
+
+              {/* INTERAKTIVES LIVE-KARTENFENSTER (ZOOMBAR & VOLL FUNKTIONAL) */}
+              <View style={styles.liveMapWrapper}>
+                {Platform.OS === 'web' ? (
+                  <iframe
+                    title="Portugal Interactive Map"
+                    src={mapEmbedUrl}
+                    style={styles.mapIframe}
+                    loading="lazy"
+                    allowFullScreen
+                  />
+                ) : (
+                  <View style={styles.nativeMapFallback}>
+                    <Ionicons name="map-outline" size={40} color="#0F5132" />
+                    <Text style={styles.nativeMapText}>Portugal Live-Karte</Text>
+                  </View>
+                )}
+                
+                {/* Button zum Öffnen in nativer Apple/Google Maps App */}
+                <TouchableOpacity
+                  style={styles.floatingOpenMapsBtn}
+                  onPress={() => openCityInNativeMaps(currentCityMeta.lat, currentCityMeta.lng, currentCityText.name)}
+                >
+                  <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
+                  <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
-            {/* Aktive Region Header */}
+            {/* Aktive Region Titel & Zähler */}
             <View style={styles.cityDetailsHeader}>
               <View style={{ flex: 1 }}>
                 <Text style={styles.activeCityName}>{currentCityText.name}</Text>
                 <Text style={styles.activeCityTagline}>{currentCityText.tagline}</Text>
               </View>
               <View style={styles.cityPlacesCounter}>
-                <Text style={styles.cityPlacesCounterText}>{dynamicPlaces.length} Orte & Strände</Text>
+                <Text style={styles.cityPlacesCounterText}>{dynamicPlaces.length} Highlights & Strände</Text>
               </View>
             </View>
 
@@ -819,7 +830,7 @@ export default function App() {
               {t.swipeInstruction}
             </Text>
 
-            {/* Horizontales Swipe-Karussell */}
+            {/* Swipe-Karussell mit Highlights & Stränden */}
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -849,7 +860,7 @@ export default function App() {
 
                     <TouchableOpacity
                       style={styles.openMapBtn}
-                      onPress={() => openPlaceInMaps(place.query)}
+                      onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`)}
                     >
                       <Ionicons name="navigate-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
                       <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
@@ -974,14 +985,21 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: GUIDE */}
+        {/* TAB 5: GUIDE (TRANSIT + NOTRUF + STANDARD-SÄTZE) */}
         {activeTab === 'guide' && (
           <ScrollView contentContainerStyle={styles.scrollContent}>
+            {/* Transit Hub */}
             <View style={styles.card}>
-              <Text style={styles.sectionHeaderTitle}>{t.transitTitle}</Text>
-              <Text style={styles.subText}>{t.transitSub}</Text>
+              <View style={styles.transitHeaderRow}>
+                <Ionicons name="train" size={24} color="#0F5132" style={{ marginRight: 8 }} />
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.sectionHeaderTitle}>{t.transitTitle}</Text>
+                  <Text style={styles.subText}>{t.transitSub}</Text>
+                </View>
+              </View>
+
               <TouchableOpacity
-                style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginTop: 6 }]}
+                style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginBottom: 6 }]}
                 onPress={() => openUrl('https://www.google.com/maps/dir/?api=1&travelmode=transit')}
               >
                 <Ionicons name="navigate-circle" size={18} color="#fff" style={{ marginRight: 6 }} />
@@ -989,6 +1007,7 @@ export default function App() {
               </TouchableOpacity>
             </View>
 
+            {/* Notfallkontakte */}
             <View style={styles.guideSection}>
               <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
               {t.emergencies.map((item, idx) => (
@@ -1007,10 +1026,32 @@ export default function App() {
                 </TouchableOpacity>
               ))}
             </View>
+
+            {/* WICHTIGE SÄTZE & REDEWENDUNGEN (VOLLSTÄNDIG WIEDER DA) */}
+            <View style={styles.guideSection}>
+              <Text style={styles.sectionTitle}>{t.phrasesTitle}</Text>
+              {t.phrases.map((sec, i) => (
+                <View key={i} style={{ marginBottom: 12 }}>
+                  <Text style={[styles.phraseCategoryTitle, { color: sec.color }]}>{sec.category}</Text>
+                  {sec.items.map((item, idx) => (
+                    <View key={idx} style={styles.phraseCard}>
+                      <View style={styles.phraseHeaderRow}>
+                        <Text style={styles.ptText}>{item.pt}</Text>
+                        <TouchableOpacity onPress={() => playAudio(item.pt, 'pt')} style={{ padding: 4 }}>
+                          <Ionicons name="volume-medium" size={18} color="#0F5132" />
+                        </TouchableOpacity>
+                      </View>
+                      <Text style={styles.phText}>🗣 {item.ph}</Text>
+                      <Text style={styles.deText}>{item.trans}</Text>
+                    </View>
+                  ))}
+                </View>
+              ))}
+            </View>
           </ScrollView>
         )}
 
-        {/* MODAL SPRACHAUSWAHL */}
+        {/* SPRACHAUSWAHL MODAL */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
             <View style={styles.modalCard}>
@@ -1055,8 +1096,6 @@ const styles = StyleSheet.create({
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   headerTitle: { color: '#FFFFFF', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
   headerSubtitle: { color: '#BBF7D0', fontSize: 11, marginTop: 2 },
-  headerActions: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  guideIconBtn: { backgroundColor: 'rgba(255,255,255,0.18)', padding: 6, borderRadius: 12 },
   langSwitchHeaderBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1102,136 +1141,52 @@ const styles = StyleSheet.create({
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
 
-  // ECHTE PORTUGAL KARTENKONTUR STYLES
-  portugalMapBox: {
+  // INTERAKTIVE LIVE-MAP
+  liveMapWrapper: {
     height: 270,
     width: '100%',
-    backgroundColor: '#DFF0FA', // Atlantikblau
-    borderRadius: 16,
-    position: 'relative',
+    borderRadius: 14,
     overflow: 'hidden',
-    marginTop: 6,
-    marginBottom: 10,
-    borderWidth: 1.5,
-    borderColor: '#BAE6FD',
-  },
-  oceanWaterMark: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    opacity: 0.4,
-  },
-  oceanWaterMarkText: { fontSize: 13, fontWeight: '900', color: '#0284C7', letterSpacing: 2 },
-  
-  // Festland Silhouette
-  portugalMainlandShape: {
-    position: 'absolute',
-    top: 20,
-    right: 35,
-    width: 135,
-    height: 230,
-  },
-  geoNorte: {
-    width: 100,
-    height: 55,
-    backgroundColor: '#D1E7DD',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 18,
-    marginLeft: 15,
-    borderWidth: 1,
-    borderColor: '#A3CFBB',
-  },
-  geoCentro: {
-    width: 115,
-    height: 60,
-    backgroundColor: '#DCFCE7',
-    borderTopLeftRadius: 15,
-    borderBottomLeftRadius: 20,
-    borderWidth: 1,
-    borderColor: '#A3CFBB',
-    marginTop: -5,
-  },
-  geoLisboa: {
-    width: 90,
-    height: 35,
-    backgroundColor: '#FEF3C7',
-    borderTopLeftRadius: 25,
-    borderBottomLeftRadius: 15,
-    borderWidth: 1,
-    borderColor: '#FDE68A',
-    marginTop: -4,
-  },
-  geoAlentejo: {
-    width: 115,
-    height: 55,
-    backgroundColor: '#FEF08A',
-    borderBottomLeftRadius: 20,
-    borderWidth: 1,
-    borderColor: '#FDE047',
-    marginTop: -3,
-    marginLeft: 5,
-  },
-  geoAlgarve: {
-    width: 125,
-    height: 28,
-    backgroundColor: '#FED7AA',
-    borderBottomLeftRadius: 14,
-    borderBottomRightRadius: 18,
-    borderWidth: 1,
-    borderColor: '#FDBA74',
-    marginTop: -2,
-  },
-
-  // Madeira Box
-  madeiraIslandBox: {
-    position: 'absolute',
-    bottom: 12,
-    left: 12,
-    backgroundColor: 'rgba(255,255,255,0.7)',
-    padding: 6,
-    borderRadius: 8,
-    alignItems: 'center',
+    position: 'relative',
+    marginTop: 8,
     borderWidth: 1,
     borderColor: '#CBD5E1',
+    backgroundColor: '#E2E8F0',
   },
-  madeiraBoxTitle: { fontSize: 8.5, fontWeight: '800', color: '#475569', marginBottom: 2 },
-  madeiraIslandShape: { width: 34, height: 14, backgroundColor: '#86EFAC', borderRadius: 7 },
-
-  mapPinContainer: {
-    position: 'absolute',
+  mapIframe: {
+    width: '100%',
+    height: '100%',
+    border: 'none',
+  },
+  nativeMapFallback: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    transform: [{ translateX: -12 }, { translateY: -12 }],
-    zIndex: 10,
   },
-  mapPinContainerActive: { zIndex: 30 },
-  mapPinDot: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 14,
-    padding: 4,
+  nativeMapText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#0F5132',
+    marginTop: 6,
+  },
+  floatingOpenMapsBtn: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    backgroundColor: '#0F5132',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 8,
     elevation: 4,
     shadowColor: '#000',
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.2,
     shadowRadius: 4,
-    borderWidth: 1.5,
-    borderColor: '#0F5132',
   },
-  mapPinDotActive: {
-    borderColor: '#DC2626',
-    backgroundColor: '#FEE2E2',
-    transform: [{ scale: 1.25 }],
-  },
-  mapPinLabelBadge: {
-    backgroundColor: 'rgba(15, 23, 42, 0.85)',
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 6,
-    marginTop: 2,
-  },
-  mapPinLabelBadgeActive: { backgroundColor: '#0F5132' },
-  mapPinLabelText: { fontSize: 9.5, color: '#FFFFFF', fontWeight: 'bold' },
-  mapPinLabelTextActive: { color: '#BBF7D0' },
+  floatingOpenMapsBtnText: { color: '#FFFFFF', fontSize: 11, fontWeight: 'bold' },
 
-  cityFilterScroll: { paddingVertical: 4, gap: 6 },
+  cityFilterScroll: { paddingVertical: 4, gap: 6, marginBottom: 4 },
   cityChip: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1384,7 +1339,8 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 },
   rowLabel: { fontSize: 12, color: '#64748B' },
   rowValue: { fontSize: 12, fontWeight: '600', color: '#0F172A' },
-  guideSection: { marginBottom: 14 },
+  transitHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  guideSection: { marginBottom: 16 },
   sectionTitle: { fontSize: 14, fontWeight: '700', marginBottom: 8, color: '#0F172A' },
   emergencyCard: {
     flexDirection: 'row',
@@ -1401,6 +1357,12 @@ const styles = StyleSheet.create({
   emergencyDesc: { fontSize: 11, color: '#64748B', marginTop: 1 },
   callBadge: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
   callBadgeText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
+  phraseCategoryTitle: { fontSize: 12.5, fontWeight: '800', marginBottom: 6 },
+  phraseCard: { backgroundColor: '#FFFFFF', padding: 12, borderRadius: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E2E8F0' },
+  phraseHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  ptText: { fontSize: 14, fontWeight: '700', color: '#0F172A', flex: 1 },
+  phText: { fontSize: 12, color: '#64748B', fontStyle: 'italic', marginVertical: 2 },
+  deText: { fontSize: 12, color: '#334155' },
   modalOverlay: { flex: 1, backgroundColor: 'rgba(15,23,42,0.65)', justifyContent: 'center', alignItems: 'center', padding: 20 },
   modalCard: { backgroundColor: '#FFFFFF', borderRadius: 20, padding: 18, width: '100%', maxWidth: 340 },
   modalTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 12, color: '#0F172A' },
