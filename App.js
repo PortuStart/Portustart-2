@@ -230,6 +230,7 @@ const LOCALES = {
 
     congratsTitle: '🎉 Herzlichen Glückwunsch!',
     congratsDesc: 'Du hast alle 7 Schritte deiner Start-Roadmap erfolgreich gemeistert! Du bist bereit für deinen perfekten Neuanfang in Portugal.',
+    closeBtn: 'Schließen',
 
     from: 'Von:',
     to: 'Nach:',
@@ -392,6 +393,7 @@ const LOCALES = {
 
     congratsTitle: '🎉 Congratulations!',
     congratsDesc: 'You have successfully completed all 7 steps of your start roadmap! You are ready for your perfect new beginning in Portugal.',
+    closeBtn: 'Close',
 
     from: 'From:',
     to: 'To:',
@@ -497,7 +499,7 @@ const LOCALES = {
         name: 'Madeira (Funchal)',
         tagline: 'The flower island of jagged peaks & lush levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro to Pico Ruivo', category: 'Alpine Trail', desc: 'Mountain ridge traverse above the cloud line.', tip: 'Tip: Watch the sunrise.' },
+          { id: 'm1', title: 'Pico do Arieiro bis Pico Ruivo', category: 'Alpine Trail', desc: 'Mountain ridge traverse above the cloud line.', tip: 'Tip: Watch the sunrise.' },
           { id: 'm2', title: '25 Fontes Levada Trail', category: 'UNESCO Nature', desc: 'Canal trail through ancient laurel forest.', tip: 'Tip: Start early.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Black Sand Beach', desc: 'Charming natural cove of dark volcanic sand.', tip: 'Tip: Beautiful contrast.' },
           { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Golden Lagoon', desc: 'Protected twin beach with calm, warm waters.', tip: 'Tip: Great for families.' },
@@ -518,6 +520,8 @@ export default function App() {
   const [langModalVisible, setLangModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
+  const [congratsModalVisible, setCongratsModalVisible] = useState(false);
+  const [lastCompletedCount, setLastCompletedCount] = useState(0);
 
   const t = LOCALES[appLang] || LOCALES['de'];
 
@@ -574,11 +578,17 @@ export default function App() {
   });
 
   const toggleChecklistItem = (id) => {
-    setCheckedMap({ ...checkedMap, [id]: !checkedMap[id] });
+    const newCheckedMap = { ...checkedMap, [id]: !checkedMap[id] };
+    setCheckedMap(newCheckedMap);
+
+    const newCompletedCount = t.checklist.filter((item) => newCheckedMap[item.id]).length;
+    if (newCompletedCount === t.checklist.length && lastCompletedCount < t.checklist.length) {
+      setCongratsModalVisible(true);
+    }
+    setLastCompletedCount(newCompletedCount);
   };
 
   const completedCount = t.checklist.filter((item) => checkedMap[item.id]).length;
-  const allCompleted = completedCount === t.checklist.length;
 
   const dialNumber = (number) => {
     Linking.openURL(`tel:${number}`).catch(() => Alert.alert('Info', `Nummer wählen: ${number}`));
@@ -761,17 +771,6 @@ export default function App() {
               <View style={styles.progressBarTrack}>
                 <View style={[styles.progressBarFill, { width: `${(completedCount / t.checklist.length) * 100}%` }]} />
               </View>
-
-              {/* CONGRATS BANNER WENN ALLE SCHRITTE ERLEDIGT SIND */}
-              {allCompleted && (
-                <View style={styles.congratsBanner}>
-                  <Ionicons name="trophy" size={24} color="#0F5132" style={{ marginRight: 10 }} />
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.congratsTitle}>{t.congratsTitle}</Text>
-                    <Text style={styles.congratsDesc}>{t.congratsDesc}</Text>
-                  </View>
-                </View>
-              )}
 
               {t.checklist.map((item) => {
                 const isDone = !!checkedMap[item.id];
@@ -1178,6 +1177,22 @@ export default function App() {
           </View>
         </Modal>
 
+        {/* MODAL CONGRATS POPUP */}
+        <Modal visible={congratsModalVisible} transparent animationType="fade" onRequestClose={() => setCongratsModalVisible(false)}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.congratsModalCard}>
+              <View style={styles.congratsIconWrap}>
+                <Ionicons name="trophy" size={36} color="#0F5132" />
+              </View>
+              <Text style={styles.congratsModalTitle}>{t.congratsTitle}</Text>
+              <Text style={styles.congratsModalDesc}>{t.congratsDesc}</Text>
+              <TouchableOpacity style={styles.primaryBtn} onPress={() => setCongratsModalVisible(false)}>
+                <Text style={styles.btnText}>{t.closeBtn}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
         {/* REVOLUT DOMAIN VERIFICATION TOKEN */}
         <Text style={{ fontSize: 1, color: '#F8FAFC', opacity: 0.01, height: 1 }}>795dbaf6-de69-4f37-bae1-7e67ab1f4e47</Text>
 
@@ -1245,19 +1260,6 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: { fontSize: 15, fontWeight: '800', color: '#0F172A' },
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
-
-  congratsBanner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#DCFCE7',
-    borderWidth: 1,
-    borderColor: '#86EFAC',
-    borderRadius: 12,
-    padding: 12,
-    marginBottom: 12,
-  },
-  congratsTitle: { fontSize: 13, fontWeight: '800', color: '#166534' },
-  congratsDesc: { fontSize: 11.5, color: '#14532D', marginTop: 2, lineHeight: 16 },
 
   affiliateServiceCard: {
     backgroundColor: '#F8FAFC',
@@ -1553,4 +1555,8 @@ const styles = StyleSheet.create({
   modalLangBtnActive: { borderColor: '#0F5132', backgroundColor: '#DCFCE7' },
   modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B', marginTop: 2 },
   modalLangTextActive: { color: '#0F5132' },
+  congratsModalCard: { backgroundColor: '#FFFFFF', borderRadius: 24, padding: 22, width: '100%', maxWidth: 320, alignItems: 'center', elevation: 5 },
+  congratsIconWrap: { width: 64, height: 64, borderRadius: 32, backgroundColor: '#DCFCE7', alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
+  congratsModalTitle: { fontSize: 18, fontWeight: '900', color: '#0F172A', textAlign: 'center', marginBottom: 6 },
+  congratsModalDesc: { fontSize: 13, color: '#475569', textAlign: 'center', lineHeight: 18, marginBottom: 16 },
 });
