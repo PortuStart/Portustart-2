@@ -128,7 +128,6 @@ const CITIES_METADATA = {
   },
 };
 
-// ENGLISCHSPRACHIGE ÄRZTE / KLINIKEN DATENBANK
 const ENGLISH_DOCTORS = [
   {
     id: 'doc1',
@@ -137,36 +136,44 @@ const ENGLISH_DOCTORS = [
     specialty: 'Multidisciplinary Hospital & Emergency',
     address: 'Rua Mário Botelho Moniz 7, Lisbon',
     query: 'CUF Descobertas Hospital Lisbon',
+    lat: 38.7463,
+    lng: -9.1172,
     phone: '+351 210 025 200',
     desc: 'Major private hospital with fully English-speaking doctors, specialists, and 24/7 urgent care.',
   },
   {
     id: 'doc2',
-    name: 'Luz Saúde / Hospital da Luz',
+    name: 'Hospital da Luz',
     city: 'Lisboa',
     specialty: 'General Practice & Specialists',
     address: 'Av. Lusíada 100, Lisbon',
     query: 'Hospital da Luz Lisbon',
+    lat: 38.7514,
+    lng: -9.1822,
     phone: '+351 217 104 400',
     desc: 'Extremely popular among expats. Modern facility with international patient desk and English staff.',
   },
   {
     id: 'doc3',
-    name: 'HPA Saúde - Grupo Hospitalar (Algarve)',
+    name: 'HPA Saúde (Faro)',
     city: 'Algarve',
     specialty: 'Private Medical Center',
     address: 'Rua Leão Penedo, Faro',
     query: 'Hospital Particular do Algarve Faro',
+    lat: 37.0194,
+    lng: -7.9322,
     phone: '+351 289 885 200',
     desc: 'Top-tier medical care in the Algarve region with fluent English-speaking practitioners.',
   },
   {
     id: 'doc4',
-    name: 'Hospital da Lusíada Porto',
+    name: 'Hospital da Lusiada Porto',
     city: 'Porto',
     specialty: 'Emergency & General Care',
     address: 'Avenida da Boavista 3105, Porto',
     query: 'Hospital Lusiadas Porto',
+    lat: 41.1621,
+    lng: -8.6565,
     phone: '+351 226 090 330',
     desc: 'Leading private hospital in northern Portugal providing comprehensive English-language support.',
   },
@@ -179,10 +186,9 @@ const LOCALES = {
     tabServices: 'Services',
     tabPlaces: 'Entdecken',
     tabAtms: 'ATMs',
-    tabDoctors: 'Ärzte',
+    tabDoctors: 'Ärzte & Notruf',
     tabTrans: 'Translator',
     tabCalc: 'Gehalt',
-    tabGuide: 'Guide',
     placesSectionTitle: '🇵🇹 Interaktive Karte & Highlights',
     placesSectionSub: 'Live-Karte von Portugal – wähle eine Region oder buche Touren:',
     openInAppMaps: 'In Maps-App',
@@ -193,18 +199,16 @@ const LOCALES = {
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
     
-    // ATMs translations
     atmSectionTitle: '🏧 Gebührenfreie ATMs (Multibanco)',
-    atmSectionSub: 'Nutze das offizielle Multibanco-Netzwerk (an echten Bankfilialen), um mit Revolut & Wise gebührenfrei Bargeld abzuheben. Meide blaue Euronet-Automaten!',
+    atmSectionSub: 'Nutze das offizielle Multibanco-Netzwerk an echten Bankfilialen, um mit Revolut & Wise gebührenfrei Geld abheben zu können:',
     atmTipTitle: '💡 Wichtiger Expat-Tipp:',
-    atmTipDesc: 'Achte darauf, immer in Euro (€) abzurechnen, falls der Automat die Abrechnung in deiner Heimatwährung anbietet (Dynamic Currency Conversion vermeiden).',
-    atmBankListTitle: 'Empfohlene Banken mit Multibanco-Geräten:',
+    atmTipDesc: 'Achte darauf, immer in Euro (€) abzurechnen, falls der Automat die Abrechnung in deiner Heimatwährung anbietet.',
     
-    // Doctors translations
-    docSectionTitle: '🩺 Englischsprachige Ärzte & Kliniken',
-    docSectionSub: 'Privatkliniken und medizinische Zentren in Portugal mit englischsprachigem Personal und internationalem Patientenservice:',
+    docSectionTitle: '🩺 Englischsprachige Ärzte & Notfall',
+    docSectionSub: 'Wichtige Notrufnummern sowie private Kliniken mit internationalem Patientenservice:',
     callDoctorBtn: 'Anrufen',
     directionBtn: 'Standort öffnen',
+    emergencyTitle: '🚨 Notfall- & Behördenkontakte',
 
     from: 'Von:',
     to: 'Nach:',
@@ -235,11 +239,6 @@ const LOCALES = {
     calcGrossRow: 'Brutto / Monat:',
     calcSSRow: 'Sozialversicherung (-11%):',
     calcIRSRow: 'IRS Steuerabzug:',
-    emergencyTitle: '🚨 Notfall- & Behördenkontakte',
-    transitTitle: '🚆 Bus, Bahn & Metro (Ganz Portugal)',
-    transitSub: 'Fahrpläne, Netze & Spartickets von Porto bis Faro',
-    openLiveTransitBtn: 'Live-Navigation in Google Maps',
-    phrasesTitle: '🗣 Wichtige Sätze & Vokabeln für den Start',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -321,18 +320,6 @@ const LOCALES = {
         ],
       },
     ],
-    phrases: [
-      {
-        category: 'Wohnungssuche & Miete (Arrendamento)',
-        color: '#0284C7',
-        items: [
-          { trans: 'Ist die Wohnung noch verfügbar?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too eye-ndah esh-tah deesh-poo-nee-vel?' },
-        ],
-      },
-    ],
-    emergencies: [
-      { name: 'Notruf (Polizei & Krankenwagen)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Zentraler EU-Notruf für Notfälle.' },
-    ],
   },
   en: {
     title: 'PortuStart',
@@ -340,10 +327,9 @@ const LOCALES = {
     tabServices: 'Services',
     tabPlaces: 'Explore',
     tabAtms: 'ATMs',
-    tabDoctors: 'Doctors',
+    tabDoctors: 'Doctors & Emergencies',
     tabTrans: 'Translator',
     tabCalc: 'Salary',
-    tabGuide: 'Guide',
     placesSectionTitle: '🇵🇹 Interactive Map & Sights',
     placesSectionSub: 'Live map of Portugal – choose a region or book tours:',
     openInAppMaps: 'Open in Maps App',
@@ -355,15 +341,15 @@ const LOCALES = {
     italkiBtn: 'Find Native Tutors (italki) ↗',
     
     atmSectionTitle: '🏧 Fee-Free ATMs (Multibanco)',
-    atmSectionSub: 'Use official Multibanco network machines (located at bank branches) to withdraw cash with Revolut or Wise without operator surcharges. Avoid blue Euronet ATMs!',
+    atmSectionSub: 'Use official Multibanco network machines at bank branches to withdraw cash with Revolut or Wise without surcharges:',
     atmTipTitle: '💡 Important Expat Tip:',
-    atmTipDesc: 'Always choose to be billed in Euros (€) if the ATM offers conversion to your home currency (avoid Dynamic Currency Conversion fees).',
-    atmBankListTitle: 'Recommended Banks with Multibanco ATMs:',
+    atmTipDesc: 'Always choose to be billed in Euros (€) if the ATM offers conversion to your home currency.',
 
-    docSectionTitle: '🩺 English-Speaking Doctors & Clinics',
-    docSectionSub: 'Private hospitals and medical centers in Portugal with English-speaking staff and international patient support:',
+    docSectionTitle: '🩺 English-Speaking Doctors & Emergencies',
+    docSectionSub: 'Essential emergency hotlines and private medical centers with international patient support:',
     callDoctorBtn: 'Call',
     directionBtn: 'Open Location',
+    emergencyTitle: '🚨 Emergency & Support Contacts',
 
     from: 'From:',
     to: 'To:',
@@ -394,11 +380,6 @@ const LOCALES = {
     calcGrossRow: 'Monthly Gross:',
     calcSSRow: 'Social Security (-11%):',
     calcIRSRow: 'IRS Withholding:',
-    emergencyTitle: '🚨 Emergency & Support Contacts',
-    transitTitle: '🚆 Bus, Train & Metro (All Portugal)',
-    transitSub: 'Schedules, network maps & passes from Porto to Faro',
-    openLiveTransitBtn: 'Live Navigation in Google Maps',
-    phrasesTitle: '🗣 Key Phrases for Everyday Life',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -480,20 +461,14 @@ const LOCALES = {
         ],
       },
     ],
-    phrases: [
-      {
-        category: 'Renting & Apartments (Arrendamento)',
-        color: '#0284C7',
-        items: [
-          { trans: 'Is the apartment still available?', pt: 'O apartamento ainda está disponível?', ph: 'Oo ah-par-tah-men-too...' },
-        ],
-      },
-    ],
-    emergencies: [
-      { name: 'Emergency (Police & Ambulance)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Central EU emergency dispatch.' },
-    ],
   },
 };
+
+const EMERGENCIES = [
+  { name: 'Notruf (Polizei & Krankenwagen)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Zentraler EU-Notruf für Notfälle.' },
+  { name: 'SNS 24 (Gesundheitshotline)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Medizinische Ersteinschätzung vor Klinikbesuch.' },
+  { name: 'Linha Migrante (AIMA)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Auskünfte zu Einwanderung & Dokumenten.' },
+];
 
 export default function App() {
   const [appLang, setAppLang] = useState('de');
@@ -611,6 +586,8 @@ export default function App() {
   };
 
   const mapEmbedUrl = `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
+  const atmMapUrl = `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
+  const doctorsMapUrl = `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -633,7 +610,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* 7-FACH MENÜLEISTE */}
+        {/* 6-FACH MENÜLEISTE */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
@@ -664,11 +641,6 @@ export default function App() {
             <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalary(grossInput); }}>
               <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'guide' && styles.tabButtonActive]} onPress={() => setActiveTab('guide')}>
-              <Ionicons name="compass" size={12} color={activeTab === 'guide' ? '#fff' : '#64748B'} />
-              <Text style={[styles.tabText, activeTab === 'guide' && styles.tabTextActive]}>{t.tabGuide}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -809,7 +781,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: ATMS / MULTIBANCO GUIDE */}
+        {/* TAB 3: ATMS / MULTIBANCO GUIDE + LIVE KARTE */}
         {activeTab === 'atms' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -819,39 +791,58 @@ export default function App() {
               </View>
               <Text style={styles.subText}>{t.atmSectionSub}</Text>
 
-              <View style={styles.attractionTipBox}>
+              {/* LIVE MAP FÜR ATMS */}
+              <View style={styles.liveMapWrapper}>
+                {Platform.OS === 'web' ? (
+                  <iframe title="Multibanco ATMs Map" src={atmMapUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
+                ) : (
+                  <View style={styles.nativeMapFallback}>
+                    <Ionicons name="card-outline" size={40} color="#0F5132" />
+                    <Text style={styles.nativeMapText}>Multibanco ATMs</Text>
+                  </View>
+                )}
+                
+                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl('https://www.google.com/maps/search/?api=1&query=Multibanco+ATM+Portugal')}>
+                  <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
+                  <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
+                </TouchableOpacity>
+              </View>
+
+              <View style={[styles.attractionTipBox, { marginTop: 12 }]}>
                 <Ionicons name="information-circle" size={18} color="#D97706" style={{ marginRight: 6, marginTop: 1 }} />
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.attractionTipText, { fontWeight: 'bold' }]}>{t.atmTipTitle}</Text>
                   <Text style={[styles.attractionTipText, { marginTop: 2 }]}>{t.atmTipDesc}</Text>
                 </View>
               </View>
-
-              <Text style={[styles.sectionHeaderTitle, { fontSize: 13, marginTop: 14, marginBottom: 8 }]}>{t.atmBankListTitle}</Text>
-
-              {['Caixa Geral de Depósitos (CGD)', 'Millennium BCP', 'Novo Banco', 'Banco BPI', 'Santander Totta'].map((bank, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={styles.emergencyCard}
-                  onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(bank + ' ATM Portugal')}`)}
-                >
-                  <View style={[styles.emergencyIconWrap, { backgroundColor: '#0F5132' }]}>
-                    <Ionicons name="business" size={16} color="#fff" />
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.emergencyName}>{bank}</Text>
-                    <Text style={styles.emergencyDesc}>Offizielles Multibanco-Netzwerk • Keine Zusatzgebühren</Text>
-                  </View>
-                  <Ionicons name="open-outline" size={18} color="#64748B" />
-                </TouchableOpacity>
-              ))}
             </View>
           </ScrollView>
         )}
 
-        {/* TAB 4: DOCTORS / ENGLISCHSPRACHIGE ÄRZTE */}
+        {/* TAB 4: DOCTORS & EMERGENCIES + LIVE KARTE */}
         {activeTab === 'doctors' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            {/* NOTRUFKONTAKTE */}
+            <View style={styles.card}>
+              <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
+              {EMERGENCIES.map((item, idx) => (
+                <TouchableOpacity key={idx} style={styles.emergencyCard} onPress={() => dialNumber(item.num)}>
+                  <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
+                    <Ionicons name={item.icon} size={18} color="#fff" />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.emergencyName}>{item.name}</Text>
+                    <Text style={styles.emergencyDesc}>{item.desc}</Text>
+                  </View>
+                  <View style={styles.callBadge}>
+                    <Ionicons name="call" size={13} color="#0F5132" style={{ marginRight: 3 }} />
+                    <Text style={styles.callBadgeText}>{item.num}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            {/* ÄRZTE & KLINIKEN MAP */}
             <View style={styles.card}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
                 <Ionicons name="medkit" size={24} color="#0F5132" style={{ marginRight: 8 }} />
@@ -859,34 +850,54 @@ export default function App() {
               </View>
               <Text style={styles.subText}>{t.docSectionSub}</Text>
 
-              {ENGLISH_DOCTORS.map((doc) => (
-                <View key={doc.id} style={styles.affiliateServiceCard}>
-                  <View style={styles.affiliateTopRow}>
-                    <View style={styles.affiliateIconBadge}>
-                      <Ionicons name="hospital" size={20} color="#0F5132" />
+              {/* LIVE MAP FÜR ÄRZTE */}
+              <View style={styles.liveMapWrapper}>
+                {Platform.OS === 'web' ? (
+                  <iframe title="English Speaking Doctors Map" src={doctorsMapUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
+                ) : (
+                  <View style={styles.nativeMapFallback}>
+                    <Ionicons name="medkit-outline" size={40} color="#0F5132" />
+                    <Text style={styles.nativeMapText}>Kliniken & Ärzte</Text>
+                  </View>
+                )}
+                
+                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl('https://www.google.com/maps/search/?api=1&query=Hospital+Portugal')}>
+                  <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
+                  <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* LISTE DER KLINIKEN */}
+              <View style={{ marginTop: 12 }}>
+                {ENGLISH_DOCTORS.map((doc) => (
+                  <View key={doc.id} style={styles.affiliateServiceCard}>
+                    <View style={styles.affiliateTopRow}>
+                      <View style={styles.affiliateIconBadge}>
+                        <Ionicons name="hospital" size={20} color="#0F5132" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.affiliateBadgeText}>{doc.city} • {doc.specialty}</Text>
+                        <Text style={styles.affiliateTitle}>{doc.name}</Text>
+                      </View>
                     </View>
-                    <View style={{ flex: 1 }}>
-                      <Text style={styles.affiliateBadgeText}>{doc.city} • {doc.specialty}</Text>
-                      <Text style={styles.affiliateTitle}>{doc.name}</Text>
+
+                    <Text style={styles.affiliateDesc}>{doc.desc}</Text>
+                    <Text style={[styles.affiliateDesc, { fontWeight: '700', color: '#334155', marginTop: 4 }]}>📍 {doc.address}</Text>
+
+                    <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
+                      <TouchableOpacity style={[styles.affiliateActionBtn, { flex: 1, marginTop: 0, backgroundColor: '#0284C7' }]} onPress={() => dialNumber(doc.phone)}>
+                        <Ionicons name="call" size={13} color="#fff" style={{ marginRight: 4 }} />
+                        <Text style={styles.affiliateActionBtnText}>{t.callDoctorBtn}</Text>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity style={[styles.affiliateActionBtn, { flex: 1, marginTop: 0 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(doc.query)}`)}>
+                        <Ionicons name="navigate" size={13} color="#fff" style={{ marginRight: 4 }} />
+                        <Text style={styles.affiliateActionBtnText}>{t.directionBtn}</Text>
+                      </TouchableOpacity>
                     </View>
                   </View>
-
-                  <Text style={styles.affiliateDesc}>{doc.desc}</Text>
-                  <Text style={[styles.affiliateDesc, { fontWeight: '700', color: '#334155', marginTop: 4 }]}>📍 {doc.address}</Text>
-
-                  <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
-                    <TouchableOpacity style={[styles.affiliateActionBtn, { flex: 1, marginTop: 0, backgroundColor: '#0284C7' }]} onPress={() => dialNumber(doc.phone)}>
-                      <Ionicons name="call" size={13} color="#fff" style={{ marginRight: 4 }} />
-                      <Text style={styles.affiliateActionBtnText}>{t.callDoctorBtn}</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={[styles.affiliateActionBtn, { flex: 1, marginTop: 0 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(doc.query)}`)}>
-                      <Ionicons name="navigate" size={13} color="#fff" style={{ marginRight: 4 }} />
-                      <Text style={styles.affiliateActionBtnText}>{t.directionBtn}</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
+                ))}
+              </View>
             </View>
           </ScrollView>
         )}
@@ -990,66 +1001,6 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 7: GUIDE */}
-        {activeTab === 'guide' && (
-          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.card}>
-              <View style={styles.transitHeaderRow}>
-                <Ionicons name="train" size={24} color="#0F5132" style={{ marginRight: 8 }} />
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.sectionHeaderTitle}>{t.transitTitle}</Text>
-                  <Text style={styles.subText}>{t.transitSub}</Text>
-                </View>
-              </View>
-
-              <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: '#0284C7', marginBottom: 6 }]} onPress={() => openUrl('https://www.google.com/maps/dir/?api=1&travelmode=transit')}>
-                <Ionicons name="navigate-circle" size={18} color="#fff" style={{ marginRight: 6 }} />
-                <Text style={styles.btnText}>{t.openLiveTransitBtn}</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.guideSection}>
-              <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
-              {t.emergencies.map((item, idx) => (
-                <TouchableOpacity key={idx} style={styles.emergencyCard} onPress={() => dialNumber(item.num)}>
-                  <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
-                    <Ionicons name={item.icon} size={18} color="#fff" />
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.emergencyName}>{item.name}</Text>
-                    <Text style={styles.emergencyDesc}>{item.desc}</Text>
-                  </View>
-                  <View style={styles.callBadge}>
-                    <Ionicons name="call" size={13} color="#0F5132" style={{ marginRight: 3 }} />
-                    <Text style={styles.callBadgeText}>{item.num}</Text>
-                  </View>
-                </TouchableOpacity>
-              ))}
-            </View>
-
-            <View style={styles.guideSection}>
-              <Text style={styles.sectionTitle}>{t.phrasesTitle}</Text>
-              {t.phrases.map((sec, i) => (
-                <View key={i} style={{ marginBottom: 12 }}>
-                  <Text style={[styles.phraseCategoryTitle, { color: sec.color }]}>{sec.category}</Text>
-                  {sec.items.map((item, idx) => (
-                    <View key={idx} style={styles.phraseCard}>
-                      <View style={styles.phraseHeaderRow}>
-                        <Text style={styles.ptText}>{item.pt}</Text>
-                        <TouchableOpacity onPress={() => playAudio(item.pt, 'pt')} style={{ padding: 4 }}>
-                          <Ionicons name="volume-medium" size={18} color="#0F5132" />
-                        </TouchableOpacity>
-                      </View>
-                      <Text style={styles.phText}>🗣 {item.ph}</Text>
-                      <Text style={styles.deText}>{item.trans}</Text>
-                    </View>
-                  ))}
-                </View>
-              ))}
-            </View>
-          </ScrollView>
-        )}
-
         {/* MODAL SPRACHAUSWAHL */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
@@ -1121,14 +1072,14 @@ const styles = StyleSheet.create({
   tabButton: {
     flex: 1,
     flexDirection: 'column',
-    paddingVertical: 5,
+    paddingVertical: 6,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 16,
     gap: 1,
   },
   tabButtonActive: { backgroundColor: '#0F5132' },
-  tabText: { fontSize: 9, color: '#64748B', fontWeight: '600' },
+  tabText: { fontSize: 9.5, color: '#64748B', fontWeight: '600' },
   tabTextActive: { color: '#FFFFFF', fontWeight: '700' },
   scrollContent: { padding: 14, paddingBottom: 40 },
   card: {
@@ -1385,8 +1336,6 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 },
   rowLabel: { fontSize: 12, color: '#64748B' },
   rowValue: { fontSize: 12, fontWeight: '600', color: '#0F172A' },
-  transitHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
-  guideSection: { marginBottom: 16 },
   sectionTitle: { fontSize: 14, fontWeight: '700', marginBottom: 8, color: '#0F172A' },
   emergencyCard: {
     flexDirection: 'row',
@@ -1401,12 +1350,8 @@ const styles = StyleSheet.create({
   emergencyIconWrap: { width: 34, height: 34, borderRadius: 17, justifyContent: 'center', alignItems: 'center', marginRight: 10 },
   emergencyName: { fontSize: 13, fontWeight: '700', color: '#0F172A' },
   emergencyDesc: { fontSize: 11, color: '#64748B', marginTop: 1 },
-  phraseCategoryTitle: { fontSize: 12.5, fontWeight: '800', marginBottom: 6 },
-  phraseCard: { backgroundColor: '#FFFFFF', padding: 12, borderRadius: 12, marginBottom: 8, borderWidth: 1, borderColor: '#E2E8F0' },
-  phraseHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  ptText: { fontSize: 14, fontWeight: '700', color: '#0F172A', flex: 1 },
-  phText: { fontSize: 12, color: '#64748B', fontStyle: 'italic', marginVertical: 2 },
-  deText: { fontSize: 12, color: '#334155' },
+  callBadge: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
+  callBadgeText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
   modalOverlay: { flex: 1, backgroundColor: 'rgba(15,23,42,0.65)', justifyContent: 'center', alignItems: 'center', padding: 20 },
   modalCard: { backgroundColor: '#FFFFFF', borderRadius: 20, padding: 18, width: '100%', maxWidth: 340 },
   modalTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 12, color: '#0F172A' },
