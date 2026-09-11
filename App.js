@@ -33,6 +33,7 @@ const AFFILIATE_LINKS = {
   getYourGuideCmp: 'share_to_earn',
 
   italkiLang: 'https://www.italki.com/affshare?ref=af33636608',
+  revolut: 'https://revolut.com/referral/?referral-code=portustart',
 };
 
 const UI_LANGUAGES = [
@@ -186,7 +187,8 @@ const LOCALES = {
     tabServices: 'Services',
     tabPlaces: 'Entdecken',
     tabAtms: 'ATMs',
-    tabDoctors: 'Ärzte & Notruf',
+    tabDoctors: 'Ärzte',
+    tabPerks: 'Deals',
     tabTrans: 'Translator',
     tabCalc: 'Gehalt',
     placesSectionTitle: '🇵🇹 Interaktive Karte & Highlights',
@@ -200,7 +202,7 @@ const LOCALES = {
     italkiBtn: 'Muttersprachler finden (italki) ↗',
     
     atmSectionTitle: '🏧 Gebührenfreie ATMs (Multibanco)',
-    atmSectionSub: 'Nutze das offizielle Multibanco-Netzwerk an echten Bankfilialen, um mit Revolut & Wise gebührenfrei Geld abheben zu können:',
+    atmSectionSub: 'Nutze das offizielle Multibanco-Netzwerk an echten Bankfilialen, um mit Revolut & Wise gebührenfrei Geld abzuheben zu können:',
     atmTipTitle: '💡 Wichtiger Expat-Tipp:',
     atmTipDesc: 'Achte darauf, immer in Euro (€) abzurechnen, falls der Automat die Abrechnung in deiner Heimatwährung anbietet.',
     
@@ -209,6 +211,11 @@ const LOCALES = {
     callDoctorBtn: 'Anrufen',
     directionBtn: 'Standort öffnen',
     emergencyTitle: '🚨 Notfall- & Behördenkontakte',
+
+    // New Perks / Deals tab translations
+    perksSectionTitle: '🔥 Exklusive Expat-Deals & Vorteile',
+    perksSectionSub: 'Spare Geld und Zeit bei unseren offiziellen Partnern mit deinen PortuStart-Vorteilen:',
+    claimDealBtn: 'Deal sichern ↗',
 
     from: 'Von:',
     to: 'Nach:',
@@ -327,7 +334,8 @@ const LOCALES = {
     tabServices: 'Services',
     tabPlaces: 'Explore',
     tabAtms: 'ATMs',
-    tabDoctors: 'Doctors & Emergencies',
+    tabDoctors: 'Doctors',
+    tabPerks: 'Deals',
     tabTrans: 'Translator',
     tabCalc: 'Salary',
     placesSectionTitle: '🇵🇹 Interactive Map & Sights',
@@ -350,6 +358,10 @@ const LOCALES = {
     callDoctorBtn: 'Call',
     directionBtn: 'Open Location',
     emergencyTitle: '🚨 Emergency & Support Contacts',
+
+    perksSectionTitle: '🔥 Exclusive Expat Deals & Perks',
+    perksSectionSub: 'Save money and time with our official partners using your PortuStart benefits:',
+    claimDealBtn: 'Claim Deal ↗',
 
     from: 'From:',
     to: 'To:',
@@ -468,6 +480,33 @@ const EMERGENCIES = [
   { name: 'Notruf (Polizei & Krankenwagen)', num: '112', icon: 'flame', color: '#DC2626', desc: 'Zentraler EU-Notruf für Notfälle.' },
   { name: 'SNS 24 (Gesundheitshotline)', num: '808242424', icon: 'medkit', color: '#0F5132', desc: 'Medizinische Ersteinschätzung vor Klinikbesuch.' },
   { name: 'Linha Migrante (AIMA)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Auskünfte zu Einwanderung & Dokumenten.' },
+];
+
+const EXPAT_PERKS = [
+  {
+    id: 'perk1',
+    title: 'Revolut Expat Account',
+    badge: 'Finanzen • Gratis Karte',
+    desc: 'Eröffne dein Konto mit exklusiven Startvorteilen für gebührenfreie Zahlungen in Portugal.',
+    link: AFFILIATE_LINKS.revolut,
+    icon: 'card',
+  },
+  {
+    id: 'perk2',
+    title: 'e-Residence Express NIF',
+    badge: 'Behörden • Express-Service',
+    desc: 'Erhalte deine Steuernummer (NIF) innerhalb von 48 Stunden komplett digital ohne Portugal-Reise.',
+    link: AFFILIATE_LINKS.eResidenceNif,
+    icon: 'document-text',
+  },
+  {
+    id: 'perk3',
+    title: 'italki Sprachunterricht',
+    badge: 'Sprachen • 1-on-1',
+    desc: 'Finde zertifizierte Muttersprachler für Portugiesisch und erhalte exklusive Startguthaben.',
+    link: AFFILIATE_LINKS.italkiLang,
+    icon: 'school',
+  },
 ];
 
 export default function App() {
@@ -610,36 +649,41 @@ export default function App() {
           </View>
         </View>
 
-        {/* 6-FACH MENÜLEISTE */}
+        {/* 7-FACH MENÜLEISTE (INKL. PERKS & DEALS) */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
-              <Ionicons name="briefcase" size={12} color={activeTab === 'services' ? '#fff' : '#64748B'} />
+              <Ionicons name="briefcase" size={11} color={activeTab === 'services' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]} onPress={() => setActiveTab('places')}>
-              <Ionicons name="map" size={12} color={activeTab === 'places' ? '#fff' : '#64748B'} />
+              <Ionicons name="map" size={11} color={activeTab === 'places' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'atms' && styles.tabButtonActive]} onPress={() => setActiveTab('atms')}>
-              <Ionicons name="card" size={12} color={activeTab === 'atms' ? '#fff' : '#64748B'} />
+              <Ionicons name="card" size={11} color={activeTab === 'atms' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'atms' && styles.tabTextActive]}>{t.tabAtms}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'doctors' && styles.tabButtonActive]} onPress={() => setActiveTab('doctors')}>
-              <Ionicons name="medkit" size={12} color={activeTab === 'doctors' ? '#fff' : '#64748B'} />
+              <Ionicons name="medkit" size={11} color={activeTab === 'doctors' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'doctors' && styles.tabTextActive]}>{t.tabDoctors}</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity style={[styles.tabButton, activeTab === 'perks' && styles.tabButtonActive]} onPress={() => setActiveTab('perks')}>
+              <Ionicons name="gift" size={11} color={activeTab === 'perks' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'perks' && styles.tabTextActive]}>{t.tabPerks}</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]} onPress={() => setActiveTab('trans')}>
-              <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
+              <Ionicons name="chatbubbles" size={11} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalary(grossInput); }}>
-              <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
+              <Ionicons name="calculator" size={11} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
           </View>
@@ -781,7 +825,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: ATMS / MULTIBANCO GUIDE + LIVE KARTE */}
+        {/* TAB 3: ATMS / MULTIBANCO */}
         {activeTab === 'atms' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -791,7 +835,6 @@ export default function App() {
               </View>
               <Text style={styles.subText}>{t.atmSectionSub}</Text>
 
-              {/* LIVE MAP FÜR ATMS */}
               <View style={styles.liveMapWrapper}>
                 {Platform.OS === 'web' ? (
                   <iframe title="Multibanco ATMs Map" src={atmMapUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
@@ -819,10 +862,9 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 4: DOCTORS & EMERGENCIES + LIVE KARTE */}
+        {/* TAB 4: DOCTORS & EMERGENCIES */}
         {activeTab === 'doctors' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            {/* NOTRUFKONTAKTE */}
             <View style={styles.card}>
               <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
               {EMERGENCIES.map((item, idx) => (
@@ -842,7 +884,6 @@ export default function App() {
               ))}
             </View>
 
-            {/* ÄRZTE & KLINIKEN MAP */}
             <View style={styles.card}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
                 <Ionicons name="medkit" size={24} color="#0F5132" style={{ marginRight: 8 }} />
@@ -850,7 +891,6 @@ export default function App() {
               </View>
               <Text style={styles.subText}>{t.docSectionSub}</Text>
 
-              {/* LIVE MAP FÜR ÄRZTE */}
               <View style={styles.liveMapWrapper}>
                 {Platform.OS === 'web' ? (
                   <iframe title="English Speaking Doctors Map" src={doctorsMapUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
@@ -867,7 +907,6 @@ export default function App() {
                 </TouchableOpacity>
               </View>
 
-              {/* LISTE DER KLINIKEN */}
               <View style={{ marginTop: 12 }}>
                 {ENGLISH_DOCTORS.map((doc) => (
                   <View key={doc.id} style={styles.affiliateServiceCard}>
@@ -902,7 +941,44 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: TRANSLATOR */}
+        {/* TAB 5: PERKS & DEALS (SPONSOR ATTRACTION FEATURE) */}
+        {activeTab === 'perks' && (
+          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            <View style={styles.card}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
+                <Ionicons name="gift" size={24} color="#0F5132" style={{ marginRight: 8 }} />
+                <Text style={styles.sectionHeaderTitle}>{t.perksSectionTitle}</Text>
+              </View>
+              <Text style={styles.subText}>{t.perksSectionSub}</Text>
+
+              {EXPAT_PERKS.map((perk) => (
+                <View key={perk.id} style={styles.affiliateServiceCard}>
+                  <View style={styles.affiliateTopRow}>
+                    <View style={styles.affiliateIconBadge}>
+                      <Ionicons name={perk.icon} size={20} color="#0F5132" />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.affiliateBadgeText}>{perk.badge}</Text>
+                      <Text style={styles.affiliateTitle}>{perk.title}</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.affiliateDesc}>{perk.desc}</Text>
+                  <TouchableOpacity style={[styles.affiliateActionBtn, { backgroundColor: '#D97706' }]} onPress={() => openUrl(perk.link)}>
+                    <Text style={styles.affiliateActionBtnText}>{t.claimDealBtn}</Text>
+                    <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
+                  </TouchableOpacity>
+                </View>
+              ))}
+
+              <View style={[styles.attractionTipBox, { marginTop: 10 }]}>
+                <Ionicons name="star" size={16} color="#D97706" style={{ marginRight: 6, marginTop: 1 }} />
+                <Text style={styles.attractionTipText}>Alle Deals sind verifiziert und direkt mit unseren offiziellen Partner-Netzwerken verknüpft.</Text>
+              </View>
+            </View>
+          </ScrollView>
+        )}
+
+        {/* TAB 6: TRANSLATOR */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -963,7 +1039,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 6: CALC */}
+        {/* TAB 7: CALC */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1058,7 +1134,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   langSwitchHeaderText: { color: '#FFFFFF', fontSize: 11, fontWeight: 'bold' },
-  tabBarContainer: { paddingHorizontal: 6, marginTop: -16, marginBottom: 8, zIndex: 10 },
+  tabBarContainer: { paddingHorizontal: 4, marginTop: -16, marginBottom: 8, zIndex: 10 },
   tabBar: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
@@ -1072,14 +1148,14 @@ const styles = StyleSheet.create({
   tabButton: {
     flex: 1,
     flexDirection: 'column',
-    paddingVertical: 6,
+    paddingVertical: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 16,
     gap: 1,
   },
   tabButtonActive: { backgroundColor: '#0F5132' },
-  tabText: { fontSize: 9.5, color: '#64748B', fontWeight: '600' },
+  tabText: { fontSize: 8.5, color: '#64748B', fontWeight: '600' },
   tabTextActive: { color: '#FFFFFF', fontWeight: '700' },
   scrollContent: { padding: 14, paddingBottom: 40 },
   card: {
