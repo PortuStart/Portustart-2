@@ -202,7 +202,7 @@ const LOCALES = {
     italkiBtn: 'Muttersprachler finden (italki) ↗',
     
     atmSectionTitle: '🏧 Gebührenfreie ATMs (Multibanco)',
-    atmSectionSub: 'Nutze das offizielle Multibanco-Netzwerk an echten Bankfilialen, um mit Revolut & Wise gebührenfrei Geld abzuheben zu können:',
+    atmSectionSub: 'Nutze das offizielle Multibanco-Netzwerk an echten Bankfilialen, um mit Revolut & Wise gebührenfrei Geld abheben zu können:',
     atmTipTitle: '💡 Wichtiger Expat-Tipp:',
     atmTipDesc: 'Achte darauf, immer in Euro (€) abzurechnen, falls der Automat die Abrechnung in deiner Heimatwährung anbietet.',
     
@@ -212,17 +212,29 @@ const LOCALES = {
     directionBtn: 'Standort öffnen',
     emergencyTitle: '🚨 Notfall- & Behördenkontakte',
 
-    // New Perks / Deals tab translations
     perksSectionTitle: '🔥 Exklusive Expat-Deals & Vorteile',
     perksSectionSub: 'Spare Geld und Zeit bei unseren offiziellen Partnern mit deinen PortuStart-Vorteilen:',
     claimDealBtn: 'Deal sichern ↗',
+
+    perk1Title: 'Revolut Expat Konto',
+    perk1Badge: 'Finanzen • Gebührenfrei',
+    perk1Desc: '• Keine Fremdwährungsgebühren\n• Inklusive physischer Visa-Karte\n• Perfekt für Miete & Gehalt in PT',
+
+    perk2Title: 'e-Residence Express NIF',
+    perk2Badge: 'Behörden • In 48h',
+    perk2Desc: '• Ohne Vor-Ort-Termin in den Finanças\n• 100% digital & rechtssicher\n• Inklusive digitaler Signatur',
+
+    perk3Title: 'italki Sprachkurs',
+    perk3Badge: 'Sprachen • 1-on-1',
+    perk3Desc: '• Muttersprachliche Portugiesisch-Lehrer\n• Flexible Online-Stunden\n• Perfekt für Alltags- & Behördendeutsch/-englisch',
 
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
     placeholderTrans: 'Text eingeben oder sprechen...',
     btnTrans: 'Übersetzen',
-    listenBtn: 'Anhören',
+    listenBtn: 'Anhören (TTS)',
+    speakBtn: 'Sprechen (STT)',
     resultLabel: 'Ergebnis',
     servicesTitle: '📄 Offizielle Services & Anträge',
     servicesSub: 'Beantrage deine Dokumente & Absicherung 100% digital über unseren Partner e-Residence:',
@@ -363,12 +375,25 @@ const LOCALES = {
     perksSectionSub: 'Save money and time with our official partners using your PortuStart benefits:',
     claimDealBtn: 'Claim Deal ↗',
 
+    perk1Title: 'Revolut Expat Account',
+    perk1Badge: 'Finance • Fee-Free',
+    perk1Desc: '• Zero foreign transaction fees\n• Includes physical Visa card\n• Perfect for rent & salary in PT',
+
+    perk2Title: 'e-Residence Express NIF',
+    perk2Badge: 'Government • 48h Delivery',
+    perk2Desc: '• No physical trip to Finanças required\n• 100% digital & legally binding\n• Includes secure digital signature',
+
+    perk3Title: 'italki Language Lessons',
+    perk3Badge: 'Languages • 1-on-1',
+    perk3Desc: '• Certified native Portuguese tutors\n• Flexible online scheduling\n• Ideal for everyday & official communication',
+
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
     placeholderTrans: 'Enter text or speak...',
     btnTrans: 'Translate',
-    listenBtn: 'Listen',
+    listenBtn: 'Listen (TTS)',
+    speakBtn: 'Speech-to-Text (STT)',
     resultLabel: 'Result',
     servicesTitle: '📄 Official Relocation Services',
     servicesSub: 'Order essential documents & coverage 100% online through our partner e-Residence:',
@@ -444,7 +469,7 @@ const LOCALES = {
         tagline: 'Golden sandstone sea cliffs & 300 days of sunshine',
         places: [
           { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Rent a kayak early.' },
-          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Tip: Take a small boat tour.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Take a small boat tour.' },
           { id: 'a3', title: 'Ria Formosa Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
           { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and snorkeling waters.', tip: 'Tip: Hanging Valleys Trail.' },
           { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Red Cliffs', desc: 'Over 6 km of sand sheltered by red sandstone cliffs.', tip: 'Tip: Low-tide strolls.' },
@@ -482,33 +507,6 @@ const EMERGENCIES = [
   { name: 'Linha Migrante (AIMA)', num: '218106196', icon: 'people', color: '#0284C7', desc: 'Auskünfte zu Einwanderung & Dokumenten.' },
 ];
 
-const EXPAT_PERKS = [
-  {
-    id: 'perk1',
-    title: 'Revolut Expat Account',
-    badge: 'Finanzen • Gratis Karte',
-    desc: 'Eröffne dein Konto mit exklusiven Startvorteilen für gebührenfreie Zahlungen in Portugal.',
-    link: AFFILIATE_LINKS.revolut,
-    icon: 'card',
-  },
-  {
-    id: 'perk2',
-    title: 'e-Residence Express NIF',
-    badge: 'Behörden • Express-Service',
-    desc: 'Erhalte deine Steuernummer (NIF) innerhalb von 48 Stunden komplett digital ohne Portugal-Reise.',
-    link: AFFILIATE_LINKS.eResidenceNif,
-    icon: 'document-text',
-  },
-  {
-    id: 'perk3',
-    title: 'italki Sprachunterricht',
-    badge: 'Sprachen • 1-on-1',
-    desc: 'Finde zertifizierte Muttersprachler für Portugiesisch und erhalte exklusive Startguthaben.',
-    link: AFFILIATE_LINKS.italkiLang,
-    icon: 'school',
-  },
-];
-
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
@@ -516,6 +514,36 @@ export default function App() {
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
 
   const t = LOCALES[appLang] || LOCALES['de'];
+
+  const EXPAT_PERKS = [
+    {
+      id: 'perk1',
+      title: t.perk1Title,
+      badge: t.perk1Badge,
+      desc: t.perk1Desc,
+      link: AFFILIATE_LINKS.revolut,
+      icon: 'card',
+      img: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80',
+    },
+    {
+      id: 'perk2',
+      title: t.perk2Title,
+      badge: t.perk2Badge,
+      desc: t.perk2Desc,
+      link: AFFILIATE_LINKS.eResidenceNif,
+      icon: 'document-text',
+      img: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800&q=80',
+    },
+    {
+      id: 'perk3',
+      title: t.perk3Title,
+      badge: t.perk3Badge,
+      desc: t.perk3Desc,
+      link: AFFILIATE_LINKS.italkiLang,
+      icon: 'school',
+      img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',
+    },
+  ];
 
   const [checkedMap, setCheckedMap] = useState({});
   const [inputText, setInputText] = useState('');
@@ -586,7 +614,24 @@ export default function App() {
       utterance.rate = 0.95;
       window.speechSynthesis.speak(utterance);
     } else {
-      Alert.alert('Audio', `🗣 "${text}"`);
+      Alert.alert('Audio (TTS)', `🗣 "${text}"`);
+    }
+  };
+
+  const handleSpeechToText = () => {
+    if (Platform.OS === 'web' && typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = sourceLang === 'pt' ? 'pt-PT' : sourceLang === 'de' ? 'de-DE' : 'en-US';
+      recognition.onstart = () => Alert.alert('STT', 'Mikrofon aktiv – bitte sprechen...');
+      recognition.onresult = (event) => {
+        const speechToTextResult = event.results[0][0].transcript;
+        setInputText(speechToTextResult);
+      };
+      recognition.onerror = () => Alert.alert('Fehler', 'Spracherkennung fehlgeschlagen.');
+      recognition.start();
+    } else {
+      Alert.alert('Speech-to-Text (STT)', 'Mikrofon-Eingabe (Simulation): Bitte Text manuell eingeben oder auf Mobilgeräten nutzen.');
     }
   };
 
@@ -649,7 +694,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* 7-FACH MENÜLEISTE (INKL. PERKS & DEALS) */}
+        {/* 7-FACH MENÜLEISTE */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
@@ -941,7 +986,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: PERKS & DEALS (SPONSOR ATTRACTION FEATURE) */}
+        {/* TAB 5: PERKS & DEALS (ATTRAKTIVES DESIGN, HARMONISIERTE GRÜNE AKZENTE & LINK-BUTTONS) */}
         {activeTab === 'perks' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -952,21 +997,24 @@ export default function App() {
               <Text style={styles.subText}>{t.perksSectionSub}</Text>
 
               {EXPAT_PERKS.map((perk) => (
-                <View key={perk.id} style={styles.affiliateServiceCard}>
-                  <View style={styles.affiliateTopRow}>
-                    <View style={styles.affiliateIconBadge}>
-                      <Ionicons name={perk.icon} size={20} color="#0F5132" />
+                <View key={perk.id} style={styles.attractionCardWide}>
+                  <Image source={{ uri: perk.img }} style={styles.perkCardImage} />
+                  <View style={styles.attractionBody}>
+                    <View style={styles.affiliateTopRow}>
+                      <View style={styles.affiliateIconBadge}>
+                        <Ionicons name={perk.icon} size={18} color="#0F5132" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.affiliateBadgeText}>{perk.badge}</Text>
+                        <Text style={styles.affiliateTitle}>{perk.title}</Text>
+                      </View>
                     </View>
-                    <View style={{ flex: 1 }}>
-                      <Text style={styles.affiliateBadgeText}>{perk.badge}</Text>
-                      <Text style={styles.affiliateTitle}>{perk.title}</Text>
-                    </View>
+                    <Text style={styles.affiliateDesc}>{perk.desc}</Text>
+                    <TouchableOpacity style={styles.primaryBtn} onPress={() => openUrl(perk.link)}>
+                      <Text style={styles.btnText}>{t.claimDealBtn}</Text>
+                      <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
+                    </TouchableOpacity>
                   </View>
-                  <Text style={styles.affiliateDesc}>{perk.desc}</Text>
-                  <TouchableOpacity style={[styles.affiliateActionBtn, { backgroundColor: '#D97706' }]} onPress={() => openUrl(perk.link)}>
-                    <Text style={styles.affiliateActionBtnText}>{t.claimDealBtn}</Text>
-                    <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
-                  </TouchableOpacity>
                 </View>
               ))}
 
@@ -1000,7 +1048,13 @@ export default function App() {
                 ))}
               </ScrollView>
 
-              <TextInput style={[styles.textInput, { marginTop: 10 }]} placeholder={t.placeholderTrans} placeholderTextColor="#94A3B8" value={inputText} onChangeText={setInputText} multiline />
+              <View style={{ position: 'relative', marginTop: 10 }}>
+                <TextInput style={styles.textInput} placeholder={t.placeholderTrans} placeholderTextColor="#94A3B8" value={inputText} onChangeText={setInputText} multiline />
+                <TouchableOpacity style={styles.sttMicButton} onPress={handleSpeechToText}>
+                  <Ionicons name="mic" size={18} color="#FFFFFF" />
+                  <Text style={styles.sttMicButtonText}>{t.speakBtn}</Text>
+                </TouchableOpacity>
+              </View>
 
               <TouchableOpacity style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]} onPress={handleTranslate} disabled={loading || !inputText.trim()}>
                 {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.btnTrans}</Text>}
@@ -1202,6 +1256,20 @@ const styles = StyleSheet.create({
   affiliateActionBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
   disclosureText: { fontSize: 10, color: '#94A3B8', textAlign: 'center', marginTop: 6, lineHeight: 14 },
 
+  attractionCardWide: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    overflow: 'hidden',
+    marginBottom: 12,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+  },
+  perkCardImage: { width: '100%', height: 130, backgroundColor: '#E2E8F0' },
+
   italkiBannerCard: {
     backgroundColor: '#F0FDF4',
     borderRadius: 16,
@@ -1395,9 +1463,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FAFC',
     borderRadius: 10,
     padding: 10,
+    paddingBottom: 34,
     borderWidth: 1,
     borderColor: '#E2E8F0',
   },
+  sttMicButton: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    backgroundColor: '#0284C7',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    gap: 4,
+  },
+  sttMicButtonText: { color: '#FFFFFF', fontSize: 10.5, fontWeight: 'bold' },
   resultCard: { backgroundColor: '#F0FDF4', borderRadius: 16, padding: 14, borderColor: '#BBF7D0', borderWidth: 1, marginTop: 10 },
   resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
