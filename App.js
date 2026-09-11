@@ -228,6 +228,9 @@ const LOCALES = {
     perk3Badge: 'Sprachen • 1-on-1',
     perk3Desc: '• Muttersprachliche Portugiesisch-Lehrer\n• Flexible Online-Stunden\n• Perfekt für Alltags- & Behördendeutsch/-englisch',
 
+    congratsTitle: '🎉 Herzlichen Glückwunsch!',
+    congratsDesc: 'Du hast alle 7 Schritte deiner Start-Roadmap erfolgreich gemeistert! Du bist bereit für deinen perfekten Neuanfang in Portugal.',
+
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
@@ -387,6 +390,9 @@ const LOCALES = {
     perk3Badge: 'Languages • 1-on-1',
     perk3Desc: '• Certified native Portuguese tutors\n• Flexible online scheduling\n• Ideal for everyday & official communication',
 
+    congratsTitle: '🎉 Congratulations!',
+    congratsDesc: 'You have successfully completed all 7 steps of your start roadmap! You are ready for your perfect new beginning in Portugal.',
+
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
@@ -469,7 +475,7 @@ const LOCALES = {
         tagline: 'Golden sandstone sea cliffs & 300 days of sunshine',
         places: [
           { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Rent a kayak early.' },
-          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Take a small boat tour.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Tip: Take a small boat tour.' },
           { id: 'a3', title: 'Ria Formosa Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
           { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and snorkeling waters.', tip: 'Tip: Hanging Valleys Trail.' },
           { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Red Cliffs', desc: 'Over 6 km of sand sheltered by red sandstone cliffs.', tip: 'Tip: Low-tide strolls.' },
@@ -572,6 +578,7 @@ export default function App() {
   };
 
   const completedCount = t.checklist.filter((item) => checkedMap[item.id]).length;
+  const allCompleted = completedCount === t.checklist.length;
 
   const dialNumber = (number) => {
     Linking.openURL(`tel:${number}`).catch(() => Alert.alert('Info', `Nummer wählen: ${number}`));
@@ -681,9 +688,12 @@ export default function App() {
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
-            <View>
-              <Text style={styles.headerTitle}>{t.title}</Text>
-              <Text style={styles.headerSubtitle}>{t.sub}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Image source={{ uri: 'https://images.unsplash.com/photo-1594897030264-ab7d4efefc87?w=200&q=80' }} style={styles.appHeaderLogo} />
+              <View>
+                <Text style={styles.headerTitle}>{t.title}</Text>
+                <Text style={styles.headerSubtitle}>{t.sub}</Text>
+              </View>
             </View>
             <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
               <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 4 }} />
@@ -751,6 +761,17 @@ export default function App() {
               <View style={styles.progressBarTrack}>
                 <View style={[styles.progressBarFill, { width: `${(completedCount / t.checklist.length) * 100}%` }]} />
               </View>
+
+              {/* CONGRATS BANNER WENN ALLE SCHRITTE ERLEDIGT SIND */}
+              {allCompleted && (
+                <View style={styles.congratsBanner}>
+                  <Ionicons name="trophy" size={24} color="#0F5132" style={{ marginRight: 10 }} />
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.congratsTitle}>{t.congratsTitle}</Text>
+                    <Text style={styles.congratsDesc}>{t.congratsDesc}</Text>
+                  </View>
+                </View>
+              )}
 
               {t.checklist.map((item) => {
                 const isDone = !!checkedMap[item.id];
@@ -986,7 +1007,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: PERKS & DEALS (ATTRAKTIVES DESIGN, HARMONISIERTE GRÜNE AKZENTE & LINK-BUTTONS) */}
+        {/* TAB 5: PERKS & DEALS */}
         {activeTab === 'perks' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -1177,6 +1198,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  appHeaderLogo: { width: 36, height: 36, borderRadius: 8, borderWidth: 1, borderColor: '#BBF7D0' },
   headerTitle: { color: '#FFFFFF', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
   headerSubtitle: { color: '#BBF7D0', fontSize: 11, marginTop: 2 },
   langSwitchHeaderBtn: {
@@ -1223,6 +1245,19 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: { fontSize: 15, fontWeight: '800', color: '#0F172A' },
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
+
+  congratsBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#DCFCE7',
+    borderWidth: 1,
+    borderColor: '#86EFAC',
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 12,
+  },
+  congratsTitle: { fontSize: 13, fontWeight: '800', color: '#166534' },
+  congratsDesc: { fontSize: 11.5, color: '#14532D', marginTop: 2, lineHeight: 16 },
 
   affiliateServiceCard: {
     backgroundColor: '#F8FAFC',
