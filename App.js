@@ -232,6 +232,17 @@ const LOCALES = {
     congratsTitle: '🎉 Herzlichen Glückwunsch!',
     congratsDesc: 'Du hast alle 7 Schritte deiner Start-Roadmap erfolgreich gemeistert! Du bist bereit für deinen perfekten Neuanfang in Portugal.',
     closeBtn: 'Schließen',
+    nextBtn: 'Weiter',
+    startBtn: 'Loslegen',
+
+    onboardingSteps: [
+      { title: 'Willkommen bei PortuStart! 🇵🇹', desc: 'Dein digitaler Begleiter für einen nahtlosen und stressfreien Umzug nach Portugal.' },
+      { title: '1. Offizielle Services & Roadmap 📄', desc: 'Erledige NIF, Bankkonto, NISS und Krankenversicherung komplett digital und verfolge deine ersten 30 Tage.' },
+      { title: '2. Entdecke Portugal 🗺', desc: 'Finde die schönsten Highlights, Strände und buche direkt Touren über unsere Partner.' },
+      { title: '3. ATMs & Notfall-Ärzte 🏧🩺', desc: 'Finde gebührenfreie Multibanco-Geldautomaten und englischsprachige Ärzte in deiner Nähe.' },
+      { title: '4. Exklusive Expat-Deals 🔥', desc: 'Spare bares Geld bei unseren Partnern wie Revolut, e-Residence und italki.' },
+      { title: '5. Translator & Gehaltsrechner 🗣💶', desc: 'Übersetze vor Ort mit STT/TTS und berechne dein portugiesisches Nettoeinkommen.' },
+    ],
 
     from: 'Von:',
     to: 'Nach:',
@@ -396,6 +407,17 @@ const LOCALES = {
     congratsTitle: '🎉 Congratulations!',
     congratsDesc: 'You have successfully completed all 7 steps of your start roadmap! You are ready for your perfect new beginning in Portugal.',
     closeBtn: 'Close',
+    nextBtn: 'Next',
+    startBtn: 'Get Started',
+
+    onboardingSteps: [
+      { title: 'Welcome to PortuStart! 🇵🇹', desc: 'Your digital companion for a seamless and stress-free move to Portugal.' },
+      { title: '1. Official Services & Roadmap 📄', desc: 'Handle NIF, bank account, NISS, and health insurance digitally and track your first 30 days.' },
+      { title: '2. Explore Portugal 🗺', desc: 'Find top sights, beaches, and book tours directly through our trusted partners.' },
+      { title: '3. ATMs & Emergency Doctors 🏧🩺', desc: 'Locate fee-free Multibanco ATMs and English-speaking doctors nearby.' },
+      { title: '4. Exclusive Expat Deals 🔥', desc: 'Save money with our official partners like Revolut, e-Residence, and italki.' },
+      { title: '5. Translator & Salary Calculator 🗣💶', desc: 'Translate on the go with STT/TTS and estimate your net salary in Portugal.' },
+    ],
 
     from: 'From:',
     to: 'To:',
@@ -546,7 +568,7 @@ const LOCALES = {
     perk1Desc: '• Cero comisiones en el extranjero\n• Incluye tarjeta física Visa\n• Ideal para alquiler y salario en PT',
     perk2Title: 'e-Residence NIF Express',
     perk2Badge: 'Gobierno • En 48h',
-    perk2Desc: '• Sin cita presencial en Finanzas\n• 100% digital y legal\n• Incluye firma digital',
+    perk2Desc: '• Sin cita presencial en Finanças\n• 100% digital y legal\n• Incluye firma digital',
     perk3Title: 'Clases de italki',
     perk3Badge: 'Idiomas • 1 a 1',
     perk3Desc: '• Profesores nativos de portugués\n• Clases online flexibles\n• Ideal para el día a día',
@@ -1122,7 +1144,7 @@ const LOCALES = {
       },
       {
         id: 'madeira',
-        name: 'Мадейра (Фуншал)',
+        name: 'Мадейра (Funchal)',
         tagline: 'Острів квітів із гострими піками та левадами',
         places: [
           { id: 'm1', title: 'Піку-ду-Аріейру до Піку-Руіву', category: 'Альпійський маршрут', desc: 'Захоплюючий хребетний похід вище хмар.', tip: 'Порада: вирушайте на світанку.' },
@@ -1149,7 +1171,12 @@ export default function App() {
   const [congratsModalVisible, setCongratsModalVisible] = useState(false);
   const [lastCompletedCount, setLastCompletedCount] = useState(0);
 
+  // Onboarding Slideshow State
+  const [onboardingVisible, setOnboardingVisible] = useState(true);
+  const [onboardingStepIndex, setOnboardingStepIndex] = useState(0);
+
   const t = LOCALES[appLang] || LOCALES['de'];
+  const onboardingSteps = t.onboardingSteps || LOCALES['de'].onboardingSteps;
 
   const EXPAT_PERKS = [
     {
@@ -1819,6 +1846,41 @@ export default function App() {
           </View>
         </Modal>
 
+        {/* MODAL ONBOARDING / SLIDESHOW */}
+        <Modal visible={onboardingVisible} transparent animationType="slide" onRequestClose={() => setOnboardingVisible(false)}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.onboardingModalCard}>
+              <View style={styles.onboardingHeaderIcon}>
+                <Ionicons name="compass" size={40} color="#0F5132" />
+              </View>
+              <Text style={styles.onboardingTitle}>{onboardingSteps[onboardingStepIndex].title}</Text>
+              <Text style={styles.onboardingDesc}>{onboardingSteps[onboardingStepIndex].desc}</Text>
+
+              <View style={styles.paginationDots}>
+                {onboardingSteps.map((_, i) => (
+                  <View key={i} style={[styles.dot, onboardingStepIndex === i && styles.dotActive]} />
+                ))}
+              </View>
+
+              <TouchableOpacity
+                style={styles.primaryBtn}
+                onPress={() => {
+                  if (onboardingStepIndex < onboardingSteps.length - 1) {
+                    setOnboardingStepIndex(onboardingStepIndex + 1);
+                  } else {
+                    setOnboardingVisible(false);
+                  }
+                }}
+              >
+                <Text style={styles.btnText}>
+                  {onboardingStepIndex < onboardingSteps.length - 1 ? (t.nextBtn || 'Weiter') : (t.startBtn || 'Loslegen')}
+                </Text>
+                <Ionicons name="arrow-forward" size={16} color="#FFFFFF" style={{ marginLeft: 6 }} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
         {/* REVOLUT DOMAIN VERIFICATION TOKEN */}
         <Text style={{ fontSize: 1, color: '#F8FAFC', opacity: 0.01, height: 1 }}>795dbaf6-de69-4f37-bae1-7e67ab1f4e47</Text>
 
@@ -2185,4 +2247,13 @@ const styles = StyleSheet.create({
   congratsIconWrap: { width: 64, height: 64, borderRadius: 32, backgroundColor: '#DCFCE7', alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
   congratsModalTitle: { fontSize: 18, fontWeight: '900', color: '#0F172A', textAlign: 'center', marginBottom: 6 },
   congratsModalDesc: { fontSize: 13, color: '#475569', textAlign: 'center', lineHeight: 18, marginBottom: 16 },
+
+  // Onboarding Slideshow Styles
+  onboardingModalCard: { backgroundColor: '#FFFFFF', borderRadius: 24, padding: 22, width: '100%', maxWidth: 340, alignItems: 'center', elevation: 6 },
+  onboardingHeaderIcon: { width: 70, height: 70, borderRadius: 35, backgroundColor: '#DCFCE7', justifyContent: 'center', alignItems: 'center', marginBottom: 14 },
+  onboardingTitle: { fontSize: 18, fontWeight: '900', color: '#0F172A', textAlign: 'center', marginBottom: 8 },
+  onboardingDesc: { fontSize: 13.5, color: '#475569', textAlign: 'center', lineHeight: 20, marginBottom: 20 },
+  paginationDots: { flexDirection: 'row', gap: 6, marginBottom: 16 },
+  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: '#CBD5E1' },
+  dotActive: { width: 22, backgroundColor: '#0F5132' },
 });
