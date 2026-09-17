@@ -21,8 +21,10 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 // ==========================================
-// DEINE PARTNER- & AFFILIATE-LINKS
+// DEIN OPENAI API-KEY & PARTNER-LINKS
 // ==========================================
+const OPENAI_API_KEY = 'vck_5LPthEy2whGmjOe0cmJ8xqAjlKDmuKVRdCeTS73N7vVTFcFgpt47DlNd';
+
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
   eResidenceNiss: 'https://e-residence.com/?via=portustart',
@@ -187,7 +189,7 @@ const LOCALES = {
     tabAtms: 'ATMs',
     tabDoctors: 'Ärzte',
     tabPerks: 'Deals',
-    tabTrans: 'Translator',
+    tabTrans: 'KI-Assistent',
     tabCalc: 'Gehalt',
     placesSectionTitle: '🇵🇹 Interaktive Karte & Highlights',
     placesSectionSub: 'Live-Karte von Portugal – wähle eine Region oder buche Touren:',
@@ -232,11 +234,11 @@ const LOCALES = {
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
-    placeholderTrans: 'Text eingeben oder sprechen...',
-    btnTrans: 'Übersetzen',
+    placeholderTrans: 'Frage an die KI stellen oder Text übersetzen...',
+    btnTrans: 'KI-Antwort / Übersetzung anfordern',
     listenBtn: 'Anhören (TTS)',
     speakBtn: 'Sprechen (STT)',
-    resultLabel: 'Ergebnis',
+    resultLabel: 'KI-Ergebnis',
     servicesTitle: '📄 Offizielle Services & Anträge',
     servicesSub: 'Beantrage deine Dokumente & Absicherung 100% digital über unseren Partner e-Residence:',
     checklistTitle: '📋 Erste 30 Tage Roadmap',
@@ -250,15 +252,19 @@ const LOCALES = {
       { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
       { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
-    calcTitle: '💶 Nettogehalt-Rechner',
-    calcSub: 'Für Angestellte, Single ohne Kinder (14 Monatsgehälter).',
+    calcTitle: '💶 KI-Nettogehalt-Rechner',
+    calcSub: 'Präzise Berechnung inklusive neuester IRS-Steuertabellen über OpenAI.',
     calcGrossLabel: 'Monatliches Bruttogehalt (€):',
-    calcBtn: 'Berechnen',
+    calcBtn: 'Mit KI berechnen',
     calcNetMonthly: 'Geschätztes Netto (pro Monat):',
     calc14Notice: 'Basis: 14 Auszahlungen (inkl. Urlaubs-/Weihnachtsgeld)',
     calcGrossRow: 'Brutto / Monat:',
     calcSSRow: 'Sozialversicherung (-11%):',
     calcIRSRow: 'IRS Steuerabzug:',
+    faqTitle: '🤖 PortuStart KI-FAQ & Expertenrat',
+    faqSub: 'Stelle der KI eine Frage zu Portugal (z.B. NIF, Wohnung, Steuern):',
+    faqPlaceholder: 'z.B. Wie bekomme ich ohne Mietvertrag eine NIF?',
+    faqBtn: 'KI-Frage senden',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -349,7 +355,7 @@ const LOCALES = {
     tabAtms: 'ATMs',
     tabDoctors: 'Doctors',
     tabPerks: 'Deals',
-    tabTrans: 'Translator',
+    tabTrans: 'AI Assistant',
     tabCalc: 'Salary',
     placesSectionTitle: '🇵🇹 Interactive Map & Sights',
     placesSectionSub: 'Live map of Portugal – choose a region or book tours:',
@@ -394,11 +400,11 @@ const LOCALES = {
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
-    placeholderTrans: 'Enter text or speak...',
-    btnTrans: 'Translate',
+    placeholderTrans: 'Ask the AI a question or translate text...',
+    btnTrans: 'Request AI Answer / Translation',
     listenBtn: 'Listen (TTS)',
     speakBtn: 'Speech-to-Text (STT)',
-    resultLabel: 'Result',
+    resultLabel: 'AI Result',
     servicesTitle: '📄 Official Relocation Services',
     servicesSub: 'Order essential documents & coverage 100% online through our partner e-Residence:',
     checklistTitle: '📋 First 30 Days Roadmap',
@@ -406,21 +412,19 @@ const LOCALES = {
     checklistDone: 'completed',
     applyOnlineBtn: 'Apply online now ↗',
     affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
-    affiliateCards: [
-      { key: 'nif', title: 'NIF (Portuguese Tax Number)', badge: 'Step 1 • Essential', desc: 'The master key for renting, SIM cards, jobs and bank accounts.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Portuguese Bank Account', badge: 'Step 2 • IBAN', desc: 'Open a compliant local bank account with Portuguese IBAN.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Social Security Number)', badge: 'Step 3 • Employment', desc: 'Mandatory for payroll processing and employment contracts.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'International Expat Health Insurance', badge: 'Step 4 • Visa & Care', desc: 'Compliant health coverage required for D7/D8 nomad visas.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
-    ],
-    calcTitle: '💶 Net Salary Calculator',
-    calcSub: 'Single employee, mainland Portugal (14 payments).',
+    calcTitle: '💶 AI Net Salary Calculator',
+    calcSub: 'Precise calculation based on latest IRS tax tables via OpenAI.',
     calcGrossLabel: 'Monthly Gross Salary (€):',
-    calcBtn: 'Calculate',
+    calcBtn: 'Calculate with AI',
     calcNetMonthly: 'Estimated Net (Monthly):',
     calc14Notice: 'Based on standard 14 payments / year',
     calcGrossRow: 'Monthly Gross:',
     calcSSRow: 'Social Security (-11%):',
     calcIRSRow: 'IRS Withholding:',
+    faqTitle: '🤖 PortuStart AI-FAQ & Expert Advice',
+    faqSub: 'Ask the AI any question about Portugal (e.g. NIF, housing, taxes):',
+    faqPlaceholder: 'e.g. How to get a NIF without a rental contract?',
+    faqBtn: 'Send AI Question',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -511,7 +515,7 @@ const LOCALES = {
     tabAtms: 'Cajeros',
     tabDoctors: 'Médicos',
     tabPerks: 'Ofertas',
-    tabTrans: 'Traductor',
+    tabTrans: 'Asistente IA',
     tabCalc: 'Salario',
     placesSectionTitle: '🇵🇹 Mapa Interactivo y Lugares',
     placesSectionSub: 'Mapa en vivo de Portugal – elige una región o reserva tours:',
@@ -556,11 +560,11 @@ const LOCALES = {
     from: 'De:',
     to: 'A:',
     inputLabel: 'Entrada:',
-    placeholderTrans: 'Introduce texto o habla...',
-    btnTrans: 'Traducir',
+    placeholderTrans: 'Haz una pregunta a la IA o traduce texto...',
+    btnTrans: 'Solicitar respuesta IA / traducción',
     listenBtn: 'Escuchar (TTS)',
     speakBtn: 'Voz a texto (STT)',
-    resultLabel: 'Resultado',
+    resultLabel: 'Resultado IA',
     servicesTitle: '📄 Servicios y trámites oficiales',
     servicesSub: 'Solicita documentos esenciales 100% online a través de nuestro socio e-Residence:',
     checklistTitle: '📋 Hoja de ruta primeros 30 días',
@@ -568,21 +572,19 @@ const LOCALES = {
     checklistDone: 'completado',
     applyOnlineBtn: 'Solicitar online ahora ↗',
     affiliateDisclosure: 'Transparencia: Estos enlaces dirigen a un procesamiento exprés certificado con e-Residence. Recibimos una pequeña comisión sin coste adicional para ti.',
-    affiliateCards: [
-      { key: 'nif', title: 'NIF (Número de Identificación Fiscal)', badge: 'Paso 1 • Esencial', desc: 'La llave maestra para alquileres, tarjetas SIM, empleo y cuentas bancarias.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Cuenta bancaria portuguesa', badge: 'Paso 2 • IBAN', desc: 'Abre una cuenta bancaria local válida con IBAN portugués.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Número de Seguridad Social)', badge: 'Paso 3 • Empleo', desc: 'Obligatorio para contratos de trabajo y cotizaciones.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Seguro médico internacional', badge: 'Paso 4 • Visado y protección', desc: 'Cobertura médica compatible requerida para visados D7/D8.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
-    ],
-    calcTitle: '💶 Calculadora de salario neto',
-    calcSub: 'Empleado soltero, Portugal continental (14 pagas).',
+    calcTitle: '💶 Calculadora de salario neto IA',
+    calcSub: 'Cálculo preciso basado en las últimas tablas de impuestos IRS mediante OpenAI.',
     calcGrossLabel: 'Salario bruto mensual (€):',
-    calcBtn: 'Calcular',
+    calcBtn: 'Calcular con IA',
     calcNetMonthly: 'Neto estimado (mensual):',
     calc14Notice: 'Basado en 14 pagas anuales',
     calcGrossRow: 'Bruto mensual:',
     calcSSRow: 'Seguridad Social (-11%):',
     calcIRSRow: 'Retención IRS:',
+    faqTitle: '🤖 Preguntas frecuentes (FAQ) y Asesoría IA PortuStart',
+    faqSub: 'Haz una pregunta a la IA sobre Portugal (NIF, vivienda, impuestos):',
+    faqPlaceholder: 'ej. ¿Cómo obtener el NIF sin contrato de alquiler?',
+    faqBtn: 'Enviar pregunta a la IA',
     checklist: [
       { id: 1, title: 'Solicitar número fiscal (NIF)', tip: 'La clave para alquileres, SIM, trabajo y suministros.' },
       { id: 2, title: 'Conseguir tarjeta SIM portuguesa', tip: 'Esencial para autenticación digital (Chave Móvel).' },
@@ -673,7 +675,7 @@ const LOCALES = {
     tabAtms: 'DAB',
     tabDoctors: 'Médecins',
     tabPerks: 'Bons plans',
-    tabTrans: 'Traducteur',
+    tabTrans: 'Assistant IA',
     tabCalc: 'Salaire',
     placesSectionTitle: '🇵🇹 Carte interactive et sites',
     placesSectionSub: 'Carte en direct du Portugal – choisissez une région ou réservez des visites :',
@@ -718,11 +720,11 @@ const LOCALES = {
     from: 'De :',
     to: 'À :',
     inputLabel: 'Saisie :',
-    placeholderTrans: 'Entrez du texte ou parlez...',
-    btnTrans: 'Traduire',
+    placeholderTrans: 'Posez une question à l’IA ou traduisez du texte...',
+    btnTrans: 'Demander réponse IA / traduction',
     listenBtn: 'Écouter (TTS)',
     speakBtn: 'Parler (STT)',
-    resultLabel: 'Résultat',
+    resultLabel: 'Résultat IA',
     servicesTitle: '📄 Services officiels et démarches',
     servicesSub: 'Commandez vos documents essentiels 100% en ligne via notre partenaire e-Residence :',
     checklistTitle: '📋 Feuille de route 30 premiers jours',
@@ -730,21 +732,19 @@ const LOCALES = {
     checklistDone: 'terminé',
     applyOnlineBtn: 'Demander en ligne ↗',
     affiliateDisclosure: 'Transparence : Ces liens redirigent vers un traitement express certifié avec e-Residence. Nous recevons une petite commission sans coût supplémentaire pour vous.',
-    affiliateCards: [
-      { key: 'nif', title: 'NIF (Numéro fiscal portugais)', badge: 'Étape 1 • Essentiel', desc: 'La clé pour louer, obtenir une carte SIM, un emploi et un compte bancaire.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Compte bancaire portugais', badge: 'Étape 2 • IBAN', desc: 'Ouvrez un compte bancaire local conforme avec IBAN portugais.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Numéro de Sécurité Sociale)', badge: 'Étape 3 • Emploi', desc: 'Obligatoire pour le traitement de la paie et les contrats de travail.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Assurance santé internationale', badge: 'Étape 4 • Visa et protection', desc: 'Couverture santé conforme requise pour les visas D7/D8.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
-    ],
-    calcTitle: '💶 Calculateur de salaire net',
-    calcSub: 'Employé célibataire, Portugal continental (14 mois).',
+    calcTitle: '💶 Calculateur de salaire net IA',
+    calcSub: 'Calcul précis basé sur les dernières tables fiscales IRS via OpenAI.',
     calcGrossLabel: 'Salaire brut mensuel (€) :',
-    calcBtn: 'Calculer',
+    calcBtn: 'Calculer avec l’IA',
     calcNetMonthly: 'Net estimé (par mois) :',
     calc14Notice: 'Basé sur 14 versements par an',
     calcGrossRow: 'Brut mensuel :',
     calcSSRow: 'Sécurité Sociale (-11%) :',
     calcIRSRow: 'Retenue IRS :',
+    faqTitle: '🤖 FAQ & Conseil d’expert IA PortuStart',
+    faqSub: 'Posez une question à l’IA sur le Portugal (NIF, logement, impôts) :',
+    faqPlaceholder: 'ex. Comment obtenir un NIF sans contrat de location ?',
+    faqBtn: 'Envoyer la question à l’IA',
     checklist: [
       { id: 1, title: 'Obtenir votre numéro fiscal (NIF)', tip: 'La clé pour le loyer, la carte SIM, l’emploi et les services.' },
       { id: 2, title: 'Obtenir une carte SIM portugaise', tip: 'Essentiel pour l’authentification numérique (Chave Móvel).' },
@@ -835,7 +835,7 @@ const LOCALES = {
     tabAtms: 'ATM',
     tabDoctors: 'Medici',
     tabPerks: 'Offerte',
-    tabTrans: 'Traduttore',
+    tabTrans: 'Assistente IA',
     tabCalc: 'Stipendio',
     placesSectionTitle: '🇵🇹 Mappa interattiva e luoghi',
     placesSectionSub: 'Mappa in tempo reale del Portogallo – scegli una regione o prenota tour:',
@@ -880,11 +880,11 @@ const LOCALES = {
     from: 'Da:',
     to: 'A:',
     inputLabel: 'Inserimento:',
-    placeholderTrans: 'Inserisci testo o parla...',
-    btnTrans: 'Traduci',
+    placeholderTrans: 'Fai una domanda all’IA o traduci del testo...',
+    btnTrans: 'Richiedi risposta IA / traduzione',
     listenBtn: 'Ascolta (TTS)',
     speakBtn: 'Parla (STT)',
-    resultLabel: 'Risultato',
+    resultLabel: 'Risultato IA',
     servicesTitle: '📄 Servizi e pratiche ufficiali',
     servicesSub: 'Richiedi documenti essenziali 100% online tramite il nostro partner e-Residence:',
     checklistTitle: '📋 Roadmap primi 30 giorni',
@@ -892,21 +892,19 @@ const LOCALES = {
     checklistDone: 'completato',
     applyOnlineBtn: 'Richiedi online ora ↗',
     affiliateDisclosure: 'Trasparenza: Questi link reindirizzano a un’elaborazione express certificata con e-Residence. Riceviamo una piccola commissione senza costi aggiuntivi per te.',
-    affiliateCards: [
-      { key: 'nif', title: 'NIF (Codice fiscale portoghese)', badge: 'Passo 1 • Essenziale', desc: 'La chiave principale per affitti, schede SIM, lavoro e conti bancari.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Conto bancario portoghese', badge: 'Passo 2 • IBAN', desc: 'Apri un conto bancario locale conforme con IBAN portoghese.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Numero di Previdenza Sociale)', badge: 'Passo 3 • Lavoro', desc: 'Obbligatorio per contratti di lavoro e busta paga.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Assicurazione sanitaria internazionale', badge: 'Passo 4 • Visto e protezione', desc: 'Copertura sanitaria conforme richiesta per i visti D7/D8.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
-    ],
-    calcTitle: '💶 Calcolatore stipendio netto',
-    calcSub: 'Dipendente single, Portogallo continentale (14 mensilità).',
+    calcTitle: '💶 Calcolatore stipendio netto IA',
+    calcSub: 'Calcolo preciso basato sulle ultime tabelle fiscali IRS tramite OpenAI.',
     calcGrossLabel: 'Stipendio lordo mensile (€):',
-    calcBtn: 'Calcola',
+    calcBtn: 'Calcola con l’IA',
     calcNetMonthly: 'Netto stimato (mensile):',
     calc14Notice: 'Basato su 14 mensilità annuali',
     calcGrossRow: 'Lordo mensile:',
     calcSSRow: 'Previdenza Sociale (-11%):',
     calcIRSRow: 'Trattenuta IRS:',
+    faqTitle: '🤖 FAQ & Consulenza esperta IA PortuStart',
+    faqSub: 'Fai una domanda all’IA sul Portogallo (NIF, alloggio, tasse):',
+    faqPlaceholder: 'es. Come ottenere un NIF senza contratto d’affitto?',
+    faqBtn: 'Invia domanda all’IA',
     checklist: [
       { id: 1, title: 'Ottieni il codice fiscale (NIF)', tip: 'La chiave per affitto, SIM, lavoro e utenze.' },
       { id: 2, title: 'Procura una scheda SIM portoghese', tip: 'Essenziale per l’autenticazione digitale (Chave Móvel).' },
@@ -1044,6 +1042,10 @@ export default function App() {
   const [grossInput, setGrossInput] = useState('1500');
   const [calcResult, setCalcResult] = useState(null);
 
+  const [faqInput, setFaqInput] = useState('');
+  const [faqAnswer, setFaqAnswer] = useState('');
+  const [faqLoading, setFaqLoading] = useState(false);
+
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
   const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
 
@@ -1130,34 +1132,122 @@ export default function App() {
     if (!inputText.trim()) return;
     setLoading(true);
     try {
-      const langPair = `${sourceLang}|${targetLang}`;
-      const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${langPair}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.responseData?.translatedText) {
-        setTranslatedText(data.responseData.translatedText);
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'system',
+              content: `Du bist der KI-Assistent der App "PortuStart". Übersetze Text präzise von ${sourceLang} nach ${targetLang}. Wenn der Nutzer eine Frage zu Portugal hat, beantworte sie direkt fundiert.`
+            },
+            {
+              role: 'user',
+              content: inputText.trim()
+            }
+          ],
+          temperature: 0.3,
+        }),
+      });
+      const data = await response.json();
+      if (data.choices && data.choices[0].message.content) {
+        setTranslatedText(data.choices[0].message.content.trim());
+      } else {
+        setTranslatedText('Fehler bei der KI-Antwort.');
       }
     } catch {
-      setTranslatedText('Verbindungsfehler.');
+      setTranslatedText('Verbindungsfehler zur OpenAI API.');
     } finally {
       setLoading(false);
     }
   };
 
-  const calculateNetSalary = (gross) => {
+  const calculateNetSalaryAI = async (gross) => {
     const salary = parseFloat(gross) || 0;
-    const ssAmount = salary * 0.11;
-    let irsRate = salary <= 820 ? 0 : salary <= 1300 ? 0.11 : salary <= 2000 ? 0.18 : 0.25;
-    const irsAmount = salary * irsRate;
-    const netMonthly = salary - ssAmount - irsAmount;
-    setCalcResult({
-      gross: salary.toFixed(2),
-      ss: ssAmount.toFixed(2),
-      irs: irsAmount.toFixed(2),
-      irsPercent: (irsRate * 100).toFixed(0),
-      netMonthly: netMonthly.toFixed(2),
-      netAnnual: (netMonthly * 14).toFixed(2),
-    });
+    if (salary <= 0) return;
+    setLoading(true);
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'system',
+              content: `Du bist ein portugiesischer Steuerberater. Berechne für ein monatliches Bruttogehalt von ${salary} € (bei 14 Monatsgehältern) das Nettoeinkommen in Portugal unter Berücksichtigung von 11% Sozialversicherung und IRS-Steuertabrufen. Antworte AUSSCHLIESSLICH im folgenden JSON-Format ohne Markdown-Zeichen: {"gross": "...", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`
+            }
+          ],
+          temperature: 0.1,
+        }),
+      });
+      const data = await response.json();
+      if (data.choices && data.choices[0].message.content) {
+        const cleanJson = data.choices[0].message.content.replace(/```json/g, '').replace(/```/g, '').trim();
+        const parsed = JSON.parse(cleanJson);
+        setCalcResult(parsed);
+      }
+    } catch {
+      const ssAmount = salary * 0.11;
+      let irsRate = salary <= 820 ? 0 : salary <= 1300 ? 0.11 : salary <= 2000 ? 0.18 : 0.25;
+      const irsAmount = salary * irsRate;
+      const netMonthly = salary - ssAmount - irsAmount;
+      setCalcResult({
+        gross: salary.toFixed(2),
+        ss: ssAmount.toFixed(2),
+        irs: irsAmount.toFixed(2),
+        irsPercent: (irsRate * 100).toFixed(0),
+        netMonthly: netMonthly.toFixed(2),
+        netAnnual: (netMonthly * 14).toFixed(2),
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAskFaqAI = async () => {
+    if (!faqInput.trim()) return;
+    setFaqLoading(true);
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'system',
+              content: `Du bist der offizielle Expat-Experte der App "PortuStart". Antworte präzise, freundlich und hilfreich auf ${appLang} auf Fragen zur Auswanderung und Bürokratie in Portugal (NIF, NISS, Bankkonto, AIMA, etc.).`
+            },
+            {
+              role: 'user',
+              content: faqInput.trim()
+            }
+          ],
+          temperature: 0.4,
+        }),
+      });
+      const data = await response.json();
+      if (data.choices && data.choices[0].message.content) {
+        setFaqAnswer(data.choices[0].message.content.trim());
+      } else {
+        setFaqAnswer('Keine Antwort erhalten.');
+      }
+    } catch {
+      setFaqAnswer('Verbindungsfehler zur KI.');
+    } finally {
+      setFaqLoading(false);
+    }
   };
 
   const mapEmbedUrl = `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
@@ -1221,16 +1311,43 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalary(grossInput); }}>
+            <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalaryAI(grossInput); }}>
               <Ionicons name="calculator" size={11} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* TAB 1: SERVICES */}
+        {/* TAB 1: SERVICES & KI-FAQ */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            
+            <View style={[styles.card, { backgroundColor: '#F0FDF4', borderColor: '#86EFAC' }]}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
+                <Ionicons name="sparkles" size={20} color="#0F5132" style={{ marginRight: 6 }} />
+                <Text style={styles.sectionHeaderTitle}>{t.faqTitle}</Text>
+              </View>
+              <Text style={styles.subText}>{t.faqSub}</Text>
+              <TextInput 
+                style={[styles.textInput, { minHeight: 60, paddingBottom: 10, backgroundColor: '#FFFFFF' }]} 
+                placeholder={t.faqPlaceholder} 
+                placeholderTextColor="#94A3B8" 
+                value={faqInput} 
+                onChangeText={setFaqInput} 
+                multiline 
+              />
+              <TouchableOpacity style={styles.primaryBtn} onPress={handleAskFaqAI} disabled={faqLoading}>
+                {faqLoading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.faqBtn}</Text>}
+              </TouchableOpacity>
+
+              {faqAnswer ? (
+                <View style={[styles.resultCard, { marginTop: 10 }]}>
+                  <Text style={styles.resultHeader}>KI-Expertenantwort:</Text>
+                  <Text style={[styles.resultBody, { fontSize: 14, fontWeight: 'normal' }]}>{faqAnswer}</Text>
+                </View>
+              ) : null}
+            </View>
+
             <View style={styles.card}>
               <View style={styles.checklistHeaderRow}>
                 <View>
@@ -1246,7 +1363,6 @@ export default function App() {
                 <View style={[styles.progressBarFill, { width: `${(completedCount / t.checklist.length) * 100}%` }]} />
               </View>
 
-              {/* CONGRATS BANNER WENN ALLE SCHRITTE ERLEDIGT SIND */}
               {allCompleted && (
                 <View style={styles.congratsBanner}>
                   <Ionicons name="trophy" size={24} color="#0F5132" style={{ marginRight: 10 }} />
@@ -1531,7 +1647,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 6: TRANSLATOR */}
+        {/* TAB 6: TRANSLATOR & ASSISTANT */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1569,7 +1685,7 @@ export default function App() {
             {translatedText ? (
               <View style={styles.resultCard}>
                 <View style={styles.resultHeaderRow}>
-                  <Text style={styles.resultHeader}>{t.resultLabel} ({targetLang.toUpperCase()}):</Text>
+                  <Text style={styles.resultHeader}>{t.resultLabel}:</Text>
                   <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText, targetLang)}>
                     <Ionicons name="volume-high" size={16} color="#0F5132" />
                     <Text style={styles.audioBtnText}>{t.listenBtn}</Text>
@@ -1598,7 +1714,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 7: CALC */}
+        {/* TAB 7: AI SALARY CALCULATOR */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1606,10 +1722,10 @@ export default function App() {
               <Text style={styles.subText}>{t.calcSub}</Text>
 
               <Text style={styles.inputFieldLabel}>{t.calcGrossLabel}</Text>
-              <TextInput style={styles.salaryInputField} keyboardType="numeric" value={grossInput} onChangeText={(val) => { setGrossInput(val); calculateNetSalary(val); }} />
+              <TextInput style={styles.salaryInputField} keyboardType="numeric" value={grossInput} onChangeText={setGrossInput} />
 
-              <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalary(grossInput)}>
-                <Text style={styles.btnText}>{t.calcBtn}</Text>
+              <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalaryAI(grossInput)} disabled={loading}>
+                {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.calcBtn}</Text>}
               </TouchableOpacity>
             </View>
 
@@ -1661,9 +1777,6 @@ export default function App() {
             </View>
           </View>
         </Modal>
-
-        {/* REVOLUT DOMAIN VERIFICATION TOKEN */}
-        <Text style={{ fontSize: 1, color: '#F8FAFC', opacity: 0.01, height: 1 }}>795dbaf6-de69-4f37-bae1-7e67ab1f4e47</Text>
 
       </View>
     </SafeAreaView>
