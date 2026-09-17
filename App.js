@@ -17,8 +17,6 @@ import {
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { generateText } from 'ai';
-import { createOpenAI } from '@ai-sdk/openai';
 
 const { width } = Dimensions.get('window');
 
@@ -26,11 +24,6 @@ const { width } = Dimensions.get('window');
 // VERCEL AI GATEWAY & PARTNER-LINKS
 // ==========================================
 const AI_GATEWAY_API_KEY = 'vck_5LPthEy2whGmjOe0cmJ8xqAjlKDmuKVRdCeTS73N7vVTFcFgpt47DlNd';
-
-// OpenAI Provider Instanz für das Vercel AI Gateway
-const openaiProvider = createOpenAI({
-  apiKey: AI_GATEWAY_API_KEY,
-});
 
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
@@ -260,7 +253,7 @@ const LOCALES = {
       { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
     calcTitle: '💶 KI-Nettogehalt-Rechner',
-    calcSub: 'Präzise Berechnung inklusive neuester IRS-Steuertabellen über das Vercel AI Gateway.',
+    calcSub: 'Präzise Berechnung inklusive neuester IRS-Steuertabellen über Vercel AI.',
     calcGrossLabel: 'Monatliches Bruttogehalt (€):',
     calcBtn: 'Mit KI berechnen',
     calcNetMonthly: 'Geschätztes Netto (pro Monat):',
@@ -1135,66 +1128,97 @@ export default function App() {
     }
   };
 
-  // KORREKTE VERWENDUNG DES VERCEL AI SDK (generateText)
+  // SAUBERER FETCH AN DAS VERCEL AI GATEWAY / OPENAI KOMPATIBEL ENDPUNKT
+  const callVercelAI = async (promptText) => {
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${AI_GATEWAY_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o',
+          messages: [
+            {
+              role: 'system',
+              content: 'Du bist der offizielle KI-Assistent der App "PortuStart". Antworte präzise, freundlich und direkt auf Fragen rund um Portugal.'
+            },
+            {
+              role: 'user',
+              content: promptText
+            }
+          ],
+          temperature: 0.3,
+        }),
+      });
+      const data = await response.json();
+      if (data.choices && data.choices[0].message.content) {
+        return data.choices[0].message.content.trim();
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  };
+
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
     setLoading(true);
-    try {
-      const { text } = await generateText({
-        model: openaiProvider('openai/gpt-5.5'),
-        prompt: `Übersetze folgenden Text präzise von ${sourceLang} nach ${targetLang}. Wenn es eine Frage ist, beantworte sie fundiert als Portugal-Experte: "${inputText.trim()}"`,
-      });
-      setTranslatedText(text.trim());
-    } catch (error) {
-      setTranslatedText('Fehler bei der AI-Anfrage über das Gateway.');
-    } finally {
-      setLoading(false);
+    const prompt = `Übersetze folgenden Text präzise von ${sourceLang} nach ${targetLang}. Wenn es eine Frage ist, beantworte sie als Portugal-Experte: "${inputText.trim()}"`;
+    const aiResult = await callVercelAI(prompt);
+    
+    if (aiResult) {
+      setTranslatedText(aiResult);
+    } else {
+      // Fallback
+      try {
+        const fallbackRes = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
+        const fallbackData = await fallbackRes.json();
+        setTranslatedText(fallbackData.responseData?.translatedText || 'Fehler bei der Übersetzung.');
+      } catch {
+        setTranslatedText('Netzwerkfehler.');
+      }
     }
+    setLoading(false);
   };
 
   const calculateNetSalaryAI = async (gross) => {
     const salary = parseFloat(gross) || 0;
     if (salary <= 0) return;
     setLoading(true);
-    try {
-      const { text } = await generateText({
-        model: openaiProvider('openai/gpt-5.5'),
-        prompt: `Berechne für ein Bruttogehalt von ${salary} € (14 Monatsgehälter) das Nettoeinkommen in Portugal (11% Sozialversicherung, IRS-Steuertabellen). Antworte AUSSCHLIESSLICH als JSON ohne Markdown: {"gross": "${salary.toFixed(2)}", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`
-      });
-      const cleanJson = text.replace(/```json/g, '').replace(/```/g, '').trim();
-      setCalcResult(JSON.parse(cleanJson));
-    } catch {
-      const ssAmount = salary * 0.11;
-      let irsRate = salary <= 820 ? 0 : salary <= 1300 ? 0.11 : salary <= 2000 ? 0.18 : 0.25;
-      const irsAmount = salary * irsRate;
-      const netMonthly = salary - ssAmount - irsAmount;
-      setCalcResult({
-        gross: salary.toFixed(2),
-        ss: ssAmount.toFixed(2),
-        irs: irsAmount.toFixed(2),
-        irsPercent: (irsRate * 100).toFixed(0),
-        netMonthly: netMonthly.toFixed(2),
-        netAnnual: (netMonthly * 14).toFixed(2),
-      });
-    } finally {
-      setLoading(false);
+    
+    const prompt = `Berechne für ein Bruttogehalt von ${salary} € (14 Monatsgehälter) das Nettoeinkommen in Portugal (11% Sozialversicherung, IRS-Steuern). Antworte AUSSCHLIESSLICH im JSON-Format ohne Markdown: {"gross": "${salary.toFixed(2)}", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`;
+    const aiResult = await callVercelAI(prompt);
+
+    if (aiResult) {
+      try {
+        const cleanJson = aiResult.replace(/```json/g, '').replace(/```/g, '').trim();
+        setCalcResult(JSON.parse(cleanJson));
+      } catch {
+        // mathematischer Fallback
+        const ss = salary * 0.11;
+        const irs = salary * (salary > 2000 ? 0.25 : 0.15);
+        const net = salary - ss - irs;
+        setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '15', netMonthly: net.toFixed(2), netAnnual: (net * 14).toFixed(2) });
+      }
+    } else {
+      const ss = salary * 0.11;
+      const irs = salary * 0.15;
+      const net = salary - ss - irs;
+      setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '15', netMonthly: net.toFixed(2), netAnnual: (net * 14).toFixed(2) });
     }
+    setLoading(false);
   };
 
   const handleAskFaqAI = async () => {
     if (!faqInput.trim()) return;
     setFaqLoading(true);
-    try {
-      const { text } = await generateText({
-        model: openaiProvider('openai/gpt-5.5'),
-        prompt: `Du bist der offizielle Expat-Experte von "PortuStart". Beantworte diese Frage auf ${appLang} bezüglich Auswanderung und Bürokratie in Portugal: "${faqInput.trim()}"`,
-      });
-      setFaqAnswer(text.trim());
-    } catch (error) {
-      setFaqAnswer('Verbindungsfehler zum AI Gateway.');
-    } finally {
-      setFaqLoading(false);
-    }
+    const prompt = `Beantworte diese Frage auf ${appLang} bezüglich Auswanderung und Bürokratie in Portugal (NIF, NISS, AIMA): "${faqInput.trim()}"`;
+    const aiResult = await callVercelAI(prompt);
+    
+    setFaqAnswer(aiResult || 'Entschuldigung, die KI ist momentan nicht erreichbar.');
+    setFaqLoading(false);
   };
 
   const mapEmbedUrl = `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
@@ -2066,7 +2090,7 @@ const styles = StyleSheet.create({
   audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
   audioBtnText: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
   calcResultCard: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 1, borderColor: '#E2E8F0' },
-  netLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
+  netLabel: {: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
   netValue: { fontSize: 26, fontWeight: '900', color: '#0F5132', marginTop: 2 },
   netNote: { fontSize: 11, color: '#94A3B8', marginTop: 2 },
   calcDivider: { height: 1, backgroundColor: '#E2E8F0', marginVertical: 10 },
