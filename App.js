@@ -28,14 +28,14 @@ const AFFILIATE_LINKS = {
   eResidenceBank: 'https://e-residence.com/?via=portustart',
   eResidenceHealth: 'https://e-residence.com/?via=portustart',
   
+  // Aktualisierter offizieller Link für das EU-Zertifikat (CRUE / AIMA)
+  euCertificatePortal: 'https://aima.gov.pt/pt/cidadaos-da-uniao',
+
   getYourGuidePartnerId: 'AJWYURO',
   getYourGuideCmp: 'share_to_earn',
 
   italkiLang: 'https://www.italki.com/affshare?ref=af33636608',
   revolut: 'https://revolut.com/referral/?referral-code=portustart',
-  
-  // Offizieller Link für EU-Zertifikat Termine (AIMA / gov.pt)
-  euCertificatePortal: 'https://www.gov.pt/servicos/agendar-atendimento-no-servico-de-estrangteiros-e-fronteiras-sef-',
 };
 
 const UI_LANGUAGES = [
