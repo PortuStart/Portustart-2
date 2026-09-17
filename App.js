@@ -21,7 +21,7 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 // ==========================================
-// PARTNER-LINKS & DATENBANK
+// PARTNER-LINKS & UMFANGREICHES WÖRTERBUCH
 // ==========================================
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
@@ -52,6 +52,107 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'fr', label: 'Français', flag: '🇫🇷', voice: 'fr-FR' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
+
+// Umfangreiches Grund- und Expat-Wörterbuch für Portugal
+const EXTENDED_VOCABULARY = {
+  de: {
+    pt: {
+      'hallo': 'olá',
+      'guten morgen': 'bom dia',
+      'guten tag': 'boa tarde',
+      'gute nacht': 'boa noite',
+      'auf wiedersehen': 'adeus / até logo',
+      'danke': 'obrigado (m) / obrigada (f)',
+      'bitte': 'por favor',
+      'ja': 'sim',
+      'nein': 'não',
+      'wie geht es dir?': 'como estás?',
+      'mir geht es gut': 'estou bem',
+      'sprechen sie deutsch?': 'fala alemão?',
+      'sprechen sie englisch?': 'fala inglês?',
+      'ich verstehe nicht': 'não percebo',
+      'wo ist die toilette?': 'onde fica a casa de banho?',
+      'rechnung bitte': 'a conta, por favor',
+      'wasser': 'água',
+      'kaffee': 'café / bica',
+      'bier': 'cerveja',
+      'wein': 'vinho',
+      'rechnung': 'fatura',
+      'geldautomat': 'multibanco',
+      'bank': 'banco',
+      'krankenhaus': 'hospital',
+      'arzt': 'médico',
+      'polizei': 'polícia',
+      'apotheke': 'farmácia',
+      'notfall': 'emergência',
+      'wohnung': 'casa / apartamento',
+      'miete': 'renda',
+      'kaution': 'caução',
+      'mietvertrag': 'contrato de arrendamento',
+      'steuernummer': 'nif (número de identificação fiscal)',
+      'sozialversicherungsnummer': 'niss (número de segurança social)',
+      'finanzamt': 'finanças',
+      'bürgerbüro': 'loja do cidadão',
+      'krankenkasse': 'centro de saúde',
+      'arbeit': 'trabalho',
+      'arbeitsvertrag': 'contrato de trabalho',
+      'gehalt': 'salário / vencimento',
+      'supermarkt': 'supermercado',
+      'bäckerei': 'padaria',
+      'bahnhof': 'estação de comboios',
+      'flughafen': 'aeroporto',
+      'fahrkarte': 'bilhete',
+      'auto': 'carro',
+      'taxi': 'táxi',
+      'zug': 'comboio',
+      'metro': 'metro',
+      'bus': 'autocarro',
+      'strand': 'praia',
+      'meer': 'mar',
+      'sonne': 'sol',
+      'wetter': 'tempo',
+      'heute': 'hoje',
+      'morgen': 'amanhã',
+      'gestern': 'ontem',
+      'wie viel kostet das?': 'quanto custa?',
+      'hilf mir bitte': 'ajuda-me, por favor',
+      'ich brauche hilfe': 'preciso de ajuda',
+      'sprechen sie langsam': 'fale devagar, por favor',
+    },
+    en: {
+      'hallo': 'hello', 'danke': 'thank you', 'bitte': 'please', 'rechnung bitte': 'the bill, please', 'wasser': 'water', 'kaffee': 'coffee', 'bier': 'beer', 'wein': 'wine', 'geldautomat': 'atm', 'bank': 'bank', 'krankenhaus': 'hospital', 'arzt': 'doctor', 'polizei': 'police', 'apotheke': 'pharmacy', 'notfall': 'emergency', 'wohnung': 'apartment', 'miete': 'rent', 'arbeit': 'work', 'strand': 'beach'
+    },
+    es: {
+      'hallo': 'hola', 'danke': 'gracias', 'bitte': 'por favor', 'wasser': 'agua', 'kaffee': 'café', 'bier': 'cerveza', 'wein': 'vino', 'strand': 'playa', 'wohnung': 'piso / apartamento'
+    },
+    fr: {
+      'hallo': 'bonjour', 'danke': 'merci', 'bitte': 's’il vous plaît', 'wasser': 'eau', 'kaffee': 'café', 'bier': 'bière', 'wein': 'vin', 'strand': 'plage', 'wohnung': 'appartement'
+    },
+    it: {
+      'hallo': 'ciao', 'danke': 'grazie', 'bitte': 'per favore', 'wasser': 'acqua', 'kaffee': 'caffè', 'bier': 'birra', 'wein': 'vino', 'strand': 'spiaggia', 'wohnung': 'appartamento'
+    }
+  },
+  en: {
+    pt: {
+      'hello': 'olá', 'good morning': 'bom dia', 'thank you': 'obrigado', 'please': 'por favor', 'yes': 'sim', 'no': 'não', 'where is': 'onde fica', 'how much is this?': 'quanto custa?', 'water': 'água', 'coffee': 'café', 'beer': 'cerveja', 'wine': 'vinho', 'bill please': 'a conta, por favor', 'atm': 'multibanco', 'hospital': 'hospital', 'doctor': 'médico', 'police': 'polícia', 'pharmacy': 'farmácia', 'emergency': 'emergência', 'apartment': 'apartamento', 'rent': 'renda', 'work': 'trabalho', 'beach': 'praia'
+    }
+  },
+  es: {
+    pt: {
+      'hola': 'olá', 'buenos días': 'bom dia', 'gracias': 'obrigado', 'por favor': 'por favor', 'sí': 'sim', 'no': 'não', 'dónde está': 'onde fica', 'cuánto cuesta?': 'quanto custa?', 'agua': 'água', 'café': 'café', 'cerveza': 'cerveja', 'vino': 'vinho', 'hospital': 'hospital', 'médico': 'médico', 'policía': 'polícia', 'farmacia': 'farmácia', 'playa': 'praia'
+    }
+  },
+  fr: {
+    pt: {
+      'bonjour': 'olá', 'merci': 'obrigado', 's’il vous plaît': 'por favor', 'oui': 'sim', 'non': 'não', 'où est': 'onde fica', 'combien ça coûte?': 'quanto custa?', 'eau': 'água', 'café': 'café', 'bière': 'cerveja', 'vin': 'vinho', 'hôpital': 'hospital', 'médecin': 'médico', 'police': 'polícia', 'pharmacie': 'farmácia', 'plage': 'praia'
+    }
+  },
+  it: {
+    pt: {
+      'ciao': 'olá', 'buongiorno': 'bom dia', 'grazie': 'obrigado', 'per favore': 'por favor', 'sì': 'sim', 'no': 'não', 'dov’è': 'onde fica', 'quanto costa?': 'quanto custa?', 'acqua': 'água', 'caffè': 'café', 'birra': 'cerveja', 'vino': 'vinho', 'ospedale': 'hospital', 'medico': 'médico', 'polizia': 'polícia', 'farmacia': 'farmácia', 'spiaggia': 'praia'
+    }
+  }
+};
 
 const CITIES_METADATA = {
   lisboa: {
@@ -226,7 +327,7 @@ const LOCALES = {
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
-    placeholderTrans: 'Text zum Übersetzen eingeben...',
+    placeholderTrans: 'Text oder beliebigen Satz zum Übersetzen eingeben...',
     btnTrans: 'Text übersetzen',
     listenBtn: 'Anhören (TTS)',
     speakBtn: 'Sprechen (STT)',
@@ -238,12 +339,6 @@ const LOCALES = {
     checklistDone: 'erledigt',
     applyOnlineBtn: 'Jetzt online beantragen ↗',
     affiliateDisclosure: 'Transparenz: Über diese Links erhältst du geprüfte Express-Bearbeitung bei e-Residence. Wir erhalten eine kleine Vermittlungsprovision – für dich bleibt der Preis unverändert.',
-    affiliateCards: [
-      { key: 'nif', title: 'NIF (Portugiesische Steuernummer)', badge: 'Schritt 1 • Pflicht', desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Portugiesisches Bankkonto', badge: 'Schritt 2 • IBAN', desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
-    ],
     calcTitle: '💶 Brutto-Netto-Gehaltsrechner',
     calcSub: 'Berechne das Netto (automatische Umrechnung bei 12 oder 14 Monatsgehältern).',
     calcGrossLabel: 'Bruttogehalt (€):',
@@ -787,7 +882,7 @@ const LOCALES = {
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
-          { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
+          { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
       },
     ],
@@ -1072,10 +1167,24 @@ export default function App() {
     }
   };
 
-  // ROBUUSTER ÜBERSETZER MIT MYMEMORY API (FUNKTIONIERT OHNE API-KEY)
+  // HYBRIDER ÜBERSETZER: 1. PRÜFT DAS UMFANGREICHE WÖRTERBUCH, 2. NUTZT ÖFFENTLICHE API FÜR ALLES ANDERE
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
     setLoading(true);
+    const cleanInput = inputText.trim().toLowerCase();
+    
+    // Prüfen, ob Begriff im erweiterten Wörterbuch vorhanden ist
+    if (
+      EXTENDED_VOCABULARY[sourceLang] &&
+      EXTENDED_VOCABULARY[sourceLang][targetLang] &&
+      EXTENDED_VOCABULARY[sourceLang][targetLang][cleanInput]
+    ) {
+      setTranslatedText(EXTENDED_VOCABULARY[sourceLang][targetLang][cleanInput]);
+      setLoading(false);
+      return;
+    }
+
+    // Ansonsten automatische Übersetzung per öffentlicher API für grenzenlose Sätze
     try {
       const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
       const data = await res.json();
@@ -1090,7 +1199,7 @@ export default function App() {
     setLoading(false);
   };
 
-  // KORRIGIERTER GEHALTSRECHNER (14 MONATSGEHÄLTER AUF 12 MONATE UMGERECHNET)
+  // GEHALTSRECHNER
   const calculateNetSalary = (gross, payments, status) => {
     const inputSalary = parseFloat(gross) || 0;
     if (inputSalary <= 0) return;
