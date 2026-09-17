@@ -221,7 +221,7 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Dein Relocation-Partner für Portugal',
     tabServices: 'Services',
-    tabPlaces: 'Karte & Entdecken',
+    tabPlaces: 'Karten',
     tabTrans: 'Übersetzer',
     tabCalc: 'Gehalt',
     tabPerks: 'Deals',
@@ -284,8 +284,8 @@ const LOCALES = {
       { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
     calcTitle: '💶 Brutto-Netto-Gehaltsrechner',
-    calcSub: 'Berechne das ungefähre Netto auf Basis von Standardabzügen in Portugal.',
-    calcGrossLabel: 'Monatliches Bruttogehalt (€):',
+    calcSub: 'Berechne das Netto (automatische Umrechnung bei 12 oder 14 Monatsgehältern).',
+    calcGrossLabel: 'Bruttogehalt (€):',
     calcPaymentsLabel: 'Auszahlungen pro Jahr:',
     calcStatusLabel: 'Steuerklasse / Familienstand:',
     calcBtn: 'Gehalt berechnen',
@@ -379,7 +379,7 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Your Relocation Partner for Portugal',
     tabServices: 'Services',
-    tabPlaces: 'Map & Explore',
+    tabPlaces: 'Maps',
     tabTrans: 'Translator',
     tabCalc: 'Salary',
     tabPerks: 'Deals',
@@ -423,7 +423,7 @@ const LOCALES = {
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
-    placeholderTrans: 'Enter text to translate (e.g. hello, thanks)...',
+    placeholderTrans: 'Enter text to translate...',
     btnTrans: 'Translate Text',
     listenBtn: 'Listen (TTS)',
     speakBtn: 'Speech-to-Text (STT)',
@@ -435,9 +435,9 @@ const LOCALES = {
     checklistDone: 'completed',
     applyOnlineBtn: 'Apply online now ↗',
     affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
-    calcTitle: '💶 Gross-Net Salary Calculator',
-    calcSub: 'Precise calculation based on standard deductions in Portugal.',
-    calcGrossLabel: 'Monthly Gross Salary (€):',
+    calcTitle: '💶 Salary Calculator',
+    calcSub: 'Precise calculation based on payments and tax status.',
+    calcGrossLabel: 'Gross Salary (€):',
     calcPaymentsLabel: 'Payments per year:',
     calcStatusLabel: 'Tax status / Marital status:',
     calcBtn: 'Calculate Salary',
@@ -531,7 +531,7 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Tu socio de reubicación para Portugal',
     tabServices: 'Servicios',
-    tabPlaces: 'Mapa y Explora',
+    tabPlaces: 'Mapas',
     tabTrans: 'Traductor',
     tabCalc: 'Salario',
     tabPerks: 'Ofertas',
@@ -589,7 +589,7 @@ const LOCALES = {
     affiliateDisclosure: 'Transparencia: Estos enlaces dirigen a un procesamiento exprés certificado con e-Residence. Recibimos una pequeña comisión sin coste adicional para ti.',
     calcTitle: '💶 Calculadora de salario',
     calcSub: 'Cálculo estimado según deducciones en Portugal.',
-    calcGrossLabel: 'Salario bruto mensual (€):',
+    calcGrossLabel: 'Salario bruto (€):',
     calcPaymentsLabel: 'Pagos al año:',
     calcStatusLabel: 'Estado fiscal / Situación familiar:',
     calcBtn: 'Calcular salario',
@@ -683,7 +683,7 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Votre partenaire de relocalisation pour le Portugal',
     tabServices: 'Services',
-    tabPlaces: 'Carte & Explorer',
+    tabPlaces: 'Cartes',
     tabTrans: 'Traducteur',
     tabCalc: 'Salaire',
     tabPerks: 'Bons plans',
@@ -741,7 +741,7 @@ const LOCALES = {
     affiliateDisclosure: 'Transparence : Ces liens redirigent vers un traitement express certifié avec e-Residence. Nous recevons une petite commission sans coût supplémentaire pour vous.',
     calcTitle: '💶 Calculateur de salaire',
     calcSub: 'Calcul estimé basé sur les déductions standard au Portugal.',
-    calcGrossLabel: 'Salaire brut mensuel (€) :',
+    calcGrossLabel: 'Salaire brut (€) :',
     calcPaymentsLabel: 'Versements par an :',
     calcStatusLabel: 'Statut fiscal / Situation familiale :',
     calcBtn: 'Calculer le salaire',
@@ -824,7 +824,7 @@ const LOCALES = {
         tagline: 'L’île aux fleurs aux sommets escarpés et levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
-          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
           { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
@@ -835,7 +835,7 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Il tuo partner di trasferimento per il Portogallo',
     tabServices: 'Servizi',
-    tabPlaces: 'Mappa ed Esplora',
+    tabPlaces: 'Mappe',
     tabTrans: 'Traduttore',
     tabCalc: 'Stipendio',
     tabPerks: 'Offerte',
@@ -893,7 +893,7 @@ const LOCALES = {
     affiliateDisclosure: 'Trasparenza: Questi link reindirizzano a un’elaborazione express certificata con e-Residence. Riceviamo una piccola commissione senza costi aggiuntivi per te.',
     calcTitle: '💶 Calcolatore stipendio',
     calcSub: 'Calcolo stimato basato sulle trattenute in Portogallo.',
-    calcGrossLabel: 'Stipendio lordo mensile (€):',
+    calcGrossLabel: 'Stipendio lordo (€):',
     calcPaymentsLabel: 'Mensilità all’anno:',
     calcStatusLabel: 'Regime fiscale / Stato civile:',
     calcBtn: 'Calcola stipendio',
@@ -1130,26 +1130,37 @@ export default function App() {
     }, 300);
   };
 
+  // KORRIGIERTER GEHALTSRECHNER (14 MONATSGEHÄLTER AUF 12 MONATE UMGERECHNET WENN GEWÄHLT)
   const calculateNetSalary = (gross, payments, status) => {
-    const salary = parseFloat(gross) || 0;
-    if (salary <= 0) return;
+    const inputSalary = parseFloat(gross) || 0;
+    if (inputSalary <= 0) return;
     setLoading(true);
 
     setTimeout(() => {
-      const ss = salary * 0.11;
+      // Wenn der Nutzer z.B. 1500 € als Monatsgehalt eingibt, entspricht das bei 14 Gehältern dem Monatsbezug.
+      // Wenn er 12 Gehälter wählt, wird das Jahresgehalt (1500 * 14) auf 12 Monate umgelegt: (1500 * 14) / 12 = 1750 €
+      let monthlyBase = inputSalary;
+      let annualTotal = inputSalary * parseInt(payments);
+      
+      if (payments === '12') {
+        annualTotal = inputSalary * 14; // Gesamtes Jahresgehalt inkl. 14 Bezügen
+        monthlyBase = annualTotal / 12; // Auf 12 Monate verteilt
+      }
+
+      const ss = monthlyBase * 0.11;
       let irsFactor = status === 'single' ? 0.18 : status === 'married_1' ? 0.13 : 0.10;
       if (payments === '12') irsFactor += 0.03;
-      const irs = salary * irsFactor;
-      const net = salary - ss - irs;
-      const annualNet = net * parseInt(payments);
+      const irs = monthlyBase * irsFactor;
+      const net = monthlyBase - ss - irs;
+      const annualNet = net * 12; // bzw. annualTotal minus Abzüge
       
       setCalcResult({
-        gross: salary.toFixed(2),
+        gross: monthlyBase.toFixed(2),
         ss: ss.toFixed(2),
         irs: irs.toFixed(2),
         irsPercent: (irsFactor * 100).toFixed(0),
         netMonthly: net.toFixed(2),
-        netAnnual: annualNet.toFixed(2)
+        netAnnual: (net * parseInt(payments)).toFixed(2)
       });
       setLoading(false);
     }, 300);
@@ -1219,7 +1230,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 1: SERVICES (OHNE KI-FRAGE-BALKEN) */}
+        {/* TAB 1: SERVICES (OHNE FRAGE-BALKEN) */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -1288,7 +1299,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: MAP & PLACES */}
+        {/* TAB 2: KARTEN (VOLLER GRID-BEREICH) */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -1460,7 +1471,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: TRANSLATOR (MIT DEUTSCH, ENGLISCH, ITALIENISCH, FRANZÖSISCH, SPANISCH + TTS + STT) */}
+        {/* TAB 3: TRANSLATOR */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
