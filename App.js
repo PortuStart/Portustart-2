@@ -28,8 +28,8 @@ const AFFILIATE_LINKS = {
   eResidenceBank: 'https://e-residence.com/?via=portustart',
   eResidenceHealth: 'https://e-residence.com/?via=portustart',
   
-  // Aktualisierter offizieller Link für das EU-Zertifikat (CRUE / AIMA)
-  euCertificatePortal: 'https://aima.gov.pt/pt/cidadaos-da-uniao',
+  // Aktualisierter offizieller Link für das EU-Zertifikat / Terminvereinbarung
+  euCertificatePortal: 'https://informacoeseservicos.lisboa.pt/contactos/agendamento-de-atendimento',
 
   getYourGuidePartnerId: 'AJWYURO',
   getYourGuideCmp: 'share_to_earn',
