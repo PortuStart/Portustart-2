@@ -227,7 +227,6 @@ const LOCALES = {
     tabPlaces: 'Karten',
     tabTrans: 'Übersetzer',
     tabCalc: 'Gehalt',
-    tabPerks: 'Deals',
     placesSectionTitle: '🇵🇹 Nach Städten & Regionen sortiert',
     placesSectionSub: 'Wähle eine Region aus, um alle gespeicherten Orte zu sehen:',
     openInAppMaps: 'In Maps-App',
@@ -245,25 +244,6 @@ const LOCALES = {
     callDoctorBtn: 'Anrufen',
     directionBtn: 'Standort öffnen',
     emergencyTitle: '🚨 Notfall- & Behördenkontakte',
-
-    perksSectionTitle: '🔥 Exklusive Expat-Deals & Vorteile',
-    perksSectionSub: 'Spare Geld und Zeit bei unseren offiziellen Partnern mit deinen PortuStart-Vorteilen:',
-    claimDealBtn: 'Deal sichern ↗',
-
-    perk1Title: 'Revolut Expat Konto',
-    perk1Badge: 'Finanzen • Gebührenfrei',
-    perk1Desc: '• Keine Fremdwährungsgebühren\n• Inklusive physischer Visa-Karte\n• Perfekt für Miete & Gehalt in PT',
-
-    perk2Title: 'e-Residence Express NIF',
-    perk2Badge: 'Behörden • In 48h',
-    perk2Desc: '• Ohne Vor-Ort-Termin in den Finanças\n• 100% digital & rechtssicher\n• Inklusive digitaler Signatur',
-
-    perk3Title: 'italki Sprachkurs',
-    perk3Badge: 'Sprachen • 1-on-1',
-    perk3Desc: '• Muttersprachliche Portugiesisch-Lehrer\n• Flexible Online-Stunden\n• Perfekt für Alltags- & Behördendeutsch/-englisch',
-
-    congratsTitle: '🎉 Herzlichen Glückwunsch!',
-    congratsDesc: 'Du hast alle 7 Schritte deiner Start-Roadmap erfolgreich gemeistert! Du bist bereit für deinen perfekten Neuanfang in Portugal.',
 
     from: 'Von:',
     to: 'Nach:',
@@ -312,7 +292,6 @@ const LOCALES = {
     tabPlaces: 'Maps',
     tabTrans: 'Translator',
     tabCalc: 'Salary',
-    tabPerks: 'Deals',
     placesSectionTitle: '🇵🇹 Sorted by Cities & Regions',
     placesSectionSub: 'Choose a region to view all saved places:',
     openInAppMaps: 'Open in Maps App',
@@ -330,25 +309,6 @@ const LOCALES = {
     callDoctorBtn: 'Call',
     directionBtn: 'Open Location',
     emergencyTitle: '🚨 Emergency & Support Contacts',
-
-    perksSectionTitle: '🔥 Exclusive Expat Deals & Perks',
-    perksSectionSub: 'Save money and time with our official partners using your PortuStart benefits:',
-    claimDealBtn: 'Claim Deal ↗',
-
-    perk1Title: 'Revolut Expat Account',
-    perk1Badge: 'Finance • Fee-Free',
-    perk1Desc: '• Zero foreign transaction fees\n• Includes physical Visa card\n• Perfect for rent & salary in PT',
-
-    perk2Title: 'e-Residence Express NIF',
-    perk2Badge: 'Government • 48h Delivery',
-    perk2Desc: '• No physical trip to Finanças required\n• 100% digital & legally binding\n• Includes secure digital signature',
-
-    perk3Title: 'italki Language Lessons',
-    perk3Badge: 'Languages • 1-on-1',
-    perk3Desc: '• Certified native Portuguese tutors\n• Flexible online scheduling\n• Ideal for everyday & official communication',
-
-    congratsTitle: '🎉 Congratulations!',
-    congratsDesc: 'You have successfully completed all 7 steps of your start roadmap! You are ready for your perfect new beginning in Portugal.',
 
     from: 'From:',
     to: 'To:',
@@ -391,7 +351,6 @@ const LOCALES = {
     tabPlaces: 'Mapas',
     tabTrans: 'Traductor',
     tabCalc: 'Salario',
-    tabPerks: 'Ofertas',
     placesSectionTitle: '🇵🇹 Ordenado por Ciudades y Regiones',
     placesSectionSub: 'Elige una región para ver todos los lugares guardados:',
     openInAppMaps: 'Abrir en Maps',
@@ -409,25 +368,6 @@ const LOCALES = {
     callDoctorBtn: 'Llamar',
     directionBtn: 'Abrir ubicación',
     emergencyTitle: '🚨 Contactos de emergencia y soporte',
-
-    perksSectionTitle: '🔥 Ofertas y ventajas exclusivas para expatriados',
-    perksSectionSub: 'Ahorra dinero y tiempo con nuestros socios oficiales usando tus beneficios de PortuStart:',
-    claimDealBtn: 'Obtener oferta ↗',
-
-    perk1Title: 'Cuenta Expat Revolut',
-    perk1Badge: 'Finanzas • Sin comisiones',
-    perk1Desc: '• Cero comisiones por cambio de divisa\n• Incluye tarjeta Visa física\n• Ideal para alquiler y salario en PT',
-
-    perk2Title: 'NIF Express e-Residence',
-    perk2Badge: 'Gobierno • En 48h',
-    perk2Desc: '• Sin necesidad de ir a Finanças\n• 100% digital y legalmente válido\n• Incluye firma digital segura',
-
-    perk3Title: 'Clases de idiomas italki',
-    perk3Badge: 'Idiomas • 1 a 1',
-    perk3Desc: '• Profesores nativos de portugués certificados\n• Horarios flexibles online\n• Ideal para trámites y día a día',
-
-    congratsTitle: '🎉 ¡Felicitaciones!',
-    congratsDesc: '¡Has completado con éxito los 7 pasos de tu hoja de ruta! Estás listo para tu nuevo comienzo en Portugal.',
 
     from: 'De:',
     to: 'A:',
@@ -470,7 +410,6 @@ const LOCALES = {
     tabPlaces: 'Cartes',
     tabTrans: 'Traducteur',
     tabCalc: 'Salaire',
-    tabPerks: 'Bons plans',
     placesSectionTitle: '🇵🇹 Trié par Villes & Régions',
     placesSectionSub: 'Choisissez une région pour voir tous les lieux enregistrés :',
     openInAppMaps: 'Ouvrir dans Plans',
@@ -488,25 +427,6 @@ const LOCALES = {
     callDoctorBtn: 'Appeler',
     directionBtn: 'Ouvrir l’emplacement',
     emergencyTitle: '🚨 Contacts d’urgence et d’assistance',
-
-    perksSectionTitle: '🔥 Offres et avantages exclusifs pour expatriés',
-    perksSectionSub: 'Économisez du temps et de l’argent auprès de nos partenaires officiels grâce à vos avantages PortuStart :',
-    claimDealBtn: 'Profiter de l’offre ↗',
-
-    perk1Title: 'Compte Expat Revolut',
-    perk1Badge: 'Finance • Sans frais',
-    perk1Desc: '• Zéro frais de change à l’étranger\n• Carte Visa physique incluse\n• Idéal pour le loyer et salaire au PT',
-
-    perk2Title: 'NIF Express e-Residence',
-    perk2Badge: 'Administration • En 48h',
-    perk2Desc: '• Sans déplacement aux Finanças\n• 100% numérique et juridiquement valide\n• Signature numérique sécurisée incluse',
-
-    perk3Title: 'Cours de langues italki',
-    perk3Badge: 'Langues • 1-sur-1',
-    perk3Desc: '• Professeurs natifs de portugais certifiés\n• Horaires en ligne flexibles\n• Idéal pour le quotidien et les démarches',
-
-    congratsTitle: '🎉 Félicitations !',
-    congratsDesc: 'Vous avez terminé avec succès les 7 étapes de votre feuille de route ! Vous êtes prêt pour votre nouveau départ au Portugal.',
 
     from: 'De :',
     to: 'À :',
@@ -549,7 +469,6 @@ const LOCALES = {
     tabPlaces: 'Mappe',
     tabTrans: 'Traduttore',
     tabCalc: 'Stipendio',
-    tabPerks: 'Offerte',
     placesSectionTitle: '🇵🇹 Ordinato per Città e Regioni',
     placesSectionSub: 'Scegli una regione per visualizzare tutti i luoghi salvati:',
     openInAppMaps: 'Apri in Maps',
@@ -567,25 +486,6 @@ const LOCALES = {
     callDoctorBtn: 'Chiama',
     directionBtn: 'Apri posizione',
     emergencyTitle: '🚨 Contatti di emergenza e supporto',
-
-    perksSectionTitle: '🔥 Offerte e vantaggi esclusivi per expat',
-    perksSectionSub: 'Risparmia tempo e denaro con i nostri partner ufficiali usando i tuoi benefici PortuStart:',
-    claimDealBtn: 'Ottieni offerta ↗',
-
-    perk1Title: 'Conto Expat Revolut',
-    perk1Badge: 'Finanza • Senza commissioni',
-    perk1Desc: '• Zero commissioni di cambio valuta\n• Include carta Visa fisica\n• Ideale per affitto e stipendio in PT',
-
-    perk2Title: 'NIF Express e-Residence',
-    perk2Badge: 'Governo • In 48h',
-    perk2Desc: '• Senza recarsi fisicamente alle Finanças\n• 100% digitale e legalmente valido\n• Include firma digitale sicura',
-
-    perk3Title: 'Lezioni di lingua italki',
-    perk3Badge: 'Lingue • 1 a 1',
-    perk3Desc: '• Insegnanti madrelingua di portogruese certificati\n• Orari online flessibili\n• Ideale per la vita quotidiana e burocrazia',
-
-    congratsTitle: '🎉 Congratulazioni!',
-    congratsDesc: 'Hai completato con successo tutti i passaggi della roadmap!',
 
     from: 'Da:',
     to: 'A:',
@@ -637,36 +537,6 @@ export default function App() {
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
 
   const t = LOCALES[appLang] || LOCALES['de'];
-
-  const EXPAT_PERKS = [
-    {
-      id: 'perk1',
-      title: t.perk1Title,
-      badge: t.perk1Badge,
-      desc: t.perk1Desc,
-      link: AFFILIATE_LINKS.revolut,
-      icon: 'card',
-      img: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80',
-    },
-    {
-      id: 'perk2',
-      title: t.perk2Title,
-      badge: t.perk2Badge,
-      desc: t.perk2Desc,
-      link: AFFILIATE_LINKS.eResidenceNif,
-      icon: 'document-text',
-      img: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800&q=80',
-    },
-    {
-      id: 'perk3',
-      title: t.perk3Title,
-      badge: t.perk3Badge,
-      desc: t.perk3Desc,
-      link: AFFILIATE_LINKS.italkiLang,
-      icon: 'school',
-      img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80',
-    },
-  ];
 
   const [checkedMap, setCheckedMap] = useState({});
   const [inputText, setInputText] = useState('');
@@ -834,7 +704,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* 5-FACH MENÜLEISTE */}
+        {/* 4-FACH MENÜLEISTE (OHNE DEALS) */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
@@ -855,11 +725,6 @@ export default function App() {
             <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => setActiveTab('calc')}>
               <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'perks' && styles.tabButtonActive]} onPress={() => setActiveTab('perks')}>
-              <Ionicons name="gift" size={12} color={activeTab === 'perks' ? '#fff' : '#64748B'} />
-              <Text style={[styles.tabText, activeTab === 'perks' && styles.tabTextActive]}>{t.tabPerks}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -1251,46 +1116,6 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: PERKS & DEALS */}
-        {activeTab === 'perks' && (
-          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.card}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
-                <Ionicons name="gift" size={24} color="#0F5132" style={{ marginRight: 8 }} />
-                <Text style={styles.sectionHeaderTitle}>{t.perksSectionTitle}</Text>
-              </View>
-              <Text style={styles.subText}>{t.perksSectionSub}</Text>
-
-              {EXPAT_PERKS.map((perk) => (
-                <View key={perk.id} style={styles.attractionCardWide}>
-                  <Image source={{ uri: perk.img }} style={styles.perkCardImage} />
-                  <View style={styles.attractionBody}>
-                    <View style={styles.affiliateTopRow}>
-                      <View style={styles.affiliateIconBadge}>
-                        <Ionicons name={perk.icon} size={18} color="#0F5132" />
-                      </View>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.affiliateBadgeText}>{perk.badge}</Text>
-                        <Text style={styles.affiliateTitle}>{perk.title}</Text>
-                      </View>
-                    </View>
-                    <Text style={styles.affiliateDesc}>{perk.desc}</Text>
-                    <TouchableOpacity style={styles.primaryBtn} onPress={() => openUrl(perk.link)}>
-                      <Text style={styles.btnText}>{t.claimDealBtn}</Text>
-                      <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
-
-              <View style={[styles.attractionTipBox, { marginTop: 10 }]}>
-                <Ionicons name="star" size={16} color="#D97706" style={{ marginRight: 6, marginTop: 1 }} />
-                <Text style={styles.attractionTipText}>Alle Deals sind verifiziert und direkt mit unseren offiziellen Partner-Netzwerken verknüpft.</Text>
-              </View>
-            </View>
-          </ScrollView>
-        )}
-
         {/* MODAL SPRACHAUSWAHL */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
@@ -1456,51 +1281,6 @@ const styles = StyleSheet.create({
   },
   affiliateActionBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
   disclosureText: { fontSize: 10, color: '#94A3B8', textAlign: 'center', marginTop: 6, lineHeight: 14 },
-
-  attractionCardWide: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    overflow: 'hidden',
-    marginBottom: 12,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-  },
-  perkCardImage: { width: '100%', height: 130, backgroundColor: '#E2E8F0' },
-
-  italkiBannerCard: {
-    backgroundColor: '#F0FDF4',
-    borderRadius: 16,
-    padding: 14,
-    marginTop: 12,
-    borderWidth: 1,
-    borderColor: '#86EFAC',
-  },
-  italkiTopRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  italkiIconBadge: {
-    width: 38,
-    height: 38,
-    borderRadius: 11,
-    backgroundColor: '#DCFCE7',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  italkiBadgeText: { fontSize: 10, fontWeight: '800', color: '#166534', textTransform: 'uppercase' },
-  italkiTitle: { fontSize: 14, fontWeight: '800', color: '#14532D' },
-  italkiDesc: { fontSize: 12, color: '#166534', marginTop: 6, lineHeight: 17 },
-  italkiActionBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#0F5132',
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 12,
-  },
-  italkiActionBtnText: { color: '#FFFFFF', fontSize: 12.5, fontWeight: '700' },
 
   liveMapWrapper: {
     height: 270,
