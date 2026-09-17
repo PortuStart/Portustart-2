@@ -1082,16 +1082,6 @@ export default function App() {
     }, 300);
   };
 
-  const getMapEmbedUrl = () => {
-    if (activePlaceFilter === 'atm') {
-      return `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
-    }
-    if (activePlaceFilter === 'doctors') {
-      return `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
-    }
-    return `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
-  };
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#0F5132" />
@@ -1262,17 +1252,15 @@ export default function App() {
                 </ScrollView>
               )}
 
+              {/* STABILE KARTEN-ANZEIGE OHNE IFRAME-ABSTÜRZE */}
               <View style={styles.liveMapWrapper}>
-                {Platform.OS === 'web' ? (
-                  <iframe title="Portugal Interactive Map" src={getMapEmbedUrl()} style={styles.mapIframe} loading="lazy" allowFullScreen />
-                ) : (
-                  <View style={styles.nativeMapFallback}>
-                    <Ionicons name="map-outline" size={40} color="#0F5132" />
-                    <Text style={styles.nativeMapText}>Portugal Live-Karte</Text>
-                  </View>
-                )}
+                <View style={styles.nativeMapFallback}>
+                  <Ionicons name="map" size={42} color="#0F5132" />
+                  <Text style={styles.nativeMapText}>Portugal Live-Region: {currentCityText.name}</Text>
+                  <Text style={styles.nativeMapSubText}>Koordinaten: {currentCityMeta.lat}, {currentCityMeta.lng}</Text>
+                </View>
                 
-                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl('https://www.google.com/maps/search/?api=1&query=Portugal')}>
+                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${currentCityMeta.lat},${currentCityMeta.lng}`)}>
                   <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
                   <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
                 </TouchableOpacity>
@@ -1774,7 +1762,7 @@ const styles = StyleSheet.create({
   italkiActionBtnText: { color: '#FFFFFF', fontSize: 12.5, fontWeight: '700' },
 
   liveMapWrapper: {
-    height: 270,
+    height: 180,
     width: '100%',
     borderRadius: 14,
     overflow: 'hidden',
@@ -1784,9 +1772,9 @@ const styles = StyleSheet.create({
     borderColor: '#CBD5E1',
     backgroundColor: '#E2E8F0',
   },
-  mapIframe: { width: '100%', height: '100%', border: 'none' },
-  nativeMapFallback: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  nativeMapText: { fontSize: 13, fontWeight: '700', color: '#0F5132', marginTop: 6 },
+  nativeMapFallback: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10 },
+  nativeMapText: { fontSize: 13, fontWeight: '800', color: '#0F5132', marginTop: 6, textAlign: 'center' },
+  nativeMapSubText: { fontSize: 11, color: '#475569', marginTop: 2, textAlign: 'center' },
   floatingOpenMapsBtn: {
     position: 'absolute',
     bottom: 10,
