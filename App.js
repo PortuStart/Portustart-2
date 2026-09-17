@@ -53,7 +53,7 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// Umfangreiches, fehlerfreies Offline-Wörterbuch für Expat-Begriffe & Alltag
+// Umfangreiches Offline-Wörterbuch
 const OFFLINE_DICTIONARY = {
   de: {
     pt: {
@@ -844,7 +844,7 @@ const LOCALES = {
         tagline: 'L’île aux fleurs aux sommets escarpés et levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
-          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
+          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
           { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
@@ -1131,7 +1131,7 @@ export default function App() {
     }
   };
 
-  // ROBUUSTER LOKALER ÜBERSETZER (100% OFFLINE-SICHER)
+  // 100% SICHERER LOKALER OFFLINE-ÜBERSETZER
   const handleTranslate = () => {
     if (!inputText.trim()) return;
     setLoading(true);
@@ -2053,7 +2053,7 @@ const styles = StyleSheet.create({
   },
   sttMicButtonText: { color: '#FFFFFF', fontSize: 10.5, fontWeight: 'bold' },
   resultCard: { backgroundColor: '#F0FDF4', borderRadius: 16, padding: 14, borderColor: '#BBF7D0', borderWidth: 1, marginTop: 10 },
-  resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-system', alignItems: 'center' },
+  resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
   resultBody: { fontSize: 16, color: '#14532D', fontWeight: '700', marginTop: 4 },
   audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
