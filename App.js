@@ -470,7 +470,7 @@ const LOCALES = {
         places: [
           { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Rent a kayak early.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Tip: Take a small boat tour.' },
-          { id: 'a3', title: 'Ria Formosa Park', category: 'Laguna & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
+          { id: 'a3', title: 'Ria Formosa Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
           { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and snorkeling waters.', tip: 'Tip: Hanging Valleys Trail.' },
           { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Red Cliffs', desc: 'Over 6 km of sand sheltered by red sandstone cliffs.', tip: 'Tip: Low-tide strolls.' },
         ],
@@ -662,7 +662,7 @@ const LOCALES = {
     tabPlaces: 'Carte & Explorer',
     tabTrans: 'Assistant IA',
     tabCalc: 'Salaire',
-    tabPerks: 'Bons plans', // Moved to the very end
+    tabPerks: 'Bons plans',
     placesSectionTitle: '🇵🇹 Carte interactive et filtres',
     placesSectionSub: 'Choisissez ce qui doit s’afficher sur la carte et dans la liste :',
     openInAppMaps: 'Ouvrir dans Plans',
@@ -784,7 +784,7 @@ const LOCALES = {
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arches calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
           { id: 'a3', title: 'Parc naturel de Ria Formosa', category: 'Lagune et îles', desc: 'Zone humide côtière protégée avec îles piétonnes.', tip: 'Conseil : Prendre le ferry pour Armona.' },
           { id: 'ab1', title: 'Plage de Marinha', category: '🏖 Top plage européenne', desc: 'Doubles arches rocheuses et eaux de baignade.', tip: 'Conseil : Sentier des Vallées Suspendues.' },
-          { id: 'ab2', title: 'Plage de Falésia', category: '🏖 Falaises rouges', desc: 'Plus de 6 km de sable abrités par des falaises rouges.', tip: 'Conseil : Balades à marée basse.' },
+          { id: 'ab2', title: 'Plage de Falésia', category: '🏖 Falaises rouges', desc: 'Plus de 6 km de sand abrités par des falaises rouges.', tip: 'Conseil : Balades à marée basse.' },
         ],
       },
       {
@@ -804,7 +804,7 @@ const LOCALES = {
         tagline: 'L’île aux fleurs aux sommets escarpés et levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
-          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
+          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
           { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
@@ -818,7 +818,7 @@ const LOCALES = {
     tabPlaces: 'Mappa ed Esplora',
     tabTrans: 'Assistente IA',
     tabCalc: 'Stipendio',
-    tabPerks: 'Offerte', // Moved to the very end
+    tabPerks: 'Offerte',
     placesSectionTitle: '🇵🇹 Mappa interattiva e filtri',
     placesSectionSub: 'Scegli cosa visualizzare sulla mappa in tempo reale e nella lista:',
     openInAppMaps: 'Apri in Maps',
@@ -1112,6 +1112,7 @@ export default function App() {
     }
   };
 
+  // ROBUSTER UND STABILER AI CALL MIT gpt-4o-mini
   const callVercelAI = async (promptText) => {
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -1121,7 +1122,7 @@ export default function App() {
           'Authorization': `Bearer ${AI_GATEWAY_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-4o',
+          model: 'gpt-4o-mini',
           messages: [
             {
               role: 'system',
@@ -1136,8 +1137,11 @@ export default function App() {
         }),
       });
       const data = await response.json();
-      if (data.choices && data.choices[0].message.content) {
+      if (data.choices && data.choices[0] && data.choices[0].message) {
         return data.choices[0].message.content.trim();
+      }
+      if (data.text) {
+        return data.text.trim();
       }
       return null;
     } catch {
@@ -1777,7 +1781,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#0F5132' },
-  container: { flex: 1, backgroundColor: '#FBF9F5' }, // MEDITERRANES EXPAT-BEIGE ALS HINTERGRUND
+  container: { flex: 1, backgroundColor: '#FBF9F5' }, // MEDITERRANES EXPAT-BEIGE
   header: {
     backgroundColor: '#0F5132',
     paddingTop: 8,
