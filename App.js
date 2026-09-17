@@ -56,18 +56,17 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
 ];
 
-// ECHTE BILD-METADATEN DER SEHENSWÜRDIGKEITEN & STRÄNDE
 const CITIES_METADATA = {
   lisboa: {
     lat: 38.7223,
     lng: -9.1393,
     zoom: 12,
     placesMeta: [
-      { id: 'l1', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80', query: 'Torre de Belem Lisbon', gygQuery: 'Belem Tower Lisbon' }, // Torre de Belém
-      { id: 'l2', img: 'https://images.unsplash.com/photo-1565217245037-3bf791837c76?w=800&q=80', query: 'Miradouro de Santa Luzia Lisbon', gygQuery: 'Alfama Lisbon Fado' }, // Alfama / Santa Luzia
-      { id: 'l3', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Praca do Comercio Lisbon', gygQuery: 'Tagus River cruise Lisbon' }, // Praça do Comércio
-      { id: 'lb1', img: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=800&q=80', query: 'Praia de Carcavelos', gygQuery: 'Carcavelos surf lesson' }, // Praia de Carcavelos
-      { id: 'lb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia dos Galapinhos Arrabida', gygQuery: 'Arrabida natural park tour' }, // Galapinhos / Arrábida
+      { id: 'l1', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80', query: 'Torre de Belem Lisbon', gygQuery: 'Belem Tower Lisbon' },
+      { id: 'l2', img: 'https://images.unsplash.com/photo-1565217245037-3bf791837c76?w=800&q=80', query: 'Miradouro de Santa Luzia Lisbon', gygQuery: 'Alfama Lisbon Fado' },
+      { id: 'l3', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Praca do Comercio Lisbon', gygQuery: 'Tagus River cruise Lisbon' },
+      { id: 'lb1', img: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=800&q=80', query: 'Praia de Carcavelos', gygQuery: 'Carcavelos surf lesson' },
+      { id: 'lb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia dos Galapinhos Arrabida', gygQuery: 'Arrabida natural park tour' },
     ],
   },
   porto: {
@@ -75,11 +74,11 @@ const CITIES_METADATA = {
     lng: -8.6291,
     zoom: 12,
     placesMeta: [
-      { id: 'p1', img: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800&q=80', query: 'Dom Luis I Bridge Porto', gygQuery: 'Douro river cruise Porto' }, // Dom Luís I Brücke
-      { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto', gygQuery: 'Livraria Lello Porto ticket' }, // Livraria Lello
-      { id: 'p3', img: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=800&q=80', query: 'Port Wine Cellars Gaia Porto', gygQuery: 'Port wine tasting Porto Gaia' }, // Portweinkeller Gaia
-      { id: 'pb1', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80', query: 'Praia de Matosinhos', gygQuery: 'Matosinhos surf lesson' }, // Praia de Matosinhos
-      { id: 'pb2', img: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800&q=80', query: 'Praia de Miramar Senhor da Pedra', gygQuery: 'Porto coastal tour' }, // Senhor da Pedra / Miramar
+      { id: 'p1', img: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800&q=80', query: 'Dom Luis I Bridge Porto', gygQuery: 'Douro river cruise Porto' },
+      { id: 'p2', img: 'https://images.unsplash.com/photo-1583275479278-8571871f3ce3?w=800&q=80', query: 'Livraria Lello Porto', gygQuery: 'Livraria Lello Porto ticket' },
+      { id: 'p3', img: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=800&q=80', query: 'Port Wine Cellars Gaia Porto', gygQuery: 'Port wine tasting Porto Gaia' },
+      { id: 'pb1', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80', query: 'Praia de Matosinhos', gygQuery: 'Matosinhos surf lesson' },
+      { id: 'pb2', img: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800&q=80', query: 'Praia de Miramar Senhor da Pedra', gygQuery: 'Porto coastal tour' },
     ],
   },
   sintra: {
@@ -87,11 +86,11 @@ const CITIES_METADATA = {
     lng: -9.3817,
     zoom: 12,
     placesMeta: [
-      { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra', gygQuery: 'Pena Palace Sintra ticket' }, // Pena Palast
-      { id: 's2', img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80', query: 'Quinta da Regaleira Sintra', gygQuery: 'Quinta da Regaleira guided tour' }, // Quinta da Regaleira
-      { id: 's3', img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80', query: 'Cabo da Roca Portugal', gygQuery: 'Cabo da Roca Cascais day trip' }, // Cabo da Roca
-      { id: 'sb1', img: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', query: 'Praia do Guincho Cascais', gygQuery: 'Guincho surf lesson' }, // Praia do Guincho
-      { id: 'sb2', img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80', query: 'Praia da Ursa Sintra', gygQuery: 'Sintra coastal hike' }, // Praia da Ursa
+      { id: 's1', img: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80', query: 'Pena Palace Sintra', gygQuery: 'Pena Palace Sintra ticket' },
+      { id: 's2', img: 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?w=800&q=80', query: 'Quinta da Regaleira Sintra', gygQuery: 'Quinta da Regaleira guided tour' },
+      { id: 's3', img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80', query: 'Cabo da Roca Portugal', gygQuery: 'Cabo da Roca Cascais day trip' },
+      { id: 'sb1', img: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', query: 'Praia do Guincho Cascais', gygQuery: 'Guincho surf lesson' },
+      { id: 'sb2', img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80', query: 'Praia da Ursa Sintra', gygQuery: 'Sintra coastal hike' },
     ],
   },
   algarve: {
@@ -99,11 +98,11 @@ const CITIES_METADATA = {
     lng: -7.9322,
     zoom: 10,
     placesMeta: [
-      { id: 'a1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Benagil Cave Algarve', gygQuery: 'Benagil cave boat tour' }, // Benagil Höhle
-      { id: 'a2', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80', query: 'Ponta da Piedade Lagos', gygQuery: 'Ponta da Piedade boat tour Lagos' }, // Ponta da Piedade
-      { id: 'a3', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Ria Formosa Natural Park Faro', gygQuery: 'Ria Formosa boat tour Faro' }, // Ria Formosa
-      { id: 'ab1', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=800&q=80', query: 'Praia da Marinha Lagoa', gygQuery: 'Seven Hanging Valleys hike Algarve' }, // Praia da Marinha
-      { id: 'ab2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Falesia Albufeira', gygQuery: 'Albufeira boat tour' }, // Praia da Falésia
+      { id: 'a1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Benagil Cave Algarve', gygQuery: 'Benagil cave boat tour' },
+      { id: 'a2', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80', query: 'Ponta da Piedade Lagos', gygQuery: 'Ponta da Piedade boat tour Lagos' },
+      { id: 'a3', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', query: 'Ria Formosa Natural Park Faro', gygQuery: 'Ria Formosa boat tour Faro' },
+      { id: 'ab1', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=800&q=80', query: 'Praia da Marinha Lagoa', gygQuery: 'Seven Hanging Valleys hike Algarve' },
+      { id: 'ab2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Falesia Albufeira', gygQuery: 'Albufeira boat tour' },
     ],
   },
   coimbra: {
@@ -111,10 +110,10 @@ const CITIES_METADATA = {
     lng: -8.4103,
     zoom: 12,
     placesMeta: [
-      { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra', gygQuery: 'University of Coimbra Joanina library ticket' }, // Biblioteca Joanina
-      { id: 'c2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Monastery of Santa Cruz Coimbra', gygQuery: 'Coimbra walking tour' }, // Coimbra Altstadt
-      { id: 'cb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Claridade Figueira da Foz', gygQuery: 'Figueira da Foz' }, // Figueira da Foz
-      { id: 'cb2', img: 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=800&q=80', query: 'Praia de Mira Portugal', gygQuery: 'Aveiro lagoon day trip' }, // Praia de Mira
+      { id: 'c1', img: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80', query: 'Biblioteca Joanina Coimbra', gygQuery: 'University of Coimbra Joanina library ticket' },
+      { id: 'c2', img: 'https://images.unsplash.com/photo-1513688285115-45a1c5847541?w=800&q=80', query: 'Monastery of Santa Cruz Coimbra', gygQuery: 'Coimbra walking tour' },
+      { id: 'cb1', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Claridade Figueira da Foz', gygQuery: 'Figueira da Foz' },
+      { id: 'cb2', img: 'https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=800&q=80', query: 'Praia de Mira Portugal', gygQuery: 'Aveiro lagoon day trip' },
     ],
   },
   madeira: {
@@ -122,10 +121,10 @@ const CITIES_METADATA = {
     lng: -16.9089,
     zoom: 11,
     placesMeta: [
-      { id: 'm1', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', query: 'Pico do Arieiro Madeira', gygQuery: 'Pico do Arieiro to Pico Ruivo transfer' }, // Pico do Arieiro
-      { id: 'm2', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', query: '25 Fontes Levada Madeira', gygQuery: 'Rabaçal 25 Fontes levada walk' }, // Levada / Madeira Natur
-      { id: 'mb1', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Prainha do Canical Madeira', gygQuery: 'Ponta de Sao Lourenco boat tour' }, // Prainha Caniçal
-      { id: 'mb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Calheta Madeira', gygQuery: 'Madeira whale watching Calheta' }, // Calheta Strand
+      { id: 'm1', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80', query: 'Pico do Arieiro Madeira', gygQuery: 'Pico do Arieiro to Pico Ruivo transfer' },
+      { id: 'm2', img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80', query: '25 Fontes Levada Madeira', gygQuery: 'Rabaçal 25 Fontes levada walk' },
+      { id: 'mb1', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80', query: 'Prainha do Canical Madeira', gygQuery: 'Ponta de Sao Lourenco boat tour' },
+      { id: 'mb2', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', query: 'Praia da Calheta Madeira', gygQuery: 'Madeira whale watching Calheta' },
     ],
   },
 };
@@ -1140,7 +1139,7 @@ export default function App() {
           'Authorization': `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
+          model: 'gpt-4o',
           messages: [
             {
               role: 'system',
@@ -1179,7 +1178,7 @@ export default function App() {
           'Authorization': `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
+          model: 'gpt-4o',
           messages: [
             {
               role: 'system',
@@ -1224,7 +1223,7 @@ export default function App() {
           'Authorization': `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
+          model: 'gpt-4o',
           messages: [
             {
               role: 'system',
