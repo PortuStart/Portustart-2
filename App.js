@@ -52,30 +52,30 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// VOLLSTÄNDIGE ORTSLISTE AUS DEINER GOOGLE MAPS LISTE (KATEGORISIERT)
+// VOLLSTÄNDIGE ORTSLISTE (Gezielte Markierung, wo es buchbare Touren/Tickets gibt: bookable: true)
 const MAP_CATEGORIES = [
   {
     id: 'culture',
     name: '🏛 Kultur & Sights',
     tagline: 'Sehenswürdigkeiten, Parks und Museen',
     places: [
-      { id: 'c1', title: 'Jardim da Estrela', category: 'City park (4.6 ⭐)', desc: 'Historischer Stadtpark.' },
-      { id: 'c2', title: 'Botanical Garden of Lisbon', category: 'Botanical garden (4.0 ⭐)', desc: 'Botanischer Garten.' },
-      { id: 'c3', title: 'Jerónimos Monastery', category: 'Monastery (4.4 ⭐)', desc: 'Berühmtes UNESCO-Kloster in Belém.' },
-      { id: 'c4', title: 'Carmo Archaeological Museum', category: 'Archaeological museum (4.5 ⭐)', desc: 'Gotische Ruine und Museum.' },
-      { id: 'c5', title: 'Cosmos Campolide', category: 'Cultural center (4.6 ⭐)', desc: 'Kulturzentrum.' },
-      { id: 'c6', title: 'River Garden', category: 'Garden (4.7 ⭐)', desc: 'Schöner Gartenbereich.' },
-      { id: 'c7', title: 'Cape Carvoeiro Viewpoint', category: 'Scenic spot (4.6 ⭐)', desc: 'Aussichtspunkt an der Küste.' },
-      { id: 'c8', title: 'Coin Caves', category: 'Tourist attraction (4.6 ⭐)', desc: 'Beeindruckende Höhlen.' },
-      { id: 'c9', title: 'Miradouro da Graça', category: 'Scenic spot (4.7 ⭐)', desc: 'Beliebter Aussichtspunkt mit Kiosk.' },
-      { id: 'c10', title: 'Castelo de São Jorge', category: 'Castle (4.5 ⭐)', desc: 'Historische Burg über der Stadt.' },
-      { id: 'c11', title: 'Estufa Fria', category: 'Botanical garden (4.7 ⭐)', desc: 'Gewächshaus mit exotischen Pflanzen.' },
-      { id: 'c12', title: 'Miradouro de Santa Luzia', category: 'Scenic spot (4.6 ⭐)', desc: 'Romantischer Aussichtspunkt mit Bougainvillea.' },
-      { id: 'c13', title: 'Observatório Oficial Dark Sky Alqueva', category: 'Observatory (4.7 ⭐)', desc: 'Sternenbeobachtung.' },
-      { id: 'c14', title: 'LX Factory', category: 'Art center (4.5 ⭐)', desc: 'Kreatives Zentrum in alter Fabrik.' },
-      { id: 'c15', title: 'Village Underground Lisboa', category: 'Cultural center (4.2 ⭐)', desc: 'Kreativraum in Containern.' },
-      { id: 'c16', title: 'Alfama', category: 'Historic district', desc: 'Ältestes Viertel von Lissabon.' },
-      { id: 'c17', title: 'Monsanto', category: 'Mountain peak (4.7 ⭐)', desc: 'Grüne Lunge von Lissabon.' },
+      { id: 'c1', title: 'Jardim da Estrela', category: 'City park (4.6 ⭐)', desc: 'Historischer Stadtpark.', bookable: false },
+      { id: 'c2', title: 'Botanical Garden of Lisbon', category: 'Botanical garden (4.0 ⭐)', desc: 'Botanischer Garten.', bookable: true },
+      { id: 'c3', title: 'Jerónimos Monastery', category: 'Monastery (4.4 ⭐)', desc: 'Berühmtes UNESCO-Kloster in Belém.', bookable: true },
+      { id: 'c4', title: 'Carmo Archaeological Museum', category: 'Archaeological museum (4.5 ⭐)', desc: 'Gotische Ruine und Museum.', bookable: true },
+      { id: 'c5', title: 'Cosmos Campolide', category: 'Cultural center (4.6 ⭐)', desc: 'Kulturzentrum.', bookable: false },
+      { id: 'c6', title: 'River Garden', category: 'Garden (4.7 ⭐)', desc: 'Schöner Gartenbereich.', bookable: false },
+      { id: 'c7', title: 'Cape Carvoeiro Viewpoint', category: 'Scenic spot (4.6 ⭐)', desc: 'Aussichtspunkt an der Küste.', bookable: true },
+      { id: 'c8', title: 'Coin Caves', category: 'Tourist attraction (4.6 ⭐)', desc: 'Beeindruckende Höhlen.', bookable: true },
+      { id: 'c9', title: 'Miradouro da Graça', category: 'Scenic spot (4.7 ⭐)', desc: 'Beliebter Aussichtspunkt mit Kiosk.', bookable: false },
+      { id: 'c10', title: 'Castelo de São Jorge', category: 'Castle (4.5 ⭐)', desc: 'Historische Burg über der Stadt.', bookable: true },
+      { id: 'c11', title: 'Estufa Fria', category: 'Botanical garden (4.7 ⭐)', desc: 'Gewächshaus mit exotischen Pflanzen.', bookable: true },
+      { id: 'c12', title: 'Miradouro de Santa Luzia', category: 'Scenic spot (4.6 ⭐)', desc: 'Romantischer Aussichtspunkt mit Bougainvillea.', bookable: false },
+      { id: 'c13', title: 'Observatório Oficial Dark Sky Alqueva', category: 'Observatory (4.7 ⭐)', desc: 'Sternenbeobachtung.', bookable: true },
+      { id: 'c14', title: 'LX Factory', category: 'Art center (4.5 ⭐)', desc: 'Kreatives Zentrum in alter Fabrik.', bookable: true },
+      { id: 'c15', title: 'Village Underground Lisboa', category: 'Cultural center (4.2 ⭐)', desc: 'Kreativraum in Containern.', bookable: false },
+      { id: 'c16', title: 'Alfama', category: 'Historic district', desc: 'Ältestes Viertel von Lissabon.', bookable: true },
+      { id: 'c17', title: 'Monsanto', category: 'Mountain peak (4.7 ⭐)', desc: 'Grüne Lunge von Lissabon.', bookable: false },
     ],
   },
   {
@@ -83,15 +83,15 @@ const MAP_CATEGORIES = [
     name: '🏖 Strände & Natur',
     tagline: 'Gespeicherte Strände und Naturreservate',
     places: [
-      { id: 'b1', title: 'Praia da Fonte da Telha', category: 'Beach (4.5 ⭐)', desc: 'Langer Sandstrand.' },
-      { id: 'b2', title: 'Sesimbra', category: 'Coastal town', desc: 'Malerischer Fischerort.' },
-      { id: 'b3', title: 'Galapos beach', category: 'Beach (4.7 ⭐)', desc: 'Kristallklares Wasser im Naturpark Arrábida.' },
-      { id: 'b4', title: 'Praia de Paredes da Vitória', category: 'Public beach (4.6 ⭐)', desc: 'Weitläufiger Strand.' },
-      { id: 'b5', title: 'Ponta da Piedade', category: 'Scenic spot (4.8 ⭐)', desc: 'Klippenlandschaft an der Algarve.' },
-      { id: 'b6', title: 'Praia do Ribeiro do Cavalo', category: 'Nature preserve (4.7 ⭐)', desc: 'Versteckte, wilde Bucht.' },
-      { id: 'b7', title: 'Praia da Adraga', category: 'Beach (4.8 ⭐)', desc: 'Dramatische Klippenküste bei Sintra.' },
-      { id: 'b8', title: 'Carcavelos beach', category: 'Beach (4.4 ⭐)', desc: 'Beliebter Surfstrand.' },
-      { id: 'b9', title: 'Green Street', category: 'Tourist attraction (4.2 ⭐)', desc: 'Begrünte Straße in Lissabon.' },
+      { id: 'b1', title: 'Praia da Fonte da Telha', category: 'Beach (4.5 ⭐)', desc: 'Langer Sandstrand.', bookable: false },
+      { id: 'b2', title: 'Sesimbra', category: 'Coastal town', desc: 'Malerischer Fischerort.', bookable: true },
+      { id: 'b3', title: 'Galapos beach', category: 'Beach (4.7 ⭐)', desc: 'Kristallklares Wasser im Naturpark Arrábida.', bookable: true },
+      { id: 'b4', title: 'Praia de Paredes da Vitória', category: 'Public beach (4.6 ⭐)', desc: 'Weitläufiger Strand.', bookable: false },
+      { id: 'b5', title: 'Ponta da Piedade', category: 'Scenic spot (4.8 ⭐)', desc: 'Klippenlandschaft an der Algarve.', bookable: true },
+      { id: 'b6', title: 'Praia do Ribeiro do Cavalo', category: 'Nature preserve (4.7 ⭐)', desc: 'Versteckte, wilde Bucht.', bookable: true },
+      { id: 'b7', title: 'Praia da Adraga', category: 'Beach (4.8 ⭐)', desc: 'Dramatische Klippenküste bei Sintra.', bookable: false },
+      { id: 'b8', title: 'Carcavelos beach', category: 'Beach (4.4 ⭐)', desc: 'Beliebter Surfstrand.', bookable: true },
+      { id: 'b9', title: 'Green Street', category: 'Tourist attraction (4.2 ⭐)', desc: 'Begrünte Straße in Lissabon.', bookable: false },
     ],
   },
   {
@@ -99,25 +99,25 @@ const MAP_CATEGORIES = [
     name: '☕ Cafés, Food & Markets',
     tagline: 'Cafés, Restaurants und Märkte',
     places: [
-      { id: 'f1', title: 'PUT IT ON LISBON', category: 'Coffee shop (4.9 ⭐)', desc: 'Gemütliches Café.' },
-      { id: 'f2', title: 'Delirium Café Lisboa', category: 'Pub (4.5 ⭐)', desc: 'Bekannte Bar.' },
-      { id: 'f3', title: 'ROOFTOP - TOPO MARTIM MONIZ', category: 'Cocktail bar (4.3 ⭐)', desc: 'Rooftop-Bar mit Ausblick.' },
-      { id: 'f4', title: 'A Minha Avó', category: 'Vegan restaurant (4.6 ⭐)', desc: 'Vegane Küche.' },
-      { id: 'f5', title: 'Bar Badassery', category: 'Cocktail bar (4.6 ⭐)', desc: 'Cocktails und Drinks.' },
-      { id: 'f6', title: 'Fable Bookshop + Coffee', category: 'Book store / Cafe (4.8 ⭐)', desc: 'Bücher und Kaffee.' },
-      { id: 'f7', title: 'Lara Coffee', category: 'Pastries (4.2 ⭐)', desc: 'Gebäck und Kaffee.' },
-      { id: 'f8', title: 'Dearvains', category: 'Thrift store (4.7 ⭐)', desc: 'Second Hand Shop.' },
-      { id: 'f9', title: 'Capricciosa Carcavelos', category: 'Italian (4.3 ⭐)', desc: 'Italienisches Restaurant.' },
-      { id: 'f10', title: 'Feira do Relógio', category: 'Flea market (4.3 ⭐)', desc: 'Großer Flohmarkt.' },
-      { id: 'f11', title: 'Monthly Sunday flea market', category: 'Flea market (4.5 ⭐)', desc: 'Sonntagsmarkt.' },
-      { id: 'f12', title: 'Amor Records', category: 'Record store (4.7 ⭐)', desc: 'Plattenladen.' },
-      { id: 'f13', title: 'Café da Garagem', category: 'Cafe (4.2 ⭐)', desc: 'Café mit tollem Blick.' },
-      { id: 'f14', title: 'Terraço Chill-Out Limão', category: 'Bar (4.3 ⭐)', desc: 'Chill-out Bar.' },
-      { id: 'f15', title: 'Jardins do Bombarda', category: 'Park (4.6 ⭐)', desc: 'Gartenanlage.' },
-      { id: 'f16', title: 'Jardim das Cerejas', category: 'Vegan (4.6 ⭐)', desc: 'Veganes Restaurant.' },
-      { id: 'f17', title: 'Machimbombo', category: 'Bar (4.3 ⭐)', desc: 'Bar in der Altstadt.' },
-      { id: 'f18', title: 'Copenhagen Coffee Lab - Baixa', category: 'Coffee shop (4.3 ⭐)', desc: 'Skandinavischer Kaffee.' },
-      { id: 'f19', title: 'Fauna & Flora - Anjos', category: 'Restaurant (4.4 ⭐)', desc: 'Brunch und Bowls.' },
+      { id: 'f1', title: 'PUT IT ON LISBON', category: 'Coffee shop (4.9 ⭐)', desc: 'Gemütliches Café.', bookable: false },
+      { id: 'f2', title: 'Delirium Café Lisboa', category: 'Pub (4.5 ⭐)', desc: 'Bekannte Bar.', bookable: false },
+      { id: 'f3', title: 'ROOFTOP - TOPO MARTIM MONIZ', category: 'Cocktail bar (4.3 ⭐)', desc: 'Rooftop-Bar mit Ausblick.', bookable: false },
+      { id: 'f4', title: 'A Minha Avó', category: 'Vegan restaurant (4.6 ⭐)', desc: 'Vegane Küche.', bookable: false },
+      { id: 'f5', title: 'Bar Badassery', category: 'Cocktail bar (4.6 ⭐)', desc: 'Cocktails und Drinks.', bookable: false },
+      { id: 'f6', title: 'Fable Bookshop + Coffee', category: 'Book store / Cafe (4.8 ⭐)', desc: 'Bücher und Kaffee.', bookable: false },
+      { id: 'f7', title: 'Lara Coffee', category: 'Pastries (4.2 ⭐)', desc: 'Gebäck und Kaffee.', bookable: false },
+      { id: 'f8', title: 'Dearvains', category: 'Thrift store (4.7 ⭐)', desc: 'Second Hand Shop.', bookable: false },
+      { id: 'f9', title: 'Capricciosa Carcavelos', category: 'Italian (4.3 ⭐)', desc: 'Italienisches Restaurant.', bookable: false },
+      { id: 'f10', title: 'Feira do Relógio', category: 'Flea market (4.3 ⭐)', desc: 'Großer Flohmarkt.', bookable: false },
+      { id: 'f11', title: 'Monthly Sunday flea market', category: 'Flea market (4.5 ⭐)', desc: 'Sonntagsmarkt.', bookable: false },
+      { id: 'f12', title: 'Amor Records', category: 'Record store (4.7 ⭐)', desc: 'Plattenladen.', bookable: false },
+      { id: 'f13', title: 'Café da Garagem', category: 'Cafe (4.2 ⭐)', desc: 'Café mit tollem Blick.', bookable: false },
+      { id: 'f14', title: 'Terraço Chill-Out Limão', category: 'Bar (4.3 ⭐)', desc: 'Chill-out Bar.', bookable: false },
+      { id: 'f15', title: 'Jardins do Bombarda', category: 'Park (4.6 ⭐)', desc: 'Gartenanlage.', bookable: false },
+      { id: 'f16', title: 'Jardim das Cerejas', category: 'Vegan (4.6 ⭐)', desc: 'Veganes Restaurant.', bookable: false },
+      { id: 'f17', title: 'Machimbombo', category: 'Bar (4.3 ⭐)', desc: 'Bar in der Altstadt.', bookable: false },
+      { id: 'f18', title: 'Copenhagen Coffee Lab - Baixa', category: 'Coffee shop (4.3 ⭐)', desc: 'Skandinavischer Kaffee.', bookable: false },
+      { id: 'f19', title: 'Fauna & Flora - Anjos', category: 'Restaurant (4.4 ⭐)', desc: 'Brunch und Bowls.', bookable: false },
     ],
   },
   {
@@ -125,18 +125,18 @@ const MAP_CATEGORIES = [
     name: '🛍 Shopping & Vintage',
     tagline: 'Second Hand, Vintage und Stores',
     places: [
-      { id: 's1', title: 'Cash Converters', category: 'Second hand (3.9 ⭐)', desc: 'An- und Verkauf.' },
-      { id: 's2', title: 'Espaço Casa Loures', category: 'Home goods (4.1 ⭐)', desc: 'Haushaltswaren.' },
-      { id: 's3', title: 'Seedge', category: 'Cannabis store (5.0 ⭐)', desc: 'Specialty store.' },
-      { id: 's4', title: 'Retro City', category: 'Vintage clothing (4.5 ⭐)', desc: 'Vintage Mode.' },
-      { id: 's5', title: 'Loja Real', category: 'Clothing store (3.3 ⭐)', desc: 'Modegeschäft.' },
-      { id: 's6', title: 'Loja CTT', category: 'Post office (3.0 ⭐)', desc: 'Postfiliale.' },
-      { id: 's7', title: 'Boubaud Vintage Boutique', category: 'Vintage clothing (4.9 ⭐)', desc: 'Vintage Boutique.' },
-      { id: 's8', title: 'Little Chelsea', category: 'Art gallery (4.3 ⭐)', desc: 'Kunstgalerie.' },
-      { id: 's9', title: 'My Auchan', category: 'Supermarket (4.0 ⭐)', desc: 'Supermarkt.' },
-      { id: 's10', title: 'Triparte Store & Tattoo', category: 'Clothing & Tattoo (4.6 ⭐)', desc: 'Store und Tattoo.' },
-      { id: 's11', title: 'Rita Biju', category: 'Jewelry store (2.7 ⭐)', desc: 'Schmuck.' },
-      { id: 's12', title: 'HUMANA', category: 'Second hand (4.4 ⭐)', desc: 'Bekannter Second-Hand-Laden.' },
+      { id: 's1', title: 'Cash Converters', category: 'Second hand (3.9 ⭐)', desc: 'An- und Verkauf.', bookable: false },
+      { id: 's2', title: 'Espaço Casa Loures', category: 'Home goods (4.1 ⭐)', desc: 'Haushaltswaren.', bookable: false },
+      { id: 's3', title: 'Seedge', category: 'Cannabis store (5.0 ⭐)', desc: 'Specialty store.', bookable: false },
+      { id: 's4', title: 'Retro City', category: 'Vintage clothing (4.5 ⭐)', desc: 'Vintage Mode.', bookable: false },
+      { id: 's5', title: 'Loja Real', category: 'Clothing store (3.3 ⭐)', desc: 'Modegeschäft.', bookable: false },
+      { id: 's6', title: 'Loja CTT', category: 'Post office (3.0 ⭐)', desc: 'Postfiliale.', bookable: false },
+      { id: 's7', title: 'Boubaud Vintage Boutique', category: 'Vintage clothing (4.9 ⭐)', desc: 'Vintage Boutique.', bookable: false },
+      { id: 's8', title: 'Little Chelsea', category: 'Art gallery (4.3 ⭐)', desc: 'Kunstgalerie.', bookable: false },
+      { id: 's9', title: 'My Auchan', category: 'Supermarket (4.0 ⭐)', desc: 'Supermarkt.', bookable: false },
+      { id: 's10', title: 'Triparte Store & Tattoo', category: 'Clothing & Tattoo (4.6 ⭐)', desc: 'Store und Tattoo.', bookable: false },
+      { id: 's11', title: 'Rita Biju', category: 'Jewelry store (2.7 ⭐)', desc: 'Schmuck.', bookable: false },
+      { id: 's12', title: 'HUMANA', category: 'Second hand (4.4 ⭐)', desc: 'Bekannter Second-Hand-Laden.', bookable: false },
     ],
   },
   {
@@ -144,13 +144,13 @@ const MAP_CATEGORIES = [
     name: '🌙 Nightlife & Clubs',
     tagline: 'Bars, Clubs und Kulturzentren',
     places: [
-      { id: 'n1', title: 'Fábrica Braço de Prata', category: 'Cultural center (4.4 ⭐)', desc: 'Kulturzentrum & Bar.' },
-      { id: 'n2', title: 'A Capela', category: 'Club (4.4 ⭐)', desc: 'Kleine Club-Bar.' },
-      { id: 'n3', title: '8 Marvila', category: 'Cultural center (4.6 ⭐)', desc: 'Event- und Kulturhub.' },
-      { id: 'n4', title: 'Trumps', category: 'Gay night club (4.2 ⭐)', desc: 'Bekannter Club.' },
-      { id: 'n5', title: 'POSH CLUB LISBON', category: 'Gay night club (4.1 ⭐)', desc: 'Club.' },
-      { id: 'n6', title: 'Side Bar', category: 'Gay bar (4.1 ⭐)', desc: 'Bar.' },
-      { id: 'n7', title: 'Drama Bar', category: 'Bar (4.6 ⭐)', desc: 'Szene-Bar.' },
+      { id: 'n1', title: 'Fábrica Braço de Prata', category: 'Cultural center (4.4 ⭐)', desc: 'Kulturzentrum & Bar.', bookable: true },
+      { id: 'n2', title: 'A Capela', category: 'Club (4.4 ⭐)', desc: 'Kleine Club-Bar.', bookable: false },
+      { id: 'n3', title: '8 Marvila', category: 'Cultural center (4.6 ⭐)', desc: 'Event- und Kulturhub.', bookable: true },
+      { id: 'n4', title: 'Trumps', category: 'Gay night club (4.2 ⭐)', desc: 'Bekannter Club.', bookable: false },
+      { id: 'n5', title: 'POSH CLUB LISBON', category: 'Gay night club (4.1 ⭐)', desc: 'Club.', bookable: false },
+      { id: 'n6', title: 'Side Bar', category: 'Gay bar (4.1 ⭐)', desc: 'Bar.', bookable: false },
+      { id: 'n7', title: 'Drama Bar', category: 'Bar (4.6 ⭐)', desc: 'Szene-Bar.', bookable: false },
     ],
   },
 ];
@@ -226,7 +226,7 @@ const LOCALES = {
     placesSectionTitle: '🇵🇹 Deine Google Maps Favoriten (70+ Orte)',
     placesSectionSub: 'Wähle eine Kategorie, um alle importierten Orte anzuzeigen:',
     openInAppMaps: 'In Maps-App',
-    swipeInstruction: '👉 Durchstöbere deine gespeicherten Orte:',
+    swipeInstruction: '👉 Durchstöbere deine gespeicherten Orte auf der Karte:',
     openInMapsBtn: 'Route',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
@@ -1001,7 +1001,7 @@ export default function App() {
 
                 <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
 
-                {/* ORTLISTE OHNE BILDER IM SCHÖNEN DESIGN */}
+                {/* ORTLISTE OHNE BILDER - GETYOUR GUIDE NUR WENN BUCHBAR */}
                 {currentCategory.places.map((place) => (
                   <View key={place.id} style={styles.placeCardSimple}>
                     <View style={styles.placeCardHeaderRow}>
@@ -1016,10 +1016,12 @@ export default function App() {
                     <Text style={styles.placeCardDesc}>{place.desc}</Text>
 
                     <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
-                      <TouchableOpacity style={[styles.openMapBtn, { flex: 1, marginTop: 0 }]} onPress={() => openGetYourGuide(place.title)}>
-                        <Ionicons name="ticket-outline" size={13} color="#FF5533" style={{ marginRight: 4 }} />
-                        <Text style={[styles.openMapBtnText, { color: '#FF5533', fontWeight: 'bold' }]}>{t.gygBtn}</Text>
-                      </TouchableOpacity>
+                      {place.bookable && (
+                        <TouchableOpacity style={[styles.openMapBtn, { flex: 1, marginTop: 0, backgroundColor: '#FFF5F2' }]} onPress={() => openGetYourGuide(place.title)}>
+                          <Ionicons name="ticket-outline" size={13} color="#FF5533" style={{ marginRight: 4 }} />
+                          <Text style={[styles.openMapBtnText, { color: '#FF5533', fontWeight: 'bold' }]}>{t.gygBtn}</Text>
+                        </TouchableOpacity>
+                      )}
 
                       <TouchableOpacity style={[styles.openMapBtn, { flex: 1, marginTop: 0 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.title + ' Portugal')}`)}>
                         <Ionicons name="navigate-outline" size={13} color="#475569" style={{ marginRight: 4 }} />
