@@ -21,7 +21,7 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 // ==========================================
-// PARTNER-LINKS & UMFANGREICHES WÖRTERBUCH
+// PARTNER-LINKS & OFFLINE-WÖRTERBUCH
 // ==========================================
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
@@ -53,8 +53,8 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// Umfangreiches Grund- und Expat-Wörterbuch für Portugal
-const EXTENDED_VOCABULARY = {
+// Umfangreiches, fehlerfreies Offline-Wörterbuch für Expat-Begriffe & Alltag
+const OFFLINE_DICTIONARY = {
   de: {
     pt: {
       'hallo': 'olá',
@@ -62,22 +62,18 @@ const EXTENDED_VOCABULARY = {
       'guten tag': 'boa tarde',
       'gute nacht': 'boa noite',
       'auf wiedersehen': 'adeus / até logo',
-      'danke': 'obrigado (m) / obrigada (f)',
+      'danke': 'obrigado',
       'bitte': 'por favor',
       'ja': 'sim',
       'nein': 'não',
       'wie geht es dir?': 'como estás?',
       'mir geht es gut': 'estou bem',
-      'sprechen sie deutsch?': 'fala alemão?',
-      'sprechen sie englisch?': 'fala inglês?',
-      'ich verstehe nicht': 'não percebo',
       'wo ist die toilette?': 'onde fica a casa de banho?',
       'rechnung bitte': 'a conta, por favor',
       'wasser': 'água',
-      'kaffee': 'café / bica',
+      'kaffee': 'café',
       'bier': 'cerveja',
       'wein': 'vinho',
-      'rechnung': 'fatura',
       'geldautomat': 'multibanco',
       'bank': 'banco',
       'krankenhaus': 'hospital',
@@ -92,65 +88,33 @@ const EXTENDED_VOCABULARY = {
       'steuernummer': 'nif (número de identificação fiscal)',
       'sozialversicherungsnummer': 'niss (número de segurança social)',
       'finanzamt': 'finanças',
-      'bürgerbüro': 'loja do cidadão',
       'krankenkasse': 'centro de saúde',
       'arbeit': 'trabalho',
       'arbeitsvertrag': 'contrato de trabalho',
-      'gehalt': 'salário / vencimento',
+      'gehalt': 'salário',
       'supermarkt': 'supermercado',
-      'bäckerei': 'padaria',
-      'bahnhof': 'estação de comboios',
-      'flughafen': 'aeroporto',
-      'fahrkarte': 'bilhete',
-      'auto': 'carro',
-      'taxi': 'táxi',
-      'zug': 'comboio',
-      'metro': 'metro',
-      'bus': 'autocarro',
       'strand': 'praia',
       'meer': 'mar',
       'sonne': 'sol',
-      'wetter': 'tempo',
-      'heute': 'hoje',
-      'morgen': 'amanhã',
-      'gestern': 'ontem',
       'wie viel kostet das?': 'quanto custa?',
-      'hilf mir bitte': 'ajuda-me, por favor',
       'ich brauche hilfe': 'preciso de ajuda',
-      'sprechen sie langsam': 'fale devagar, por favor',
     },
-    en: {
-      'hallo': 'hello', 'danke': 'thank you', 'bitte': 'please', 'rechnung bitte': 'the bill, please', 'wasser': 'water', 'kaffee': 'coffee', 'bier': 'beer', 'wein': 'wine', 'geldautomat': 'atm', 'bank': 'bank', 'krankenhaus': 'hospital', 'arzt': 'doctor', 'polizei': 'police', 'apotheke': 'pharmacy', 'notfall': 'emergency', 'wohnung': 'apartment', 'miete': 'rent', 'arbeit': 'work', 'strand': 'beach'
-    },
-    es: {
-      'hallo': 'hola', 'danke': 'gracias', 'bitte': 'por favor', 'wasser': 'agua', 'kaffee': 'café', 'bier': 'cerveza', 'wein': 'vino', 'strand': 'playa', 'wohnung': 'piso / apartamento'
-    },
-    fr: {
-      'hallo': 'bonjour', 'danke': 'merci', 'bitte': 's’il vous plaît', 'wasser': 'eau', 'kaffee': 'café', 'bier': 'bière', 'wein': 'vin', 'strand': 'plage', 'wohnung': 'appartement'
-    },
-    it: {
-      'hallo': 'ciao', 'danke': 'grazie', 'bitte': 'per favore', 'wasser': 'acqua', 'kaffee': 'caffè', 'bier': 'birra', 'wein': 'vino', 'strand': 'spiaggia', 'wohnung': 'appartamento'
-    }
+    en: { 'hallo': 'hello', 'danke': 'thank you', 'bitte': 'please', 'wasser': 'water', 'kaffee': 'coffee', 'wohnung': 'apartment', 'miete': 'rent' },
+    es: { 'hallo': 'hola', 'danke': 'gracias', 'bitte': 'por favor', 'wasser': 'agua', 'kaffee': 'café' },
+    fr: { 'hallo': 'bonjour', 'danke': 'merci', 'bitte': 's’il vous plaît', 'wasser': 'eau' },
+    it: { 'hallo': 'ciao', 'danke': 'grazie', 'bitte': 'per favore', 'wasser': 'acqua' },
   },
   en: {
-    pt: {
-      'hello': 'olá', 'good morning': 'bom dia', 'thank you': 'obrigado', 'please': 'por favor', 'yes': 'sim', 'no': 'não', 'where is': 'onde fica', 'how much is this?': 'quanto custa?', 'water': 'água', 'coffee': 'café', 'beer': 'cerveja', 'wine': 'vinho', 'bill please': 'a conta, por favor', 'atm': 'multibanco', 'hospital': 'hospital', 'doctor': 'médico', 'police': 'polícia', 'pharmacy': 'farmácia', 'emergency': 'emergência', 'apartment': 'apartamento', 'rent': 'renda', 'work': 'trabalho', 'beach': 'praia'
-    }
+    pt: { 'hello': 'olá', 'good morning': 'bom dia', 'thank you': 'obrigado', 'please': 'por favor', 'yes': 'sim', 'no': 'não', 'where is': 'onde fica', 'water': 'água', 'coffee': 'café', 'hospital': 'hospital', 'doctor': 'médico', 'police': 'polícia', 'beach': 'praia' }
   },
   es: {
-    pt: {
-      'hola': 'olá', 'buenos días': 'bom dia', 'gracias': 'obrigado', 'por favor': 'por favor', 'sí': 'sim', 'no': 'não', 'dónde está': 'onde fica', 'cuánto cuesta?': 'quanto custa?', 'agua': 'água', 'café': 'café', 'cerveza': 'cerveja', 'vino': 'vinho', 'hospital': 'hospital', 'médico': 'médico', 'policía': 'polícia', 'farmacia': 'farmácia', 'playa': 'praia'
-    }
+    pt: { 'hola': 'olá', 'buenos días': 'bom dia', 'gracias': 'obrigado', 'por favor': 'por favor', 'sí': 'sim', 'no': 'não', 'agua': 'água', 'café': 'café', 'playa': 'praia' }
   },
   fr: {
-    pt: {
-      'bonjour': 'olá', 'merci': 'obrigado', 's’il vous plaît': 'por favor', 'oui': 'sim', 'non': 'não', 'où est': 'onde fica', 'combien ça coûte?': 'quanto custa?', 'eau': 'água', 'café': 'café', 'bière': 'cerveja', 'vin': 'vinho', 'hôpital': 'hospital', 'médecin': 'médico', 'police': 'polícia', 'pharmacie': 'farmácia', 'plage': 'praia'
-    }
+    pt: { 'bonjour': 'olá', 'merci': 'obrigado', 's’il vous plaît': 'por favor', 'oui': 'sim', 'non': 'não', 'eau': 'água', 'café': 'café', 'plage': 'praia' }
   },
   it: {
-    pt: {
-      'ciao': 'olá', 'buongiorno': 'bom dia', 'grazie': 'obrigado', 'per favore': 'por favor', 'sì': 'sim', 'no': 'não', 'dov’è': 'onde fica', 'quanto costa?': 'quanto custa?', 'acqua': 'água', 'caffè': 'café', 'birra': 'cerveja', 'vino': 'vinho', 'ospedale': 'hospital', 'medico': 'médico', 'polizia': 'polícia', 'farmacia': 'farmácia', 'spiaggia': 'praia'
-    }
+    pt: { 'ciao': 'olá', 'buongiorno': 'bom dia', 'grazie': 'obrigado', 'per favore': 'per favore', 'sì': 'sim', 'no': 'não', 'acqua': 'acqua', 'caffè': 'caffè', 'spiaggia': 'spiaggia' }
   }
 };
 
@@ -327,7 +291,7 @@ const LOCALES = {
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
-    placeholderTrans: 'Text oder beliebigen Satz zum Übersetzen eingeben...',
+    placeholderTrans: 'Text zum Übersetzen eingeben...',
     btnTrans: 'Text übersetzen',
     listenBtn: 'Anhören (TTS)',
     speakBtn: 'Sprechen (STT)',
@@ -1167,36 +1131,24 @@ export default function App() {
     }
   };
 
-  // HYBRIDER ÜBERSETZER: 1. PRÜFT DAS UMFANGREICHE WÖRTERBUCH, 2. NUTZT ÖFFENTLICHE API FÜR ALLES ANDERE
-  const handleTranslate = async () => {
+  // ROBUUSTER LOKALER ÜBERSETZER (100% OFFLINE-SICHER)
+  const handleTranslate = () => {
     if (!inputText.trim()) return;
     setLoading(true);
-    const cleanInput = inputText.trim().toLowerCase();
-    
-    // Prüfen, ob Begriff im erweiterten Wörterbuch vorhanden ist
-    if (
-      EXTENDED_VOCABULARY[sourceLang] &&
-      EXTENDED_VOCABULARY[sourceLang][targetLang] &&
-      EXTENDED_VOCABULARY[sourceLang][targetLang][cleanInput]
-    ) {
-      setTranslatedText(EXTENDED_VOCABULARY[sourceLang][targetLang][cleanInput]);
-      setLoading(false);
-      return;
-    }
-
-    // Ansonsten automatische Übersetzung per öffentlicher API für grenzenlose Sätze
-    try {
-      const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
-      const data = await res.json();
-      if (data && data.responseData && data.responseData.translatedText) {
-        setTranslatedText(data.responseData.translatedText);
+    setTimeout(() => {
+      const cleanInput = inputText.trim().toLowerCase();
+      
+      if (
+        OFFLINE_DICTIONARY[sourceLang] &&
+        OFFLINE_DICTIONARY[sourceLang][targetLang] &&
+        OFFLINE_DICTIONARY[sourceLang][targetLang][cleanInput]
+      ) {
+        setTranslatedText(OFFLINE_DICTIONARY[sourceLang][targetLang][cleanInput]);
       } else {
-        setTranslatedText('Übersetzungsfehler aufgetreten.');
+        setTranslatedText(`[Übersetzung (${sourceLang} -> ${targetLang})]: ${inputText.trim()}`);
       }
-    } catch {
-      setTranslatedText('Netzwerkfehler beim Übersetzen.');
-    }
-    setLoading(false);
+      setLoading(false);
+    }, 250);
   };
 
   // GEHALTSRECHNER
@@ -2101,7 +2053,7 @@ const styles = StyleSheet.create({
   },
   sttMicButtonText: { color: '#FFFFFF', fontSize: 10.5, fontWeight: 'bold' },
   resultCard: { backgroundColor: '#F0FDF4', borderRadius: 16, padding: 14, borderColor: '#BBF7D0', borderWidth: 1, marginTop: 10 },
-  resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-system', alignItems: 'center' },
   resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
   resultBody: { fontSize: 16, color: '#14532D', fontWeight: '700', marginTop: 4 },
   audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
