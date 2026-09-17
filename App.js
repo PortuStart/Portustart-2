@@ -188,7 +188,7 @@ const LOCALES = {
     tabPlaces: 'Karte & Entdecken',
     tabTrans: 'KI-Assistent',
     tabCalc: 'Gehalt',
-    tabPerks: 'Deals', // Ganz ans Ende gesetzt
+    tabPerks: 'Deals',
     placesSectionTitle: '🇵🇹 Interaktive Karte & Filter',
     placesSectionSub: 'Wähle aus, was auf der Live-Karte und in der Liste angezeigt werden soll:',
     openInAppMaps: 'In Maps-App',
@@ -350,7 +350,7 @@ const LOCALES = {
     tabPlaces: 'Map & Explore',
     tabTrans: 'AI Assistant',
     tabCalc: 'Salary',
-    tabPerks: 'Deals', // Moved to the very end
+    tabPerks: 'Deals',
     placesSectionTitle: '🇵🇹 Interactive Map & Filters',
     placesSectionSub: 'Choose what to display on the live map and list:',
     openInAppMaps: 'Open in Maps App',
@@ -470,7 +470,7 @@ const LOCALES = {
         places: [
           { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Rent a kayak early.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Tip: Take a small boat tour.' },
-          { id: 'a3', title: 'Ria Formosa Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
+          { id: 'a3', title: 'Ria Formosa Park', category: 'Laguna & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
           { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and snorkeling waters.', tip: 'Tip: Hanging Valleys Trail.' },
           { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Red Cliffs', desc: 'Over 6 km of sand sheltered by red sandstone cliffs.', tip: 'Tip: Low-tide strolls.' },
         ],
@@ -506,7 +506,7 @@ const LOCALES = {
     tabPlaces: 'Mapa y Explora',
     tabTrans: 'Asistente IA',
     tabCalc: 'Salario',
-    tabPerks: 'Ofertas', // Moved to the very end
+    tabPerks: 'Ofertas',
     placesSectionTitle: '🇵🇹 Mapa Interactivo y Filtros',
     placesSectionSub: 'Elige qué mostrar en el mapa en vivo y la lista:',
     openInAppMaps: 'Abrir en Maps',
@@ -781,7 +781,7 @@ const LOCALES = {
         tagline: 'Falaises de grès doré et 300 jours de soleil',
         places: [
           { id: 'a1', title: 'Grotte marine de Benagil', category: 'Grottes et plages', desc: 'Célèbre grotte avec ouverture circulaire naturelle.', tip: 'Conseil : Louer un kayak tôt le matin.' },
-          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arcos calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arches calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
           { id: 'a3', title: 'Parc naturel de Ria Formosa', category: 'Lagune et îles', desc: 'Zone humide côtière protégée avec îles piétonnes.', tip: 'Conseil : Prendre le ferry pour Armona.' },
           { id: 'ab1', title: 'Plage de Marinha', category: '🏖 Top plage européenne', desc: 'Doubles arches rocheuses et eaux de baignade.', tip: 'Conseil : Sentier des Vallées Suspendues.' },
           { id: 'ab2', title: 'Plage de Falésia', category: '🏖 Falaises rouges', desc: 'Plus de 6 km de sable abrités par des falaises rouges.', tip: 'Conseil : Balades à marée basse.' },
@@ -792,7 +792,7 @@ const LOCALES = {
         name: 'Coimbra et Centre',
         tagline: 'Ancienne capitale royale et histoire universitaire',
         places: [
-          { id: 'c1', title: 'Bibliothèque Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
           { id: 'c2', title: 'Monastère de Santa Cruz', category: 'Histoire et Fado', desc: 'Dernière demeure des premiers rois du Portugal.', tip: 'Conseil : Assister à un concert de fado.' },
           { id: 'cb1', title: 'Plage de la Claridade (Figueira)', category: '🏖 Vaste plage', desc: 'Immense étendue de sable équipée de passerelles.', tip: 'Conseil : 40 min de train.' },
           { id: 'cb2', title: 'Plage de Mira', category: '🏖 Pêche traditionnelle', desc: 'Plage pittoresque avec cabanes en bois rayées.', tip: 'Conseil : Goûter les calmants frits.' },
@@ -956,7 +956,7 @@ const LOCALES = {
       },
       {
         id: 'madeira',
-        name: 'Madeira (Funchal)',
+        name: 'Madera (Funchal)',
         tagline: 'L’isola dei fiori con cime frastagliate e levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro al Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
@@ -1777,7 +1777,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#0F5132' },
-  container: { flex: 1, backgroundColor: '#F8FAFC' },
+  container: { flex: 1, backgroundColor: '#FBF9F5' }, // MEDITERRANES EXPAT-BEIGE ALS HINTERGRUND
   header: {
     backgroundColor: '#0F5132',
     paddingTop: 8,
