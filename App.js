@@ -812,7 +812,7 @@ const LOCALES = {
         name: 'Coimbra et Centre',
         tagline: 'Ancienne capitale royale et histoire universitaire',
         places: [
-          { id: 'c1', title: 'Bibliothèque Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
           { id: 'c2', title: 'Monastère de Santa Cruz', category: 'Histoire et Fado', desc: 'Dernière demeure des premiers rois du Portugal.', tip: 'Conseil : Assister à un concert de fado.' },
           { id: 'cb1', title: 'Plage de la Claridade (Figueira)', category: '🏖 Vaste plage', desc: 'Immense étendue de sable équipée de passerelles.', tip: 'Conseil : 40 min de train.' },
           { id: 'cb2', title: 'Plage de Mira', category: '🏖 Pêche traditionnelle', desc: 'Plage pittoresque avec cabanes en bois rayées.', tip: 'Conseil : Goûter les calmants frits.' },
@@ -824,7 +824,7 @@ const LOCALES = {
         tagline: 'L’île aux fleurs aux sommets escarpés et levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
-          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
           { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
@@ -984,7 +984,7 @@ const LOCALES = {
         name: 'Madera (Funchal)',
         tagline: 'L’isola dei fiori con cime frastagliate e levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro a Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
+          { id: 'm1', title: 'Pico do Arieiro al Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Natura UNESCO', desc: 'Sentiero lungo i canali nella foresta di laurisilva.', tip: 'Consiglio: Parti presto.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Sabbia nera vulcanica', desc: 'Incantevole caletta nascosta di sabbia scura.', tip: 'Consiglio: Bellissimo contrasto cromatico.' },
           { id: 'mb2', title: 'Spiaggia di Calheta', category: '🏖 Laguna dorada', desc: 'Doppia spiaggia protetta con acque calme.', tip: 'Consiglio: Ideale per famiglie.' },
@@ -1231,7 +1231,8 @@ export default function App() {
       }
     } else {
       const ss = salary * 0.11;
-      let irsFactor = status === 'single' ? 0.18 : 0.12;
+      let irsFactor = status === 'single' ? 0.18 : status === 'married_1' ? 0.13 : 0.10;
+      if (payments === '12') irsFactor += 0.03;
       const irs = salary * irsFactor;
       const net = salary - ss - irs;
       const annualNet = net * parseInt(payments);
