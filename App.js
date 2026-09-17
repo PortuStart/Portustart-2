@@ -480,7 +480,7 @@ const LOCALES = {
         places: [
           { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Rent a kayak early.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Tip: Take a small boat tour.' },
-          { id: 'a3', title: 'Ria Formosa Park', category: 'Laguna & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
+          { id: 'a3', title: 'Ria Formosa Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
           { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and snorkeling waters.', tip: 'Tip: Hanging Valleys Trail.' },
           { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Red Cliffs', desc: 'Over 6 km of sand sheltered by red sandstone cliffs.', tip: 'Tip: Low-tide strolls.' },
         ],
@@ -812,7 +812,7 @@ const LOCALES = {
         name: 'Coimbra et Centre',
         tagline: 'Ancienne capitale royale et histoire universitaire',
         places: [
-          { id: 'c1', title: 'Biblioteca Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
+          { id: 'c1', title: 'Bibliothèque Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
           { id: 'c2', title: 'Monastère de Santa Cruz', category: 'Histoire et Fado', desc: 'Dernière demeure des premiers rois du Portugal.', tip: 'Conseil : Assister à un concert de fado.' },
           { id: 'cb1', title: 'Plage de la Claridade (Figueira)', category: '🏖 Vaste plage', desc: 'Immense étendue de sable équipée de passerelles.', tip: 'Conseil : 40 min de train.' },
           { id: 'cb2', title: 'Plage de Mira', category: '🏖 Pêche traditionnelle', desc: 'Plage pittoresque avec cabanes en bois rayées.', tip: 'Conseil : Goûter les calmants frits.' },
@@ -981,10 +981,10 @@ const LOCALES = {
       },
       {
         id: 'madeira',
-        name: 'Madeira (Funchal)',
+        name: 'Madera (Funchal)',
         tagline: 'L’isola dei fiori con cime frastagliate e levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro al Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
+          { id: 'm1', title: 'Pico do Arieiro a Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Natura UNESCO', desc: 'Sentiero lungo i canali nella foresta di laurisilva.', tip: 'Consiglio: Parti presto.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Sabbia nera vulcanica', desc: 'Incantevole caletta nascosta di sabbia scura.', tip: 'Consiglio: Bellissimo contrasto cromatico.' },
           { id: 'mb2', title: 'Spiaggia di Calheta', category: '🏖 Laguna dorada', desc: 'Doppia spiaggia protetta con acque calme.', tip: 'Consiglio: Ideale per famiglie.' },
@@ -1046,9 +1046,8 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [grossInput, setGrossInput] = useState('1500');
   
-  // Neue States für den erweiterten Gehaltsrechner
-  const [paymentsCount, setPaymentsCount] = useState('14'); // 12 oder 14
-  const [taxStatus, setTaxStatus] = useState('single'); // single, married_1, married_2
+  const [paymentsCount, setPaymentsCount] = useState('14');
+  const [taxStatus, setTaxStatus] = useState('single');
   const [calcResult, setCalcResult] = useState(null);
 
   const [faqInput, setFaqInput] = useState('');
@@ -1190,32 +1189,61 @@ export default function App() {
     setLoading(false);
   };
 
-  // ERWEITERTER GEHALTSRECHNER MIT MONATEN & STEUERKLASSE
   const calculateNetSalaryAI = async (gross, payments, status) => {
     const salary = parseFloat(gross) || 0;
     if (salary <= 0) return;
     setLoading(true);
     
-    const prompt = `Berechne für ein Bruttogehalt von ${salary} € bei ${payments} Monatsgehältern pro Jahr und dem Steuerstatus "${status}" (in Portugal) das Nettoeinkommen. Berücksichtige 11% Sozialversicherung und IRS-Steuertabellen. Antworte AUSSCHLIESSLICH im JSON-Format ohne Markdown: {"gross": "${salary.toFixed(2)}", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`;
+    const prompt = `Berechne für ein Bruttogehalt von ${salary} € ausgehend von ${payments} Monatsgehältern pro Jahr und dem Steuerstatus "${status}" (in Portugal) das Nettoeinkommen. Berücksichtige die offizielle Sozialversicherung (11%) und die progressiven IRS-Steuertabellen. 
+    Antworte AUSSCHLIESSLICH als reines JSON-Objekt ohne Markdown-Formatierung (keine Ticks):
+    {
+      "gross": "${salary.toFixed(2)}",
+      "ss": "[berechneter monatlicher Sozialversicherungsbetrag als String]",
+      "irs": "[berechneter monatlicher IRS-Steuerbetrag als String]",
+      "irsPercent": "[geschätzter IRS-Prozentsatz als Zahl/String ohne %]",
+      "netMonthly": "[monatliches Nettoeinkommen nach Steuern und Abzügen als String]",
+      "netAnnual": "[jährliches Nettoeinkommen multipliziert mit ${payments} als String]"
+    }`;
+
     const aiResult = await callVercelAI(prompt);
 
     if (aiResult) {
       try {
         const cleanJson = aiResult.replace(/```json/g, '').replace(/```/g, '').trim();
-        setCalcResult(JSON.parse(cleanJson));
+        const parsed = JSON.parse(cleanJson);
+        setCalcResult(parsed);
       } catch {
         const ss = salary * 0.11;
-        const irs = salary * 0.16;
+        let irsFactor = status === 'single' ? 0.18 : status === 'married_1' ? 0.13 : 0.10;
+        if (payments === '12') irsFactor += 0.03;
+        const irs = salary * irsFactor;
         const net = salary - ss - irs;
-        const annualNet = (payments === '12') ? (net * 12) : (net * 14);
-        setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '16', netMonthly: net.toFixed(2), netAnnual: annualNet.toFixed(2) });
+        const annualNet = net * parseInt(payments);
+        
+        setCalcResult({
+          gross: salary.toFixed(2),
+          ss: ss.toFixed(2),
+          irs: irs.toFixed(2),
+          irsPercent: (irsFactor * 100).toFixed(0),
+          netMonthly: net.toFixed(2),
+          netAnnual: annualNet.toFixed(2)
+        });
       }
     } else {
       const ss = salary * 0.11;
-      const irs = salary * 0.16;
+      let irsFactor = status === 'single' ? 0.18 : 0.12;
+      const irs = salary * irsFactor;
       const net = salary - ss - irs;
-      const annualNet = (payments === '12') ? (net * 12) : (net * 14);
-      setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '16', netMonthly: net.toFixed(2), netAnnual: annualNet.toFixed(2) });
+      const annualNet = net * parseInt(payments);
+      
+      setCalcResult({
+        gross: salary.toFixed(2),
+        ss: ss.toFixed(2),
+        irs: irs.toFixed(2),
+        irsPercent: (irsFactor * 100).toFixed(0),
+        netMonthly: net.toFixed(2),
+        netAnnual: annualNet.toFixed(2)
+      });
     }
     setLoading(false);
   };
@@ -1694,18 +1722,16 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 7: AI SALARY CALCULATOR (ERWEITERT) */}
+        {/* TAB 7: AI SALARY CALCULATOR */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.calcTitle}</Text>
               <Text style={styles.subText}>{t.calcSub}</Text>
 
-              {/* Bruttogehalt Input */}
               <Text style={styles.inputFieldLabel}>{t.calcGrossLabel}</Text>
               <TextInput style={styles.salaryInputField} keyboardType="numeric" value={grossInput} onChangeText={setGrossInput} />
 
-              {/* Monatsgehälter Auswahl (12 oder 14) */}
               <Text style={styles.inputFieldLabel}>{t.calcPaymentsLabel}</Text>
               <View style={{ flexDirection: 'row', gap: 10, marginBottom: 4 }}>
                 {['12', '14'].map((num) => (
@@ -1719,7 +1745,6 @@ export default function App() {
                 ))}
               </View>
 
-              {/* Steuerklasse / Familienstand Auswahl */}
               <Text style={styles.inputFieldLabel}>{t.calcStatusLabel}</Text>
               <View style={{ gap: 6, marginBottom: 10 }}>
                 {[
