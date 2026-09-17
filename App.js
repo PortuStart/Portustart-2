@@ -20,13 +20,18 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
+// ==========================================
+// PARTNER-LINKS & DATENBANK
+// ==========================================
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
   eResidenceNiss: 'https://e-residence.com/?via=portustart',
   eResidenceBank: 'https://e-residence.com/?via=portustart',
   eResidenceHealth: 'https://e-residence.com/?via=portustart',
+  
   getYourGuidePartnerId: 'AJWYURO',
   getYourGuideCmp: 'share_to_earn',
+
   italkiLang: 'https://www.italki.com/affshare?ref=af33636608',
   revolut: 'https://revolut.com/referral/?referral-code=portustart',
 };
@@ -47,30 +52,6 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'fr', label: 'Français', flag: '🇫🇷', voice: 'fr-FR' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
-
-const TRANSLATIONS_DB = {
-  de: {
-    pt: {
-      'hallo': 'olá',
-      'guten morgen': 'bom dia',
-      'danke': 'obrigado',
-      'bitte': 'por favor',
-      'ja': 'sim',
-      'nein': 'não',
-      'wo ist': 'onde fica',
-      'rechnung': 'fatura / conta',
-      'wasser': 'água',
-      'kaffee': 'café',
-      'bier': 'cerveja',
-      'geldautomat': 'multibanco',
-      'arzt': 'médico',
-      'polizei': 'polícia',
-      'wohnung': 'casa / apartamento',
-      'miete': 'renda',
-      'steuernummer': 'nif',
-    }
-  }
-};
 
 const CITIES_METADATA = {
   lisboa: {
@@ -214,26 +195,34 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
+    
     filterExplore: 'Sehenswürdigkeiten',
     filterAtm: 'ATMs (Multibanco)',
     filterDoctors: 'Ärzte & Kliniken',
+
     callDoctorBtn: 'Anrufen',
     directionBtn: 'Standort öffnen',
     emergencyTitle: '🚨 Notfall- & Behördenkontakte',
+
     perksSectionTitle: '🔥 Exklusive Expat-Deals & Vorteile',
     perksSectionSub: 'Spare Geld und Zeit bei unseren offiziellen Partnern mit deinen PortuStart-Vorteilen:',
     claimDealBtn: 'Deal sichern ↗',
+
     perk1Title: 'Revolut Expat Konto',
     perk1Badge: 'Finanzen • Gebührenfrei',
     perk1Desc: '• Keine Fremdwährungsgebühren\n• Inklusive physischer Visa-Karte\n• Perfekt für Miete & Gehalt in PT',
+
     perk2Title: 'e-Residence Express NIF',
     perk2Badge: 'Behörden • In 48h',
     perk2Desc: '• Ohne Vor-Ort-Termin in den Finanças\n• 100% digital & rechtssicher\n• Inklusive digitaler Signatur',
+
     perk3Title: 'italki Sprachkurs',
     perk3Badge: 'Sprachen • 1-on-1',
     perk3Desc: '• Muttersprachliche Portugiesisch-Lehrer\n• Flexible Online-Stunden\n• Perfekt für Alltags- & Behördendeutsch/-englisch',
+
     congratsTitle: '🎉 Herzlichen Glückwunsch!',
     congratsDesc: 'Du hast alle 7 Schritte deiner Start-Roadmap erfolgreich gemeistert! Du bist bereit für deinen perfekten Neuanfang in Portugal.',
+
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
@@ -249,6 +238,12 @@ const LOCALES = {
     checklistDone: 'erledigt',
     applyOnlineBtn: 'Jetzt online beantragen ↗',
     affiliateDisclosure: 'Transparenz: Über diese Links erhältst du geprüfte Express-Bearbeitung bei e-Residence. Wir erhalten eine kleine Vermittlungsprovision – für dich bleibt der Preis unverändert.',
+    affiliateCards: [
+      { key: 'nif', title: 'NIF (Portugiesische Steuernummer)', badge: 'Schritt 1 • Pflicht', desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Portugiesisches Bankkonto', badge: 'Schritt 2 • IBAN', desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+    ],
     calcTitle: '💶 Brutto-Netto-Gehaltsrechner',
     calcSub: 'Berechne das Netto (automatische Umrechnung bei 12 oder 14 Monatsgehältern).',
     calcGrossLabel: 'Bruttogehalt (€):',
@@ -358,26 +353,34 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
     italkiBtn: 'Find Native Tutors (italki) ↗',
+    
     filterExplore: 'Sights & Beaches',
     filterAtm: 'ATMs (Multibanco)',
     filterDoctors: 'Doctors & Clinics',
+
     callDoctorBtn: 'Call',
     directionBtn: 'Open Location',
     emergencyTitle: '🚨 Emergency & Support Contacts',
+
     perksSectionTitle: '🔥 Exclusive Expat Deals & Perks',
     perksSectionSub: 'Save money and time with our official partners using your PortuStart benefits:',
     claimDealBtn: 'Claim Deal ↗',
+
     perk1Title: 'Revolut Expat Account',
     perk1Badge: 'Finance • Fee-Free',
     perk1Desc: '• Zero foreign transaction fees\n• Includes physical Visa card\n• Perfect for rent & salary in PT',
+
     perk2Title: 'e-Residence Express NIF',
     perk2Badge: 'Government • 48h Delivery',
     perk2Desc: '• No physical trip to Finanças required\n• 100% digital & legally binding\n• Includes secure digital signature',
+
     perk3Title: 'italki Language Lessons',
     perk3Badge: 'Languages • 1-on-1',
     perk3Desc: '• Certified native Portuguese tutors\n• Flexible online scheduling\n• Ideal for everyday & official communication',
+
     congratsTitle: '🎉 Congratulations!',
     congratsDesc: 'You have successfully completed all 7 steps of your start roadmap! You are ready for your perfect new beginning in Portugal.',
+
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
@@ -502,26 +505,34 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
     italkiBtn: 'Buscar profesores nativos (italki) ↗',
+    
     filterExplore: 'Lugares y Playas',
     filterAtm: 'Cajeros (Multibanco)',
     filterDoctors: 'Médicos y Clínicas',
+
     callDoctorBtn: 'Llamar',
     directionBtn: 'Abrir ubicación',
     emergencyTitle: '🚨 Contactos de emergencia y soporte',
+
     perksSectionTitle: '🔥 Ofertas y ventajas exclusivas para expatriados',
     perksSectionSub: 'Ahorra dinero y tiempo con nuestros socios oficiales usando tus beneficios de PortuStart:',
     claimDealBtn: 'Obtener oferta ↗',
+
     perk1Title: 'Cuenta Expat Revolut',
     perk1Badge: 'Finanzas • Sin comisiones',
     perk1Desc: '• Cero comisiones por cambio de divisa\n• Incluye tarjeta Visa física\n• Ideal para alquiler y salario en PT',
+
     perk2Title: 'NIF Express e-Residence',
     perk2Badge: 'Gobierno • En 48h',
     perk2Desc: '• Sin necesidad de ir a Finanças\n• 100% digital y legalmente válido\n• Incluye firma digital segura',
+
     perk3Title: 'Clases de idiomas italki',
     perk3Badge: 'Idiomas • 1 a 1',
     perk3Desc: '• Profesores nativos de portugués certificados\n• Horarios flexibles online\n• Ideal para trámites y día a día',
+
     congratsTitle: '🎉 ¡Felicitaciones!',
     congratsDesc: '¡Has completado con éxito los 7 pasos de tu hoja de ruta! Estás listo para tu nuevo comienzo en Portugal.',
+
     from: 'De:',
     to: 'A:',
     inputLabel: 'Entrada:',
@@ -646,26 +657,34 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
     italkiBtn: 'Trouver des tuteurs natifs (italki) ↗',
+    
     filterExplore: 'Sites & Plages',
     filterAtm: 'DAB (Multibanco)',
     filterDoctors: 'Médecins & Cliniques',
+
     callDoctorBtn: 'Appeler',
     directionBtn: 'Ouvrir l’emplacement',
     emergencyTitle: '🚨 Contacts d’urgence et d’assistance',
+
     perksSectionTitle: '🔥 Offres et avantages exclusifs pour expatriés',
     perksSectionSub: 'Économisez du temps et de l’argent auprès de nos partenaires officiels grâce à vos avantages PortuStart :',
     claimDealBtn: 'Profiter de l’offre ↗',
+
     perk1Title: 'Compte Expat Revolut',
     perk1Badge: 'Finance • Sans frais',
     perk1Desc: '• Zéro frais de change à l’étranger\n• Carte Visa physique incluse\n• Idéal pour le loyer et salaire au PT',
+
     perk2Title: 'NIF Express e-Residence',
     perk2Badge: 'Administration • En 48h',
     perk2Desc: '• Sans déplacement aux Finanças\n• 100% numérique et juridiquement valide\n• Signature numérique sécurisée incluse',
+
     perk3Title: 'Cours de langues italki',
     perk3Badge: 'Langues • 1-sur-1',
     perk3Desc: '• Professeurs natifs de portugais certifiés\n• Horaires en ligne flexibles\n• Idéal pour le quotidien et les démarches',
+
     congratsTitle: '🎉 Félicitations !',
     congratsDesc: 'Vous avez terminé avec succès les 7 étapes de votre feuille de route ! Vous êtes prêt pour votre nouveau départ au Portugal.',
+
     from: 'De :',
     to: 'À :',
     inputLabel: 'Saisie :',
@@ -790,26 +809,34 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
     italkiBtn: 'Trova insegnanti madrelingua (italki) ↗',
+    
     filterExplore: 'Luoghi e Spiagge',
     filterAtm: 'ATM (Multibanco)',
     filterDoctors: 'Medici e Cliniche',
+
     callDoctorBtn: 'Chiama',
     directionBtn: 'Apri posizione',
     emergencyTitle: '🚨 Contatti di emergenza e supporto',
+
     perksSectionTitle: '🔥 Offerte e vantaggi esclusivi per expat',
     perksSectionSub: 'Risparmia tempo e denaro con i nostri partner ufficiali usando i tuoi benefici PortuStart:',
     claimDealBtn: 'Ottieni offerta ↗',
+
     perk1Title: 'Conto Expat Revolut',
     perk1Badge: 'Finanza • Senza commissioni',
     perk1Desc: '• Zero commissioni di cambio valuta\n• Include carta Visa fisica\n• Ideale per affitto e stipendio in PT',
+
     perk2Title: 'NIF Express e-Residence',
     perk2Badge: 'Governo • In 48h',
     perk2Desc: '• Senza recarsi fisicamente alle Finanças\n• 100% digitale e legalmente valido\n• Include firma digitale sicura',
+
     perk3Title: 'Lezioni di lingua italki',
     perk3Badge: 'Lingue • 1 a 1',
     perk3Desc: '• Insegnanti madrelingua di portogruese certificati\n• Orari online flessibili\n• Ideale per la vita quotidiana e burocrazia',
+
     congratsTitle: '🎉 Congratulazioni!',
     congratsDesc: 'Hai completato con successo tutti i passaggi della roadmap!',
+
     from: 'Da:',
     to: 'A:',
     inputLabel: 'Inserimento:',
@@ -1029,29 +1056,41 @@ export default function App() {
   };
 
   const handleSpeechToText = () => {
-    Alert.alert('Speech-to-Text (STT)', 'Bitte Text manuell eingeben.');
+    if (Platform.OS === 'web' && typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = sourceLang === 'pt' ? 'pt-PT' : sourceLang === 'de' ? 'de-DE' : 'en-US';
+      recognition.onstart = () => Alert.alert('STT', 'Mikrofon aktiv – bitte sprechen...');
+      recognition.onresult = (event) => {
+        const speechResult = event.results[0][0].transcript;
+        setInputText(speechResult);
+      };
+      recognition.onerror = () => Alert.alert('Fehler', 'Spracherkennung fehlgeschlagen.');
+      recognition.start();
+    } else {
+      Alert.alert('Speech-to-Text (STT)', 'Mikrofon-Eingabe: Bitte Text manuell eingeben.');
+    }
   };
 
-  const handleTranslate = () => {
+  // ROBUUSTER ÜBERSETZER MIT MYMEMORY API (FUNKTIONIERT OHNE API-KEY)
+  const handleTranslate = async () => {
     if (!inputText.trim()) return;
     setLoading(true);
-    setTimeout(() => {
-      const cleanInput = inputText.trim().toLowerCase();
-      let res = '';
-      if (
-        TRANSLATIONS_DB[sourceLang] &&
-        TRANSLATIONS_DB[sourceLang][targetLang] &&
-        TRANSLATIONS_DB[sourceLang][targetLang][cleanInput]
-      ) {
-        res = TRANSLATIONS_DB[sourceLang][targetLang][cleanInput];
+    try {
+      const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
+      const data = await res.json();
+      if (data && data.responseData && data.responseData.translatedText) {
+        setTranslatedText(data.responseData.translatedText);
       } else {
-        res = `[Übersetzung (${sourceLang} -> ${targetLang})]: ${inputText.trim()}`;
+        setTranslatedText('Übersetzungsfehler aufgetreten.');
       }
-      setTranslatedText(res);
-      setLoading(false);
-    }, 200);
+    } catch {
+      setTranslatedText('Netzwerkfehler beim Übersetzen.');
+    }
+    setLoading(false);
   };
 
+  // KORRIGIERTER GEHALTSRECHNER (14 MONATSGEHÄLTER AUF 12 MONATE UMGERECHNET)
   const calculateNetSalary = (gross, payments, status) => {
     const inputSalary = parseFloat(gross) || 0;
     if (inputSalary <= 0) return;
@@ -1080,6 +1119,16 @@ export default function App() {
       });
       setLoading(false);
     }, 300);
+  };
+
+  const getMapEmbedUrl = () => {
+    if (activePlaceFilter === 'atm') {
+      return `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
+    }
+    if (activePlaceFilter === 'doctors') {
+      return `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
+    }
+    return `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
   };
 
   return (
@@ -1253,13 +1302,16 @@ export default function App() {
               )}
 
               <View style={styles.liveMapWrapper}>
-                <View style={styles.nativeMapFallback}>
-                  <Ionicons name="map" size={42} color="#0F5132" />
-                  <Text style={styles.nativeMapText}>Region: {currentCityText.name}</Text>
-                  <Text style={styles.nativeMapSubText}>Koordinaten: {currentCityMeta.lat}, {currentCityMeta.lng}</Text>
-                </View>
+                {Platform.OS === 'web' ? (
+                  <iframe title="Portugal Interactive Map" src={getMapEmbedUrl()} style={styles.mapIframe} loading="lazy" allowFullScreen />
+                ) : (
+                  <View style={styles.nativeMapFallback}>
+                    <Ionicons name="map-outline" size={40} color="#0F5132" />
+                    <Text style={styles.nativeMapText}>Portugal Live-Karte</Text>
+                  </View>
+                )}
                 
-                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${currentCityMeta.lat},${currentCityMeta.lng}`)}>
+                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl('https://www.google.com/maps/search/?api=1&query=Portugal')}>
                   <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
                   <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
                 </TouchableOpacity>
@@ -1761,7 +1813,7 @@ const styles = StyleSheet.create({
   italkiActionBtnText: { color: '#FFFFFF', fontSize: 12.5, fontWeight: '700' },
 
   liveMapWrapper: {
-    height: 180,
+    height: 270,
     width: '100%',
     borderRadius: 14,
     overflow: 'hidden',
@@ -1771,9 +1823,9 @@ const styles = StyleSheet.create({
     borderColor: '#CBD5E1',
     backgroundColor: '#E2E8F0',
   },
-  nativeMapFallback: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10 },
-  nativeMapText: { fontSize: 13, fontWeight: '800', color: '#0F5132', marginTop: 6, textAlign: 'center' },
-  nativeMapSubText: { fontSize: 11, color: '#475569', marginTop: 2, textAlign: 'center' },
+  mapIframe: { width: '100%', height: '100%', border: 'none' },
+  nativeMapFallback: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  nativeMapText: { fontSize: 13, fontWeight: '700', color: '#0F5132', marginTop: 6 },
   floatingOpenMapsBtn: {
     position: 'absolute',
     bottom: 10,
