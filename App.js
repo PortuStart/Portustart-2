@@ -17,13 +17,20 @@ import {
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { generateText } from 'ai';
+import { createOpenAI } from '@ai-sdk/openai';
 
 const { width } = Dimensions.get('window');
 
 // ==========================================
-// DEIN API-KEY & PARTNER-LINKS
+// VERCEL AI GATEWAY & PARTNER-LINKS
 // ==========================================
-const OPENAI_API_KEY = 'vck_5LPthEy2whGmjOe0cmJ8xqAjlKDmuKVRdCeTS73N7vVTFcFgpt47DlNd';
+const AI_GATEWAY_API_KEY = 'vck_5LPthEy2whGmjOe0cmJ8xqAjlKDmuKVRdCeTS73N7vVTFcFgpt47DlNd';
+
+// OpenAI Provider Instanz für das Vercel AI Gateway
+const openaiProvider = createOpenAI({
+  apiKey: AI_GATEWAY_API_KEY,
+});
 
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
@@ -253,7 +260,7 @@ const LOCALES = {
       { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
     calcTitle: '💶 KI-Nettogehalt-Rechner',
-    calcSub: 'Präzise Berechnung inklusive neuester IRS-Steuertabellen über OpenAI.',
+    calcSub: 'Präzise Berechnung inklusive neuester IRS-Steuertabellen über das Vercel AI Gateway.',
     calcGrossLabel: 'Monatliches Bruttogehalt (€):',
     calcBtn: 'Mit KI berechnen',
     calcNetMonthly: 'Geschätztes Netto (pro Monat):',
@@ -413,7 +420,7 @@ const LOCALES = {
     applyOnlineBtn: 'Apply online now ↗',
     affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
     calcTitle: '💶 AI Net Salary Calculator',
-    calcSub: 'Precise calculation based on latest IRS tax tables via OpenAI.',
+    calcSub: 'Precise calculation based on latest IRS tax tables via AI Gateway.',
     calcGrossLabel: 'Monthly Gross Salary (€):',
     calcBtn: 'Calculate with AI',
     calcNetMonthly: 'Estimated Net (Monthly):',
@@ -573,7 +580,7 @@ const LOCALES = {
     applyOnlineBtn: 'Solicitar online ahora ↗',
     affiliateDisclosure: 'Transparencia: Estos enlaces dirigen a un procesamiento exprés certificado con e-Residence. Recibimos una pequeña comisión sin coste adicional para ti.',
     calcTitle: '💶 Calculadora de salario neto IA',
-    calcSub: 'Cálculo preciso basado en las últimas tablas de impuestos IRS mediante OpenAI.',
+    calcSub: 'Cálculo preciso basado en las últimas tablas de impuestos IRS mediante el AI Gateway.',
     calcGrossLabel: 'Salario bruto mensual (€):',
     calcBtn: 'Calcular con IA',
     calcNetMonthly: 'Neto estimado (mensual):',
@@ -660,7 +667,7 @@ const LOCALES = {
         tagline: 'La isla de las flores, picos y levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro al Pico Ruivo', category: 'Ruta alpina', desc: 'Travesía de montaña sobre el mar de nubes.', tip: 'Consejo: Comienza al amanecer.' },
-          { id: 'm2', title: 'Levada de las 25 Fuentes', category: 'Naturaleza UNESCO', desc: 'Sendero de canales por el bosque de laurisilva.', tip: 'Consejo: Sal temprano.' },
+          { id: 'm2', title: 'Levada das 25 Fuentes', category: 'Naturaleza UNESCO', desc: 'Sendero de canales por el bosque de laurisilva.', tip: 'Consejo: Sal temprano.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Playa de arena negra', desc: 'Encantadora cala de arena volcánica oscura.', tip: 'Consejo: Hermoso contraste de colores.' },
           { id: 'mb2', title: 'Playa de Calheta', category: '🏖 Laguna dorada', desc: 'Bahía gemela protegida de aguas tranquilas.', tip: 'Consejo: Ideal para familias.' },
         ],
@@ -733,7 +740,7 @@ const LOCALES = {
     applyOnlineBtn: 'Demander en ligne ↗',
     affiliateDisclosure: 'Transparence : Ces liens redirigent vers un traitement express certifié avec e-Residence. Nous recevons une petite commission sans coût supplémentaire pour vous.',
     calcTitle: '💶 Calculateur de salaire net IA',
-    calcSub: 'Calcul précis basé sur les dernières tables fiscales IRS via OpenAI.',
+    calcSub: 'Calcul précis basé sur les dernières tables fiscales IRS via l’AI Gateway.',
     calcGrossLabel: 'Salaire brut mensuel (€) :',
     calcBtn: 'Calculer avec l’IA',
     calcNetMonthly: 'Net estimé (par mois) :',
@@ -893,7 +900,7 @@ const LOCALES = {
     applyOnlineBtn: 'Richiedi online ora ↗',
     affiliateDisclosure: 'Trasparenza: Questi link reindirizzano a un’elaborazione express certificata con e-Residence. Riceviamo una piccola commissione senza costi aggiuntivi per te.',
     calcTitle: '💶 Calcolatore stipendio netto IA',
-    calcSub: 'Calcolo preciso basato sulle ultime tabelle fiscali IRS tramite OpenAI.',
+    calcSub: 'Calcolo preciso basato sulle ultime tabelle fiscali IRS tramite l’AI Gateway.',
     calcGrossLabel: 'Stipendio lordo mensile (€):',
     calcBtn: 'Calcola con l’IA',
     calcNetMonthly: 'Netto stimato (mensile):',
@@ -1128,50 +1135,18 @@ export default function App() {
     }
   };
 
-  // ROBUUSTER TRANSLATOR MIT FALLBACK
+  // KORREKTE VERWENDUNG DES VERCEL AI SDK (generateText)
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
     setLoading(true);
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            {
-              role: 'system',
-              content: `Du bist der KI-Assistent der App "PortuStart". Übersetze Text präzise von ${sourceLang} nach ${targetLang}. Wenn der Nutzer eine Frage zu Portugal hat, beantworte sie direkt fundiert.`
-            },
-            {
-              role: 'user',
-              content: inputText.trim()
-            }
-          ],
-          temperature: 0.3,
-        }),
+      const { text } = await generateText({
+        model: openaiProvider('openai/gpt-5.5'),
+        prompt: `Übersetze folgenden Text präzise von ${sourceLang} nach ${targetLang}. Wenn es eine Frage ist, beantworte sie fundiert als Portugal-Experte: "${inputText.trim()}"`,
       });
-      const data = await response.json();
-      if (data.choices && data.choices[0].message.content) {
-        setTranslatedText(data.choices[0].message.content.trim());
-      } else {
-        // Fallback auf externen MyMemory Dienst wenn OpenAI-Antwort leer ist
-        const fallbackRes = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
-        const fallbackData = await fallbackRes.json();
-        setTranslatedText(fallbackData.responseData?.translatedText || 'Übersetzungsfehler aufgetreten.');
-      }
-    } catch {
-      // Offline/Netzwerk Fallback
-      try {
-        const fallbackRes = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
-        const fallbackData = await fallbackRes.json();
-        setTranslatedText(fallbackData.responseData?.translatedText || 'Verbindungsfehler.');
-      } catch {
-        setTranslatedText('Netzwerkfehler. Bitte Internetverbindung prüfen.');
-      }
+      setTranslatedText(text.trim());
+    } catch (error) {
+      setTranslatedText('Fehler bei der AI-Anfrage über das Gateway.');
     } finally {
       setLoading(false);
     }
@@ -1181,56 +1156,42 @@ export default function App() {
     const salary = parseFloat(gross) || 0;
     if (salary <= 0) return;
     setLoading(true);
-    const ssAmount = salary * 0.11;
-    let irsRate = salary <= 820 ? 0 : salary <= 1300 ? 0.11 : salary <= 2000 ? 0.18 : 0.25;
-    const irsAmount = salary * irsRate;
-    const netMonthly = salary - ssAmount - irsAmount;
-    
-    // Mathematischer Standard-Wert als sofortiger Garant
-    setCalcResult({
-      gross: salary.toFixed(2),
-      ss: ssAmount.toFixed(2),
-      irs: irsAmount.toFixed(2),
-      irsPercent: (irsRate * 100).toFixed(0),
-      netMonthly: netMonthly.toFixed(2),
-      netAnnual: (netMonthly * 14).toFixed(2),
-    });
-    setLoading(false);
+    try {
+      const { text } = await generateText({
+        model: openaiProvider('openai/gpt-5.5'),
+        prompt: `Berechne für ein Bruttogehalt von ${salary} € (14 Monatsgehälter) das Nettoeinkommen in Portugal (11% Sozialversicherung, IRS-Steuertabellen). Antworte AUSSCHLIESSLICH als JSON ohne Markdown: {"gross": "${salary.toFixed(2)}", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`
+      });
+      const cleanJson = text.replace(/```json/g, '').replace(/```/g, '').trim();
+      setCalcResult(JSON.parse(cleanJson));
+    } catch {
+      const ssAmount = salary * 0.11;
+      let irsRate = salary <= 820 ? 0 : salary <= 1300 ? 0.11 : salary <= 2000 ? 0.18 : 0.25;
+      const irsAmount = salary * irsRate;
+      const netMonthly = salary - ssAmount - irsAmount;
+      setCalcResult({
+        gross: salary.toFixed(2),
+        ss: ssAmount.toFixed(2),
+        irs: irsAmount.toFixed(2),
+        irsPercent: (irsRate * 100).toFixed(0),
+        netMonthly: netMonthly.toFixed(2),
+        netAnnual: (netMonthly * 14).toFixed(2),
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleAskFaqAI = async () => {
     if (!faqInput.trim()) return;
     setFaqLoading(true);
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            {
-              role: 'system',
-              content: `Du bist der offizielle Expat-Experte der App "PortuStart". Antworte präzise, freundlich und hilfreich auf ${appLang} auf Fragen zur Auswanderung und Bürokratie in Portugal (NIF, NISS, Bankkonto, AIMA, etc.).`
-            },
-            {
-              role: 'user',
-              content: faqInput.trim()
-            }
-          ],
-          temperature: 0.4,
-        }),
+      const { text } = await generateText({
+        model: openaiProvider('openai/gpt-5.5'),
+        prompt: `Du bist der offizielle Expat-Experte von "PortuStart". Beantworte diese Frage auf ${appLang} bezüglich Auswanderung und Bürokratie in Portugal: "${faqInput.trim()}"`,
       });
-      const data = await response.json();
-      if (data.choices && data.choices[0].message.content) {
-        setFaqAnswer(data.choices[0].message.content.trim());
-      } else {
-        setFaqAnswer('Entschuldigung, die KI konnte gerade keine Antwort generieren. Bitte versuche es noch einmal.');
-      }
-    } catch {
-        setFaqAnswer('Verbindungsfehler zur KI. Bitte prüfe deine Internetverbindung.');
+      setFaqAnswer(text.trim());
+    } catch (error) {
+      setFaqAnswer('Verbindungsfehler zum AI Gateway.');
     } finally {
       setFaqLoading(false);
     }
@@ -2103,7 +2064,7 @@ const styles = StyleSheet.create({
   resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
   resultBody: { fontSize: 16, color: '#14532D', fontWeight: '700', marginTop: 4 },
   audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
-  audioBtnTest: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
+  audioBtnText: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
   calcResultCard: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 1, borderColor: '#E2E8F0' },
   netLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
   netValue: { fontSize: 26, fontWeight: '900', color: '#0F5132', marginTop: 2 },
