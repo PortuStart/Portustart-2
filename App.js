@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -227,7 +227,6 @@ const LOCALES = {
     to: 'Nach:',
     inputLabel: 'Eingabe:',
     placeholderTrans: 'Text zum Übersetzen eingeben...',
-    btnTrans: 'Text übersetzen',
     listenBtn: 'Anhören (TTS)',
     speakBtn: 'Sprechen (STT)',
     resultLabel: 'Übersetzungsergebnis',
@@ -249,7 +248,6 @@ const LOCALES = {
     calcGrossLabel: 'Bruttogehalt (€):',
     calcPaymentsLabel: 'Auszahlungen pro Jahr:',
     calcStatusLabel: 'Steuerklasse / Familienstand:',
-    calcBtn: 'Gehalt berechnen',
     calcNetMonthly: 'Geschätztes Netto (pro Monat):',
     calcGrossRow: 'Brutto / Monat:',
     calcSSRow: 'Sozialversicherung (-11%):',
@@ -385,7 +383,6 @@ const LOCALES = {
     to: 'To:',
     inputLabel: 'Input:',
     placeholderTrans: 'Enter text to translate...',
-    btnTrans: 'Translate Text',
     listenBtn: 'Listen (TTS)',
     speakBtn: 'Speech-to-Text (STT)',
     resultLabel: 'Translation Result',
@@ -401,7 +398,6 @@ const LOCALES = {
     calcGrossLabel: 'Gross Salary (€):',
     calcPaymentsLabel: 'Payments per year:',
     calcStatusLabel: 'Tax status / Marital status:',
-    calcBtn: 'Calculate Salary',
     calcNetMonthly: 'Estimated Net (Monthly):',
     calcGrossRow: 'Monthly Gross:',
     calcSSRow: 'Social Security (-11%):',
@@ -537,7 +533,6 @@ const LOCALES = {
     to: 'A:',
     inputLabel: 'Entrada:',
     placeholderTrans: 'Introduce texto a traducir...',
-    btnTrans: 'Traducir texto',
     listenBtn: 'Escuchar (TTS)',
     speakBtn: 'Voz a texto (STT)',
     resultLabel: 'Resultado de traducción',
@@ -553,7 +548,6 @@ const LOCALES = {
     calcGrossLabel: 'Salario bruto (€):',
     calcPaymentsLabel: 'Pagos al año:',
     calcStatusLabel: 'Estado fiscal / Situación familiar:',
-    calcBtn: 'Calcular salario',
     calcNetMonthly: 'Neto estimado (mensual):',
     calcGrossRow: 'Bruto mensual:',
     calcSSRow: 'Seguridad Social (-11%):',
@@ -689,7 +683,6 @@ const LOCALES = {
     to: 'À :',
     inputLabel: 'Saisie :',
     placeholderTrans: 'Entrez le texte à traduire...',
-    btnTrans: 'Traduire le texte',
     listenBtn: 'Écouter (TTS)',
     speakBtn: 'Parler (STT)',
     resultLabel: 'Résultat de la traduction',
@@ -705,7 +698,6 @@ const LOCALES = {
     calcGrossLabel: 'Salaire brut (€) :',
     calcPaymentsLabel: 'Versements par an :',
     calcStatusLabel: 'Statut fiscal / Situation familiale :',
-    calcBtn: 'Calculer le salaire',
     calcNetMonthly: 'Net estimé (par mois) :',
     calcGrossRow: 'Brut mensuel :',
     calcSSRow: 'Sécurité Sociale (-11%) :',
@@ -841,7 +833,6 @@ const LOCALES = {
     to: 'A:',
     inputLabel: 'Inserimento:',
     placeholderTrans: 'Inserisci testo da tradurre...',
-    btnTrans: 'Traduci testo',
     listenBtn: 'Ascolta (TTS)',
     speakBtn: 'Parla (STT)',
     resultLabel: 'Risultato della traduzione',
@@ -857,7 +848,6 @@ const LOCALES = {
     calcGrossLabel: 'Stipendio lordo (€):',
     calcPaymentsLabel: 'Mensilità all’anno:',
     calcStatusLabel: 'Regime fiscale / Stato civile:',
-    calcBtn: 'Calcola stipendio',
     calcNetMonthly: 'Netto stimato (mensile):',
     calcGrossRow: 'Lordo mensile:',
     calcSSRow: 'Previdenza Sociale (-11%):',
@@ -1003,6 +993,60 @@ export default function App() {
   const [taxStatus, setTaxStatus] = useState('single');
   const [calcResult, setCalcResult] = useState(null);
 
+  // AUTOMATISCHE ÜBERSETZUNG BEIM TIPPEN (MIT DEBOUNCE)
+  useEffect(() => {
+    if (!inputText.trim()) {
+      setTranslatedText('');
+      return;
+    }
+    const timer = setTimeout(async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
+        const data = await res.json();
+        if (data && data.responseData && data.responseData.translatedText) {
+          setTranslatedText(data.responseData.translatedText);
+        } else {
+          setTranslatedText('Übersetzungsfehler aufgetreten.');
+        }
+      } catch {
+        setTranslatedText('Netzwerkfehler beim Übersetzen.');
+      }
+      setLoading(false);
+    }, 400); // 400ms Verzögerung nach dem Tippen
+
+    return () => clearTimeout(timer);
+  }, [inputText, sourceLang, targetLang]);
+
+  // AUTOMATISCHE GEHALTSBERECHNUNG BEI ÄNDERUNGEN
+  useEffect(() => {
+    let monthlyBase = parseFloat(grossInput) || 0;
+    if (monthlyBase <= 0) {
+      setCalcResult(null);
+      return;
+    }
+
+    if (paymentsCount === '12') {
+      const annualTotal = monthlyBase * 14; 
+      monthlyBase = annualTotal / 12; 
+    }
+
+    const ss = monthlyBase * 0.11;
+    let irsFactor = taxStatus === 'single' ? 0.18 : taxStatus === 'married_1' ? 0.13 : 0.10;
+    if (paymentsCount === '12') irsFactor += 0.03;
+    const irs = monthlyBase * irsFactor;
+    const net = monthlyBase - ss - irs;
+    
+    setCalcResult({
+      gross: monthlyBase.toFixed(2),
+      ss: ss.toFixed(2),
+      irs: irs.toFixed(2),
+      irsPercent: (irsFactor * 100).toFixed(0),
+      netMonthly: net.toFixed(2),
+      netAnnual: (net * parseInt(paymentsCount)).toFixed(2)
+    });
+  }, [grossInput, paymentsCount, taxStatus]);
+
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
   const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
 
@@ -1072,55 +1116,6 @@ export default function App() {
     }
   };
 
-  // ROBUUSTER ÜBERSETZER MIT MYMEMORY API (FUNKTIONIERT OHNE API-KEY)
-  const handleTranslate = async () => {
-    if (!inputText.trim()) return;
-    setLoading(true);
-    try {
-      const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
-      const data = await res.json();
-      if (data && data.responseData && data.responseData.translatedText) {
-        setTranslatedText(data.responseData.translatedText);
-      } else {
-        setTranslatedText('Übersetzungsfehler aufgetreten.');
-      }
-    } catch {
-      setTranslatedText('Netzwerkfehler beim Übersetzen.');
-    }
-    setLoading(false);
-  };
-
-  // KORRIGIERTER GEHALTSRECHNER (14 MONATSGEHÄLTER AUF 12 MONATE UMGERECHNET)
-  const calculateNetSalary = (gross, payments, status) => {
-    const inputSalary = parseFloat(gross) || 0;
-    if (inputSalary <= 0) return;
-    setLoading(true);
-
-    setTimeout(() => {
-      let monthlyBase = inputSalary;
-      if (payments === '12') {
-        const annualTotal = inputSalary * 14; 
-        monthlyBase = annualTotal / 12; 
-      }
-
-      const ss = monthlyBase * 0.11;
-      let irsFactor = status === 'single' ? 0.18 : status === 'married_1' ? 0.13 : 0.10;
-      if (payments === '12') irsFactor += 0.03;
-      const irs = monthlyBase * irsFactor;
-      const net = monthlyBase - ss - irs;
-      
-      setCalcResult({
-        gross: monthlyBase.toFixed(2),
-        ss: ss.toFixed(2),
-        irs: irs.toFixed(2),
-        irsPercent: (irsFactor * 100).toFixed(0),
-        netMonthly: net.toFixed(2),
-        netAnnual: (net * parseInt(payments)).toFixed(2)
-      });
-      setLoading(false);
-    }, 300);
-  };
-
   const getMapEmbedUrl = () => {
     if (activePlaceFilter === 'atm') {
       return `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
@@ -1173,7 +1168,7 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalary(grossInput, paymentsCount, taxStatus); }}>
+            <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => setActiveTab('calc')}>
               <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
@@ -1455,11 +1450,13 @@ export default function App() {
                   <Text style={styles.sttMicButtonText}>{t.speakBtn}</Text>
                 </TouchableOpacity>
               </View>
-
-              <TouchableOpacity style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]} onPress={handleTranslate} disabled={loading || !inputText.trim()}>
-                {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.btnTrans}</Text>}
-              </TouchableOpacity>
             </View>
+
+            {loading && (
+              <View style={{ padding: 10, alignItems: 'center' }}>
+                <ActivityIndicator color="#0F5132" size="small" />
+              </View>
+            )}
 
             {translatedText ? (
               <View style={styles.resultCard}>
@@ -1532,10 +1529,6 @@ export default function App() {
                   </TouchableOpacity>
                 ))}
               </View>
-
-              <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalary(grossInput, paymentsCount, taxStatus)} disabled={loading}>
-                {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.calcBtn}</Text>}
-              </TouchableOpacity>
             </View>
 
             {calcResult && (
@@ -1959,7 +1952,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 8,
   },
-  btnDisabled: { backgroundColor: '#86EFAC' },
   btnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
   langScroll: { paddingVertical: 4, gap: 6 },
   langChip: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 10, backgroundColor: '#F1F5F9' },
@@ -2017,7 +2009,7 @@ const styles = StyleSheet.create({
     borderColor: '#E2E8F0',
   },
   emergencyIconWrap: { width: 34, height: 34, borderRadius: 17, justifyContent: 'center', alignItems: 'center', marginRight: 10 },
-  emergencyName: { fontSize: 13, fontWeight: '700', color: '#0F172A' },
+  emergencyName: { fontSize: '13px', fontWeight: '700', color: '#0F172A' },
   emergencyDesc: { fontSize: 11, color: '#64748B', marginTop: 1 },
   callBadge: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
   callBadgeText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
@@ -2026,7 +2018,7 @@ const styles = StyleSheet.create({
   modalTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 12, color: '#0F172A' },
   modalGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8 },
   modalLangBtn: { width: '48%', backgroundColor: '#F8FAFC', paddingVertical: 10, borderRadius: 10, alignItems: 'center', borderWidth: 1.5, borderColor: '#E2E8F0' },
-  modalLangBtnActive: { borderColor: '#0F5132', backgroundColor: '#DCFCE7' },
+  modalLangBtnActive: {borderColor: '#0F5132', backgroundColor: '#DCFCE7' },
   modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B', marginTop: 2 },
   modalLangTextActive: { color: '#0F5132' },
 });
