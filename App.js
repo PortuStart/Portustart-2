@@ -185,29 +185,24 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Dein Relocation-Partner für Portugal',
     tabServices: 'Services',
-    tabPlaces: 'Entdecken',
-    tabAtms: 'ATMs',
-    tabDoctors: 'Ärzte',
+    tabPlaces: 'Karte & Entdecken', // Neuer kompakter Name
     tabPerks: 'Deals',
     tabTrans: 'KI-Assistent',
     tabCalc: 'Gehalt',
-    placesSectionTitle: '🇵🇹 Interaktive Karte & Highlights',
-    placesSectionSub: 'Live-Karte von Portugal – wähle eine Region oder buche Touren:',
+    placesSectionTitle: '🇵🇹 Interaktive Karte & Filter',
+    placesSectionSub: 'Wähle aus, was auf der Live-Karte und in der Liste angezeigt werden soll:',
     openInAppMaps: 'In Maps-App',
-    swipeInstruction: '👉 Horizontal wischen für Highlights, Strände & Touren:',
+    swipeInstruction: '👉 Wähle eine Region & entdecke Highlights:',
     openInMapsBtn: 'Route',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
     
-    atmSectionTitle: '🏧 Gebührenfreie ATMs (Multibanco)',
-    atmSectionSub: 'Nutze das offizielle Multibanco-Netzwerk an echten Bankfilialen, um mit Revolut & Wise gebührenfrei Geld abheben zu können:',
-    atmTipTitle: '💡 Wichtiger Expat-Tipp:',
-    atmTipDesc: 'Achte darauf, immer in Euro (€) abzurechnen, falls der Automat die Abrechnung in deiner Heimatwährung anbietet.',
-    
-    docSectionTitle: '🩺 Englischsprachige Ärzte & Notfall',
-    docSectionSub: 'Wichtige Notrufnummern sowie private Kliniken mit internationalem Patientenservice:',
+    filterExplore: 'Sehenswürdigkeiten',
+    filterAtm: 'ATMs (Multibanco)',
+    filterDoctors: 'Ärzte & Kliniken',
+
     callDoctorBtn: 'Anrufen',
     directionBtn: 'Standort öffnen',
     emergencyTitle: '🚨 Notfall- & Behördenkontakte',
@@ -352,29 +347,24 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Your Relocation Partner for Portugal',
     tabServices: 'Services',
-    tabPlaces: 'Explore',
-    tabAtms: 'ATMs',
-    tabDoctors: 'Doctors',
+    tabPlaces: 'Map & Explore',
     tabPerks: 'Deals',
     tabTrans: 'AI Assistant',
     tabCalc: 'Salary',
-    placesSectionTitle: '🇵🇹 Interactive Map & Sights',
-    placesSectionSub: 'Live map of Portugal – choose a region or book tours:',
+    placesSectionTitle: '🇵🇹 Interactive Map & Filters',
+    placesSectionSub: 'Choose what to display on the live map and list:',
     openInAppMaps: 'Open in Maps App',
-    swipeInstruction: '👉 Swipe horizontally for sights, beaches & tours:',
+    swipeInstruction: '👉 Choose a region & discover highlights:',
     openInMapsBtn: 'Route',
     gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
     italkiBtn: 'Find Native Tutors (italki) ↗',
     
-    atmSectionTitle: '🏧 Fee-Free ATMs (Multibanco)',
-    atmSectionSub: 'Use official Multibanco network machines at bank branches to withdraw cash with Revolut or Wise without surcharges:',
-    atmTipTitle: '💡 Important Expat Tip:',
-    atmTipDesc: 'Always choose to be billed in Euros (€) if the ATM offers conversion to your home currency.',
+    filterExplore: 'Sights & Beaches',
+    filterAtm: 'ATMs (Multibanco)',
+    filterDoctors: 'Doctors & Clinics',
 
-    docSectionTitle: '🩺 English-Speaking Doctors & Emergencies',
-    docSectionSub: 'Essential emergency hotlines and private medical centers with international patient support:',
     callDoctorBtn: 'Call',
     directionBtn: 'Open Location',
     emergencyTitle: '🚨 Emergency & Support Contacts',
@@ -513,29 +503,24 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Tu socio de reubicación para Portugal',
     tabServices: 'Servicios',
-    tabPlaces: 'Explorar',
-    tabAtms: 'Cajeros',
-    tabDoctors: 'Médicos',
+    tabPlaces: 'Mapa y Explora',
     tabPerks: 'Ofertas',
     tabTrans: 'Asistente IA',
     tabCalc: 'Salario',
-    placesSectionTitle: '🇵🇹 Mapa Interactivo y Lugares',
-    placesSectionSub: 'Mapa en vivo de Portugal – elige una región o reserva tours:',
+    placesSectionTitle: '🇵🇹 Mapa Interactivo y Filtros',
+    placesSectionSub: 'Elige qué mostrar en el mapa en vivo y la lista:',
     openInAppMaps: 'Abrir en Maps',
-    swipeInstruction: '👉 Desliza horizontalmente para ver lugares, playas y tours:',
+    swipeInstruction: '👉 Elige región y descubre lugares:',
     openInMapsBtn: 'Ruta',
     gygBtn: 'Entradas y Tours (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
     italkiBtn: 'Buscar profesores nativos (italki) ↗',
     
-    atmSectionTitle: '🏧 Cajeros sin comisiones (Multibanco)',
-    atmSectionSub: 'Utiliza la red oficial Multibanco en sucursales bancarias para retirar efectivo con Revolut o Wise sin recargos:',
-    atmTipTitle: '💡 Consejo importante:',
-    atmTipDesc: 'Elige siempre que te cobren en Euros (€) si el cajero ofrece conversión a tu moneda local.',
+    filterExplore: 'Lugares y Playas',
+    filterAtm: 'Cajeros (Multibanco)',
+    filterDoctors: 'Médicos y Clínicas',
 
-    docSectionTitle: '🩺 Médicos de habla inglesa y emergencias',
-    docSectionSub: 'Números de emergencia esenciales y centros médicos privados con atención internacional:',
     callDoctorBtn: 'Llamar',
     directionBtn: 'Abrir ubicación',
     emergencyTitle: '🚨 Contactos de emergencia y soporte',
@@ -674,29 +659,24 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Votre partenaire de relocalisation pour le Portugal',
     tabServices: 'Services',
-    tabPlaces: 'Explorer',
-    tabAtms: 'DAB',
-    tabDoctors: 'Médecins',
+    tabPlaces: 'Carte & Explorer',
     tabPerks: 'Bons plans',
     tabTrans: 'Assistant IA',
     tabCalc: 'Salaire',
-    placesSectionTitle: '🇵🇹 Carte interactive et sites',
-    placesSectionSub: 'Carte en direct du Portugal – choisissez une région ou réservez des visites :',
+    placesSectionTitle: '🇵🇹 Carte interactive et filtres',
+    placesSectionSub: 'Choisissez ce qui doit s’afficher sur la carte et dans la liste :',
     openInAppMaps: 'Ouvrir dans Plans',
-    swipeInstruction: '👉 Balayez horizontalement pour voir les sites, plages et visites :',
+    swipeInstruction: '👉 Choisissez une région et découvrez les sites :',
     openInMapsBtn: 'Itinéraire',
     gygBtn: 'Billets et visites (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
     italkiBtn: 'Trouver des tuteurs natifs (italki) ↗',
     
-    atmSectionTitle: '🏧 Distributeurs sans frais (Multibanco)',
-    atmSectionSub: 'Utilisez le réseau officiel Multibanco dans les agences bancaires pour retirer de l’argent avec Revolut ou Wise sans frais :',
-    atmTipTitle: '💡 Conseil important :',
-    atmTipDesc: 'Choisissez toujours d’être facturé en Euros (€) si le distributeur propose une conversion dans votre devise.',
+    filterExplore: 'Sites & Plages',
+    filterAtm: 'DAB (Multibanco)',
+    filterDoctors: 'Médecins & Cliniques',
 
-    docSectionTitle: '🩺 Médecins anglophones et urgences',
-    docSectionSub: 'Numéros d’urgence essentiels et cliniques privées avec service international :',
     callDoctorBtn: 'Appeler',
     directionBtn: 'Ouvrir l’emplacement',
     emergencyTitle: '🚨 Contacts d’urgence et d’assistance',
@@ -801,7 +781,7 @@ const LOCALES = {
         tagline: 'Falaises de grès doré et 300 jours de soleil',
         places: [
           { id: 'a1', title: 'Grotte marine de Benagil', category: 'Grottes et plages', desc: 'Célèbre grotte avec ouverture circulaire naturelle.', tip: 'Conseil : Louer un kayak tôt le matin.' },
-          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arches calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arcos calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
           { id: 'a3', title: 'Parc naturel de Ria Formosa', category: 'Lagune et îles', desc: 'Zone humide côtière protégée avec îles piétonnes.', tip: 'Conseil : Prendre le ferry pour Armona.' },
           { id: 'ab1', title: 'Plage de Marinha', category: '🏖 Top plage européenne', desc: 'Doubles arches rocheuses et eaux de baignade.', tip: 'Conseil : Sentier des Vallées Suspendues.' },
           { id: 'ab2', title: 'Plage de Falésia', category: '🏖 Falaises rouges', desc: 'Plus de 6 km de sable abrités par des falaises rouges.', tip: 'Conseil : Balades à marée basse.' },
@@ -812,7 +792,7 @@ const LOCALES = {
         name: 'Coimbra et Centre',
         tagline: 'Ancienne capitale royale et histoire universitaire',
         places: [
-          { id: 'c1', title: 'Biblioteca Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
+          { id: 'c1', title: 'Bibliothèque Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
           { id: 'c2', title: 'Monastère de Santa Cruz', category: 'Histoire et Fado', desc: 'Dernière demeure des premiers rois du Portugal.', tip: 'Conseil : Assister à un concert de fado.' },
           { id: 'cb1', title: 'Plage de la Claridade (Figueira)', category: '🏖 Vaste plage', desc: 'Immense étendue de sable équipée de passerelles.', tip: 'Conseil : 40 min de train.' },
           { id: 'cb2', title: 'Plage de Mira', category: '🏖 Pêche traditionnelle', desc: 'Plage pittoresque avec cabanes en bois rayées.', tip: 'Conseil : Goûter les calmants frits.' },
@@ -824,7 +804,7 @@ const LOCALES = {
         tagline: 'L’île aux fleurs aux sommets escarpés et levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
-          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
+          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
           { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
@@ -835,29 +815,24 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Il tuo partner di trasferimento per il Portogallo',
     tabServices: 'Servizi',
-    tabPlaces: 'Esplora',
-    tabAtms: 'ATM',
-    tabDoctors: 'Medici',
+    tabPlaces: 'Mappa ed Esplora',
     tabPerks: 'Offerte',
     tabTrans: 'Assistente IA',
     tabCalc: 'Stipendio',
-    placesSectionTitle: '🇵🇹 Mappa interattiva e luoghi',
-    placesSectionSub: 'Mappa in tempo reale del Portogallo – scegli una regione o prenota tour:',
+    placesSectionTitle: '🇵🇹 Mappa interattiva e filtri',
+    placesSectionSub: 'Scegli cosa visualizzare sulla mappa in tempo reale e nella lista:',
     openInAppMaps: 'Apri in Maps',
-    swipeInstruction: '👉 Scorri in orizzontale per luoghi, spiagge e tour:',
+    swipeInstruction: '👉 Scegli una regione e scopri i luoghi:',
     openInMapsBtn: 'Percorso',
     gygBtn: 'Biglietti e tour (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
     italkiBtn: 'Trova insegnanti madrelingua (italki) ↗',
     
-    atmSectionTitle: '🏧 ATM senza commissioni (Multibanco)',
-    atmSectionSub: 'Usa la rete ufficiale Multibanco presso le filiali bancarie per prelevare contanti con Revolut o Wise senza costi aggiuntivi:',
-    atmTipTitle: '💡 Consiglio importante:',
-    atmTipDesc: 'Scegli sempre di pagare in Euro (€) se l’ATM offre la conversione nella tua valuta locale.',
+    filterExplore: 'Luoghi e Spiagge',
+    filterAtm: 'ATM (Multibanco)',
+    filterDoctors: 'Medici e Cliniche',
 
-    docSectionTitle: '🩺 Medici di lingua inglese ed emergenze',
-    docSectionSub: 'Numeri di emergenza essenziali e centri medici privati con assistenza internazionale:',
     callDoctorBtn: 'Chiama',
     directionBtn: 'Apri posizione',
     emergencyTitle: '🚨 Contatti di emergenza e supporto',
@@ -981,7 +956,7 @@ const LOCALES = {
       },
       {
         id: 'madeira',
-        name: 'Madera (Funchal)',
+        name: 'Madeira (Funchal)',
         tagline: 'L’isola dei fiori con cime frastagliate e levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro al Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
@@ -1005,6 +980,9 @@ export default function App() {
   const [langModalVisible, setLangModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
+
+  // NEU: Filter für den kombinierten Places-Tab ('explore', 'atm', 'doctors')
+  const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
 
   const t = LOCALES[appLang] || LOCALES['de'];
 
@@ -1259,9 +1237,16 @@ export default function App() {
     setFaqLoading(false);
   };
 
-  const mapEmbedUrl = `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
-  const atmMapUrl = `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
-  const doctorsMapUrl = `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
+  // Dynamische Karteneinbindung basierend auf dem gewählten Filter
+  const getMapEmbedUrl = () => {
+    if (activePlaceFilter === 'atm') {
+      return `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
+    }
+    if (activePlaceFilter === 'doctors') {
+      return `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
+    }
+    return `https://maps.google.com/maps?q=${currentCityMeta.lat},${currentCityMeta.lng}&z=${currentCityMeta.zoom}&output=embed`;
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -1287,41 +1272,31 @@ export default function App() {
           </View>
         </View>
 
-        {/* 7-FACH MENÜLEISTE */}
+        {/* 5-FACH MENÜLEISTE (Kompakt zusammengelegt) */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
-              <Ionicons name="briefcase" size={11} color={activeTab === 'services' ? '#fff' : '#64748B'} />
+              <Ionicons name="briefcase" size={12} color={activeTab === 'services' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]} onPress={() => setActiveTab('places')}>
-              <Ionicons name="map" size={11} color={activeTab === 'places' ? '#fff' : '#64748B'} />
+              <Ionicons name="map" size={12} color={activeTab === 'places' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'atms' && styles.tabButtonActive]} onPress={() => setActiveTab('atms')}>
-              <Ionicons name="card" size={11} color={activeTab === 'atms' ? '#fff' : '#64748B'} />
-              <Text style={[styles.tabText, activeTab === 'atms' && styles.tabTextActive]}>{t.tabAtms}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'doctors' && styles.tabButtonActive]} onPress={() => setActiveTab('doctors')}>
-              <Ionicons name="medkit" size={11} color={activeTab === 'doctors' ? '#fff' : '#64748B'} />
-              <Text style={[styles.tabText, activeTab === 'doctors' && styles.tabTextActive]}>{t.tabDoctors}</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity style={[styles.tabButton, activeTab === 'perks' && styles.tabButtonActive]} onPress={() => setActiveTab('perks')}>
-              <Ionicons name="gift" size={11} color={activeTab === 'perks' ? '#fff' : '#64748B'} />
+              <Ionicons name="gift" size={12} color={activeTab === 'perks' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'perks' && styles.tabTextActive]}>{t.tabPerks}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]} onPress={() => setActiveTab('trans')}>
-              <Ionicons name="chatbubbles" size={11} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
+              <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalaryAI(grossInput, paymentsCount, taxStatus); }}>
-              <Ionicons name="calculator" size={11} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
+              <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
           </View>
@@ -1423,28 +1398,59 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: PLACES / ENTDECKEN */}
+        {/* TAB 2: MAP & PLACES / ENTDECKEN (MIT PIN-AUSWAHL / FILTER) */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
               <Text style={styles.subText}>{t.placesSectionSub}</Text>
 
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
-                {t.cities.map((city) => {
-                  const isSelected = selectedCityId === city.id;
-                  return (
-                    <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => setSelectedCityId(city.id)}>
-                      <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
-                      <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
+              {/* FILTER-AUSWAHL FÜR PINS (Sehenswürdigkeiten, ATMs, Ärzte) */}
+              <View style={styles.filterRow}>
+                <TouchableOpacity 
+                  style={[styles.filterChip, activePlaceFilter === 'explore' && styles.filterChipActive]} 
+                  onPress={() => setActivePlaceFilter('explore')}
+                >
+                  <Ionicons name="compass" size={14} color={activePlaceFilter === 'explore' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                  <Text style={[styles.filterChipText, activePlaceFilter === 'explore' && styles.filterChipTextActive]}>{t.filterExplore}</Text>
+                </TouchableOpacity>
 
+                <TouchableOpacity 
+                  style={[styles.filterChip, activePlaceFilter === 'atm' && styles.filterChipActive]} 
+                  onPress={() => setActivePlaceFilter('atm')}
+                >
+                  <Ionicons name="card" size={14} color={activePlaceFilter === 'atm' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                  <Text style={[styles.filterChipText, activePlaceFilter === 'atm' && styles.filterChipTextActive]}>{t.filterAtm}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                  style={[styles.filterChip, activePlaceFilter === 'doctors' && styles.filterChipActive]} 
+                  onPress={() => setActivePlaceFilter('doctors')}
+                >
+                  <Ionicons name="medkit" size={14} color={activePlaceFilter === 'doctors' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                  <Text style={[styles.filterChipText, activePlaceFilter === 'doctors' && styles.filterChipTextActive]}>{t.filterDoctors}</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* Regionsauswahl nur bei Explore aktiv */}
+              {activePlaceFilter === 'explore' && (
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
+                  {t.cities.map((city) => {
+                    const isSelected = selectedCityId === city.id;
+                    return (
+                      <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => setSelectedCityId(city.id)}>
+                        <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                        <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
+              )}
+
+              {/* DYNAMISCHE KARTE */}
               <View style={styles.liveMapWrapper}>
                 {Platform.OS === 'web' ? (
-                  <iframe title="Portugal Interactive Map" src={mapEmbedUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
+                  <iframe title="Portugal Interactive Map" src={getMapEmbedUrl()} style={styles.mapIframe} loading="lazy" allowFullScreen />
                 ) : (
                   <View style={styles.nativeMapFallback}>
                     <Ionicons name="map-outline" size={40} color="#0F5132" />
@@ -1452,137 +1458,89 @@ export default function App() {
                   </View>
                 )}
                 
-                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openCityInNativeMaps(currentCityMeta.lat, currentCityMeta.lng, currentCityText.name)}>
+                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl('https://www.google.com/maps/search/?api=1&query=Portugal')}>
                   <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
                   <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
-            <View style={styles.cityDetailsHeader}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.activeCityName}>{currentCityText.name}</Text>
-                <Text style={styles.activeCityTagline}>{currentCityText.tagline}</Text>
-              </View>
-              <View style={styles.cityPlacesCounter}>
-                <Text style={styles.cityPlacesCounterText}>{dynamicPlaces.length} Highlights</Text>
-              </View>
-            </View>
-
-            <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
-
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.attractionsSwipeScroll}>
-              {dynamicPlaces.map((place) => (
-                <View key={place.id} style={styles.attractionCard}>
-                  <Image source={{ uri: place.img }} style={styles.attractionImage} />
-                  <View style={[styles.attractionCategoryBadge, place.category.includes('🏖') && { backgroundColor: '#0284C7' }]}>
-                    <Text style={styles.attractionCategoryText}>{place.category}</Text>
-                  </View>
-                  <View style={styles.attractionBody}>
-                    <Text style={styles.attractionTitle}>{place.title}</Text>
-                    <Text style={styles.attractionDesc}>{place.desc}</Text>
-                    <View style={styles.attractionTipBox}>
-                      <Ionicons name="sparkles" size={13} color="#D97706" style={{ marginRight: 4, marginTop: 1 }} />
-                      <Text style={styles.attractionTipText}>{place.tip}</Text>
-                    </View>
-                    <TouchableOpacity style={styles.gygBtn} onPress={() => openGetYourGuide(place.gygQuery)}>
-                      <Ionicons name="ticket-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
-                      <Text style={styles.gygBtnText}>{t.gygBtn}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.openMapBtn} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`)}>
-                      <Ionicons name="navigate-outline" size={13} color="#475569" style={{ marginRight: 4 }} />
-                      <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
-            </ScrollView>
-          </ScrollView>
-        )}
-
-        {/* TAB 3: ATMS / MULTIBANCO */}
-        {activeTab === 'atms' && (
-          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.card}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
-                <Ionicons name="card" size={24} color="#0F5132" style={{ marginRight: 8 }} />
-                <Text style={styles.sectionHeaderTitle}>{t.atmSectionTitle}</Text>
-              </View>
-              <Text style={styles.subText}>{t.atmSectionSub}</Text>
-
-              <View style={styles.liveMapWrapper}>
-                {Platform.OS === 'web' ? (
-                  <iframe title="Multibanco ATMs Map" src={atmMapUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
-                ) : (
-                  <View style={styles.nativeMapFallback}>
-                    <Ionicons name="card-outline" size={40} color="#0F5132" />
-                    <Text style={styles.nativeMapText}>Multibanco ATMs</Text>
-                  </View>
-                )}
-                
-                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl('https://www.google.com/maps/search/?api=1&query=Multibanco+ATM+Portugal')}>
-                  <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
-                  <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={[styles.attractionTipBox, { marginTop: 12 }]}>
-                <Ionicons name="information-circle" size={18} color="#D97706" style={{ marginRight: 6, marginTop: 1 }} />
-                <View style={{ flex: 1 }}>
-                  <Text style={[styles.attractionTipText, { fontWeight: 'bold' }]}>{t.atmTipTitle}</Text>
-                  <Text style={[styles.attractionTipText, { marginTop: 2 }]}>{t.atmTipDesc}</Text>
-                </View>
-              </View>
-            </View>
-          </ScrollView>
-        )}
-
-        {/* TAB 4: DOCTORS & EMERGENCIES */}
-        {activeTab === 'doctors' && (
-          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.card}>
-              <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
-              {EMERGENCIES.map((item, idx) => (
-                <TouchableOpacity key={idx} style={styles.emergencyCard} onPress={() => dialNumber(item.num)}>
-                  <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
-                    <Ionicons name={item.icon} size={18} color="#fff" />
-                  </View>
+            {/* INHALT JE NACH GEWÄHLTEM FILTER */}
+            {activePlaceFilter === 'explore' && (
+              <>
+                <View style={styles.cityDetailsHeader}>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.emergencyName}>{item.name}</Text>
-                    <Text style={styles.emergencyDesc}>{item.desc}</Text>
+                    <Text style={styles.activeCityName}>{currentCityText.name}</Text>
+                    <Text style={styles.activeCityTagline}>{currentCityText.tagline}</Text>
                   </View>
-                  <View style={styles.callBadge}>
-                    <Ionicons name="call" size={13} color="#0F5132" style={{ marginRight: 3 }} />
-                    <Text style={styles.callBadgeText}>{item.num}</Text>
+                  <View style={styles.cityPlacesCounter}>
+                    <Text style={styles.cityPlacesCounterText}>{dynamicPlaces.length} Highlights</Text>
                   </View>
-                </TouchableOpacity>
-              ))}
-            </View>
+                </View>
 
-            <View style={styles.card}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
-                <Ionicons name="medkit" size={24} color="#0F5132" style={{ marginRight: 8 }} />
-                <Text style={styles.sectionHeaderTitle}>{t.docSectionTitle}</Text>
+                <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
+
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.attractionsSwipeScroll}>
+                  {dynamicPlaces.map((place) => (
+                    <View key={place.id} style={styles.attractionCard}>
+                      <Image source={{ uri: place.img }} style={styles.attractionImage} />
+                      <View style={[styles.attractionCategoryBadge, place.category.includes('🏖') && { backgroundColor: '#0284C7' }]}>
+                        <Text style={styles.attractionCategoryText}>{place.category}</Text>
+                      </View>
+                      <View style={styles.attractionBody}>
+                        <Text style={styles.attractionTitle}>{place.title}</Text>
+                        <Text style={styles.attractionDesc}>{place.desc}</Text>
+                        <View style={styles.attractionTipBox}>
+                          <Ionicons name="sparkles" size={13} color="#D97706" style={{ marginRight: 4, marginTop: 1 }} />
+                          <Text style={styles.attractionTipText}>{place.tip}</Text>
+                        </View>
+                        <TouchableOpacity style={styles.gygBtn} onPress={() => openGetYourGuide(place.gygQuery)}>
+                          <Ionicons name="ticket-outline" size={14} color="#FFFFFF" style={{ marginRight: 5 }} />
+                          <Text style={styles.gygBtnText}>{t.gygBtn}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.openMapBtn} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.query)}`)}>
+                          <Ionicons name="navigate-outline" size={13} color="#475569" style={{ marginRight: 4 }} />
+                          <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ))}
+                </ScrollView>
+              </>
+            )}
+
+            {activePlaceFilter === 'atm' && (
+              <View style={styles.card}>
+                <View style={[styles.attractionTipBox, { marginTop: 4 }]}>
+                  <Ionicons name="information-circle" size={18} color="#D97706" style={{ marginRight: 6, marginTop: 1 }} />
+                  <View style={{ flex: 1 }}>
+                    <Text style={[styles.attractionTipText, { fontWeight: 'bold' }]}>💡 Multibanco Expat-Tipp:</Text>
+                    <Text style={[styles.attractionTipText, { marginTop: 2 }]}>Nutze immer Geldautomaten direkt an echten Bankfilialen, um mit Revolut oder Wise gebührenfrei Geld abzuheben.</Text>
+                  </View>
+                </View>
               </View>
-              <Text style={styles.subText}>{t.docSectionSub}</Text>
+            )}
 
-              <View style={styles.liveMapWrapper}>
-                {Platform.OS === 'web' ? (
-                  <iframe title="English Speaking Doctors Map" src={doctorsMapUrl} style={styles.mapIframe} loading="lazy" allowFullScreen />
-                ) : (
-                  <View style={styles.nativeMapFallback}>
-                    <Ionicons name="medkit-outline" size={40} color="#0F5132" />
-                    <Text style={styles.nativeMapText}>Kliniken & Ärzte</Text>
-                  </View>
-                )}
-                
-                <TouchableOpacity style={styles.floatingOpenMapsBtn} onPress={() => openUrl('https://www.google.com/maps/search/?api=1&query=Hospital+Portugal')}>
-                  <Ionicons name="navigate-circle" size={16} color="#FFFFFF" style={{ marginRight: 4 }} />
-                  <Text style={styles.floatingOpenMapsBtnText}>{t.openInAppMaps}</Text>
-                </TouchableOpacity>
-              </View>
+            {activePlaceFilter === 'doctors' && (
+              <View style={{ marginTop: 4 }}>
+                <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
+                {EMERGENCIES.map((item, idx) => (
+                  <TouchableOpacity key={idx} style={styles.emergencyCard} onPress={() => dialNumber(item.num)}>
+                    <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
+                      <Ionicons name={item.icon} size={18} color="#fff" />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.emergencyName}>{item.name}</Text>
+                      <Text style={styles.emergencyDesc}>{item.desc}</Text>
+                    </View>
+                    <View style={styles.callBadge}>
+                      <Ionicons name="call" size={13} color="#0F5132" style={{ marginRight: 3 }} />
+                      <Text style={styles.callBadgeText}>{item.num}</Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
 
-              <View style={{ marginTop: 12 }}>
+                <Text style={[styles.sectionTitle, { marginTop: 14 }]}>Kliniken & internationale Ärzte</Text>
                 {ENGLISH_DOCTORS.map((doc) => (
                   <View key={doc.id} style={styles.affiliateServiceCard}>
                     <View style={styles.affiliateTopRow}>
@@ -1612,11 +1570,11 @@ export default function App() {
                   </View>
                 ))}
               </View>
-            </View>
+            )}
           </ScrollView>
         )}
 
-        {/* TAB 5: PERKS & DEALS */}
+        {/* TAB 3: PERKS & DEALS */}
         {activeTab === 'perks' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -1656,7 +1614,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 6: TRANSLATOR & ASSISTANT */}
+        {/* TAB 4: TRANSLATOR & ASSISTANT */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1723,7 +1681,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 7: AI SALARY CALCULATOR */}
+        {/* TAB 5: AI SALARY CALCULATOR */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1867,7 +1825,7 @@ const styles = StyleSheet.create({
     gap: 1,
   },
   tabButtonActive: { backgroundColor: '#0F5132' },
-  tabText: { fontSize: 8.5, color: '#64748B', fontWeight: '600' },
+  tabText: { fontSize: 9.5, color: '#64748B', fontWeight: '600' },
   tabTextActive: { color: '#FFFFFF', fontWeight: '700' },
   scrollContent: { padding: 14, paddingBottom: 40 },
   card: {
@@ -1881,6 +1839,37 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: { fontSize: 15, fontWeight: '800', color: '#0F172A' },
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
+
+  // NEU: Filter-Row Styling für ATM / Explore / Ärzte
+  filterRow: {
+    flexDirection: 'row',
+    gap: 6,
+    marginVertical: 8,
+  },
+  filterChip: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    borderRadius: 10,
+    backgroundColor: '#F1F5F9',
+    borderWidth: 1.5,
+    borderColor: '#E2E8F0',
+  },
+  filterChipActive: {
+    backgroundColor: '#DCFCE7',
+    borderColor: '#0F5132',
+  },
+  filterChipText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#64748B',
+  },
+  filterChipTextActive: {
+    color: '#0F5132',
+  },
 
   congratsBanner: {
     flexDirection: 'row',
