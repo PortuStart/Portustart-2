@@ -743,7 +743,7 @@ const LOCALES = {
         tagline: 'Falaises de grès doré et 300 jours de soleil',
         places: [
           { id: 'a1', title: 'Grotte marine de Benagil', category: 'Grottes et plages', desc: 'Célèbre grotte avec ouverture circulaire naturelle.', tip: 'Conseil : Louer un kayak tôt le matin.' },
-          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arcos calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arches calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
           { id: 'a3', title: 'Parc naturel de Ria Formosa', category: 'Lagune et îles', desc: 'Zone humide côtière protégée avec îles piétonnes.', tip: 'Conseil : Prendre le ferry pour Armona.' },
           { id: 'ab1', title: 'Plage de Marinha', category: '🏖 Top plage européenne', desc: 'Doubles arches rocheuses et eaux de baignade.', tip: 'Conseil : Sentier des Vallées Suspendues.' },
           { id: 'ab2', title: 'Plage de Falésia', category: '🏖 Falaises rouges', desc: 'Plus de 6 km de sand abrités par des falaises rouges.', tip: 'Conseil : Balades à marée basse.' },
@@ -768,7 +768,7 @@ const LOCALES = {
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
-          { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
+          { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
       },
     ],
@@ -1252,11 +1252,10 @@ export default function App() {
                 </ScrollView>
               )}
 
-              {/* STABILE KARTEN-ANZEIGE OHNE IFRAME-ABSTÜRZE */}
               <View style={styles.liveMapWrapper}>
                 <View style={styles.nativeMapFallback}>
                   <Ionicons name="map" size={42} color="#0F5132" />
-                  <Text style={styles.nativeMapText}>Portugal Live-Region: {currentCityText.name}</Text>
+                  <Text style={styles.nativeMapText}>Region: {currentCityText.name}</Text>
                   <Text style={styles.nativeMapSubText}>Koordinaten: {currentCityMeta.lat}, {currentCityMeta.lng}</Text>
                 </View>
                 
