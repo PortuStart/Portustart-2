@@ -52,19 +52,15 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// ORTE SORTIERT NACH STÄDTEN / REGIONEN
 const CITIES_DATA = [
   {
     id: 'lisboa',
     name: 'Lisboa & Umgebung',
     tagline: 'Deine gespeicherten Orte in der Hauptstadt',
-    lat: 38.7223,
-    lng: -9.1393,
-    zoom: 12,
     places: [
       { id: 'l1', title: 'Jardim da Estrela', category: 'City park (4.6 ⭐)', city: 'Lisboa', desc: 'Historischer Stadtpark mit Café.', bookable: false },
       { id: 'l2', title: 'PUT IT ON LISBON', category: 'Coffee shop (4.9 ⭐)', city: 'Lisboa', desc: 'Gemütliches Café.', bookable: false },
-      { id: 'l3', title: 'Botanical Garden of Lisbon', category: 'Botanical garden (4.0 ⭐)', desc: 'Botanischer Garten.', bookable: true },
+      { id: 'l3', title: 'Botanical Garden of Lisbon', category: 'Botanical garden (4.0 ⭐)', city: 'Lisboa', desc: 'Botanischer Garten.', bookable: true },
       { id: 'l4', title: 'ROOFTOP - TOPO MARTIM MONIZ', category: 'Cocktail bar (4.3 ⭐)', city: 'Lisboa', desc: 'Rooftop-Bar mit Ausblick.', bookable: false },
       { id: 'l5', title: 'Fábrica Braço de Prata', category: 'Cultural center (4.4 ⭐)', city: 'Lisboa', desc: 'Kulturzentrum & Bar.', bookable: true },
       { id: 'l6', title: 'A Capela', category: 'Club (4.4 ⭐)', city: 'Lisboa', desc: 'Kleine Club-Bar.', bookable: false },
@@ -117,9 +113,6 @@ const CITIES_DATA = [
     id: 'caparica',
     name: 'Caparica & Setúbal',
     tagline: 'Strände und Orte südlich des Tejo',
-    lat: 38.5500,
-    lng: -9.1800,
-    zoom: 11,
     places: [
       { id: 'cp1', title: 'Praia da Fonte da Telha', category: 'Beach (4.5 ⭐)', city: 'Caparica', desc: 'Langer Sandstrand.', bookable: false },
       { id: 'cp2', title: 'Cash Converters', category: 'Second hand (3.9 ⭐)', city: 'Charneca de Caparica', desc: 'An- und Verkauf.', bookable: false },
@@ -129,9 +122,6 @@ const CITIES_DATA = [
     id: 'sintra_cascais',
     name: 'Sintra & Cascais',
     tagline: 'Märchenhafte Orte und Atlantikküsten',
-    lat: 38.8029,
-    lng: -9.3817,
-    zoom: 12,
     places: [
       { id: 'sc1', title: 'Cape Carvoeiro Viewpoint', category: 'Scenic spot (4.6 ⭐)', city: 'Peniche / Sintra Region', desc: 'Aussichtspunkt an der Küste.', bookable: true },
       { id: 'sc2', title: 'Coin Caves', category: 'Tourist attraction (4.6 ⭐)', city: 'Sintra Region', desc: 'Beeindruckende Höhlen.', bookable: true },
@@ -143,9 +133,6 @@ const CITIES_DATA = [
     id: 'algarve_south',
     name: 'Algarve & Süden',
     tagline: 'Goldene Klippen und Küstenparadiese',
-    lat: 37.0194,
-    lng: -7.9322,
-    zoom: 10,
     places: [
       { id: 'alg1', title: 'Sesimbra', category: 'Coastal town', city: 'Sesimbra', desc: 'Malerischer Fischerort.', bookable: true },
       { id: 'alg2', title: 'Galapos beach', category: 'Beach (4.7 ⭐)', city: 'Arrábida / Setúbal', desc: 'Kristallklares Wasser im Naturpark.', bookable: true },
@@ -158,9 +145,6 @@ const CITIES_DATA = [
     id: 'other_regions',
     name: 'Weitere Regionen',
     tagline: 'Loures, Alqueva und sonstige Orte',
-    lat: 38.2000,
-    lng: -8.0000,
-    zoom: 8,
     places: [
       { id: 'oth1', title: 'Espaço Casa Loures', category: 'Home goods (4.1 ⭐)', city: 'Loures', desc: 'Haushaltswaren.', bookable: false },
       { id: 'oth2', title: 'Observatório Oficial Dark Sky Alqueva', category: 'Observatory (4.7 ⭐)', city: 'Alqueva', desc: 'Sternenbeobachtung.', bookable: true },
@@ -232,8 +216,8 @@ const LOCALES = {
     placesSectionTitle: '🇵🇹 Nach Städten & Regionen sortiert',
     placesSectionSub: 'Wähle eine Region aus, um alle gespeicherten Orte zu sehen:',
     openInAppMaps: 'In Maps-App',
-    swipeInstruction: '👉 Deine gespeicherten Orte sortiert nach Städten:',
-    openInMapsBtn: 'Route',
+    swipeInstruction: '👉 Klicke auf "Standort öffnen", um den genauen Pin auf der Karte zu sehen:',
+    openInMapsBtn: 'Standort öffnen',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
@@ -317,8 +301,8 @@ const LOCALES = {
     placesSectionTitle: '🇵🇹 Sorted by Cities & Regions',
     placesSectionSub: 'Choose a region to view all saved places:',
     openInAppMaps: 'Open in Maps App',
-    swipeInstruction: '👉 Your saved places sorted by cities:',
-    openInMapsBtn: 'Route',
+    swipeInstruction: '👉 Click "Open Location" to see the exact pin on the map:',
+    openInMapsBtn: 'Open Location',
     gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
@@ -396,8 +380,8 @@ const LOCALES = {
     placesSectionTitle: '🇵🇹 Ordenado por Ciudades y Regiones',
     placesSectionSub: 'Elige una región para ver todos los lugares guardados:',
     openInAppMaps: 'Abrir en Maps',
-    swipeInstruction: '👉 Tus lugares guardados ordenados por ciudades:',
-    openInMapsBtn: 'Ruta',
+    swipeInstruction: '👉 Haz clic en "Abrir ubicación" para ver el pin exacto en el mapa:',
+    openInMapsBtn: 'Abrir ubicación',
     gygBtn: 'Entradas y Tours (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
@@ -475,8 +459,8 @@ const LOCALES = {
     placesSectionTitle: '🇵🇹 Trié par Villes & Régions',
     placesSectionSub: 'Choisissez une région pour voir tous les lieux enregistrés :',
     openInAppMaps: 'Ouvrir dans Plans',
-    swipeInstruction: '👉 Vos lieux enregistrés triés par villes :',
-    openInMapsBtn: 'Itinéraire',
+    swipeInstruction: '👉 Cliquez sur "Ouvrir l’emplacement" pour voir le pin exact sur la carte :',
+    openInMapsBtn: 'Ouvrir l’emplacement',
     gygBtn: 'Billets et visites (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
@@ -554,8 +538,8 @@ const LOCALES = {
     placesSectionTitle: '🇵🇹 Ordinato per Città e Regioni',
     placesSectionSub: 'Scegli una regione per visualizzare tutti i luoghi salvati:',
     openInAppMaps: 'Apri in Maps',
-    swipeInstruction: '👉 I tuoi luoghi salvati ordinati per città:',
-    openInMapsBtn: 'Percorso',
+    swipeInstruction: '👉 Clicca su "Apri posizione" per vedere il pin esatto sulla mappa:',
+    openInMapsBtn: 'Apri posizione',
     gygBtn: 'Biglietti e tour (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
@@ -793,15 +777,23 @@ export default function App() {
     }
   };
 
-  const getMapEmbedUrl = () => {
+  const getMapEmbedUrl = (placeTitle = null, placeCity = null) => {
     if (activePlaceFilter === 'atm') {
       return `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
     }
     if (activePlaceFilter === 'doctors') {
       return `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
     }
+    // Wenn ein einzelner Ort geklickt wurde, zentriere die Karte exakt auf diesen Ort mit eigenem Pin
+    if (placeTitle) {
+      const query = encodeURIComponent(`${placeTitle}, ${placeCity || ''}, Portugal`);
+      return `https://maps.google.com/maps?q=${query}&z=15&output=embed`;
+    }
+    // Ansonsten Standard-Zentrierung auf die gewählte Region
     return `https://maps.google.com/maps?q=${currentCityObj.lat},${currentCityObj.lng}&z=${currentCityObj.zoom}&output=embed`;
   };
+
+  const [mapQueryOverride, setMapQueryOverride] = useState(null);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -938,7 +930,7 @@ export default function App() {
               <View style={styles.filterRow}>
                 <TouchableOpacity 
                   style={[styles.filterChip, activePlaceFilter === 'explore' && styles.filterChipActive]} 
-                  onPress={() => setActivePlaceFilter('explore')}
+                  onPress={() => { setActivePlaceFilter('explore'); setMapQueryOverride(null); }}
                 >
                   <Ionicons name="compass" size={14} color={activePlaceFilter === 'explore' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
                   <Text style={[styles.filterChipText, activePlaceFilter === 'explore' && styles.filterChipTextActive]}>{t.filterExplore}</Text>
@@ -946,7 +938,7 @@ export default function App() {
 
                 <TouchableOpacity 
                   style={[styles.filterChip, activePlaceFilter === 'atm' && styles.filterChipActive]} 
-                  onPress={() => setActivePlaceFilter('atm')}
+                  onPress={() => { setActivePlaceFilter('atm'); setMapQueryOverride(null); }}
                 >
                   <Ionicons name="card" size={14} color={activePlaceFilter === 'atm' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
                   <Text style={[styles.filterChipText, activePlaceFilter === 'atm' && styles.filterChipTextActive]}>{t.filterAtm}</Text>
@@ -954,7 +946,7 @@ export default function App() {
 
                 <TouchableOpacity 
                   style={[styles.filterChip, activePlaceFilter === 'doctors' && styles.filterChipActive]} 
-                  onPress={() => setActivePlaceFilter('doctors')}
+                  onPress={() => { setActivePlaceFilter('doctors'); setMapQueryOverride(null); }}
                 >
                   <Ionicons name="medkit" size={14} color={activePlaceFilter === 'doctors' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
                   <Text style={[styles.filterChipText, activePlaceFilter === 'doctors' && styles.filterChipTextActive]}>{t.filterDoctors}</Text>
@@ -966,7 +958,7 @@ export default function App() {
                   {t.citiesData.map((city) => {
                     const isSelected = selectedCityId === city.id;
                     return (
-                      <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => setSelectedCityId(city.id)}>
+                      <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => { setSelectedCityId(city.id); setMapQueryOverride(null); }}>
                         <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
                         <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
                       </TouchableOpacity>
@@ -977,7 +969,7 @@ export default function App() {
 
               <View style={styles.liveMapWrapper}>
                 {Platform.OS === 'web' ? (
-                  <iframe title="Portugal Interactive Map" src={getMapEmbedUrl()} style={styles.mapIframe} loading="lazy" allowFullScreen />
+                  <iframe title="Portugal Interactive Map" src={mapQueryOverride ? getMapEmbedUrl(mapQueryOverride.title, mapQueryOverride.city) : getMapEmbedUrl()} style={styles.mapIframe} loading="lazy" allowFullScreen />
                 ) : (
                   <View style={styles.nativeMapFallback}>
                     <Ionicons name="map-outline" size={40} color="#0F5132" />
@@ -1006,7 +998,7 @@ export default function App() {
 
                 <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
 
-                {/* ORTLISTE MIT STADTVANZEIGE */}
+                {/* ORTLISTE MIT EINZELNEM KARTEN-PIN BEI KLICK */}
                 {currentCityObj.places.map((place) => (
                   <View key={place.id} style={styles.placeCardSimple}>
                     <View style={styles.placeCardHeaderRow}>
@@ -1033,9 +1025,15 @@ export default function App() {
                         </TouchableOpacity>
                       )}
 
-                      <TouchableOpacity style={[styles.openMapBtn, { flex: 1, marginTop: 0 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.title + ' ' + place.city + ' Portugal')}`)}>
-                        <Ionicons name="navigate-outline" size={13} color="#475569" style={{ marginRight: 4 }} />
-                        <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
+                      <TouchableOpacity 
+                        style={[styles.openMapBtn, { flex: 1, marginTop: 0, backgroundColor: '#DCFCE7' }]} 
+                        onPress={() => {
+                          setMapQueryOverride({ title: place.title, city: place.city });
+                          // Scrollt nach oben zur Karte, falls man weiter unten ist
+                        }}
+                      >
+                        <Ionicons name="pin" size={13} color="#0F5132" style={{ marginRight: 4 }} />
+                        <Text style={[styles.openMapBtnText, { color: '#0F5132', fontWeight: 'bold' }]}>{t.openInMapsBtn}</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
