@@ -170,57 +170,6 @@ const CITIES_DATA = [
   },
 ];
 
-const ENGLISH_DOCTORS = [
-  {
-    id: 'doc1',
-    name: 'CUF Descobertas Hospital',
-    city: 'Lisboa',
-    specialty: 'Multidisciplinary Hospital & Emergency',
-    address: 'Rua Mário Botelho Moniz 7, Lisbon',
-    query: 'CUF Descobertas Hospital Lisbon',
-    lat: 38.7463,
-    lng: -9.1172,
-    phone: '+351 210 025 200',
-    desc: 'Major private hospital with fully English-speaking doctors, specialists, and 24/7 urgent care.',
-  },
-  {
-    id: 'doc2',
-    name: 'Hospital da Luz',
-    city: 'Lisboa',
-    specialty: 'General Practice & Specialists',
-    address: 'Av. Lusíada 100, Lisbon',
-    query: 'Hospital da Luz Lisbon',
-    lat: 38.7514,
-    lng: -9.1822,
-    phone: '+351 217 104 400',
-    desc: 'Extremely popular among expats. Modern facility with international patient desk and English staff.',
-  },
-  {
-    id: 'doc3',
-    name: 'HPA Saúde (Faro)',
-    city: 'Algarve',
-    specialty: 'Private Medical Center',
-    address: 'Rua Leão Penedo, Faro',
-    query: 'Hospital Particular do Algarve Faro',
-    lat: 37.0194,
-    lng: -7.9322,
-    phone: '+351 289 885 200',
-    desc: 'Top-tier medical care in the Algarve region with fluent English-speaking practitioners.',
-  },
-  {
-    id: 'doc4',
-    name: 'Hospital da Lusiada Porto',
-    city: 'Porto',
-    specialty: 'Emergency & General Care',
-    address: 'Avenida da Boavista 3105, Porto',
-    query: 'Hospital Lusiadas Porto',
-    lat: 41.1621,
-    lng: -8.6565,
-    phone: '+351 226 090 330',
-    desc: 'Leading private hospital in northern Portugal providing comprehensive English-language support.',
-  },
-];
-
 const LOCALES = {
   de: {
     title: 'PortuStart',
@@ -261,6 +210,8 @@ const LOCALES = {
     checklistTitle: '📋 Erste 30 Tage Roadmap',
     checklistSub: 'Dein bürokratischer Ablaufplan für Portugal',
     checklistDone: 'erledigt',
+    congratsTitle: 'Glückwunsch! Roadmap geschafft 🎉',
+    congratsDesc: 'Du hast alle wichtigen Schritte für deinen Start in Portugal erledigt.',
     applyOnlineBtn: 'Jetzt online beantragen ↗',
     affiliateDisclosure: 'Transparenz: Über diese Links erhältst du geprüfte Express-Bearbeitung bei e-Residence. Wir erhalten eine kleine Vermittlungsprovision – für dich bleibt der Preis unverändert.',
     affiliateCards: [
@@ -328,8 +279,16 @@ const LOCALES = {
     checklistTitle: '📋 First 30 Days Roadmap',
     checklistSub: 'Your step-by-step relocation checklist',
     checklistDone: 'completed',
+    congratsTitle: 'Congratulations! Roadmap completed 🎉',
+    congratsDesc: 'You have completed all important steps for your start in Portugal.',
     applyOnlineBtn: 'Apply online now ↗',
     affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
+    affiliateCards: [
+      { key: 'nif', title: 'NIF (Portuguese Tax Number)', badge: 'Step 1 • Mandatory', desc: 'The key for rent, SIM card, job and bank account.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Portuguese Bank Account', badge: 'Step 2 • IBAN', desc: 'Open an official bank account with leading Portuguese banks.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Social Security Number)', badge: 'Step 3 • Work', desc: 'Required for employment contract, salary and pension contributions.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'International Health Insurance', badge: 'Step 4 • Visa & Protection', desc: 'Visa-compliant health insurance prior to SNS access.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+    ],
     calcTitle: '💶 Salary Calculator',
     calcSub: 'Precise calculation based on payments and tax status.',
     calcGrossLabel: 'Gross Salary (€):',
@@ -389,8 +348,16 @@ const LOCALES = {
     checklistTitle: '📋 Hoja de ruta primeros 30 días',
     checklistSub: 'Tu plan de reubicación paso a paso',
     checklistDone: 'completado',
+    congratsTitle: '¡Felicitaciones! Hoja de ruta completada 🎉',
+    congratsDesc: 'Has completado todos los pasos importantes para tu inicio en Portugal.',
     applyOnlineBtn: 'Solicitar online ahora ↗',
     affiliateDisclosure: 'Transparencia: Estos enlaces dirigen a un procesamiento exprés certificado con e-Residence. Recibimos una pequeña comisión sin coste adicional para ti.',
+    affiliateCards: [
+      { key: 'nif', title: 'NIF (Número de Identificación Fiscal)', badge: 'Paso 1 • Obligatorio', desc: 'La clave para alquiler, tarjeta SIM, trabajo y cuenta bancaria.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Cuenta bancaria portuguesa', badge: 'Paso 2 • IBAN', desc: 'Abre una cuenta bancaria oficial en los principales bancos.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Número de Seguridad Social)', badge: 'Paso 3 • Trabajo', desc: 'Necesario para contrato laboral, salario y cotizaciones.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Seguro médico internacional', badge: 'Paso 4 • Visado y protección', desc: 'Seguro médico compatible con visado antes del acceso al SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+    ],
     calcTitle: '💶 Calculadora de salario',
     calcSub: 'Cálculo estimado según deducciones en Portugal.',
     calcGrossLabel: 'Salario bruto (€):',
@@ -450,8 +417,16 @@ const LOCALES = {
     checklistTitle: '📋 Feuille de route 30 premiers jours',
     checklistSub: 'Votre plan de relocalisation étape par étape',
     checklistDone: 'terminé',
+    congratsTitle: 'Félicitations ! Feuille de route terminée 🎉',
+    congratsDesc: 'Vous avez complété toutes les étapes importantes pour votre départ au Portugal.',
     applyOnlineBtn: 'Demander en ligne ↗',
     affiliateDisclosure: 'Transparence : Ces liens redirigent vers un traitement express certifié avec e-Residence. Nous recevons une petite commission sans coût supplémentaire pour vous.',
+    affiliateCards: [
+      { key: 'nif', title: 'NIF (Numéro fiscal portugais)', badge: 'Étape 1 • Obligatoire', desc: 'La clé pour le loyer, la carte SIM, l’emploi et le compte bancaire.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Compte bancaire portugais', badge: 'Étape 2 • IBAN', desc: 'Ouvrez un compte bancaire officiel auprès des principales banques.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Numéro de Sécurité Sociale)', badge: 'Étape 3 • Travail', desc: 'Nécessaire pour le contrat de travail, le salaire et les cotisations.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Assurance santé internationale', badge: 'Étape 4 • Visa & Protection', desc: 'Assurance maladie conforme aux exigences de visa avant l’accès au SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+    ],
     calcTitle: '💶 Calculateur de salaire',
     calcSub: 'Calcul estimé basé sur les déductions standard au Portugal.',
     calcGrossLabel: 'Salaire brut (€) :',
@@ -511,8 +486,16 @@ const LOCALES = {
     checklistTitle: '📋 Roadmap primi 30 giorni',
     checklistSub: 'Il tuo piano di trasferimento passo dopo passo',
     checklistDone: 'completato',
+    congratsTitle: 'Congratulazioni! Roadmap completata 🎉',
+    congratsDesc: 'Hai completato tutti i passaggi importanti per iniziare la tua vita in Portogallo.',
     applyOnlineBtn: 'Richiedi online ora ↗',
     affiliateDisclosure: 'Trasparenza: Questi link reindirizzano a un’elaborazione express certificata con e-Residence. Riceviamo una piccola commissione senza costi aggiuntivi per te.',
+    affiliateCards: [
+      { key: 'nif', title: 'NIF (Codice Fiscale portoghese)', badge: 'Passo 1 • Obbligatorio', desc: 'La chiave per affitto, SIM, lavoro e conto bancario.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Conto bancario portoghese', badge: 'Passo 2 • IBAN', desc: 'Apri un conto bancario ufficiale presso le principali banche.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Numero di Previdenza Sociale)', badge: 'Passo 3 • Lavoro', desc: 'Necessario per contratto di lavoro, stipendio e contributi.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Assicurazione sanitaria internazionale', badge: 'Passo 4 • Visto e protezione', desc: 'Assicurazione conforme al visto prima dell’accesso al SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+    ],
     calcTitle: '💶 Calcolatore stipendio',
     calcSub: 'Calcolo stimato basato sulle trattenute in Portogallo.',
     calcGrossLabel: 'Stipendio lordo (€):',
@@ -544,7 +527,7 @@ const EMERGENCIES = [
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
-  const [profileModalVisible, setProfileModalVisible] = useState(true);
+  const [profileModalVisible, setProfileModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
@@ -651,6 +634,10 @@ export default function App() {
 
   const openUrl = (url) => {
     Linking.openURL(url).catch(() => Alert.alert('Fehler', 'Link konnte nicht geöffnet werden.'));
+  };
+
+  const openItalki = () => {
+    openUrl(AFFILIATE_LINKS.italkiLang);
   };
 
   const openGetYourGuide = (query) => {
@@ -1505,8 +1492,6 @@ const styles = StyleSheet.create({
   checklistText: { fontSize: 13, fontWeight: '700', color: '#0F172A' },
   checklistTextDone: { textDecorationLine: 'line-through', color: '#64748B' },
   checklistTip: { fontSize: 11, color: '#64748B', marginTop: 2 },
-  euCertLinkBtn: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 6, marginTop: 4, alignSelf: 'flex-start' },
-  euCertLinkBtnText: { fontSize: 11, fontWeight: 'bold', color: '#0F5132' },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
   salaryInputField: {
     backgroundColor: '#FFFFFF',
@@ -1574,28 +1559,42 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 },
   rowLabel: { fontSize: 12, color: '#64748B' },
   rowValue: { fontSize: 12, fontWeight: '600', color: '#0F172A' },
-  sectionTitle: { fontSize: 14, fontWeight: '700', marginBottom: 8, color: '#0F172A' },
-  emergencyCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    padding: 12,
-    borderRadius: 12,
-    marginBottom: 8,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
-  emergencyIconWrap: { width: 34, height: 34, borderRadius: 17, justifyContent: 'center', alignItems: 'center', marginRight: 10 },
-  emergencyName: { fontSize: 13, fontWeight: '700', color: '#0F172A' },
-  emergencyDesc: { fontSize: 11, color: '#64748B', marginTop: 1 },
-  callBadge: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
-  callBadgeText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
   modalOverlay: { flex: 1, backgroundColor: 'rgba(15,23,42,0.65)', justifyContent: 'center', alignItems: 'center', padding: 20 },
   modalCard: { backgroundColor: '#FFFFFF', borderRadius: 20, padding: 18, width: '100%', maxWidth: 340 },
   modalTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 12, color: '#0F172A' },
   modalGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8 },
   modalLangBtn: { width: '48%', backgroundColor: '#F8FAFC', paddingVertical: 10, borderRadius: 10, alignItems: 'center', borderWidth: 1.5, borderColor: '#E2E8F0' },
   modalLangBtnActive: { borderColor: '#0F5132', backgroundColor: '#DCFCE7' },
-  modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B', marginTop: 2 },
+  modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B',marginTop: 2 },
   modalLangTextActive: { color: '#0F5132' },
+  italkiBannerCard: {
+    backgroundColor: '#F8FAFC',
+    borderRadius: 14,
+    padding: 12,
+    marginTop: 10,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+  },
+  italkiTopRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  italkiIconBadge: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: '#DCFCE7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  italkiBadgeText: { fontSize: 10, fontWeight: '800', color: '#0F5132', textTransform: 'uppercase' },
+  italkiTitle: { fontSize: 13.5, fontWeight: '800', color: '#0F172A' },
+  italkiDesc: { fontSize: 11.5, color: '#64748B', marginTop: 6, lineHeight: 16 },
+  italkiActionBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0F5132',
+    paddingVertical: 9,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  italkiActionBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
 });
