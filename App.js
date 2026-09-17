@@ -1128,7 +1128,6 @@ export default function App() {
     }
   };
 
-  // SAUBERER FETCH AN DAS VERCEL AI GATEWAY / OPENAI KOMPATIBEL ENDPUNKT
   const callVercelAI = async (promptText) => {
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -1171,7 +1170,6 @@ export default function App() {
     if (aiResult) {
       setTranslatedText(aiResult);
     } else {
-      // Fallback
       try {
         const fallbackRes = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
         const fallbackData = await fallbackRes.json();
@@ -1196,7 +1194,6 @@ export default function App() {
         const cleanJson = aiResult.replace(/```json/g, '').replace(/```/g, '').trim();
         setCalcResult(JSON.parse(cleanJson));
       } catch {
-        // mathematischer Fallback
         const ss = salary * 0.11;
         const irs = salary * (salary > 2000 ? 0.25 : 0.15);
         const net = salary - ss - irs;
@@ -2090,7 +2087,7 @@ const styles = StyleSheet.create({
   audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
   audioBtnText: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
   calcResultCard: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 1, borderColor: '#E2E8F0' },
-  netLabel: {: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
+  netLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
   netValue: { fontSize: 26, fontWeight: '900', color: '#0F5132', marginTop: 2 },
   netNote: { fontSize: 11, color: '#94A3B8', marginTop: 2 },
   calcDivider: { height: 1, backgroundColor: '#E2E8F0', marginVertical: 10 },
