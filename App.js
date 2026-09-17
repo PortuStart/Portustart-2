@@ -374,7 +374,7 @@ const LOCALES = {
       { id: 4, title: 'Contratar seguro médico de expatriado', tip: 'Esencial para el visado y atención previa al SNS.' },
       { id: 5, title: 'Obtener número de Seguridad Social (NISS)', tip: 'Obligatorio para contratos y pensiones.' },
       { id: 6, title: 'Certificado de Registro UE (CRUE)', tip: 'Certificado de residencia oficial para ciudadanos de la UE.' },
-      { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso a centros de salud públicos y médico de cabecera.' },
+      { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso al centros de salud públicos y médico de cabecera.' },
     ],
     citiesData: CITIES_DATA,
   },
@@ -527,7 +527,8 @@ const EMERGENCIES = [
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
-  const [profileModalVisible, setProfileModalVisible] = useState(false);
+  // Hier wieder auf true gesetzt, damit es beim Start direkt öffnet:
+  const [profileModalVisible, setProfileModalVisible] = useState(true);
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
@@ -1565,7 +1566,7 @@ const styles = StyleSheet.create({
   modalGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8 },
   modalLangBtn: { width: '48%', backgroundColor: '#F8FAFC', paddingVertical: 10, borderRadius: 10, alignItems: 'center', borderWidth: 1.5, borderColor: '#E2E8F0' },
   modalLangBtnActive: { borderColor: '#0F5132', backgroundColor: '#DCFCE7' },
-  modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B',marginTop: 2 },
+  modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B', marginTop: 2 },
   modalLangTextActive: { color: '#0F5132' },
   italkiBannerCard: {
     backgroundColor: '#F8FAFC',
