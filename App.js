@@ -57,6 +57,9 @@ const CITIES_DATA = [
     id: 'lisboa',
     name: 'Lisboa & Umgebung',
     tagline: 'Deine gespeicherten Orte in der Hauptstadt',
+    lat: 38.7223,
+    lng: -9.1393,
+    zoom: 12,
     places: [
       { id: 'l1', title: 'Jardim da Estrela', category: 'City park (4.6 ⭐)', city: 'Lisboa', desc: 'Historischer Stadtpark mit Café.', bookable: false },
       { id: 'l2', title: 'PUT IT ON LISBON', category: 'Coffee shop (4.9 ⭐)', city: 'Lisboa', desc: 'Gemütliches Café.', bookable: false },
@@ -113,6 +116,9 @@ const CITIES_DATA = [
     id: 'caparica',
     name: 'Caparica & Setúbal',
     tagline: 'Strände und Orte südlich des Tejo',
+    lat: 38.5500,
+    lng: -9.1800,
+    zoom: 11,
     places: [
       { id: 'cp1', title: 'Praia da Fonte da Telha', category: 'Beach (4.5 ⭐)', city: 'Caparica', desc: 'Langer Sandstrand.', bookable: false },
       { id: 'cp2', title: 'Cash Converters', category: 'Second hand (3.9 ⭐)', city: 'Charneca de Caparica', desc: 'An- und Verkauf.', bookable: false },
@@ -122,6 +128,9 @@ const CITIES_DATA = [
     id: 'sintra_cascais',
     name: 'Sintra & Cascais',
     tagline: 'Märchenhafte Orte und Atlantikküsten',
+    lat: 38.8029,
+    lng: -9.3817,
+    zoom: 12,
     places: [
       { id: 'sc1', title: 'Cape Carvoeiro Viewpoint', category: 'Scenic spot (4.6 ⭐)', city: 'Peniche / Sintra Region', desc: 'Aussichtspunkt an der Küste.', bookable: true },
       { id: 'sc2', title: 'Coin Caves', category: 'Tourist attraction (4.6 ⭐)', city: 'Sintra Region', desc: 'Beeindruckende Höhlen.', bookable: true },
@@ -133,6 +142,9 @@ const CITIES_DATA = [
     id: 'algarve_south',
     name: 'Algarve & Süden',
     tagline: 'Goldene Klippen und Küstenparadiese',
+    lat: 37.0194,
+    lng: -7.9322,
+    zoom: 10,
     places: [
       { id: 'alg1', title: 'Sesimbra', category: 'Coastal town', city: 'Sesimbra', desc: 'Malerischer Fischerort.', bookable: true },
       { id: 'alg2', title: 'Galapos beach', category: 'Beach (4.7 ⭐)', city: 'Arrábida / Setúbal', desc: 'Kristallklares Wasser im Naturpark.', bookable: true },
@@ -145,6 +157,9 @@ const CITIES_DATA = [
     id: 'other_regions',
     name: 'Weitere Regionen',
     tagline: 'Loures, Alqueva und sonstige Orte',
+    lat: 38.2000,
+    lng: -8.0000,
+    zoom: 8,
     places: [
       { id: 'oth1', title: 'Espaço Casa Loures', category: 'Home goods (4.1 ⭐)', city: 'Loures', desc: 'Haushaltswaren.', bookable: false },
       { id: 'oth2', title: 'Observatório Oficial Dark Sky Alqueva', category: 'Observatory (4.7 ⭐)', city: 'Alqueva', desc: 'Sternenbeobachtung.', bookable: true },
@@ -777,6 +792,8 @@ export default function App() {
     }
   };
 
+  const [mapQueryOverride, setMapQueryOverride] = useState(null);
+
   const getMapEmbedUrl = (placeTitle = null, placeCity = null) => {
     if (activePlaceFilter === 'atm') {
       return `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
@@ -784,16 +801,12 @@ export default function App() {
     if (activePlaceFilter === 'doctors') {
       return `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
     }
-    // Wenn ein einzelner Ort geklickt wurde, zentriere die Karte exakt auf diesen Ort mit eigenem Pin
     if (placeTitle) {
       const query = encodeURIComponent(`${placeTitle}, ${placeCity || ''}, Portugal`);
       return `https://maps.google.com/maps?q=${query}&z=15&output=embed`;
     }
-    // Ansonsten Standard-Zentrierung auf die gewählte Region
     return `https://maps.google.com/maps?q=${currentCityObj.lat},${currentCityObj.lng}&z=${currentCityObj.zoom}&output=embed`;
   };
-
-  const [mapQueryOverride, setMapQueryOverride] = useState(null);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -998,7 +1011,7 @@ export default function App() {
 
                 <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
 
-                {/* ORTLISTE MIT EINZELNEM KARTEN-PIN BEI KLICK */}
+                {/* ORTLISTE MIT EXAKTEM KARTEN-PIN */}
                 {currentCityObj.places.map((place) => (
                   <View key={place.id} style={styles.placeCardSimple}>
                     <View style={styles.placeCardHeaderRow}>
@@ -1029,7 +1042,6 @@ export default function App() {
                         style={[styles.openMapBtn, { flex: 1, marginTop: 0, backgroundColor: '#DCFCE7' }]} 
                         onPress={() => {
                           setMapQueryOverride({ title: place.title, city: place.city });
-                          // Scrollt nach oben zur Karte, falls man weiter unten ist
                         }}
                       >
                         <Ionicons name="pin" size={13} color="#0F5132" style={{ marginRight: 4 }} />
