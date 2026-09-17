@@ -28,7 +28,6 @@ const AFFILIATE_LINKS = {
   eResidenceBank: 'https://e-residence.com/?via=portustart',
   eResidenceHealth: 'https://e-residence.com/?via=portustart',
   
-  // Offizieller SIGA-Link für Behördentermine / EU-Zertifikat
   euCertificatePortal: 'https://siga.marcacaodeatendimento.pt/Marcacao/Entidades',
 
   getYourGuidePartnerId: 'AJWYURO',
@@ -236,6 +235,7 @@ const LOCALES = {
     swipeInstruction: '👉 Klicke auf "Standort öffnen", um den genauen Pin auf der Karte zu sehen:',
     openInMapsBtn: 'Standort öffnen',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
+    euCertBtn: 'Offizielles EU-Zertifikat / Termin ↗',
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
@@ -267,7 +267,7 @@ const LOCALES = {
       { key: 'bank', title: 'Portugiesisches Bankkonto', badge: 'Schritt 2 • IBAN', desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
       { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
       { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
-      { key: 'eucert', title: 'EU-Anmeldebescheinigung (CRUE)', badge: 'Behörden • Termin', desc: 'Offizielles Aufenthaltszertifikat für EU-Bürger nach 3 Monaten (SIGA-Termin).', link: AFFILIATE_LINKS.euCertificatePortal, icon: 'calendar' },
+      { key: 'eucert', title: 'EU-Anmeldebescheinigung (CRUE / SIGA)', badge: 'Behörden • Termin', desc: 'Offizielles Aufenthaltszertifikat für EU-Bürger nach 3 Monaten (SIGA-Termin).', link: AFFILIATE_LINKS.euCertificatePortal, icon: 'calendar' },
     ],
     calcTitle: '💶 Brutto-Netto-Gehaltsrechner',
     calcSub: 'Berechne das Netto (automatische Umrechnung bei 12 oder 14 Monatsgehältern).',
@@ -302,6 +302,7 @@ const LOCALES = {
     swipeInstruction: '👉 Click "Open Location" to see the exact pin on the map:',
     openInMapsBtn: 'Open Location',
     gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
+    euCertBtn: 'Official EU Certificate / Appointment ↗',
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
     italkiBtn: 'Find Native Tutors (italki) ↗',
@@ -361,6 +362,7 @@ const LOCALES = {
     swipeInstruction: '👉 Haz clic en "Abrir ubicación" para ver el pin exacto en el mapa:',
     openInMapsBtn: 'Abrir ubicación',
     gygBtn: 'Entradas y Tours (GetYourGuide) ↗',
+    euCertBtn: 'Certificado UE Oficial / Cita ↗',
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
     italkiBtn: 'Buscar profesores nativos (italki) ↗',
@@ -420,6 +422,7 @@ const LOCALES = {
     swipeInstruction: '👉 Cliquez sur "Ouvrir l’emplacement" pour voir le pin exact sur la carte :',
     openInMapsBtn: 'Ouvrir l’emplacement',
     gygBtn: 'Billets et visites (GetYourGuide) ↗',
+    euCertBtn: 'Certificat UE Officiel / Rendez-vous ↗',
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
     italkiBtn: 'Trouver des tuteurs natifs (italki) ↗',
@@ -479,6 +482,7 @@ const LOCALES = {
     swipeInstruction: '👉 Clicca su "Apri posizione" per vedere il pin esatto sulla mappa:',
     openInMapsBtn: 'Apri posizione',
     gygBtn: 'Biglietti e tour (GetYourGuide) ↗',
+    euCertBtn: 'Certificato UE Ufficiale / Appuntamento ↗',
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
     italkiBtn: 'Trova insegnanti madrelingua (italki) ↗',
@@ -536,9 +540,22 @@ const EMERGENCIES = [
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
+  const [profileModalVisible, setProfileModalVisible] = useState(true); // Startet beim ersten Öffnen automatisch
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
+
+  // EXPAT PROFIL STATE (Notwendige Daten für Anträge & Gehalt)
+  const [profileData, setProfileData] = useState({
+    fullName: '',
+    email: '',
+    nationality: 'EU-Bürger',
+    nifNumber: '',
+    nissNumber: '',
+    targetCity: 'Lissabon',
+    estimatedSalary: '1500',
+    maritalStatus: 'single',
+  });
 
   const t = LOCALES[appLang] || LOCALES['de'];
 
@@ -553,6 +570,16 @@ export default function App() {
   const [paymentsCount, setPaymentsCount] = useState('14');
   const [taxStatus, setTaxStatus] = useState('single');
   const [calcResult, setCalcResult] = useState(null);
+
+  // Synchronisiere Gehaltseingabe mit dem Profil, falls dort gesetzt
+  useEffect(() => {
+    if (profileData.estimatedSalary) {
+      setGrossInput(profileData.estimatedSalary);
+    }
+    if (profileData.maritalStatus) {
+      setTaxStatus(profileData.maritalStatus);
+    }
+  }, [profileData]);
 
   // AUTOMATISCHE ÜBERSETZUNG BEIM TIPPEN (MIT DEBOUNCE)
   useEffect(() => {
@@ -695,12 +722,18 @@ export default function App() {
                 <Text style={styles.headerSubtitle}>{t.sub}</Text>
               </View>
             </View>
-            <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
-              <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 4 }} />
-              <Text style={styles.langSwitchHeaderText}>
-                {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
-              </Text>
-            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
+              <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setProfileModalVisible(true)}>
+                <Ionicons name="person-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
+                <Text style={styles.langSwitchHeaderText}>Profil</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
+                <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
+                <Text style={styles.langSwitchHeaderText}>
+                  {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
 
@@ -793,6 +826,25 @@ export default function App() {
                   </TouchableOpacity>
                 </View>
               ))}
+
+              {/* SEPARATER LINK UNTEN BEI DEN AFFILIATE LINKS FÜR DAS EU-ZERTIFIKAT */}
+              <View style={[styles.affiliateServiceCard, { backgroundColor: '#F0FDF4', borderColor: '#86EFAC' }]}>
+                <View style={styles.affiliateTopRow}>
+                  <View style={[styles.affiliateIconBadge, { backgroundColor: '#DCFCE7' }]}>
+                    <Ionicons name="calendar" size={20} color="#0F5132" />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.affiliateBadgeText}>Behörden • EU-Bürger</Text>
+                    <Text style={styles.affiliateTitle}>EU-Anmeldebescheinigung (CRUE / SIGA)</Text>
+                  </View>
+                </View>
+                <Text style={styles.affiliateDesc}>Offizieller Termin- und Serviceservice zur Registrierung deines Aufenthalts in Portugal.</Text>
+                <TouchableOpacity style={[styles.affiliateActionBtn, { backgroundColor: '#166534' }]} onPress={() => openUrl(AFFILIATE_LINKS.euCertificatePortal)}>
+                  <Text style={styles.affiliateActionBtnText}>{t.euCertBtn}</Text>
+                  <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
+                </TouchableOpacity>
+              </View>
+
               <Text style={styles.disclosureText}>{t.affiliateDisclosure}</Text>
             </View>
           </ScrollView>
@@ -1116,6 +1168,93 @@ export default function App() {
           </ScrollView>
         )}
 
+        {/* MODAL: EXPAT PROFIL & DATEN (BEIM START & ÜBER PROFIL-BUTTON AUFRUFBAR) */}
+        <Modal visible={profileModalVisible} transparent animationType="slide" onRequestClose={() => setProfileModalVisible(false)}>
+          <View style={styles.modalOverlay}>
+            <View style={[styles.modalCard, { maxHeight: '90%' }]}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                <Text style={[styles.modalTitle, { marginBottom: 0, textAlign: 'left' }]}>👤 Expat-Profil & Daten</Text>
+                <TouchableOpacity onPress={() => setProfileModalVisible(false)}>
+                  <Ionicons name="close-circle" size={24} color="#64748B" />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.subText}>Diese Daten helfen dir bei Anträgen, NIF, NISS und Gehaltsberechnungen.</Text>
+
+              <ScrollView contentContainerStyle={{ gap: 8, paddingBottom: 20 }} showsVerticalScrollIndicator={false}>
+                <Text style={styles.inputFieldLabel}>Vollständiger Name:</Text>
+                <TextInput 
+                  style={styles.salaryInputField} 
+                  placeholder="z.B. Max Mustermann" 
+                  placeholderTextColor="#94A3B8"
+                  value={profileData.fullName}
+                  onChangeText={(val) => setProfileData({...profileData, fullName: val})}
+                />
+
+                <Text style={styles.inputFieldLabel}>E-Mail-Adresse:</Text>
+                <TextInput 
+                  style={styles.salaryInputField} 
+                  placeholder="z.B. max@email.com" 
+                  placeholderTextColor="#94A3B8"
+                  keyboardType="email-address"
+                  value={profileData.email}
+                  onChangeText={(val) => setProfileData({...profileData, email: val})}
+                />
+
+                <Text style={styles.inputFieldLabel}>Steuernummer (NIF - falls schon vorhanden):</Text>
+                <TextInput 
+                  style={styles.salaryInputField} 
+                  placeholder="z.B. 293847561" 
+                  placeholderTextColor="#94A3B8"
+                  keyboardType="numeric"
+                  value={profileData.nifNumber}
+                  onChangeText={(val) => setProfileData({...profileData, nifNumber: val})}
+                />
+
+                <Text style={styles.inputFieldLabel}>Sozialversicherungsnummer (NISS):</Text>
+                <TextInput 
+                  style={styles.salaryInputField} 
+                  placeholder="z.B. 12345678901" 
+                  placeholderTextColor="#94A3B8"
+                  keyboardType="numeric"
+                  value={profileData.nissNumber}
+                  onChangeText={(val) => setProfileData({...profileData, nissNumber: val})}
+                />
+
+                <Text style={styles.inputFieldLabel}>Geplantes Monatsgehalt (€):</Text>
+                <TextInput 
+                  style={styles.salaryInputField} 
+                  placeholder="1500" 
+                  placeholderTextColor="#94A3B8"
+                  keyboardType="numeric"
+                  value={profileData.estimatedSalary}
+                  onChangeText={(val) => setProfileData({...profileData, estimatedSalary: val})}
+                />
+
+                <Text style={styles.inputFieldLabel}>Familienstand (für Steuerberechnung):</Text>
+                <View style={{ gap: 6 }}>
+                  {[
+                    { id: 'single', label: 'Single ohne Kinder (Não casado)' },
+                    { id: 'married_1', label: 'Verheiratet (1 Verdiener / Único titular)' },
+                    { id: 'married_2', label: 'Verheiratet (2 Verdiener / Dois titulares)' },
+                  ].map((st) => (
+                    <TouchableOpacity
+                      key={st.id}
+                      style={[styles.modalLangBtn, profileData.maritalStatus === st.id && styles.modalLangBtnActive, { width: '100%', alignItems: 'flex-start', paddingHorizontal: 12 }]}
+                      onPress={() => setProfileData({...profileData, maritalStatus: st.id})}
+                    >
+                      <Text style={[styles.modalLangText, profileData.maritalStatus === st.id && styles.modalLangTextActive]}>{st.label}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+
+                <TouchableOpacity style={[styles.primaryBtn, { marginTop: 14 }]} onPress={() => setProfileModalVisible(false)}>
+                  <Text style={styles.btnText}>Daten speichern & Weiter</Text>
+                </TouchableOpacity>
+              </ScrollView>
+            </View>
+          </View>
+        </Modal>
+
         {/* MODAL SPRACHAUSWAHL */}
         <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
           <View style={styles.modalOverlay}>
@@ -1385,6 +1524,8 @@ const styles = StyleSheet.create({
   checklistText: { fontSize: 13, fontWeight: '700', color: '#0F172A' },
   checklistTextDone: { textDecorationLine: 'line-through', color: '#64748B' },
   checklistTip: { fontSize: 11, color: '#64748B', marginTop: 2 },
+  euCertLinkBtn: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 6, marginTop: 4, alignSelf: 'flex-start' },
+  euCertLinkBtnText: { fontSize: 11, fontWeight: 'bold', color: '#0F5132' },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
   salaryInputField: {
     backgroundColor: '#FFFFFF',
