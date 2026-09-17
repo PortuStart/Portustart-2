@@ -53,45 +53,6 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// Lokales Offline-Wörterbuch für den Übersetzer
-const DICTIONARY = {
-  de: {
-    pt: { 'hallo': 'olá', 'guten morgen': 'bom dia', 'danke': 'obrigado', 'wo ist': 'onde fica', 'rechnung bitte': 'a conta, por favor', 'steuer nummer': 'nif', 'wohnung': 'casa / apartamento' },
-    en: { 'hallo': 'hello', 'guten morgen': 'good morning', 'danke': 'thank you', 'wohnung': 'apartment' },
-    es: { 'hallo': 'hola', 'guten morgen': 'buenos días', 'danke': 'gracias' },
-    fr: { 'hallo': 'bonjour', 'guten morgen': 'bonjour', 'danke': 'merci' },
-    it: { 'hallo': 'ciao', 'guten morgen': 'buongiorno', 'danke': 'grazie' },
-  },
-  en: {
-    pt: { 'hello': 'olá', 'good morning': 'bom dia', 'thank you': 'obrigado', 'where is': 'onde fica' },
-    de: { 'hello': 'hallo', 'good morning': 'guten morgen', 'thank you': 'danke' },
-    es: { 'hello': 'hola', 'good morning': 'buenos días' },
-    fr: { 'hello': 'bonjour', 'good morning': 'bonjour' },
-    it: { 'hello': 'ciao', 'good morning': 'buongiorno' },
-  },
-  es: {
-    pt: { 'hola': 'olá', 'buenos días': 'bom dia', 'gracias': 'obrigado' },
-    de: { 'hola': 'hallo', 'buenos días': 'guten morgen' },
-    en: { 'hola': 'hello', 'gracias': 'thank you' },
-    fr: { 'hola': 'bonjour' },
-    it: { 'hola': 'ciao' },
-  },
-  fr: {
-    pt: { 'bonjour': 'olá', 'merci': 'obrigado' },
-    de: { 'bonjour': 'hallo', 'merci': 'danke' },
-    en: { 'bonjour': 'hello' },
-    es: { 'bonjour': 'hola' },
-    it: { 'bonjour': 'ciao' },
-  },
-  it: {
-    pt: { 'ciao': 'olá', 'buongiorno': 'bom dia', 'grazie': 'obrigado' },
-    de: { 'ciao': 'hallo', 'buongiorno': 'guten morgen' },
-    en: { 'ciao': 'hello' },
-    es: { 'ciao': 'hola' },
-    fr: { 'ciao': 'bonjour' },
-  }
-};
-
 const CITIES_METADATA = {
   lisboa: {
     lat: 38.7223,
@@ -265,7 +226,7 @@ const LOCALES = {
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
-    placeholderTrans: 'Text zum Übersetzen eingeben (z.B. Hallo, Danke)...',
+    placeholderTrans: 'Text zum Übersetzen eingeben...',
     btnTrans: 'Text übersetzen',
     listenBtn: 'Anhören (TTS)',
     speakBtn: 'Sprechen (STT)',
@@ -826,7 +787,7 @@ const LOCALES = {
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
-          { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
+          { id: 'mb2', title: 'Praia da Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
       },
     ],
@@ -1107,44 +1068,39 @@ export default function App() {
       recognition.onerror = () => Alert.alert('Fehler', 'Spracherkennung fehlgeschlagen.');
       recognition.start();
     } else {
-      Alert.alert('Speech-to-Text (STT)', 'Mikrofon-Eingabe (Simulation): Bitte Text manuell eingeben.');
+      Alert.alert('Speech-to-Text (STT)', 'Mikrofon-Eingabe: Bitte Text manuell eingeben.');
     }
   };
 
-  // ECHTER LOKALER ÜBERSETZER
-  const handleTranslate = () => {
+  // ROBUUSTER ÜBERSETZER MIT MYMEMORY API (FUNKTIONIERT OHNE API-KEY)
+  const handleTranslate = async () => {
     if (!inputText.trim()) return;
     setLoading(true);
-    setTimeout(() => {
-      const cleanInput = inputText.trim().toLowerCase();
-      let translation = '';
-      
-      if (DICTIONARY[sourceLang] && DICTIONARY[sourceLang][targetLang] && DICTIONARY[sourceLang][targetLang][cleanInput]) {
-        translation = DICTIONARY[sourceLang][targetLang][cleanInput];
+    try {
+      const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
+      const data = await res.json();
+      if (data && data.responseData && data.responseData.translatedText) {
+        setTranslatedText(data.responseData.translatedText);
       } else {
-        translation = `[Übersetzt (${sourceLang} -> ${targetLang})]: ${inputText.trim()}`;
+        setTranslatedText('Übersetzungsfehler aufgetreten.');
       }
-
-      setTranslatedText(translation);
-      setLoading(false);
-    }, 300);
+    } catch {
+      setTranslatedText('Netzwerkfehler beim Übersetzen.');
+    }
+    setLoading(false);
   };
 
-  // KORRIGIERTER GEHALTSRECHNER (14 MONATSGEHÄLTER AUF 12 MONATE UMGERECHNET WENN GEWÄHLT)
+  // KORRIGIERTER GEHALTSRECHNER (14 MONATSGEHÄLTER AUF 12 MONATE UMGERECHNET)
   const calculateNetSalary = (gross, payments, status) => {
     const inputSalary = parseFloat(gross) || 0;
     if (inputSalary <= 0) return;
     setLoading(true);
 
     setTimeout(() => {
-      // Wenn der Nutzer z.B. 1500 € als Monatsgehalt eingibt, entspricht das bei 14 Gehältern dem Monatsbezug.
-      // Wenn er 12 Gehälter wählt, wird das Jahresgehalt (1500 * 14) auf 12 Monate umgelegt: (1500 * 14) / 12 = 1750 €
       let monthlyBase = inputSalary;
-      let annualTotal = inputSalary * parseInt(payments);
-      
       if (payments === '12') {
-        annualTotal = inputSalary * 14; // Gesamtes Jahresgehalt inkl. 14 Bezügen
-        monthlyBase = annualTotal / 12; // Auf 12 Monate verteilt
+        const annualTotal = inputSalary * 14; 
+        monthlyBase = annualTotal / 12; 
       }
 
       const ss = monthlyBase * 0.11;
@@ -1152,7 +1108,6 @@ export default function App() {
       if (payments === '12') irsFactor += 0.03;
       const irs = monthlyBase * irsFactor;
       const net = monthlyBase - ss - irs;
-      const annualNet = net * 12; // bzw. annualTotal minus Abzüge
       
       setCalcResult({
         gross: monthlyBase.toFixed(2),
@@ -1230,7 +1185,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 1: SERVICES (OHNE FRAGE-BALKEN) */}
+        {/* TAB 1: SERVICES */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -1299,7 +1254,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: KARTEN (VOLLER GRID-BEREICH) */}
+        {/* TAB 2: KARTEN */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
