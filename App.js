@@ -185,10 +185,10 @@ const LOCALES = {
     title: 'PortuStart',
     sub: 'Dein Relocation-Partner für Portugal',
     tabServices: 'Services',
-    tabPlaces: 'Karte & Entdecken', // Neuer kompakter Name
-    tabPerks: 'Deals',
+    tabPlaces: 'Karte & Entdecken',
     tabTrans: 'KI-Assistent',
     tabCalc: 'Gehalt',
+    tabPerks: 'Deals', // Ganz ans Ende gesetzt
     placesSectionTitle: '🇵🇹 Interaktive Karte & Filter',
     placesSectionSub: 'Wähle aus, was auf der Live-Karte und in der Liste angezeigt werden soll:',
     openInAppMaps: 'In Maps-App',
@@ -348,9 +348,9 @@ const LOCALES = {
     sub: 'Your Relocation Partner for Portugal',
     tabServices: 'Services',
     tabPlaces: 'Map & Explore',
-    tabPerks: 'Deals',
     tabTrans: 'AI Assistant',
     tabCalc: 'Salary',
+    tabPerks: 'Deals', // Moved to the very end
     placesSectionTitle: '🇵🇹 Interactive Map & Filters',
     placesSectionSub: 'Choose what to display on the live map and list:',
     openInAppMaps: 'Open in Maps App',
@@ -504,9 +504,9 @@ const LOCALES = {
     sub: 'Tu socio de reubicación para Portugal',
     tabServices: 'Servicios',
     tabPlaces: 'Mapa y Explora',
-    tabPerks: 'Ofertas',
     tabTrans: 'Asistente IA',
     tabCalc: 'Salario',
+    tabPerks: 'Ofertas', // Moved to the very end
     placesSectionTitle: '🇵🇹 Mapa Interactivo y Filtros',
     placesSectionSub: 'Elige qué mostrar en el mapa en vivo y la lista:',
     openInAppMaps: 'Abrir en Maps',
@@ -660,9 +660,9 @@ const LOCALES = {
     sub: 'Votre partenaire de relocalisation pour le Portugal',
     tabServices: 'Services',
     tabPlaces: 'Carte & Explorer',
-    tabPerks: 'Bons plans',
     tabTrans: 'Assistant IA',
     tabCalc: 'Salaire',
+    tabPerks: 'Bons plans', // Moved to the very end
     placesSectionTitle: '🇵🇹 Carte interactive et filtres',
     placesSectionSub: 'Choisissez ce qui doit s’afficher sur la carte et dans la liste :',
     openInAppMaps: 'Ouvrir dans Plans',
@@ -804,7 +804,7 @@ const LOCALES = {
         tagline: 'L’île aux fleurs aux sommets escarpés et levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
-          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
           { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
@@ -816,9 +816,9 @@ const LOCALES = {
     sub: 'Il tuo partner di trasferimento per il Portogallo',
     tabServices: 'Servizi',
     tabPlaces: 'Mappa ed Esplora',
-    tabPerks: 'Offerte',
     tabTrans: 'Assistente IA',
     tabCalc: 'Stipendio',
+    tabPerks: 'Offerte', // Moved to the very end
     placesSectionTitle: '🇵🇹 Mappa interattiva e filtri',
     placesSectionSub: 'Scegli cosa visualizzare sulla mappa in tempo reale e nella lista:',
     openInAppMaps: 'Apri in Maps',
@@ -980,8 +980,6 @@ export default function App() {
   const [langModalVisible, setLangModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
-
-  // NEU: Filter für den kombinierten Places-Tab ('explore', 'atm', 'doctors')
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
 
   const t = LOCALES[appLang] || LOCALES['de'];
@@ -1237,7 +1235,6 @@ export default function App() {
     setFaqLoading(false);
   };
 
-  // Dynamische Karteneinbindung basierend auf dem gewählten Filter
   const getMapEmbedUrl = () => {
     if (activePlaceFilter === 'atm') {
       return `https://maps.google.com/maps?q=Multibanco+Portugal&z=12&output=embed`;
@@ -1272,7 +1269,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* 5-FACH MENÜLEISTE (Kompakt zusammengelegt) */}
+        {/* 5-FACH MENÜLEISTE (DEALS GANZ AM ENDE) */}
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
@@ -1285,11 +1282,6 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'perks' && styles.tabButtonActive]} onPress={() => setActiveTab('perks')}>
-              <Ionicons name="gift" size={12} color={activeTab === 'perks' ? '#fff' : '#64748B'} />
-              <Text style={[styles.tabText, activeTab === 'perks' && styles.tabTextActive]}>{t.tabPerks}</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]} onPress={() => setActiveTab('trans')}>
               <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
@@ -1298,6 +1290,11 @@ export default function App() {
             <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalaryAI(grossInput, paymentsCount, taxStatus); }}>
               <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={[styles.tabButton, activeTab === 'perks' && styles.tabButtonActive]} onPress={() => setActiveTab('perks')}>
+              <Ionicons name="gift" size={12} color={activeTab === 'perks' ? '#fff' : '#64748B'} />
+              <Text style={[styles.tabText, activeTab === 'perks' && styles.tabTextActive]}>{t.tabPerks}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -1405,7 +1402,7 @@ export default function App() {
               <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
               <Text style={styles.subText}>{t.placesSectionSub}</Text>
 
-              {/* FILTER-AUSWAHL FÜR PINS (Sehenswürdigkeiten, ATMs, Ärzte) */}
+              {/* FILTER-AUSWAHL FÜR PINS */}
               <View style={styles.filterRow}>
                 <TouchableOpacity 
                   style={[styles.filterChip, activePlaceFilter === 'explore' && styles.filterChipActive]} 
@@ -1432,7 +1429,6 @@ export default function App() {
                 </TouchableOpacity>
               </View>
 
-              {/* Regionsauswahl nur bei Explore aktiv */}
               {activePlaceFilter === 'explore' && (
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
                   {t.cities.map((city) => {
@@ -1465,7 +1461,6 @@ export default function App() {
               </View>
             </View>
 
-            {/* INHALT JE NACH GEWÄHLTEM FILTER */}
             {activePlaceFilter === 'explore' && (
               <>
                 <View style={styles.cityDetailsHeader}>
@@ -1574,47 +1569,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: PERKS & DEALS */}
-        {activeTab === 'perks' && (
-          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.card}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
-                <Ionicons name="gift" size={24} color="#0F5132" style={{ marginRight: 8 }} />
-                <Text style={styles.sectionHeaderTitle}>{t.perksSectionTitle}</Text>
-              </View>
-              <Text style={styles.subText}>{t.perksSectionSub}</Text>
-
-              {EXPAT_PERKS.map((perk) => (
-                <View key={perk.id} style={styles.attractionCardWide}>
-                  <Image source={{ uri: perk.img }} style={styles.perkCardImage} />
-                  <View style={styles.attractionBody}>
-                    <View style={styles.affiliateTopRow}>
-                      <View style={styles.affiliateIconBadge}>
-                        <Ionicons name={perk.icon} size={18} color="#0F5132" />
-                      </View>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.affiliateBadgeText}>{perk.badge}</Text>
-                        <Text style={styles.affiliateTitle}>{perk.title}</Text>
-                      </View>
-                    </View>
-                    <Text style={styles.affiliateDesc}>{perk.desc}</Text>
-                    <TouchableOpacity style={styles.primaryBtn} onPress={() => openUrl(perk.link)}>
-                      <Text style={styles.btnText}>{t.claimDealBtn}</Text>
-                      <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
-
-              <View style={[styles.attractionTipBox, { marginTop: 10 }]}>
-                <Ionicons name="star" size={16} color="#D97706" style={{ marginRight: 6, marginTop: 1 }} />
-                <Text style={styles.attractionTipText}>Alle Deals sind verifiziert und direkt mit unseren offiziellen Partner-Netzwerken verknüpft.</Text>
-              </View>
-            </View>
-          </ScrollView>
-        )}
-
-        {/* TAB 4: TRANSLATOR & ASSISTANT */}
+        {/* TAB 3: TRANSLATOR & ASSISTANT */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1681,7 +1636,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: AI SALARY CALCULATOR */}
+        {/* TAB 4: AI SALARY CALCULATOR */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
@@ -1746,6 +1701,46 @@ export default function App() {
                 </View>
               </View>
             )}
+          </ScrollView>
+        )}
+
+        {/* TAB 5: PERKS & DEALS (GANZ AM ENDE) */}
+        {activeTab === 'perks' && (
+          <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            <View style={styles.card}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
+                <Ionicons name="gift" size={24} color="#0F5132" style={{ marginRight: 8 }} />
+                <Text style={styles.sectionHeaderTitle}>{t.perksSectionTitle}</Text>
+              </View>
+              <Text style={styles.subText}>{t.perksSectionSub}</Text>
+
+              {EXPAT_PERKS.map((perk) => (
+                <View key={perk.id} style={styles.attractionCardWide}>
+                  <Image source={{ uri: perk.img }} style={styles.perkCardImage} />
+                  <View style={styles.attractionBody}>
+                    <View style={styles.affiliateTopRow}>
+                      <View style={styles.affiliateIconBadge}>
+                        <Ionicons name={perk.icon} size={18} color="#0F5132" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.affiliateBadgeText}>{perk.badge}</Text>
+                        <Text style={styles.affiliateTitle}>{perk.title}</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.affiliateDesc}>{perk.desc}</Text>
+                    <TouchableOpacity style={styles.primaryBtn} onPress={() => openUrl(perk.link)}>
+                      <Text style={styles.btnText}>{t.claimDealBtn}</Text>
+                      <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ))}
+
+              <View style={[styles.attractionTipBox, { marginTop: 10 }]}>
+                <Ionicons name="star" size={16} color="#D97706" style={{ marginRight: 6, marginTop: 1 }} />
+                <Text style={styles.attractionTipText}>Alle Deals sind verifiziert und direkt mit unseren offiziellen Partner-Netzwerken verknüpft.</Text>
+              </View>
+            </View>
           </ScrollView>
         )}
 
@@ -1840,7 +1835,6 @@ const styles = StyleSheet.create({
   subText: { fontSize: 12, color: '#64748B', marginTop: 2, marginBottom: 8 },
   miniLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
 
-  // NEU: Filter-Row Styling für ATM / Explore / Ärzte
   filterRow: {
     flexDirection: 'row',
     gap: 6,
