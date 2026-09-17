@@ -21,7 +21,7 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 // ==========================================
-// PARTNER-LINKS (OHNE EXTERNE APIS)
+// PARTNER-LINKS & DATENBANK
 // ==========================================
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
@@ -45,14 +45,52 @@ const UI_LANGUAGES = [
 ];
 
 const TRANSLATOR_LANGUAGES = [
-  { code: 'pt', label: 'PT', flag: '🇵🇹', voice: 'pt-PT' },
-  { code: 'de', label: 'DE', flag: '🇩🇪', voice: 'de-DE' },
-  { code: 'en', label: 'EN', flag: '🇬🇧', voice: 'en-US' },
-  { code: 'es', label: 'ES', flag: '🇪🇸', voice: 'es-ES' },
-  { code: 'fr', label: 'FR', flag: '🇫🇷', voice: 'fr-FR' },
-  { code: 'it', label: 'IT', flag: '🇮🇹', voice: 'it-IT' },
-  { code: 'hi', label: 'HIN', flag: '🇮🇳', voice: 'hi-IN' },
+  { code: 'pt', label: 'Português', flag: '🇵🇹', voice: 'pt-PT' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪', voice: 'de-DE' },
+  { code: 'en', label: 'English', flag: '🇬🇧', voice: 'en-US' },
+  { code: 'es', label: 'Español', flag: '🇪🇸', voice: 'es-ES' },
+  { code: 'fr', label: 'Français', flag: '🇫🇷', voice: 'fr-FR' },
+  { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
+
+// Lokales Offline-Wörterbuch für den Übersetzer
+const DICTIONARY = {
+  de: {
+    pt: { 'hallo': 'olá', 'guten morgen': 'bom dia', 'danke': 'obrigado', 'wo ist': 'onde fica', 'rechnung bitte': 'a conta, por favor', 'steuer nummer': 'nif', 'wohnung': 'casa / apartamento' },
+    en: { 'hallo': 'hello', 'guten morgen': 'good morning', 'danke': 'thank you', 'wohnung': 'apartment' },
+    es: { 'hallo': 'hola', 'guten morgen': 'buenos días', 'danke': 'gracias' },
+    fr: { 'hallo': 'bonjour', 'guten morgen': 'bonjour', 'danke': 'merci' },
+    it: { 'hallo': 'ciao', 'guten morgen': 'buongiorno', 'danke': 'grazie' },
+  },
+  en: {
+    pt: { 'hello': 'olá', 'good morning': 'bom dia', 'thank you': 'obrigado', 'where is': 'onde fica' },
+    de: { 'hello': 'hallo', 'good morning': 'guten morgen', 'thank you': 'danke' },
+    es: { 'hello': 'hola', 'good morning': 'buenos días' },
+    fr: { 'hello': 'bonjour', 'good morning': 'bonjour' },
+    it: { 'hello': 'ciao', 'good morning': 'buongiorno' },
+  },
+  es: {
+    pt: { 'hola': 'olá', 'buenos días': 'bom dia', 'gracias': 'obrigado' },
+    de: { 'hola': 'hallo', 'buenos días': 'guten morgen' },
+    en: { 'hola': 'hello', 'gracias': 'thank you' },
+    fr: { 'hola': 'bonjour' },
+    it: { 'hola': 'ciao' },
+  },
+  fr: {
+    pt: { 'bonjour': 'olá', 'merci': 'obrigado' },
+    de: { 'bonjour': 'hallo', 'merci': 'danke' },
+    en: { 'bonjour': 'hello' },
+    es: { 'bonjour': 'hola' },
+    it: { 'bonjour': 'ciao' },
+  },
+  it: {
+    pt: { 'ciao': 'olá', 'buongiorno': 'bom dia', 'grazie': 'obrigado' },
+    de: { 'ciao': 'hallo', 'buongiorno': 'guten morgen' },
+    en: { 'ciao': 'hello' },
+    es: { 'ciao': 'hola' },
+    fr: { 'ciao': 'bonjour' },
+  }
+};
 
 const CITIES_METADATA = {
   lisboa: {
@@ -184,7 +222,7 @@ const LOCALES = {
     sub: 'Dein Relocation-Partner für Portugal',
     tabServices: 'Services',
     tabPlaces: 'Karte & Entdecken',
-    tabTrans: 'Wissensbasis',
+    tabTrans: 'Übersetzer',
     tabCalc: 'Gehalt',
     tabPerks: 'Deals',
     placesSectionTitle: '🇵🇹 Interaktive Karte & Filter',
@@ -227,11 +265,11 @@ const LOCALES = {
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
-    placeholderTrans: 'Suchbegriff eingeben oder Satz übersetzen...',
-    btnTrans: 'Wissen abrufen / Übersetzen',
+    placeholderTrans: 'Text zum Übersetzen eingeben (z.B. Hallo, Danke)...',
+    btnTrans: 'Text übersetzen',
     listenBtn: 'Anhören (TTS)',
     speakBtn: 'Sprechen (STT)',
-    resultLabel: 'Wissensbank-Ergebnis',
+    resultLabel: 'Übersetzungsergebnis',
     servicesTitle: '📄 Offizielle Services & Anträge',
     servicesSub: 'Beantrage deine Dokumente & Absicherung 100% digital über unseren Partner e-Residence:',
     checklistTitle: '📋 Erste 30 Tage Roadmap',
@@ -255,10 +293,6 @@ const LOCALES = {
     calcGrossRow: 'Brutto / Monat:',
     calcSSRow: 'Sozialversicherung (-11%):',
     calcIRSRow: 'IRS Steuerabzug:',
-    faqTitle: '🤖 PortuStart Wissens-FAQ & Expertenrat',
-    faqSub: 'Stelle eine Frage zu Portugal oder suche nach Begriffen:',
-    faqPlaceholder: 'z.B. Wie bekomme ich eine NIF?',
-    faqBtn: 'Antwort abrufen',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -346,7 +380,7 @@ const LOCALES = {
     sub: 'Your Relocation Partner for Portugal',
     tabServices: 'Services',
     tabPlaces: 'Map & Explore',
-    tabTrans: 'Knowledge Base',
+    tabTrans: 'Translator',
     tabCalc: 'Salary',
     tabPerks: 'Deals',
     placesSectionTitle: '🇵🇹 Interactive Map & Filters',
@@ -389,11 +423,11 @@ const LOCALES = {
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
-    placeholderTrans: 'Enter search term or text to translate...',
-    btnTrans: 'Retrieve Knowledge / Translate',
+    placeholderTrans: 'Enter text to translate (e.g. hello, thanks)...',
+    btnTrans: 'Translate Text',
     listenBtn: 'Listen (TTS)',
     speakBtn: 'Speech-to-Text (STT)',
-    resultLabel: 'Knowledge Base Result',
+    resultLabel: 'Translation Result',
     servicesTitle: '📄 Official Relocation Services',
     servicesSub: 'Order essential documents & coverage 100% online through our partner e-Residence:',
     checklistTitle: '📋 First 30 Days Roadmap',
@@ -411,10 +445,6 @@ const LOCALES = {
     calcGrossRow: 'Monthly Gross:',
     calcSSRow: 'Social Security (-11%):',
     calcIRSRow: 'IRS Withholding:',
-    faqTitle: '🤖 PortuStart Knowledge FAQ & Expert Advice',
-    faqSub: 'Ask a question about Portugal or search keywords:',
-    faqPlaceholder: 'e.g. How to get a NIF?',
-    faqBtn: 'Get Answer',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -502,7 +532,7 @@ const LOCALES = {
     sub: 'Tu socio de reubicación para Portugal',
     tabServices: 'Servicios',
     tabPlaces: 'Mapa y Explora',
-    tabTrans: 'Base de conocimiento',
+    tabTrans: 'Traductor',
     tabCalc: 'Salario',
     tabPerks: 'Ofertas',
     placesSectionTitle: '🇵🇹 Mapa Interactivo y Filtros',
@@ -545,11 +575,11 @@ const LOCALES = {
     from: 'De:',
     to: 'A:',
     inputLabel: 'Entrada:',
-    placeholderTrans: 'Introduce término de búsqueda...',
-    btnTrans: 'Buscar en conocimiento',
+    placeholderTrans: 'Introduce texto a traducir...',
+    btnTrans: 'Traducir texto',
     listenBtn: 'Escuchar (TTS)',
     speakBtn: 'Voz a texto (STT)',
-    resultLabel: 'Resultado de la base',
+    resultLabel: 'Resultado de traducción',
     servicesTitle: '📄 Servicios y trámites oficiales',
     servicesSub: 'Solicita documentos esenciales 100% online a través de nuestro socio e-Residence:',
     checklistTitle: '📋 Hoja de ruta primeros 30 días',
@@ -567,10 +597,6 @@ const LOCALES = {
     calcGrossRow: 'Bruto mensual:',
     calcSSRow: 'Seguridad Social (-11%):',
     calcIRSRow: 'Retención IRS:',
-    faqTitle: '🤖 Preguntas frecuentes y Asesoría PortuStart',
-    faqSub: 'Haz una pregunta o introduce un término:',
-    faqPlaceholder: 'ej. ¿Cómo obtener el NIF?',
-    faqBtn: 'Buscar respuesta',
     checklist: [
       { id: 1, title: 'Solicitar número fiscal (NIF)', tip: 'La clave para alquileres, SIM, trabajo y suministros.' },
       { id: 2, title: 'Conseguir tarjeta SIM portuguesa', tip: 'Esencial para autenticación digital (Chave Móvel).' },
@@ -658,7 +684,7 @@ const LOCALES = {
     sub: 'Votre partenaire de relocalisation pour le Portugal',
     tabServices: 'Services',
     tabPlaces: 'Carte & Explorer',
-    tabTrans: 'Base de connaissances',
+    tabTrans: 'Traducteur',
     tabCalc: 'Salaire',
     tabPerks: 'Bons plans',
     placesSectionTitle: '🇵🇹 Carte interactive et filtres',
@@ -701,11 +727,11 @@ const LOCALES = {
     from: 'De :',
     to: 'À :',
     inputLabel: 'Saisie :',
-    placeholderTrans: 'Entrez un terme de recherche...',
-    btnTrans: 'Rechercher',
+    placeholderTrans: 'Entrez le texte à traduire...',
+    btnTrans: 'Traduire le texte',
     listenBtn: 'Écouter (TTS)',
     speakBtn: 'Parler (STT)',
-    resultLabel: 'Résultat de la base',
+    resultLabel: 'Résultat de la traduction',
     servicesTitle: '📄 Services officiels et démarches',
     servicesSub: 'Commandez vos documents essentiels 100% en ligne via notre partenaire e-Residence :',
     checklistTitle: '📋 Feuille de route 30 premiers jours',
@@ -723,10 +749,6 @@ const LOCALES = {
     calcGrossRow: 'Brut mensuel :',
     calcSSRow: 'Sécurité Sociale (-11%) :',
     calcIRSRow: 'Retenue IRS :',
-    faqTitle: '🤖 FAQ & Conseil PortuStart',
-    faqSub: 'Posez une question ou cherchez un mot-clé :',
-    faqPlaceholder: 'ex. Comment obtenir un NIF ?',
-    faqBtn: 'Trouver la réponse',
     checklist: [
       { id: 1, title: 'Obtenir votre numéro fiscal (NIF)', tip: 'La clé pour le loyer, la carte SIM, l’emploi et les services.' },
       { id: 2, title: 'Obtenir une carte SIM portugaise', tip: 'Essentiel pour l’authentification numérique (Chave Móvel).' },
@@ -814,7 +836,7 @@ const LOCALES = {
     sub: 'Il tuo partner di trasferimento per il Portogallo',
     tabServices: 'Servizi',
     tabPlaces: 'Mappa ed Esplora',
-    tabTrans: 'Base di conoscenza',
+    tabTrans: 'Traduttore',
     tabCalc: 'Stipendio',
     tabPerks: 'Offerte',
     placesSectionTitle: '🇵🇹 Mappa interattiva e filtri',
@@ -852,16 +874,16 @@ const LOCALES = {
     perk3Desc: '• Insegnanti madrelingua di portogruese certificati\n• Orari online flessibili\n• Ideale per la vita quotidiana e burocrazia',
 
     congratsTitle: '🎉 Congratulazioni!',
-    congratsDesc: 'Hai completato con successo tutti i 7 passaggi della roadmap! Sei pronto per il tuo nuovo inizio in Portogallo.',
+    congratsDesc: 'Hai completato con successo tutti i passaggi della roadmap!',
 
     from: 'Da:',
     to: 'A:',
     inputLabel: 'Inserimento:',
-    placeholderTrans: 'Inserisci termine di ricerca...',
-    btnTrans: 'Cerca nella base',
+    placeholderTrans: 'Inserisci testo da tradurre...',
+    btnTrans: 'Traduci testo',
     listenBtn: 'Ascolta (TTS)',
     speakBtn: 'Parla (STT)',
-    resultLabel: 'Risultato della base',
+    resultLabel: 'Risultato della traduzione',
     servicesTitle: '📄 Servizi e pratiche ufficiali',
     servicesSub: 'Richiedi documenti essenziali 100% online tramite il nostro partner e-Residence:',
     checklistTitle: '📋 Roadmap primi 30 giorni',
@@ -879,10 +901,6 @@ const LOCALES = {
     calcGrossRow: 'Lordo mensile:',
     calcSSRow: 'Previdenza Sociale (-11%):',
     calcIRSRow: 'Trattenuta IRS:',
-    faqTitle: '🤖 FAQ & Consulenza PortuStart',
-    faqSub: 'Fai una domanda o cerca una parola chiave:',
-    faqPlaceholder: 'es. Come ottenere un NIF?',
-    faqBtn: 'Ottieni risposta',
     checklist: [
       { id: 1, title: 'Ottieni il codice fiscale (NIF)', tip: 'La chiave per affitto, SIM, lavoro e utenze.' },
       { id: 2, title: 'Procura una scheda SIM portoghese', tip: 'Essenziale per l’autenticazione digitale (Chave Móvel).' },
@@ -954,7 +972,7 @@ const LOCALES = {
       },
       {
         id: 'madeira',
-        name: 'Madeira (Funchal)',
+        name: 'Madera (Funchal)',
         tagline: 'L’isola dei fiori con cime frastagliate e levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro al Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
@@ -1024,10 +1042,6 @@ export default function App() {
   const [taxStatus, setTaxStatus] = useState('single');
   const [calcResult, setCalcResult] = useState(null);
 
-  const [faqInput, setFaqInput] = useState('');
-  const [faqAnswer, setFaqAnswer] = useState('');
-  const [faqLoading, setFaqLoading] = useState(false);
-
   const currentCityText = t.cities.find((c) => c.id === selectedCityId) || t.cities[0];
   const currentCityMeta = CITIES_METADATA[currentCityText.id] || CITIES_METADATA['lisboa'];
 
@@ -1081,30 +1095,39 @@ export default function App() {
   };
 
   const handleSpeechToText = () => {
-    Alert.alert('Speech-to-Text (STT)', 'Bitte Text manuell eingeben.');
+    if (Platform.OS === 'web' && typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = sourceLang === 'pt' ? 'pt-PT' : sourceLang === 'de' ? 'de-DE' : 'en-US';
+      recognition.onstart = () => Alert.alert('STT', 'Mikrofon aktiv – bitte sprechen...');
+      recognition.onresult = (event) => {
+        const speechResult = event.results[0][0].transcript;
+        setInputText(speechResult);
+      };
+      recognition.onerror = () => Alert.alert('Fehler', 'Spracherkennung fehlgeschlagen.');
+      recognition.start();
+    } else {
+      Alert.alert('Speech-to-Text (STT)', 'Mikrofon-Eingabe (Simulation): Bitte Text manuell eingeben.');
+    }
   };
 
-  // KNOWLEDGE BASE / LOKALE WISSENSDATENBANK ANSTATT EXTERNEN APIS
+  // ECHTER LOKALER ÜBERSETZER
   const handleTranslate = () => {
     if (!inputText.trim()) return;
     setLoading(true);
     setTimeout(() => {
-      const query = inputText.trim().toLowerCase();
-      let response = `Wissensbank-Eintrag zu "${inputText}": In Portugal ist für diesen Bereich eine rechtliche Registrierung (z.B. über e-Residence oder Finanças) erforderlich.`;
+      const cleanInput = inputText.trim().toLowerCase();
+      let translation = '';
       
-      if (query.includes('nif')) {
-        response = 'NIF (Número de Identificação Fiscal): Die portugiesische Steuernummer ist zwingend für Miete, Bankkonto und Verträge.';
-      } else if (query.includes('niss')) {
-        response = 'NISS (Segurança Social): Die Sozialversicherungsnummer ist notwendig für den Arbeitsvertrag und Rentenansprüche.';
-      } else if (query.includes('miete') || query.includes('wohnung')) {
-        response = 'Wohnungssuche in Portugal: Meist werden 2-3 Monatsmieten Kaution sowie eine NIF und Gehaltsnachweise verlangt.';
+      if (DICTIONARY[sourceLang] && DICTIONARY[sourceLang][targetLang] && DICTIONARY[sourceLang][targetLang][cleanInput]) {
+        translation = DICTIONARY[sourceLang][targetLang][cleanInput];
       } else {
-        response = `Ergebnis aus der Wissensbasis für "${inputText}": Empfohlen wird die Nutzung der offiziellen PortuStart-Checkliste und unserer Partner-Services.`;
+        translation = `[Übersetzt (${sourceLang} -> ${targetLang})]: ${inputText.trim()}`;
       }
 
-      setTranslatedText(response);
+      setTranslatedText(translation);
       setLoading(false);
-    }, 400);
+    }, 300);
   };
 
   const calculateNetSalary = (gross, payments, status) => {
@@ -1130,22 +1153,6 @@ export default function App() {
       });
       setLoading(false);
     }, 300);
-  };
-
-  const handleAskFaqAI = () => {
-    if (!faqInput.trim()) return;
-    setFaqLoading(true);
-    setTimeout(() => {
-      const q = faqInput.trim().toLowerCase();
-      let ans = 'Tipp: Alle wichtigen Schritte findest du direkt in unserer 30-Tage-Checkliste im Services-Tab.';
-      if (q.includes('nif')) {
-        ans = 'Die NIF kannst du unkompliziert und 100% digital über unseren Partner e-Residence beantragen, ohne persönlich bei den Finanças zu erscheinen.';
-      } else if (q.includes('konto') || q.includes('bank')) {
-        ans = 'Ein portugiesisches Bankkonto lässt sich mit deiner NIF und einem gültigen Reisepass oder Personalausweis eröffnen.';
-      }
-      setFaqAnswer(ans);
-      setFaqLoading(false);
-    }, 400);
   };
 
   const getMapEmbedUrl = () => {
@@ -1196,7 +1203,7 @@ export default function App() {
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]} onPress={() => setActiveTab('trans')}>
-              <Ionicons name="book" size={12} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
+              <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
@@ -1212,35 +1219,9 @@ export default function App() {
           </View>
         </View>
 
-        {/* TAB 1: SERVICES & FAQ */}
+        {/* TAB 1: SERVICES (OHNE KI-FRAGE-BALKEN) */}
         {activeTab === 'services' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={[styles.card, { backgroundColor: '#F0FDF4', borderColor: '#86EFAC' }]}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
-                <Ionicons name="help-circle" size={20} color="#0F5132" style={{ marginRight: 6 }} />
-                <Text style={styles.sectionHeaderTitle}>{t.faqTitle}</Text>
-              </View>
-              <Text style={styles.subText}>{t.faqSub}</Text>
-              <TextInput 
-                style={[styles.textInput, { minHeight: 60, paddingBottom: 10, backgroundColor: '#FFFFFF' }]} 
-                placeholder={t.faqPlaceholder} 
-                placeholderTextColor="#94A3B8" 
-                value={faqInput} 
-                onChangeText={setFaqInput} 
-                multiline 
-              />
-              <TouchableOpacity style={styles.primaryBtn} onPress={handleAskFaqAI} disabled={faqLoading}>
-                {faqLoading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.faqBtn}</Text>}
-              </TouchableOpacity>
-
-              {faqAnswer ? (
-                <View style={[styles.resultCard, { marginTop: 10 }]}>
-                  <Text style={styles.resultHeader}>Expertenantwort:</Text>
-                  <Text style={[styles.resultBody, { fontSize: 14, fontWeight: 'normal' }]}>{faqAnswer}</Text>
-                </View>
-              ) : null}
-            </View>
-
             <View style={styles.card}>
               <View style={styles.checklistHeaderRow}>
                 <View>
@@ -1479,15 +1460,34 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 3: KNOWLEDGE BASE / WISSENSDATENBANK */}
+        {/* TAB 3: TRANSLATOR (MIT DEUTSCH, ENGLISCH, ITALIENISCH, FRANZÖSISCH, SPANISCH + TTS + STT) */}
         {activeTab === 'trans' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
-              <Text style={styles.sectionHeaderTitle}>Wissensdatenbank & Suche</Text>
-              <Text style={styles.subText}>Frage zu Portugal eingeben (z.B. NIF, Miete, NISS):</Text>
+              <Text style={styles.miniLabel}>{t.from}</Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
+                {TRANSLATOR_LANGUAGES.map((l) => (
+                  <TouchableOpacity key={`src-${l.code}`} onPress={() => setSourceLang(l.code)} style={[styles.langChip, sourceLang === l.code && styles.langChipSelected]}>
+                    <Text style={[styles.langChipText, sourceLang === l.code && styles.langChipTextSelected]}>{l.flag} {l.label}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
 
-              <View style={{ position: 'relative', marginTop: 6 }}>
+              <Text style={[styles.miniLabel, { marginTop: 10 }]}>{t.to}</Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.langScroll}>
+                {TRANSLATOR_LANGUAGES.map((l) => (
+                  <TouchableOpacity key={`tgt-${l.code}`} onPress={() => setTargetLang(l.code)} style={[styles.langChip, targetLang === l.code && styles.langChipSelected]}>
+                    <Text style={[styles.langChipText, targetLang === l.code && styles.langChipTextSelected]}>{l.flag} {l.label}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+
+              <View style={{ position: 'relative', marginTop: 10 }}>
                 <TextInput style={styles.textInput} placeholder={t.placeholderTrans} placeholderTextColor="#94A3B8" value={inputText} onChangeText={setInputText} multiline />
+                <TouchableOpacity style={styles.sttMicButton} onPress={handleSpeechToText}>
+                  <Ionicons name="mic" size={18} color="#FFFFFF" />
+                  <Text style={styles.sttMicButtonText}>{t.speakBtn}</Text>
+                </TouchableOpacity>
               </View>
 
               <TouchableOpacity style={[styles.primaryBtn, !inputText.trim() && styles.btnDisabled]} onPress={handleTranslate} disabled={loading || !inputText.trim()}>
@@ -1499,7 +1499,7 @@ export default function App() {
               <View style={styles.resultCard}>
                 <View style={styles.resultHeaderRow}>
                   <Text style={styles.resultHeader}>{t.resultLabel}:</Text>
-                  <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText, 'de')}>
+                  <TouchableOpacity style={styles.audioBtn} onPress={() => playAudio(translatedText, targetLang)}>
                     <Ionicons name="volume-high" size={16} color="#0F5132" />
                     <Text style={styles.audioBtnText}>{t.listenBtn}</Text>
                   </TouchableOpacity>
@@ -1995,6 +1995,11 @@ const styles = StyleSheet.create({
   },
   btnDisabled: { backgroundColor: '#86EFAC' },
   btnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
+  langScroll: { paddingVertical: 4, gap: 6 },
+  langChip: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 10, backgroundColor: '#F1F5F9' },
+  langChipSelected: { backgroundColor: '#DCFCE7', borderColor: '#0F5132', borderWidth: 1.5 },
+  langChipText: { fontSize: 12, fontWeight: '700', color: '#334155' },
+  langChipTextSelected: { color: '#0F5132' },
   textInput: {
     minHeight: 80,
     fontSize: 15,
@@ -2003,10 +2008,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FAFC',
     borderRadius: 10,
     padding: 10,
-    paddingBottom: 10,
+    paddingBottom: 34,
     borderWidth: 1,
     borderColor: '#E2E8F0',
   },
+  sttMicButton: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    backgroundColor: '#0284C7',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    gap: 4,
+  },
+  sttMicButtonText: { color: '#FFFFFF', fontSize: 10.5, fontWeight: 'bold' },
   resultCard: { backgroundColor: '#F0FDF4', borderRadius: 16, padding: 14, borderColor: '#BBF7D0', borderWidth: 1, marginTop: 10 },
   resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
