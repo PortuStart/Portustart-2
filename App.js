@@ -33,6 +33,9 @@ const AFFILIATE_LINKS = {
 
   italkiLang: 'https://www.italki.com/affshare?ref=af33636608',
   revolut: 'https://revolut.com/referral/?referral-code=portustart',
+  
+  // Offizieller Link für EU-Zertifikat Termine (AIMA / gov.pt)
+  euCertificatePortal: 'https://www.gov.pt/servicos/agendar-atendimento-no-servico-de-estrangteiros-e-fronteiras-sef-',
 };
 
 const UI_LANGUAGES = [
@@ -233,6 +236,7 @@ const LOCALES = {
     swipeInstruction: '👉 Klicke auf "Standort öffnen", um den genauen Pin auf der Karte zu sehen:',
     openInMapsBtn: 'Standort öffnen',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
+    euCertBtn: 'Offizielles EU-Zertifikat / Termin ↗',
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
@@ -280,7 +284,7 @@ const LOCALES = {
       { id: 3, title: 'Bankkonto eröffnen', tip: 'Erforderlich für Gehaltseingang und Wohnungskaution.' },
       { id: 4, title: 'Krankenversicherung abschließen', tip: 'Notwendig für Visum und Übergangszeit bis zur SNS-Nummer.' },
       { id: 5, title: 'Sozialversicherungsnummer (NISS)', tip: 'Wird für Arbeitsvertrag und Rentenanspruch benötigt.' },
-      { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara an.' },
+      { id: 6, title: 'EU-Anmeldebescheinigung (CRUE)', tip: 'Offizielles Aufenthaltszertifikat für EU-Bürger nach 3 Monaten beantragen.', isEuCert: true, link: AFFILIATE_LINKS.euCertificatePortal },
       { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Gesundheitssystem & Hausarzt.' },
     ],
     citiesData: CITIES_DATA,
@@ -298,6 +302,7 @@ const LOCALES = {
     swipeInstruction: '👉 Click "Open Location" to see the exact pin on the map:',
     openInMapsBtn: 'Open Location',
     gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
+    euCertBtn: 'Official EU Certificate / Appointment ↗',
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
     italkiBtn: 'Find Native Tutors (italki) ↗',
@@ -339,7 +344,7 @@ const LOCALES = {
       { id: 3, title: 'Open a Portuguese Bank Account', tip: 'Required for salary payouts and rental deposits.' },
       { id: 4, title: 'Get Expat Health Insurance', tip: 'Essential for visa processing and pre-SNS medical care.' },
       { id: 5, title: 'Get Social Security Number (NISS)', tip: 'Mandatory for payroll, pension and healthcare contributions.' },
-      { id: 6, title: 'Residency Registration (CRUE / AIMA)', tip: 'EU citizens register at the local City Hall (Câmara) after 3 months.' },
+      { id: 6, title: 'EU Registration Certificate (CRUE)', tip: 'Official residence certificate for EU citizens after 3 months.', isEuCert: true, link: AFFILIATE_LINKS.euCertificatePortal },
       { id: 7, title: 'Get your SNS Healthcare Number', tip: 'Grants access to public primary care clinics (Centro de Saúde).' },
     ],
     citiesData: CITIES_DATA,
@@ -357,6 +362,7 @@ const LOCALES = {
     swipeInstruction: '👉 Haz clic en "Abrir ubicación" para ver el pin exacto en el mapa:',
     openInMapsBtn: 'Abrir ubicación',
     gygBtn: 'Entradas y Tours (GetYourGuide) ↗',
+    euCertBtn: 'Certificado UE Oficial / Cita ↗',
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
     italkiBtn: 'Buscar profesores nativos (italki) ↗',
@@ -398,7 +404,7 @@ const LOCALES = {
       { id: 3, title: 'Abrir cuenta bancaria portuguesa', tip: 'Requerida para cobrar el salario y depósitos de alquiler.' },
       { id: 4, title: 'Contratar seguro médico de expatriado', tip: 'Esencial para el visado y atención previa al SNS.' },
       { id: 5, title: 'Obtener número de Seguridad Social (NISS)', tip: 'Obligatorio para contratos y pensiones.' },
-      { id: 6, title: 'Registro de residencia (CRUE / AIMA)', tip: 'Los ciudadanos de la UE se registran en la Câmara tras 3 meses.' },
+      { id: 6, title: 'Certificado de Registro UE (CRUE)', tip: 'Certificado de residencia oficial para ciudadanos de la UE.', isEuCert: true, link: AFFILIATE_LINKS.euCertificatePortal },
       { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso a centros de salud públicos y médico de cabecera.' },
     ],
     citiesData: CITIES_DATA,
@@ -416,6 +422,7 @@ const LOCALES = {
     swipeInstruction: '👉 Cliquez sur "Ouvrir l’emplacement" pour voir le pin exact sur la carte :',
     openInMapsBtn: 'Ouvrir l’emplacement',
     gygBtn: 'Billets et visites (GetYourGuide) ↗',
+    euCertBtn: 'Certificat UE Officiel / Rendez-vous ↗',
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
     italkiBtn: 'Trouver des tuteurs natifs (italki) ↗',
@@ -457,7 +464,7 @@ const LOCALES = {
       { id: 3, title: 'Ouvrir un compte bancaire portugais', tip: 'Requis pour le versement du salaire et la caution.' },
       { id: 4, title: 'Souscrire une assurance santé ex-pat', tip: 'Essentiel pour le visa et la période avant le SNS.' },
       { id: 5, title: 'Obtenir le numéro de Sécurité Sociale (NISS)', tip: 'Obligatoire pour la paie et les cotisations retraite.' },
-      { id: 6, title: 'Enregistrement de résidence (CRUE / AIMA)', tip: 'Les citoyens de l’UE s’inscrivent à la Câmara après 3 mois.' },
+      { id: 6, title: 'Certificat d’enregistrement UE (CRUE)', tip: 'Certificat de résidence officiel pour les citoyens de l’UE.', isEuCert: true, link: AFFILIATE_LINKS.euCertificatePortal },
       { id: 7, title: 'Obtenir votre numéro de santé SNS', tip: 'Accès aux centres de santé publics et médecin traitant.' },
     ],
     citiesData: CITIES_DATA,
@@ -475,6 +482,7 @@ const LOCALES = {
     swipeInstruction: '👉 Clicca su "Apri posizione" per vedere il pin esatto sulla mappa:',
     openInMapsBtn: 'Apri posizione',
     gygBtn: 'Biglietti e tour (GetYourGuide) ↗',
+    euCertBtn: 'Certificato UE Ufficiale / Appuntamento ↗',
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
     italkiBtn: 'Trova insegnanti madrelingua (italki) ↗',
@@ -516,7 +524,7 @@ const LOCALES = {
       { id: 3, title: 'Apri un conto bancario portoghese', tip: 'Richiesto per accredito stipendio e cauzione affitto.' },
       { id: 4, title: 'Stipula un’assicurazione sanitaria expat', tip: 'Essenziale per il visto e l’assistenza pre-SNS.' },
       { id: 5, title: 'Ottieni il numero di Previdenza Sociale (NISS)', tip: 'Obbligatorio per busta paga e contributi.' },
-      { id: 6, title: 'Registrazione residenza (CRUE / AIMA)', tip: 'I cittadini UE si registrano in Câmara dopo 3 mesi.' },
+      { id: 6, title: 'Certificato di Registrazione UE (CRUE)', tip: 'Certificato di residenza ufficiale per i cittadini UE.', isEuCert: true, link: AFFILIATE_LINKS.euCertificatePortal },
       { id: 7, title: 'Ottieni il numero sanitario SNS', tip: 'Accesso a centri sanitari pubblici e medico di base.' },
     ],
     citiesData: CITIES_DATA,
@@ -625,10 +633,6 @@ export default function App() {
     const partnerParam = `&partner_id=${AFFILIATE_LINKS.getYourGuidePartnerId}&cmp=${AFFILIATE_LINKS.getYourGuideCmp}`;
     const gygUrl = `https://www.getyourguide.com/s/?q=${encodeURIComponent(query + ' Portugal')}${partnerParam}`;
     openUrl(gygUrl);
-  };
-
-  const openItalki = () => {
-    openUrl(AFFILIATE_LINKS.italkiLang);
   };
 
   const playAudio = (text, langCode = 'pt') => {
@@ -760,13 +764,20 @@ export default function App() {
               {t.checklist.map((item) => {
                 const isDone = !!checkedMap[item.id];
                 return (
-                  <TouchableOpacity key={item.id} style={[styles.checklistItem, isDone && styles.checklistItemDone]} onPress={() => toggleChecklistItem(item.id)}>
-                    <Ionicons name={isDone ? 'checkmark-circle' : 'ellipse-outline'} size={20} color={isDone ? '#0F5132' : '#94A3B8'} style={{ marginRight: 10, marginTop: 2 }} />
-                    <View style={{ flex: 1 }}>
-                      <Text style={[styles.checklistText, isDone && styles.checklistTextDone]}>{item.title}</Text>
-                      <Text style={styles.checklistTip}>{item.tip}</Text>
-                    </View>
-                  </TouchableOpacity>
+                  <View key={item.id} style={[styles.checklistItem, isDone && styles.checklistItemDone]}>
+                    <TouchableOpacity onPress={() => toggleChecklistItem(item.id)} style={{ flexDirection: 'row', alignItems: 'flex-start', flex: 1 }}>
+                      <Ionicons name={isDone ? 'checkmark-circle' : 'ellipse-outline'} size={20} color={isDone ? '#0F5132' : '#94A3B8'} style={{ marginRight: 10, marginTop: 2 }} />
+                      <View style={{ flex: 1 }}>
+                        <Text style={[styles.checklistText, isDone && styles.checklistTextDone]}>{item.title}</Text>
+                        <Text style={styles.checklistTip}>{item.tip}</Text>
+                      </View>
+                    </TouchableOpacity>
+                    {item.isEuCert && item.link && (
+                      <TouchableOpacity style={styles.euCertLinkBtn} onPress={() => openUrl(item.link)}>
+                        <Text style={styles.euCertLinkBtnText}>{t.euCertBtn}</Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
                 );
               })}
             </View>
@@ -1385,6 +1396,8 @@ const styles = StyleSheet.create({
   checklistText: { fontSize: 13, fontWeight: '700', color: '#0F172A' },
   checklistTextDone: { textDecorationLine: 'line-through', color: '#64748B' },
   checklistTip: { fontSize: 11, color: '#64748B', marginTop: 2 },
+  euCertLinkBtn: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 6, marginTop: 4, alignSelf: 'flex-start' },
+  euCertLinkBtnText: { fontSize: 11, fontWeight: 'bold', color: '#0F5132' },
   inputFieldLabel: { fontSize: 12, fontWeight: '700', color: '#334155', marginTop: 6, marginBottom: 4 },
   salaryInputField: {
     backgroundColor: '#FFFFFF',
