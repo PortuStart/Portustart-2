@@ -252,12 +252,13 @@ const LOCALES = {
       { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
       { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
-    calcTitle: '💶 KI-Nettogehalt-Rechner',
-    calcSub: 'Präzise Berechnung inklusive neuester IRS-Steuertabellen über Vercel AI.',
+    calcTitle: '💶 Erweiteter KI-Nettogehalt-Rechner',
+    calcSub: 'Berechne das Netto exakt nach Monatsgehältern und Familienstatus.',
     calcGrossLabel: 'Monatliches Bruttogehalt (€):',
-    calcBtn: 'Mit KI berechnen',
+    calcPaymentsLabel: 'Auszahlungen pro Jahr:',
+    calcStatusLabel: 'Steuerklasse / Familienstand:',
+    calcBtn: 'Gehalt mit KI berechnen',
     calcNetMonthly: 'Geschätztes Netto (pro Monat):',
-    calc14Notice: 'Basis: 14 Auszahlungen (inkl. Urlaubs-/Weihnachtsgeld)',
     calcGrossRow: 'Brutto / Monat:',
     calcSSRow: 'Sozialversicherung (-11%):',
     calcIRSRow: 'IRS Steuerabzug:',
@@ -413,11 +414,12 @@ const LOCALES = {
     applyOnlineBtn: 'Apply online now ↗',
     affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
     calcTitle: '💶 AI Net Salary Calculator',
-    calcSub: 'Precise calculation based on latest IRS tax tables via AI Gateway.',
+    calcSub: 'Precise calculation based on payments and tax status via AI Gateway.',
     calcGrossLabel: 'Monthly Gross Salary (€):',
-    calcBtn: 'Calculate with AI',
+    calcPaymentsLabel: 'Payments per year:',
+    calcStatusLabel: 'Tax status / Marital status:',
+    calcBtn: 'Calculate Salary with AI',
     calcNetMonthly: 'Estimated Net (Monthly):',
-    calc14Notice: 'Based on standard 14 payments / year',
     calcGrossRow: 'Monthly Gross:',
     calcSSRow: 'Social Security (-11%):',
     calcIRSRow: 'IRS Withholding:',
@@ -478,7 +480,7 @@ const LOCALES = {
         places: [
           { id: 'a1', title: 'Benagil Sea Cave', category: 'Caves & Beaches', desc: 'Europe’s most famous wave-carved cathedral cave.', tip: 'Tip: Rent a kayak early.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Cliff Coastline', desc: 'Limestone arches and crystal-clear turquoise waters.', tip: 'Tip: Take a small boat tour.' },
-          { id: 'a3', title: 'Ria Formosa Park', category: 'Lagoon & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
+          { id: 'a3', title: 'Ria Formosa Park', category: 'Laguna & Islands', desc: 'Protected coastal wetland with car-free islands.', tip: 'Tip: Ferry to Armona.' },
           { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top European Beach', desc: 'Iconic double sea arches and snorkeling waters.', tip: 'Tip: Hanging Valleys Trail.' },
           { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Red Cliffs', desc: 'Over 6 km of sand sheltered by red sandstone cliffs.', tip: 'Tip: Low-tide strolls.' },
         ],
@@ -573,11 +575,12 @@ const LOCALES = {
     applyOnlineBtn: 'Solicitar online ahora ↗',
     affiliateDisclosure: 'Transparencia: Estos enlaces dirigen a un procesamiento exprés certificado con e-Residence. Recibimos una pequeña comisión sin coste adicional para ti.',
     calcTitle: '💶 Calculadora de salario neto IA',
-    calcSub: 'Cálculo preciso basado en las últimas tablas de impuestos IRS mediante el AI Gateway.',
+    calcSub: 'Cálculo preciso según pagas y estado fiscal mediante el AI Gateway.',
     calcGrossLabel: 'Salario bruto mensual (€):',
-    calcBtn: 'Calcular con IA',
+    calcPaymentsLabel: 'Pagos al año:',
+    calcStatusLabel: 'Estado fiscal / Situación familiar:',
+    calcBtn: 'Calcular salario con IA',
     calcNetMonthly: 'Neto estimado (mensual):',
-    calc14Notice: 'Basado en 14 pagas anuales',
     calcGrossRow: 'Bruto mensual:',
     calcSSRow: 'Seguridad Social (-11%):',
     calcIRSRow: 'Retención IRS:',
@@ -733,11 +736,12 @@ const LOCALES = {
     applyOnlineBtn: 'Demander en ligne ↗',
     affiliateDisclosure: 'Transparence : Ces liens redirigent vers un traitement express certifié avec e-Residence. Nous recevons une petite commission sans coût supplémentaire pour vous.',
     calcTitle: '💶 Calculateur de salaire net IA',
-    calcSub: 'Calcul précis basé sur les dernières tables fiscales IRS via l’AI Gateway.',
+    calcSub: 'Calcul précis basé sur les versements et le statut fiscal via l’AI Gateway.',
     calcGrossLabel: 'Salaire brut mensuel (€) :',
-    calcBtn: 'Calculer avec l’IA',
+    calcPaymentsLabel: 'Versements par an :',
+    calcStatusLabel: 'Statut fiscal / Situation familiale :',
+    calcBtn: 'Calculer le salaire avec l’IA',
     calcNetMonthly: 'Net estimé (par mois) :',
-    calc14Notice: 'Basé sur 14 versements par an',
     calcGrossRow: 'Brut mensuel :',
     calcSSRow: 'Sécurité Sociale (-11%) :',
     calcIRSRow: 'Retenue IRS :',
@@ -808,7 +812,7 @@ const LOCALES = {
         name: 'Coimbra et Centre',
         tagline: 'Ancienne capitale royale et histoire universitaire',
         places: [
-          { id: 'c1', title: 'Bibliothèque Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
+          { id: 'c1', title: 'Biblioteca Joanina', category: 'Bibliothèque baroque', desc: 'Joyeux écrin baroque abritant des manuscrits rares.', tip: 'Conseil : Réserver un billet combiné.' },
           { id: 'c2', title: 'Monastère de Santa Cruz', category: 'Histoire et Fado', desc: 'Dernière demeure des premiers rois du Portugal.', tip: 'Conseil : Assister à un concert de fado.' },
           { id: 'cb1', title: 'Plage de la Claridade (Figueira)', category: '🏖 Vaste plage', desc: 'Immense étendue de sable équipée de passerelles.', tip: 'Conseil : 40 min de train.' },
           { id: 'cb2', title: 'Plage de Mira', category: '🏖 Pêche traditionnelle', desc: 'Plage pittoresque avec cabanes en bois rayées.', tip: 'Conseil : Goûter les calmants frits.' },
@@ -893,11 +897,12 @@ const LOCALES = {
     applyOnlineBtn: 'Richiedi online ora ↗',
     affiliateDisclosure: 'Trasparenza: Questi link reindirizzano a un’elaborazione express certificata con e-Residence. Riceviamo una piccola commissione senza costi aggiuntivi per te.',
     calcTitle: '💶 Calcolatore stipendio netto IA',
-    calcSub: 'Calcolo preciso basato sulle ultime tabelle fiscali IRS tramite l’AI Gateway.',
+    calcSub: 'Calcolo preciso basato sulle mensilità e sul regime fiscale tramite l’AI Gateway.',
     calcGrossLabel: 'Stipendio lordo mensile (€):',
-    calcBtn: 'Calcola con l’IA',
+    calcPaymentsLabel: 'Mensilità all’anno:',
+    calcStatusLabel: 'Regime fiscale / Stato civile:',
+    calcBtn: 'Calcola stipendio con l’IA',
     calcNetMonthly: 'Netto stimato (mensile):',
-    calc14Notice: 'Basato su 14 mensilità annuali',
     calcGrossRow: 'Lordo mensile:',
     calcSSRow: 'Previdenza Sociale (-11%):',
     calcIRSRow: 'Trattenuta IRS:',
@@ -976,10 +981,10 @@ const LOCALES = {
       },
       {
         id: 'madeira',
-        name: 'Madera (Funchal)',
+        name: 'Madeira (Funchal)',
         tagline: 'L’isola dei fiori con cime frastagliate e levadas',
         places: [
-          { id: 'm1', title: 'Pico do Arieiro a Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
+          { id: 'm1', title: 'Pico do Arieiro al Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Natura UNESCO', desc: 'Sentiero lungo i canali nella foresta di laurisilva.', tip: 'Consiglio: Parti presto.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Sabbia nera vulcanica', desc: 'Incantevole caletta nascosta di sabbia scura.', tip: 'Consiglio: Bellissimo contrasto cromatico.' },
           { id: 'mb2', title: 'Spiaggia di Calheta', category: '🏖 Laguna dorada', desc: 'Doppia spiaggia protetta con acque calme.', tip: 'Consiglio: Ideale per famiglie.' },
@@ -1040,6 +1045,10 @@ export default function App() {
   const [translatedText, setTranslatedText] = useState('');
   const [loading, setLoading] = useState(false);
   const [grossInput, setGrossInput] = useState('1500');
+  
+  // Neue States für den erweiterten Gehaltsrechner
+  const [paymentsCount, setPaymentsCount] = useState('14'); // 12 oder 14
+  const [taxStatus, setTaxStatus] = useState('single'); // single, married_1, married_2
   const [calcResult, setCalcResult] = useState(null);
 
   const [faqInput, setFaqInput] = useState('');
@@ -1181,12 +1190,13 @@ export default function App() {
     setLoading(false);
   };
 
-  const calculateNetSalaryAI = async (gross) => {
+  // ERWEITERTER GEHALTSRECHNER MIT MONATEN & STEUERKLASSE
+  const calculateNetSalaryAI = async (gross, payments, status) => {
     const salary = parseFloat(gross) || 0;
     if (salary <= 0) return;
     setLoading(true);
     
-    const prompt = `Berechne für ein Bruttogehalt von ${salary} € (14 Monatsgehälter) das Nettoeinkommen in Portugal (11% Sozialversicherung, IRS-Steuern). Antworte AUSSCHLIESSLICH im JSON-Format ohne Markdown: {"gross": "${salary.toFixed(2)}", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`;
+    const prompt = `Berechne für ein Bruttogehalt von ${salary} € bei ${payments} Monatsgehältern pro Jahr und dem Steuerstatus "${status}" (in Portugal) das Nettoeinkommen. Berücksichtige 11% Sozialversicherung und IRS-Steuertabellen. Antworte AUSSCHLIESSLICH im JSON-Format ohne Markdown: {"gross": "${salary.toFixed(2)}", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`;
     const aiResult = await callVercelAI(prompt);
 
     if (aiResult) {
@@ -1195,15 +1205,17 @@ export default function App() {
         setCalcResult(JSON.parse(cleanJson));
       } catch {
         const ss = salary * 0.11;
-        const irs = salary * (salary > 2000 ? 0.25 : 0.15);
+        const irs = salary * 0.16;
         const net = salary - ss - irs;
-        setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '15', netMonthly: net.toFixed(2), netAnnual: (net * 14).toFixed(2) });
+        const annualNet = (payments === '12') ? (net * 12) : (net * 14);
+        setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '16', netMonthly: net.toFixed(2), netAnnual: annualNet.toFixed(2) });
       }
     } else {
       const ss = salary * 0.11;
-      const irs = salary * 0.15;
+      const irs = salary * 0.16;
       const net = salary - ss - irs;
-      setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '15', netMonthly: net.toFixed(2), netAnnual: (net * 14).toFixed(2) });
+      const annualNet = (payments === '12') ? (net * 12) : (net * 14);
+      setCalcResult({ gross: salary.toFixed(2), ss: ss.toFixed(2), irs: irs.toFixed(2), irsPercent: '16', netMonthly: net.toFixed(2), netAnnual: annualNet.toFixed(2) });
     }
     setLoading(false);
   };
@@ -1279,7 +1291,7 @@ export default function App() {
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalaryAI(grossInput); }}>
+            <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => { setActiveTab('calc'); if (!calcResult) calculateNetSalaryAI(grossInput, paymentsCount, taxStatus); }}>
               <Ionicons name="calculator" size={11} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
@@ -1682,17 +1694,50 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 7: AI SALARY CALCULATOR */}
+        {/* TAB 7: AI SALARY CALCULATOR (ERWEITERT) */}
         {activeTab === 'calc' && (
           <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.calcTitle}</Text>
               <Text style={styles.subText}>{t.calcSub}</Text>
 
+              {/* Bruttogehalt Input */}
               <Text style={styles.inputFieldLabel}>{t.calcGrossLabel}</Text>
               <TextInput style={styles.salaryInputField} keyboardType="numeric" value={grossInput} onChangeText={setGrossInput} />
 
-              <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalaryAI(grossInput)} disabled={loading}>
+              {/* Monatsgehälter Auswahl (12 oder 14) */}
+              <Text style={styles.inputFieldLabel}>{t.calcPaymentsLabel}</Text>
+              <View style={{ flexDirection: 'row', gap: 10, marginBottom: 4 }}>
+                {['12', '14'].map((num) => (
+                  <TouchableOpacity
+                    key={num}
+                    style={[styles.modalLangBtn, paymentsCount === num && styles.modalLangBtnActive, { width: '48%' }]}
+                    onPress={() => setPaymentsCount(num)}
+                  >
+                    <Text style={[styles.modalLangText, paymentsCount === num && styles.modalLangTextActive]}>{num} Gehälter</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+
+              {/* Steuerklasse / Familienstand Auswahl */}
+              <Text style={styles.inputFieldLabel}>{t.calcStatusLabel}</Text>
+              <View style={{ gap: 6, marginBottom: 10 }}>
+                {[
+                  { id: 'single', label: 'Single ohne Kinder (Não casado)' },
+                  { id: 'married_1', label: 'Verheiratet (1 Verdiener / Único titular)' },
+                  { id: 'married_2', label: 'Verheiratet (2 Verdiener / Dois titulares)' },
+                ].map((st) => (
+                  <TouchableOpacity
+                    key={st.id}
+                    style={[styles.modalLangBtn, taxStatus === st.id && styles.modalLangBtnActive, { width: '100%', alignItems: 'flex-start', paddingHorizontal: 12 }]}
+                    onPress={() => setTaxStatus(st.id)}
+                  >
+                    <Text style={[styles.modalLangText, taxStatus === st.id && styles.modalLangTextActive]}>{st.label}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+
+              <TouchableOpacity style={styles.primaryBtn} onPress={() => calculateNetSalaryAI(grossInput, paymentsCount, taxStatus)} disabled={loading}>
                 {loading ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.btnText}>{t.calcBtn}</Text>}
               </TouchableOpacity>
             </View>
@@ -1701,7 +1746,7 @@ export default function App() {
               <View style={styles.calcResultCard}>
                 <Text style={styles.netLabel}>{t.calcNetMonthly}</Text>
                 <Text style={styles.netValue}>{calcResult.netMonthly} €</Text>
-                <Text style={styles.netNote}>{t.calc14Notice}</Text>
+                <Text style={styles.netNote}>Auszahlung auf Basis von {paymentsCount} Gehältern / Jahr (Jahresnetto: {calcResult.netAnnual} €)</Text>
                 <View style={styles.calcDivider} />
                 <View style={styles.row}>
                   <Text style={styles.rowLabel}>{t.calcGrossRow}</Text>
