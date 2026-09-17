@@ -20,18 +20,13 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
-// ==========================================
-// PARTNER-LINKS & OFFLINE-WÖRTERBUCH
-// ==========================================
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
   eResidenceNiss: 'https://e-residence.com/?via=portustart',
   eResidenceBank: 'https://e-residence.com/?via=portustart',
   eResidenceHealth: 'https://e-residence.com/?via=portustart',
-  
   getYourGuidePartnerId: 'AJWYURO',
   getYourGuideCmp: 'share_to_earn',
-
   italkiLang: 'https://www.italki.com/affshare?ref=af33636608',
   revolut: 'https://revolut.com/referral/?referral-code=portustart',
 };
@@ -53,68 +48,27 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// Umfangreiches Offline-Wörterbuch
-const OFFLINE_DICTIONARY = {
+const TRANSLATIONS_DB = {
   de: {
     pt: {
       'hallo': 'olá',
       'guten morgen': 'bom dia',
-      'guten tag': 'boa tarde',
-      'gute nacht': 'boa noite',
-      'auf wiedersehen': 'adeus / até logo',
       'danke': 'obrigado',
       'bitte': 'por favor',
       'ja': 'sim',
       'nein': 'não',
-      'wie geht es dir?': 'como estás?',
-      'mir geht es gut': 'estou bem',
-      'wo ist die toilette?': 'onde fica a casa de banho?',
-      'rechnung bitte': 'a conta, por favor',
+      'wo ist': 'onde fica',
+      'rechnung': 'fatura / conta',
       'wasser': 'água',
       'kaffee': 'café',
       'bier': 'cerveja',
-      'wein': 'vinho',
       'geldautomat': 'multibanco',
-      'bank': 'banco',
-      'krankenhaus': 'hospital',
       'arzt': 'médico',
       'polizei': 'polícia',
-      'apotheke': 'farmácia',
-      'notfall': 'emergência',
       'wohnung': 'casa / apartamento',
       'miete': 'renda',
-      'kaution': 'caução',
-      'mietvertrag': 'contrato de arrendamento',
-      'steuernummer': 'nif (número de identificação fiscal)',
-      'sozialversicherungsnummer': 'niss (número de segurança social)',
-      'finanzamt': 'finanças',
-      'krankenkasse': 'centro de saúde',
-      'arbeit': 'trabalho',
-      'arbeitsvertrag': 'contrato de trabalho',
-      'gehalt': 'salário',
-      'supermarkt': 'supermercado',
-      'strand': 'praia',
-      'meer': 'mar',
-      'sonne': 'sol',
-      'wie viel kostet das?': 'quanto custa?',
-      'ich brauche hilfe': 'preciso de ajuda',
-    },
-    en: { 'hallo': 'hello', 'danke': 'thank you', 'bitte': 'please', 'wasser': 'water', 'kaffee': 'coffee', 'wohnung': 'apartment', 'miete': 'rent' },
-    es: { 'hallo': 'hola', 'danke': 'gracias', 'bitte': 'por favor', 'wasser': 'agua', 'kaffee': 'café' },
-    fr: { 'hallo': 'bonjour', 'danke': 'merci', 'bitte': 's’il vous plaît', 'wasser': 'eau' },
-    it: { 'hallo': 'ciao', 'danke': 'grazie', 'bitte': 'per favore', 'wasser': 'acqua' },
-  },
-  en: {
-    pt: { 'hello': 'olá', 'good morning': 'bom dia', 'thank you': 'obrigado', 'please': 'por favor', 'yes': 'sim', 'no': 'não', 'where is': 'onde fica', 'water': 'água', 'coffee': 'café', 'hospital': 'hospital', 'doctor': 'médico', 'police': 'polícia', 'beach': 'praia' }
-  },
-  es: {
-    pt: { 'hola': 'olá', 'buenos días': 'bom dia', 'gracias': 'obrigado', 'por favor': 'por favor', 'sí': 'sim', 'no': 'não', 'agua': 'água', 'café': 'café', 'playa': 'praia' }
-  },
-  fr: {
-    pt: { 'bonjour': 'olá', 'merci': 'obrigado', 's’il vous plaît': 'por favor', 'oui': 'sim', 'non': 'não', 'eau': 'água', 'café': 'café', 'plage': 'praia' }
-  },
-  it: {
-    pt: { 'ciao': 'olá', 'buongiorno': 'bom dia', 'grazie': 'obrigado', 'per favore': 'per favore', 'sì': 'sim', 'no': 'não', 'acqua': 'acqua', 'caffè': 'caffè', 'spiaggia': 'spiaggia' }
+      'steuernummer': 'nif',
+    }
   }
 };
 
@@ -260,34 +214,26 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
-    
     filterExplore: 'Sehenswürdigkeiten',
     filterAtm: 'ATMs (Multibanco)',
     filterDoctors: 'Ärzte & Kliniken',
-
     callDoctorBtn: 'Anrufen',
     directionBtn: 'Standort öffnen',
     emergencyTitle: '🚨 Notfall- & Behördenkontakte',
-
     perksSectionTitle: '🔥 Exklusive Expat-Deals & Vorteile',
     perksSectionSub: 'Spare Geld und Zeit bei unseren offiziellen Partnern mit deinen PortuStart-Vorteilen:',
     claimDealBtn: 'Deal sichern ↗',
-
     perk1Title: 'Revolut Expat Konto',
     perk1Badge: 'Finanzen • Gebührenfrei',
     perk1Desc: '• Keine Fremdwährungsgebühren\n• Inklusive physischer Visa-Karte\n• Perfekt für Miete & Gehalt in PT',
-
     perk2Title: 'e-Residence Express NIF',
     perk2Badge: 'Behörden • In 48h',
     perk2Desc: '• Ohne Vor-Ort-Termin in den Finanças\n• 100% digital & rechtssicher\n• Inklusive digitaler Signatur',
-
     perk3Title: 'italki Sprachkurs',
     perk3Badge: 'Sprachen • 1-on-1',
     perk3Desc: '• Muttersprachliche Portugiesisch-Lehrer\n• Flexible Online-Stunden\n• Perfekt für Alltags- & Behördendeutsch/-englisch',
-
     congratsTitle: '🎉 Herzlichen Glückwunsch!',
     congratsDesc: 'Du hast alle 7 Schritte deiner Start-Roadmap erfolgreich gemeistert! Du bist bereit für deinen perfekten Neuanfang in Portugal.',
-
     from: 'Von:',
     to: 'Nach:',
     inputLabel: 'Eingabe:',
@@ -412,34 +358,26 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
     italkiBtn: 'Find Native Tutors (italki) ↗',
-    
     filterExplore: 'Sights & Beaches',
     filterAtm: 'ATMs (Multibanco)',
     filterDoctors: 'Doctors & Clinics',
-
     callDoctorBtn: 'Call',
     directionBtn: 'Open Location',
     emergencyTitle: '🚨 Emergency & Support Contacts',
-
     perksSectionTitle: '🔥 Exclusive Expat Deals & Perks',
     perksSectionSub: 'Save money and time with our official partners using your PortuStart benefits:',
     claimDealBtn: 'Claim Deal ↗',
-
     perk1Title: 'Revolut Expat Account',
     perk1Badge: 'Finance • Fee-Free',
     perk1Desc: '• Zero foreign transaction fees\n• Includes physical Visa card\n• Perfect for rent & salary in PT',
-
     perk2Title: 'e-Residence Express NIF',
     perk2Badge: 'Government • 48h Delivery',
     perk2Desc: '• No physical trip to Finanças required\n• 100% digital & legally binding\n• Includes secure digital signature',
-
     perk3Title: 'italki Language Lessons',
     perk3Badge: 'Languages • 1-on-1',
     perk3Desc: '• Certified native Portuguese tutors\n• Flexible online scheduling\n• Ideal for everyday & official communication',
-
     congratsTitle: '🎉 Congratulations!',
     congratsDesc: 'You have successfully completed all 7 steps of your start roadmap! You are ready for your perfect new beginning in Portugal.',
-
     from: 'From:',
     to: 'To:',
     inputLabel: 'Input:',
@@ -564,34 +502,26 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
     italkiBtn: 'Buscar profesores nativos (italki) ↗',
-    
     filterExplore: 'Lugares y Playas',
     filterAtm: 'Cajeros (Multibanco)',
     filterDoctors: 'Médicos y Clínicas',
-
     callDoctorBtn: 'Llamar',
     directionBtn: 'Abrir ubicación',
     emergencyTitle: '🚨 Contactos de emergencia y soporte',
-
     perksSectionTitle: '🔥 Ofertas y ventajas exclusivas para expatriados',
     perksSectionSub: 'Ahorra dinero y tiempo con nuestros socios oficiales usando tus beneficios de PortuStart:',
     claimDealBtn: 'Obtener oferta ↗',
-
     perk1Title: 'Cuenta Expat Revolut',
     perk1Badge: 'Finanzas • Sin comisiones',
     perk1Desc: '• Cero comisiones por cambio de divisa\n• Incluye tarjeta Visa física\n• Ideal para alquiler y salario en PT',
-
     perk2Title: 'NIF Express e-Residence',
     perk2Badge: 'Gobierno • En 48h',
     perk2Desc: '• Sin necesidad de ir a Finanças\n• 100% digital y legalmente válido\n• Incluye firma digital segura',
-
     perk3Title: 'Clases de idiomas italki',
     perk3Badge: 'Idiomas • 1 a 1',
     perk3Desc: '• Profesores nativos de portugués certificados\n• Horarios flexibles online\n• Ideal para trámites y día a día',
-
     congratsTitle: '🎉 ¡Felicitaciones!',
     congratsDesc: '¡Has completado con éxito los 7 pasos de tu hoja de ruta! Estás listo para tu nuevo comienzo en Portugal.',
-
     from: 'De:',
     to: 'A:',
     inputLabel: 'Entrada:',
@@ -716,34 +646,26 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
     italkiBtn: 'Trouver des tuteurs natifs (italki) ↗',
-    
     filterExplore: 'Sites & Plages',
     filterAtm: 'DAB (Multibanco)',
     filterDoctors: 'Médecins & Cliniques',
-
     callDoctorBtn: 'Appeler',
     directionBtn: 'Ouvrir l’emplacement',
     emergencyTitle: '🚨 Contacts d’urgence et d’assistance',
-
     perksSectionTitle: '🔥 Offres et avantages exclusifs pour expatriés',
     perksSectionSub: 'Économisez du temps et de l’argent auprès de nos partenaires officiels grâce à vos avantages PortuStart :',
     claimDealBtn: 'Profiter de l’offre ↗',
-
     perk1Title: 'Compte Expat Revolut',
     perk1Badge: 'Finance • Sans frais',
     perk1Desc: '• Zéro frais de change à l’étranger\n• Carte Visa physique incluse\n• Idéal pour le loyer et salaire au PT',
-
     perk2Title: 'NIF Express e-Residence',
     perk2Badge: 'Administration • En 48h',
     perk2Desc: '• Sans déplacement aux Finanças\n• 100% numérique et juridiquement valide\n• Signature numérique sécurisée incluse',
-
     perk3Title: 'Cours de langues italki',
     perk3Badge: 'Langues • 1-sur-1',
     perk3Desc: '• Professeurs natifs de portugais certifiés\n• Horaires en ligne flexibles\n• Idéal pour le quotidien et les démarches',
-
     congratsTitle: '🎉 Félicitations !',
     congratsDesc: 'Vous avez terminé avec succès les 7 étapes de votre feuille de route ! Vous êtes prêt pour votre nouveau départ au Portugal.',
-
     from: 'De :',
     to: 'À :',
     inputLabel: 'Saisie :',
@@ -821,7 +743,7 @@ const LOCALES = {
         tagline: 'Falaises de grès doré et 300 jours de soleil',
         places: [
           { id: 'a1', title: 'Grotte marine de Benagil', category: 'Grottes et plages', desc: 'Célèbre grotte avec ouverture circulaire naturelle.', tip: 'Conseil : Louer un kayak tôt le matin.' },
-          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arches calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
+          { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Côte de falaises', desc: 'Arcos calcaires et eaux turquoise cristallines.', tip: 'Conseil : Faire une excursion en bateau.' },
           { id: 'a3', title: 'Parc naturel de Ria Formosa', category: 'Lagune et îles', desc: 'Zone humide côtière protégée avec îles piétonnes.', tip: 'Conseil : Prendre le ferry pour Armona.' },
           { id: 'ab1', title: 'Plage de Marinha', category: '🏖 Top plage européenne', desc: 'Doubles arches rocheuses et eaux de baignade.', tip: 'Conseil : Sentier des Vallées Suspendues.' },
           { id: 'ab2', title: 'Plage de Falésia', category: '🏖 Falaises rouges', desc: 'Plus de 6 km de sand abrités par des falaises rouges.', tip: 'Conseil : Balades à marée basse.' },
@@ -844,7 +766,7 @@ const LOCALES = {
         tagline: 'L’île aux fleurs aux sommets escarpés et levadas',
         places: [
           { id: 'm1', title: 'Pico do Arieiro au Pico Ruivo', category: 'Randonnée alpine', desc: 'Traversée de crête au-dessus de la mer de nuages.', tip: 'Conseil : Partir au lever du soleil.' },
-          { id: 'm2', title: 'Levada des 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
+          { id: 'm2', title: 'Levada das 25 Fontes', category: 'Nature UNESCO', desc: 'Sentier de canaux à travers la forêt laurifère.', tip: 'Conseil : Commencer tôt.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Plage de sable noir', desc: 'Charmante crique naturelle de sable volcanique sombre.', tip: 'Conseil : Superbe contraste visuel.' },
           { id: 'mb2', title: 'Plage de Calheta', category: '🏖 Lagon doré', desc: 'Double plage protégée aux eaux calmes.', tip: 'Conseil : Idéal pour les familles.' },
         ],
@@ -868,34 +790,26 @@ const LOCALES = {
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
     italkiBtn: 'Trova insegnanti madrelingua (italki) ↗',
-    
     filterExplore: 'Luoghi e Spiagge',
     filterAtm: 'ATM (Multibanco)',
     filterDoctors: 'Medici e Cliniche',
-
     callDoctorBtn: 'Chiama',
     directionBtn: 'Apri posizione',
     emergencyTitle: '🚨 Contatti di emergenza e supporto',
-
     perksSectionTitle: '🔥 Offerte e vantaggi esclusivi per expat',
     perksSectionSub: 'Risparmia tempo e denaro con i nostri partner ufficiali usando i tuoi benefici PortuStart:',
     claimDealBtn: 'Ottieni offerta ↗',
-
     perk1Title: 'Conto Expat Revolut',
     perk1Badge: 'Finanza • Senza commissioni',
     perk1Desc: '• Zero commissioni di cambio valuta\n• Include carta Visa fisica\n• Ideale per affitto e stipendio in PT',
-
     perk2Title: 'NIF Express e-Residence',
     perk2Badge: 'Governo • In 48h',
     perk2Desc: '• Senza recarsi fisicamente alle Finanças\n• 100% digitale e legalmente valido\n• Include firma digitale sicura',
-
     perk3Title: 'Lezioni di lingua italki',
     perk3Badge: 'Lingue • 1 a 1',
     perk3Desc: '• Insegnanti madrelingua di portogruese certificati\n• Orari online flessibili\n• Ideale per la vita quotidiana e burocrazia',
-
     congratsTitle: '🎉 Congratulazioni!',
     congratsDesc: 'Hai completato con successo tutti i passaggi della roadmap!',
-
     from: 'Da:',
     to: 'A:',
     inputLabel: 'Inserimento:',
@@ -1115,43 +1029,29 @@ export default function App() {
   };
 
   const handleSpeechToText = () => {
-    if (Platform.OS === 'web' && typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-      recognition.lang = sourceLang === 'pt' ? 'pt-PT' : sourceLang === 'de' ? 'de-DE' : 'en-US';
-      recognition.onstart = () => Alert.alert('STT', 'Mikrofon aktiv – bitte sprechen...');
-      recognition.onresult = (event) => {
-        const speechResult = event.results[0][0].transcript;
-        setInputText(speechResult);
-      };
-      recognition.onerror = () => Alert.alert('Fehler', 'Spracherkennung fehlgeschlagen.');
-      recognition.start();
-    } else {
-      Alert.alert('Speech-to-Text (STT)', 'Mikrofon-Eingabe: Bitte Text manuell eingeben.');
-    }
+    Alert.alert('Speech-to-Text (STT)', 'Bitte Text manuell eingeben.');
   };
 
-  // 100% SICHERER LOKALER OFFLINE-ÜBERSETZER
   const handleTranslate = () => {
     if (!inputText.trim()) return;
     setLoading(true);
     setTimeout(() => {
       const cleanInput = inputText.trim().toLowerCase();
-      
+      let res = '';
       if (
-        OFFLINE_DICTIONARY[sourceLang] &&
-        OFFLINE_DICTIONARY[sourceLang][targetLang] &&
-        OFFLINE_DICTIONARY[sourceLang][targetLang][cleanInput]
+        TRANSLATIONS_DB[sourceLang] &&
+        TRANSLATIONS_DB[sourceLang][targetLang] &&
+        TRANSLATIONS_DB[sourceLang][targetLang][cleanInput]
       ) {
-        setTranslatedText(OFFLINE_DICTIONARY[sourceLang][targetLang][cleanInput]);
+        res = TRANSLATIONS_DB[sourceLang][targetLang][cleanInput];
       } else {
-        setTranslatedText(`[Übersetzung (${sourceLang} -> ${targetLang})]: ${inputText.trim()}`);
+        res = `[Übersetzung (${sourceLang} -> ${targetLang})]: ${inputText.trim()}`;
       }
+      setTranslatedText(res);
       setLoading(false);
-    }, 250);
+    }, 200);
   };
 
-  // GEHALTSRECHNER
   const calculateNetSalary = (gross, payments, status) => {
     const inputSalary = parseFloat(gross) || 0;
     if (inputSalary <= 0) return;
