@@ -21,9 +21,9 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 // ==========================================
-// VERCEL AI GATEWAY & PARTNER-LINKS
+// OPENAI API & PARTNER-LINKS
 // ==========================================
-const AI_GATEWAY_API_KEY = 'vck_5LPthEy2whGmjOe0cmJ8xqAjlKDmuKVRdCeTS73N7vVTFcFgpt47DlNd';
+const OPENAI_API_KEY = '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';
 
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
@@ -1112,14 +1112,14 @@ export default function App() {
     }
   };
 
-  // ROBUSTER UND STABILER AI CALL MIT gpt-4o-mini
-  const callVercelAI = async (promptText) => {
+  // ROBUSTER UND STABILER OPENAI API CALL
+  const callOpenAI = async (promptText) => {
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${AI_GATEWAY_API_KEY}`,
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
@@ -1153,7 +1153,7 @@ export default function App() {
     if (!inputText.trim()) return;
     setLoading(true);
     const prompt = `Übersetze folgenden Text präzise von ${sourceLang} nach ${targetLang}. Wenn es eine Frage ist, beantworte sie als Portugal-Experte: "${inputText.trim()}"`;
-    const aiResult = await callVercelAI(prompt);
+    const aiResult = await callOpenAI(prompt);
     
     if (aiResult) {
       setTranslatedText(aiResult);
@@ -1185,7 +1185,7 @@ export default function App() {
       "netAnnual": "[jährliches Nettoeinkommen multipliziert mit ${payments} als String]"
     }`;
 
-    const aiResult = await callVercelAI(prompt);
+    const aiResult = await callOpenAI(prompt);
 
     if (aiResult) {
       try {
@@ -1233,7 +1233,7 @@ export default function App() {
     if (!faqInput.trim()) return;
     setFaqLoading(true);
     const prompt = `Beantworte diese Frage auf ${appLang} bezüglich Auswanderung und Bürokratie in Portugal (NIF, NISS, AIMA): "${faqInput.trim()}"`;
-    const aiResult = await callVercelAI(prompt);
+    const aiResult = await callOpenAI(prompt);
     
     setFaqAnswer(aiResult || 'Entschuldigung, die KI ist momentan nicht erreichbar.');
     setFaqLoading(false);
@@ -1399,14 +1399,13 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 2: MAP & PLACES / ENTDECKEN (MIT PIN-AUSWAHL / FILTER) */}
+        {/* TAB 2: MAP & PLACES / ENTDECKEN */}
         {activeTab === 'places' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
               <Text style={styles.sectionHeaderTitle}>{t.placesSectionTitle}</Text>
               <Text style={styles.subText}>{t.placesSectionSub}</Text>
 
-              {/* FILTER-AUSWAHL FÜR PINS */}
               <View style={styles.filterRow}>
                 <TouchableOpacity 
                   style={[styles.filterChip, activePlaceFilter === 'explore' && styles.filterChipActive]} 
@@ -1447,7 +1446,6 @@ export default function App() {
                 </ScrollView>
               )}
 
-              {/* DYNAMISCHE KARTE */}
               <View style={styles.liveMapWrapper}>
                 {Platform.OS === 'web' ? (
                   <iframe title="Portugal Interactive Map" src={getMapEmbedUrl()} style={styles.mapIframe} loading="lazy" allowFullScreen />
@@ -1708,7 +1706,7 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* TAB 5: PERKS & DEALS (GANZ AM ENDE) */}
+        {/* TAB 5: PERKS & DEALS */}
         {activeTab === 'perks' && (
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={styles.card}>
@@ -1781,7 +1779,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#0F5132' },
-  container: { flex: 1, backgroundColor: '#FBF9F5' }, // MEDITERRANES EXPAT-BEIGE
+  container: { flex: 1, backgroundColor: '#FBF9F5' },
   header: {
     backgroundColor: '#0F5132',
     paddingTop: 8,
