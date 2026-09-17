@@ -236,6 +236,9 @@ const LOCALES = {
     openInMapsBtn: 'Standort öffnen',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
     euCertBtn: 'Offizielles EU-Zertifikat / Termin ↗',
+    snsFinderTitle: '🏥 Zuständiges Centro de Saúde (SNS)',
+    snsFinderDesc: 'Auf Basis deiner Adresse in deinem Profil ermitteln wir das zuständige Gesundheitszentrum für dich:',
+    openSnsMapBtn: 'Centro de Saúde auf Karte anzeigen ↗',
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
@@ -303,6 +306,9 @@ const LOCALES = {
     openInMapsBtn: 'Open Location',
     gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
     euCertBtn: 'Official EU Certificate / Appointment ↗',
+    snsFinderTitle: '🏥 Responsible Centro de Saúde (SNS)',
+    snsFinderDesc: 'Based on the address in your profile, we determine your responsible health center:',
+    openSnsMapBtn: 'View Centro de Saúde on Map ↗',
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
     italkiBtn: 'Find Native Tutors (italki) ↗',
@@ -363,6 +369,9 @@ const LOCALES = {
     openInMapsBtn: 'Abrir ubicación',
     gygBtn: 'Entradas y Tours (GetYourGuide) ↗',
     euCertBtn: 'Certificado UE Oficial / Cita ↗',
+    snsFinderTitle: '🏥 Centro de Saúde (SNS) Responsable',
+    snsFinderDesc: 'Según la dirección en tu perfil, determinamos tu centro de salud correspondiente:',
+    openSnsMapBtn: 'Ver Centro de Saúde en el mapa ↗',
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
     italkiBtn: 'Buscar profesores nativos (italki) ↗',
@@ -423,6 +432,9 @@ const LOCALES = {
     openInMapsBtn: 'Ouvrir l’emplacement',
     gygBtn: 'Billets et visites (GetYourGuide) ↗',
     euCertBtn: 'Certificat UE Officiel / Rendez-vous ↗',
+    snsFinderTitle: '🏥 Centro de Saúde (SNS) Compétent',
+    snsFinderDesc: 'D’après l’adresse de votre profil, nous déterminons votre centre de santé de rattachement :',
+    openSnsMapBtn: 'Voir le Centro de Saúde sur la carte ↗',
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
     italkiBtn: 'Trouver des tuteurs natifs (italki) ↗',
@@ -483,6 +495,9 @@ const LOCALES = {
     openInMapsBtn: 'Apri posizione',
     gygBtn: 'Biglietti e tour (GetYourGuide) ↗',
     euCertBtn: 'Certificato UE Ufficiale / Appuntamento ↗',
+    snsFinderTitle: '🏥 Centro de Saúde (SNS) Competente',
+    snsFinderDesc: 'In base all’indirizzo nel tuo profilo, determiniamo il centro sanitario di competenza:',
+    openSnsMapBtn: 'Visualizza Centro de Saúde sulla mappa ↗',
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
     italkiBtn: 'Trova insegnanti madrelingua (italki) ↗',
@@ -540,16 +555,17 @@ const EMERGENCIES = [
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
-  const [profileModalVisible, setProfileModalVisible] = useState(true); // Startet beim ersten Öffnen automatisch
+  const [profileModalVisible, setProfileModalVisible] = useState(true);
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
 
-  // EXPAT PROFIL STATE (Notwendige Daten für Anträge & Gehalt)
+  // EXPAT PROFIL STATE INKL. ZUKÜNFTIGER ADRESSE
   const [profileData, setProfileData] = useState({
     fullName: '',
     email: '',
     nationality: 'EU-Bürger',
+    futureAddress: '',
     nifNumber: '',
     nissNumber: '',
     targetCity: 'Lissabon',
@@ -571,7 +587,6 @@ export default function App() {
   const [taxStatus, setTaxStatus] = useState('single');
   const [calcResult, setCalcResult] = useState(null);
 
-  // Synchronisiere Gehaltseingabe mit dem Profil, falls dort gesetzt
   useEffect(() => {
     if (profileData.estimatedSalary) {
       setGrossInput(profileData.estimatedSalary);
@@ -697,6 +712,11 @@ export default function App() {
     }
     if (activePlaceFilter === 'doctors') {
       return `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
+    }
+    if (activePlaceFilter === 'sns') {
+      // Nutzt die Adresse aus dem Profil, falls vorhanden, sonst Fallback
+      const locQuery = profileData.futureAddress ? `${profileData.futureAddress}, Portugal` : 'Portugal';
+      return `https://maps.google.com/maps?q=Centro+de+Saude+${encodeURIComponent(locQuery)}&z=14&output=embed`;
     }
     if (placeTitle) {
       const query = encodeURIComponent(`${placeTitle}, ${placeCity || ''}, Portugal`);
@@ -867,19 +887,19 @@ export default function App() {
                 </TouchableOpacity>
 
                 <TouchableOpacity 
+                  style={[styles.filterChip, activePlaceFilter === 'sns' && styles.filterChipActive]} 
+                  onPress={() => { setActivePlaceFilter('sns'); setMapQueryOverride(null); }}
+                >
+                  <Ionicons name="medical" size={14} color={activePlaceFilter === 'sns' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                  <Text style={[styles.filterChipText, activePlaceFilter === 'sns' && styles.filterChipTextActive]}>{t.filterSns}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
                   style={[styles.filterChip, activePlaceFilter === 'atm' && styles.filterChipActive]} 
                   onPress={() => { setActivePlaceFilter('atm'); setMapQueryOverride(null); }}
                 >
                   <Ionicons name="card" size={14} color={activePlaceFilter === 'atm' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
                   <Text style={[styles.filterChipText, activePlaceFilter === 'atm' && styles.filterChipTextActive]}>{t.filterAtm}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                  style={[styles.filterChip, activePlaceFilter === 'doctors' && styles.filterChipActive]} 
-                  onPress={() => { setActivePlaceFilter('doctors'); setMapQueryOverride(null); }}
-                >
-                  <Ionicons name="medkit" size={14} color={activePlaceFilter === 'doctors' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
-                  <Text style={[styles.filterChipText, activePlaceFilter === 'doctors' && styles.filterChipTextActive]}>{t.filterDoctors}</Text>
                 </TouchableOpacity>
               </View>
 
@@ -970,6 +990,26 @@ export default function App() {
               </>
             )}
 
+            {activePlaceFilter === 'sns' && (
+              <View style={styles.card}>
+                <Text style={styles.sectionHeaderTitle}>{t.snsFinderTitle}</Text>
+                <Text style={styles.subText}>{t.snsFinderDesc}</Text>
+                {profileData.futureAddress ? (
+                  <View style={{ backgroundColor: '#F0FDF4', padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#86EFAC', marginVertical: 8 }}>
+                    <Text style={{ fontSize: 12, fontWeight: '700', color: '#166534' }}>Deine Profil-Adresse: {profileData.futureAddress}</Text>
+                  </View>
+                ) : (
+                  <View style={{ backgroundColor: '#FEF3C7', padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#FCD34D', marginVertical: 8 }}>
+                    <Text style={{ fontSize: 12, fontWeight: '600', color: '#92400E' }}>Keine Adresse im Profil hinterlegt. Klicke oben auf "Profil", um deine Adresse einzutragen!</Text>
+                  </View>
+                )}
+                <TouchableOpacity style={[styles.primaryBtn, { marginTop: 4 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Centro de Saude ' + (profileData.futureAddress || 'Portugal'))}`)}>
+                  <Ionicons name="navigate" size={16} color="#fff" style={{ marginRight: 6 }} />
+                  <Text style={styles.btnText}>{t.openSnsMapBtn}</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+
             {activePlaceFilter === 'atm' && (
               <View style={styles.card}>
                 <View style={[styles.attractionTipBox, { marginTop: 4 }]}>
@@ -979,57 +1019,6 @@ export default function App() {
                     <Text style={[styles.attractionTipText, { marginTop: 2 }]}>Nutze immer Geldautomaten direkt an echten Bankfilialen, um mit Revolut oder Wise gebührenfrei Geld abzuheben.</Text>
                   </View>
                 </View>
-              </View>
-            )}
-
-            {activePlaceFilter === 'doctors' && (
-              <View style={{ marginTop: 4 }}>
-                <Text style={styles.sectionTitle}>{t.emergencyTitle}</Text>
-                {EMERGENCIES.map((item, idx) => (
-                  <TouchableOpacity key={idx} style={styles.emergencyCard} onPress={() => dialNumber(item.num)}>
-                    <View style={[styles.emergencyIconWrap, { backgroundColor: item.color }]}>
-                      <Ionicons name={item.icon} size={18} color="#fff" />
-                    </View>
-                    <View style={{ flex: 1 }}>
-                      <Text style={styles.emergencyName}>{item.name}</Text>
-                      <Text style={styles.emergencyDesc}>{item.desc}</Text>
-                    </View>
-                    <View style={styles.callBadge}>
-                      <Ionicons name="call" size={13} color="#0F5132" style={{ marginRight: 3 }} />
-                      <Text style={styles.callBadgeText}>{item.num}</Text>
-                    </View>
-                  </TouchableOpacity>
-                ))}
-
-                <Text style={[styles.sectionTitle, { marginTop: 14 }]}>Kliniken & internationale Ärzte</Text>
-                {ENGLISH_DOCTORS.map((doc) => (
-                  <View key={doc.id} style={styles.affiliateServiceCard}>
-                    <View style={styles.affiliateTopRow}>
-                      <View style={styles.affiliateIconBadge}>
-                        <Ionicons name="hospital" size={20} color="#0F5132" />
-                      </View>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.affiliateBadgeText}>{doc.city} • {doc.specialty}</Text>
-                        <Text style={styles.affiliateTitle}>{doc.name}</Text>
-                      </View>
-                    </View>
-
-                    <Text style={styles.affiliateDesc}>{doc.desc}</Text>
-                    <Text style={[styles.affiliateDesc, { fontWeight: '700', color: '#334155', marginTop: 4 }]}>📍 {doc.address}</Text>
-
-                    <View style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
-                      <TouchableOpacity style={[styles.affiliateActionBtn, { flex: 1, marginTop: 0, backgroundColor: '#0284C7' }]} onPress={() => dialNumber(doc.phone)}>
-                        <Ionicons name="call" size={13} color="#fff" style={{ marginRight: 4 }} />
-                        <Text style={styles.affiliateActionBtnText}>{t.callDoctorBtn}</Text>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity style={[styles.affiliateActionBtn, { flex: 1, marginTop: 0 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(doc.query)}`)}>
-                        <Ionicons name="navigate" size={13} color="#fff" style={{ marginRight: 4 }} />
-                        <Text style={styles.affiliateActionBtnText}>{t.directionBtn}</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                ))}
               </View>
             )}
           </ScrollView>
@@ -1178,7 +1167,7 @@ export default function App() {
                   <Ionicons name="close-circle" size={24} color="#64748B" />
                 </TouchableOpacity>
               </View>
-              <Text style={styles.subText}>Diese Daten helfen dir bei Anträgen, NIF, NISS und Gehaltsberechnungen.</Text>
+              <Text style={styles.subText}>Deine Daten für Anträge, NIF, NISS und die Ermittlung des zuständigen Centro de Saúde.</Text>
 
               <ScrollView contentContainerStyle={{ gap: 8, paddingBottom: 20 }} showsVerticalScrollIndicator={false}>
                 <Text style={styles.inputFieldLabel}>Vollständiger Name:</Text>
@@ -1198,6 +1187,15 @@ export default function App() {
                   keyboardType="email-address"
                   value={profileData.email}
                   onChangeText={(val) => setProfileData({...profileData, email: val})}
+                />
+
+                <Text style={styles.inputFieldLabel}>Zukünftige Adresse in Portugal (für Centro de Saúde):</Text>
+                <TextInput 
+                  style={styles.salaryInputField} 
+                  placeholder="z.B. Rua Augusta 123, Lisbon" 
+                  placeholderTextColor="#94A3B8"
+                  value={profileData.futureAddress}
+                  onChangeText={(val) => setProfileData({...profileData, futureAddress: val})}
                 />
 
                 <Text style={styles.inputFieldLabel}>Steuernummer (NIF - falls schon vorhanden):</Text>
