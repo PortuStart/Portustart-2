@@ -52,116 +52,122 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// VOLLSTÄNDIGE ORTSLISTE (Gezielte Markierung, wo es buchbare Touren/Tickets gibt: bookable: true)
-const MAP_CATEGORIES = [
+// ORTE SORTIERT NACH STÄDTEN / REGIONEN
+const CITIES_DATA = [
   {
-    id: 'culture',
-    name: '🏛 Kultur & Sights',
-    tagline: 'Sehenswürdigkeiten, Parks und Museen',
+    id: 'lisboa',
+    name: 'Lisboa & Umgebung',
+    tagline: 'Deine gespeicherten Orte in der Hauptstadt',
+    lat: 38.7223,
+    lng: -9.1393,
+    zoom: 12,
     places: [
-      { id: 'c1', title: 'Jardim da Estrela', category: 'City park (4.6 ⭐)', desc: 'Historischer Stadtpark.', bookable: false },
-      { id: 'c2', title: 'Botanical Garden of Lisbon', category: 'Botanical garden (4.0 ⭐)', desc: 'Botanischer Garten.', bookable: true },
-      { id: 'c3', title: 'Jerónimos Monastery', category: 'Monastery (4.4 ⭐)', desc: 'Berühmtes UNESCO-Kloster in Belém.', bookable: true },
-      { id: 'c4', title: 'Carmo Archaeological Museum', category: 'Archaeological museum (4.5 ⭐)', desc: 'Gotische Ruine und Museum.', bookable: true },
-      { id: 'c5', title: 'Cosmos Campolide', category: 'Cultural center (4.6 ⭐)', desc: 'Kulturzentrum.', bookable: false },
-      { id: 'c6', title: 'River Garden', category: 'Garden (4.7 ⭐)', desc: 'Schöner Gartenbereich.', bookable: false },
-      { id: 'c7', title: 'Cape Carvoeiro Viewpoint', category: 'Scenic spot (4.6 ⭐)', desc: 'Aussichtspunkt an der Küste.', bookable: true },
-      { id: 'c8', title: 'Coin Caves', category: 'Tourist attraction (4.6 ⭐)', desc: 'Beeindruckende Höhlen.', bookable: true },
-      { id: 'c9', title: 'Miradouro da Graça', category: 'Scenic spot (4.7 ⭐)', desc: 'Beliebter Aussichtspunkt mit Kiosk.', bookable: false },
-      { id: 'c10', title: 'Castelo de São Jorge', category: 'Castle (4.5 ⭐)', desc: 'Historische Burg über der Stadt.', bookable: true },
-      { id: 'c11', title: 'Estufa Fria', category: 'Botanical garden (4.7 ⭐)', desc: 'Gewächshaus mit exotischen Pflanzen.', bookable: true },
-      { id: 'c12', title: 'Miradouro de Santa Luzia', category: 'Scenic spot (4.6 ⭐)', desc: 'Romantischer Aussichtspunkt mit Bougainvillea.', bookable: false },
-      { id: 'c13', title: 'Observatório Oficial Dark Sky Alqueva', category: 'Observatory (4.7 ⭐)', desc: 'Sternenbeobachtung.', bookable: true },
-      { id: 'c14', title: 'LX Factory', category: 'Art center (4.5 ⭐)', desc: 'Kreatives Zentrum in alter Fabrik.', bookable: true },
-      { id: 'c15', title: 'Village Underground Lisboa', category: 'Cultural center (4.2 ⭐)', desc: 'Kreativraum in Containern.', bookable: false },
-      { id: 'c16', title: 'Alfama', category: 'Historic district', desc: 'Ältestes Viertel von Lissabon.', bookable: true },
-      { id: 'c17', title: 'Monsanto', category: 'Mountain peak (4.7 ⭐)', desc: 'Grüne Lunge von Lissabon.', bookable: false },
+      { id: 'l1', title: 'Jardim da Estrela', category: 'City park (4.6 ⭐)', city: 'Lisboa', desc: 'Historischer Stadtpark mit Café.', bookable: false },
+      { id: 'l2', title: 'PUT IT ON LISBON', category: 'Coffee shop (4.9 ⭐)', city: 'Lisboa', desc: 'Gemütliches Café.', bookable: false },
+      { id: 'l3', title: 'Botanical Garden of Lisbon', category: 'Botanical garden (4.0 ⭐)', desc: 'Botanischer Garten.', bookable: true },
+      { id: 'l4', title: 'ROOFTOP - TOPO MARTIM MONIZ', category: 'Cocktail bar (4.3 ⭐)', city: 'Lisboa', desc: 'Rooftop-Bar mit Ausblick.', bookable: false },
+      { id: 'l5', title: 'Fábrica Braço de Prata', category: 'Cultural center (4.4 ⭐)', city: 'Lisboa', desc: 'Kulturzentrum & Bar.', bookable: true },
+      { id: 'l6', title: 'A Capela', category: 'Club (4.4 ⭐)', city: 'Lisboa', desc: 'Kleine Club-Bar.', bookable: false },
+      { id: 'l7', title: 'Jerónimos Monastery', category: 'Monastery (4.4 ⭐)', city: 'Lisboa / Belém', desc: 'Berühmtes UNESCO-Kloster.', bookable: true },
+      { id: 'l8', title: 'Carmo Archaeological Museum', category: 'Archaeological museum (4.5 ⭐)', city: 'Lisboa', desc: 'Gotische Ruine und Museum.', bookable: true },
+      { id: 'l9', title: 'A Minha Avó', category: 'Vegan restaurant (4.6 ⭐)', city: 'Lisboa', desc: 'Vegane Küche.', bookable: false },
+      { id: 'l10', title: 'Cosmos Campolide', category: 'Cultural center (4.6 ⭐)', city: 'Lisboa', desc: 'Kulturzentrum.', bookable: false },
+      { id: 'l11', title: 'Bar Badassery', category: 'Cocktail bar (4.6 ⭐)', city: 'Lisboa', desc: 'Cocktails und Drinks.', bookable: false },
+      { id: 'l12', title: 'River Garden', category: 'Garden (4.7 ⭐)', city: 'Lisboa', desc: 'Schöner Gartenbereich.', bookable: false },
+      { id: 'l13', title: 'Miradouro da Graça', category: 'Scenic spot (4.7 ⭐)', city: 'Lisboa', desc: 'Beliebter Aussichtspunkt mit Kiosk.', bookable: false },
+      { id: 'l14', title: 'Fable Bookshop + Coffee', category: 'Book store / Cafe (4.8 ⭐)', city: 'Lisboa', desc: 'Bücher und Kaffee.', bookable: false },
+      { id: 'l15', title: 'Seedge', category: 'Cannabis store (5.0 ⭐)', city: 'Lisboa', desc: 'Specialty store.', bookable: false },
+      { id: 'l16', title: 'Retro City', category: 'Vintage clothing (4.5 ⭐)', city: 'Lisboa', desc: 'Vintage Mode.', bookable: false },
+      { id: 'l17', title: 'Monsanto', category: 'Mountain peak (4.7 ⭐)', city: 'Lisboa', desc: 'Grüne Lunge von Lissabon.', bookable: false },
+      { id: 'l18', title: 'Lara Coffee', category: 'Pastries (4.2 ⭐)', city: 'Lisboa', desc: 'Gebäck und Kaffee.', bookable: false },
+      { id: 'l19', title: 'Castelo de São Jorge', category: 'Castle (4.5 ⭐)', city: 'Lisboa', desc: 'Historische Burg über der Stadt.', bookable: true },
+      { id: 'l20', title: 'Estufa Fria', category: 'Botanical garden (4.7 ⭐)', city: 'Lisboa', desc: 'Gewächshaus mit exotischen Pflanzen.', bookable: true },
+      { id: 'l21', title: 'Loja Real', category: 'Clothing store (3.3 ⭐)', city: 'Lisboa', desc: 'Modegeschäft.', bookable: false },
+      { id: 'l22', title: 'Miradouro de Santa Luzia', category: 'Scenic spot (4.6 ⭐)', city: 'Lisboa', desc: 'Romantischer Aussichtspunkt.', bookable: false },
+      { id: 'l23', title: 'Dearvains', category: 'Thrift store (4.7 ⭐)', city: 'Lisboa', desc: 'Second Hand Shop.', bookable: false },
+      { id: 'l24', title: 'Campo das Cebolas', category: 'Square', city: 'Lisboa', desc: 'Historischer Platz.', bookable: false },
+      { id: 'l25', title: 'Feira do Relógio', category: 'Flea market (4.3 ⭐)', city: 'Lisboa', desc: 'Großer Flohmarkt.', bookable: false },
+      { id: 'l26', title: 'Amor Records', category: 'Record store (4.7 ⭐)', city: 'Lisboa', desc: 'Plattenladen.', bookable: false },
+      { id: 'l27', title: 'Boubaud Vintage Boutique', category: 'Vintage clothing (4.9 ⭐)', city: 'Lisboa', desc: 'Vintage Boutique.', bookable: false },
+      { id: 'l28', title: 'Little Chelsea', category: 'Art gallery (4.3 ⭐)', city: 'Lisboa', desc: 'Kunstgalerie.', bookable: false },
+      { id: 'l29', title: '8 Marvila', category: 'Cultural center (4.6 ⭐)', city: 'Lisboa / Marvila', desc: 'Event- und Kulturhub.', bookable: true },
+      { id: 'l30', title: 'Café da Garagem', category: 'Cafe (4.2 ⭐)', city: 'Lisboa', desc: 'Café mit tollem Blick.', bookable: false },
+      { id: 'l31', title: 'Terraço Chill-Out Limão', category: 'Bar (4.3 ⭐)', city: 'Lisboa', desc: 'Chill-out Bar.', bookable: false },
+      { id: 'l32', title: 'My Auchan', category: 'Supermarket (4.0 ⭐)', city: 'Lisboa', desc: 'Supermarkt.', bookable: false },
+      { id: 'l33', title: 'Jardins do Bombarda', category: 'Park (4.6 ⭐)', city: 'Lisboa', desc: 'Gartenanlage.', bookable: false },
+      { id: 'l34', title: 'Jardim das Cerejas', category: 'Vegan (4.6 ⭐)', city: 'Lisboa', desc: 'Veganes Restaurant.', bookable: false },
+      { id: 'l35', title: 'Triparte Store & Tattoo', category: 'Clothing & Tattoo (4.6 ⭐)', city: 'Lisboa', desc: 'Store und Tattoo.', bookable: false },
+      { id: 'l36', title: 'Rita Biju', category: 'Jewelry store (2.7 ⭐)', city: 'Lisboa', desc: 'Schmuck.', bookable: false },
+      { id: 'l37', title: 'HUMANA', category: 'Second hand (4.4 ⭐)', city: 'Lisboa', desc: 'Second-Hand-Laden.', bookable: false },
+      { id: 'l38', title: 'Trumps', category: 'Gay night club (4.2 ⭐)', city: 'Lisboa', desc: 'Bekannter Club.', bookable: false },
+      { id: 'l39', title: 'POSH CLUB LISBON', category: 'Gay night club (4.1 ⭐)', city: 'Lisboa', desc: 'Club.', bookable: false },
+      { id: 'l40', title: 'Machimbombo', category: 'Bar (4.3 ⭐)', city: 'Lisboa', desc: 'Bar in der Altstadt.', bookable: false },
+      { id: 'l41', title: 'Side Bar', category: 'Gay bar (4.1 ⭐)', city: 'Lisboa', desc: 'Bar.', bookable: false },
+      { id: 'l42', title: 'Drama Bar', category: 'Bar (4.6 ⭐)', city: 'Lisboa', desc: 'Szene-Bar.', bookable: false },
+      { id: 'l43', title: 'Copenhagen Coffee Lab - Baixa', category: 'Coffee shop (4.3 ⭐)', city: 'Lisboa', desc: 'Skandinavischer Kaffee.', bookable: false },
+      { id: 'l44', title: 'Green Street', category: 'Tourist attraction (4.2 ⭐)', city: 'Lisboa', desc: 'Begrünte Straße.', bookable: false },
+      { id: 'l45', title: 'LX Factory', category: 'Art center (4.5 ⭐)', city: 'Lisboa', desc: 'Kreatives Zentrum in alter Fabrik.', bookable: true },
+      { id: 'l46', title: 'Alfama', category: 'Historic district', city: 'Lisboa', desc: 'Ältestes Viertel von Lissabon.', bookable: true },
+      { id: 'l47', title: 'Fauna & Flora - Anjos', category: 'Restaurant (4.4 ⭐)', city: 'Lisboa', desc: 'Brunch und Bowls.', bookable: false },
+      { id: 'l48', title: 'Village Underground Lisboa', category: 'Cultural center (4.2 ⭐)', city: 'Lisboa', desc: 'Kreativraum in Containern.', bookable: false },
+      { id: 'l49', title: 'Delirium Café Lisboa', category: 'Pub (4.5 ⭐)', city: 'Lisboa', desc: 'Bekannte Bar.', bookable: false },
     ],
   },
   {
-    id: 'beaches',
-    name: '🏖 Strände & Natur',
-    tagline: 'Gespeicherte Strände und Naturreservate',
+    id: 'caparica',
+    name: 'Caparica & Setúbal',
+    tagline: 'Strände und Orte südlich des Tejo',
+    lat: 38.5500,
+    lng: -9.1800,
+    zoom: 11,
     places: [
-      { id: 'b1', title: 'Praia da Fonte da Telha', category: 'Beach (4.5 ⭐)', desc: 'Langer Sandstrand.', bookable: false },
-      { id: 'b2', title: 'Sesimbra', category: 'Coastal town', desc: 'Malerischer Fischerort.', bookable: true },
-      { id: 'b3', title: 'Galapos beach', category: 'Beach (4.7 ⭐)', desc: 'Kristallklares Wasser im Naturpark Arrábida.', bookable: true },
-      { id: 'b4', title: 'Praia de Paredes da Vitória', category: 'Public beach (4.6 ⭐)', desc: 'Weitläufiger Strand.', bookable: false },
-      { id: 'b5', title: 'Ponta da Piedade', category: 'Scenic spot (4.8 ⭐)', desc: 'Klippenlandschaft an der Algarve.', bookable: true },
-      { id: 'b6', title: 'Praia do Ribeiro do Cavalo', category: 'Nature preserve (4.7 ⭐)', desc: 'Versteckte, wilde Bucht.', bookable: true },
-      { id: 'b7', title: 'Praia da Adraga', category: 'Beach (4.8 ⭐)', desc: 'Dramatische Klippenküste bei Sintra.', bookable: false },
-      { id: 'b8', title: 'Carcavelos beach', category: 'Beach (4.4 ⭐)', desc: 'Beliebter Surfstrand.', bookable: true },
-      { id: 'b9', title: 'Green Street', category: 'Tourist attraction (4.2 ⭐)', desc: 'Begrünte Straße in Lissabon.', bookable: false },
+      { id: 'cp1', title: 'Praia da Fonte da Telha', category: 'Beach (4.5 ⭐)', city: 'Caparica', desc: 'Langer Sandstrand.', bookable: false },
+      { id: 'cp2', title: 'Cash Converters', category: 'Second hand (3.9 ⭐)', city: 'Charneca de Caparica', desc: 'An- und Verkauf.', bookable: false },
     ],
   },
   {
-    id: 'food',
-    name: '☕ Cafés, Food & Markets',
-    tagline: 'Cafés, Restaurants und Märkte',
+    id: 'sintra_cascais',
+    name: 'Sintra & Cascais',
+    tagline: 'Märchenhafte Orte und Atlantikküsten',
+    lat: 38.8029,
+    lng: -9.3817,
+    zoom: 12,
     places: [
-      { id: 'f1', title: 'PUT IT ON LISBON', category: 'Coffee shop (4.9 ⭐)', desc: 'Gemütliches Café.', bookable: false },
-      { id: 'f2', title: 'Delirium Café Lisboa', category: 'Pub (4.5 ⭐)', desc: 'Bekannte Bar.', bookable: false },
-      { id: 'f3', title: 'ROOFTOP - TOPO MARTIM MONIZ', category: 'Cocktail bar (4.3 ⭐)', desc: 'Rooftop-Bar mit Ausblick.', bookable: false },
-      { id: 'f4', title: 'A Minha Avó', category: 'Vegan restaurant (4.6 ⭐)', desc: 'Vegane Küche.', bookable: false },
-      { id: 'f5', title: 'Bar Badassery', category: 'Cocktail bar (4.6 ⭐)', desc: 'Cocktails und Drinks.', bookable: false },
-      { id: 'f6', title: 'Fable Bookshop + Coffee', category: 'Book store / Cafe (4.8 ⭐)', desc: 'Bücher und Kaffee.', bookable: false },
-      { id: 'f7', title: 'Lara Coffee', category: 'Pastries (4.2 ⭐)', desc: 'Gebäck und Kaffee.', bookable: false },
-      { id: 'f8', title: 'Dearvains', category: 'Thrift store (4.7 ⭐)', desc: 'Second Hand Shop.', bookable: false },
-      { id: 'f9', title: 'Capricciosa Carcavelos', category: 'Italian (4.3 ⭐)', desc: 'Italienisches Restaurant.', bookable: false },
-      { id: 'f10', title: 'Feira do Relógio', category: 'Flea market (4.3 ⭐)', desc: 'Großer Flohmarkt.', bookable: false },
-      { id: 'f11', title: 'Monthly Sunday flea market', category: 'Flea market (4.5 ⭐)', desc: 'Sonntagsmarkt.', bookable: false },
-      { id: 'f12', title: 'Amor Records', category: 'Record store (4.7 ⭐)', desc: 'Plattenladen.', bookable: false },
-      { id: 'f13', title: 'Café da Garagem', category: 'Cafe (4.2 ⭐)', desc: 'Café mit tollem Blick.', bookable: false },
-      { id: 'f14', title: 'Terraço Chill-Out Limão', category: 'Bar (4.3 ⭐)', desc: 'Chill-out Bar.', bookable: false },
-      { id: 'f15', title: 'Jardins do Bombarda', category: 'Park (4.6 ⭐)', desc: 'Gartenanlage.', bookable: false },
-      { id: 'f16', title: 'Jardim das Cerejas', category: 'Vegan (4.6 ⭐)', desc: 'Veganes Restaurant.', bookable: false },
-      { id: 'f17', title: 'Machimbombo', category: 'Bar (4.3 ⭐)', desc: 'Bar in der Altstadt.', bookable: false },
-      { id: 'f18', title: 'Copenhagen Coffee Lab - Baixa', category: 'Coffee shop (4.3 ⭐)', desc: 'Skandinavischer Kaffee.', bookable: false },
-      { id: 'f19', title: 'Fauna & Flora - Anjos', category: 'Restaurant (4.4 ⭐)', desc: 'Brunch und Bowls.', bookable: false },
+      { id: 'sc1', title: 'Cape Carvoeiro Viewpoint', category: 'Scenic spot (4.6 ⭐)', city: 'Peniche / Sintra Region', desc: 'Aussichtspunkt an der Küste.', bookable: true },
+      { id: 'sc2', title: 'Coin Caves', category: 'Tourist attraction (4.6 ⭐)', city: 'Sintra Region', desc: 'Beeindruckende Höhlen.', bookable: true },
+      { id: 'sc3', title: 'Praia da Adraga', category: 'Beach (4.8 ⭐)', city: 'Sintra', desc: 'Dramatische Klippenküste.', bookable: false },
+      { id: 'sc4', title: 'Carcavelos beach', category: 'Beach (4.4 ⭐)', city: 'Carcavelos', desc: 'Beliebter Surfstrand.', bookable: true },
     ],
   },
   {
-    id: 'shopping',
-    name: '🛍 Shopping & Vintage',
-    tagline: 'Second Hand, Vintage und Stores',
+    id: 'algarve_south',
+    name: 'Algarve & Süden',
+    tagline: 'Goldene Klippen und Küstenparadiese',
+    lat: 37.0194,
+    lng: -7.9322,
+    zoom: 10,
     places: [
-      { id: 's1', title: 'Cash Converters', category: 'Second hand (3.9 ⭐)', desc: 'An- und Verkauf.', bookable: false },
-      { id: 's2', title: 'Espaço Casa Loures', category: 'Home goods (4.1 ⭐)', desc: 'Haushaltswaren.', bookable: false },
-      { id: 's3', title: 'Seedge', category: 'Cannabis store (5.0 ⭐)', desc: 'Specialty store.', bookable: false },
-      { id: 's4', title: 'Retro City', category: 'Vintage clothing (4.5 ⭐)', desc: 'Vintage Mode.', bookable: false },
-      { id: 's5', title: 'Loja Real', category: 'Clothing store (3.3 ⭐)', desc: 'Modegeschäft.', bookable: false },
-      { id: 's6', title: 'Loja CTT', category: 'Post office (3.0 ⭐)', desc: 'Postfiliale.', bookable: false },
-      { id: 's7', title: 'Boubaud Vintage Boutique', category: 'Vintage clothing (4.9 ⭐)', desc: 'Vintage Boutique.', bookable: false },
-      { id: 's8', title: 'Little Chelsea', category: 'Art gallery (4.3 ⭐)', desc: 'Kunstgalerie.', bookable: false },
-      { id: 's9', title: 'My Auchan', category: 'Supermarket (4.0 ⭐)', desc: 'Supermarkt.', bookable: false },
-      { id: 's10', title: 'Triparte Store & Tattoo', category: 'Clothing & Tattoo (4.6 ⭐)', desc: 'Store und Tattoo.', bookable: false },
-      { id: 's11', title: 'Rita Biju', category: 'Jewelry store (2.7 ⭐)', desc: 'Schmuck.', bookable: false },
-      { id: 's12', title: 'HUMANA', category: 'Second hand (4.4 ⭐)', desc: 'Bekannter Second-Hand-Laden.', bookable: false },
+      { id: 'alg1', title: 'Sesimbra', category: 'Coastal town', city: 'Sesimbra', desc: 'Malerischer Fischerort.', bookable: true },
+      { id: 'alg2', title: 'Galapos beach', category: 'Beach (4.7 ⭐)', city: 'Arrábida / Setúbal', desc: 'Kristallklares Wasser im Naturpark.', bookable: true },
+      { id: 'alg3', title: 'Praia de Paredes da Vitória', category: 'Public beach (4.6 ⭐)', city: 'Leiria Region', desc: 'Weitläufiger Strand.', bookable: false },
+      { id: 'alg4', title: 'Ponta da Piedade', category: 'Scenic spot (4.8 ⭐)', city: 'Lagos (Algarve)', desc: 'Klippenlandschaft an der Algarve.', bookable: true },
+      { id: 'alg5', title: 'Praia do Ribeiro do Cavalo', category: 'Nature preserve (4.7 ⭐)', city: 'Sesimbra', desc: 'Versteckte, wilde Bucht.', bookable: true },
     ],
   },
   {
-    id: 'nightlife',
-    name: '🌙 Nightlife & Clubs',
-    tagline: 'Bars, Clubs und Kulturzentren',
+    id: 'other_regions',
+    name: 'Weitere Regionen',
+    tagline: 'Loures, Alqueva und sonstige Orte',
+    lat: 38.2000,
+    lng: -8.0000,
+    zoom: 8,
     places: [
-      { id: 'n1', title: 'Fábrica Braço de Prata', category: 'Cultural center (4.4 ⭐)', desc: 'Kulturzentrum & Bar.', bookable: true },
-      { id: 'n2', title: 'A Capela', category: 'Club (4.4 ⭐)', desc: 'Kleine Club-Bar.', bookable: false },
-      { id: 'n3', title: '8 Marvila', category: 'Cultural center (4.6 ⭐)', desc: 'Event- und Kulturhub.', bookable: true },
-      { id: 'n4', title: 'Trumps', category: 'Gay night club (4.2 ⭐)', desc: 'Bekannter Club.', bookable: false },
-      { id: 'n5', title: 'POSH CLUB LISBON', category: 'Gay night club (4.1 ⭐)', desc: 'Club.', bookable: false },
-      { id: 'n6', title: 'Side Bar', category: 'Gay bar (4.1 ⭐)', desc: 'Bar.', bookable: false },
-      { id: 'n7', title: 'Drama Bar', category: 'Bar (4.6 ⭐)', desc: 'Szene-Bar.', bookable: false },
+      { id: 'oth1', title: 'Espaço Casa Loures', category: 'Home goods (4.1 ⭐)', city: 'Loures', desc: 'Haushaltswaren.', bookable: false },
+      { id: 'oth2', title: 'Observatório Oficial Dark Sky Alqueva', category: 'Observatory (4.7 ⭐)', city: 'Alqueva', desc: 'Sternenbeobachtung.', bookable: true },
+      { id: 'oth3', title: 'Loja CTT', category: 'Post office (3.0 ⭐)', city: 'Portugal', desc: 'Postfiliale.', bookable: false },
     ],
   },
 ];
-
-const CITIES_METADATA = {
-  culture: { lat: 38.7223, lng: -9.1393, zoom: 12 },
-  beaches: { lat: 38.4500, lng: -9.1000, zoom: 10 },
-  food: { lat: 38.7100, lng: -9.1400, zoom: 13 },
-  shopping: { lat: 38.7150, lng: -9.1450, zoom: 13 },
-  nightlife: { lat: 38.7120, lng: -9.1430, zoom: 13 },
-};
 
 const ENGLISH_DOCTORS = [
   {
@@ -223,17 +229,17 @@ const LOCALES = {
     tabTrans: 'Übersetzer',
     tabCalc: 'Gehalt',
     tabPerks: 'Deals',
-    placesSectionTitle: '🇵🇹 Deine Google Maps Favoriten (70+ Orte)',
-    placesSectionSub: 'Wähle eine Kategorie, um alle importierten Orte anzuzeigen:',
+    placesSectionTitle: '🇵🇹 Nach Städten & Regionen sortiert',
+    placesSectionSub: 'Wähle eine Region aus, um alle gespeicherten Orte zu sehen:',
     openInAppMaps: 'In Maps-App',
-    swipeInstruction: '👉 Durchstöbere deine gespeicherten Orte auf der Karte:',
+    swipeInstruction: '👉 Deine gespeicherten Orte sortiert nach Städten:',
     openInMapsBtn: 'Route',
     gygBtn: 'Tickets & Touren (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Portugiesisch fließend sprechen lernen',
     italkiBannerDesc: 'Finde zertifizierte Muttersprachler für 1-zu-1 Online-Unterricht auf italki.',
     italkiBtn: 'Muttersprachler finden (italki) ↗',
     
-    filterExplore: 'Favoriten & Orte',
+    filterExplore: 'Städte & Orte',
     filterAtm: 'ATMs (Multibanco)',
     filterDoctors: 'Ärzte & Kliniken',
 
@@ -298,7 +304,7 @@ const LOCALES = {
       { id: 6, title: 'Aufenthaltsrecht (CRUE / AIMA)', tip: 'EU-Bürger melden sich nach 3 Monaten bei der Câmara an.' },
       { id: 7, title: 'SNS-Gesundheitsnummer (Centro de Saúde)', tip: 'Zugang zum staatlichen Gesundheitssystem & Hausarzt.' },
     ],
-    categories: MAP_CATEGORIES,
+    citiesData: CITIES_DATA,
   },
   en: {
     title: 'PortuStart',
@@ -308,17 +314,17 @@ const LOCALES = {
     tabTrans: 'Translator',
     tabCalc: 'Salary',
     tabPerks: 'Deals',
-    placesSectionTitle: '🇵🇹 Your Google Maps Favorites (70+ Places)',
-    placesSectionSub: 'Choose a category to view all imported places:',
+    placesSectionTitle: '🇵🇹 Sorted by Cities & Regions',
+    placesSectionSub: 'Choose a region to view all saved places:',
     openInAppMaps: 'Open in Maps App',
-    swipeInstruction: '👉 Browse your saved spots:',
+    swipeInstruction: '👉 Your saved places sorted by cities:',
     openInMapsBtn: 'Route',
     gygBtn: 'Tickets & Tours (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Learn to speak fluent Portuguese',
     italkiBannerDesc: 'Find certified native tutors for 1-on-1 online lessons on italki.',
     italkiBtn: 'Find Native Tutors (italki) ↗',
     
-    filterExplore: 'Favorites & Places',
+    filterExplore: 'Cities & Places',
     filterAtm: 'ATMs (Multibanco)',
     filterDoctors: 'Doctors & Clinics',
 
@@ -377,7 +383,7 @@ const LOCALES = {
       { id: 6, title: 'Residency Registration (CRUE / AIMA)', tip: 'EU citizens register at the local City Hall (Câmara) after 3 months.' },
       { id: 7, title: 'Get your SNS Healthcare Number', tip: 'Grants access to public primary care clinics (Centro de Saúde).' },
     ],
-    categories: MAP_CATEGORIES,
+    citiesData: CITIES_DATA,
   },
   es: {
     title: 'PortuStart',
@@ -387,17 +393,17 @@ const LOCALES = {
     tabTrans: 'Traductor',
     tabCalc: 'Salario',
     tabPerks: 'Ofertas',
-    placesSectionTitle: '🇵🇹 Tus Favoritos de Google Maps (70+ Lugares)',
-    placesSectionSub: 'Elige una categoría para ver todos los lugares importados:',
+    placesSectionTitle: '🇵🇹 Ordenado por Ciudades y Regiones',
+    placesSectionSub: 'Elige una región para ver todos los lugares guardados:',
     openInAppMaps: 'Abrir en Maps',
-    swipeInstruction: '👉 Explora tus lugares guardados:',
+    swipeInstruction: '👉 Tus lugares guardados ordenados por ciudades:',
     openInMapsBtn: 'Ruta',
     gygBtn: 'Entradas y Tours (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Aprende a hablar portugués con fluidez',
     italkiBannerDesc: 'Encuentra profesores nativos certificados para clases particulares en italki.',
     italkiBtn: 'Buscar profesores nativos (italki) ↗',
     
-    filterExplore: 'Favoritos y Lugares',
+    filterExplore: 'Ciudades y Lugares',
     filterAtm: 'Cajeros (Multibanco)',
     filterDoctors: 'Médicos y Clínicas',
 
@@ -456,7 +462,7 @@ const LOCALES = {
       { id: 6, title: 'Registro de residencia (CRUE / AIMA)', tip: 'Los ciudadanos de la UE se registran en la Câmara tras 3 meses.' },
       { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso a centros de salud públicos y médico de cabecera.' },
     ],
-    categories: MAP_CATEGORIES,
+    citiesData: CITIES_DATA,
   },
   fr: {
     title: 'PortuStart',
@@ -466,17 +472,17 @@ const LOCALES = {
     tabTrans: 'Traducteur',
     tabCalc: 'Salaire',
     tabPerks: 'Bons plans',
-    placesSectionTitle: '🇵🇹 Vos Favoris Google Maps (70+ Lieux)',
-    placesSectionSub: 'Choisissez une catégorie pour voir tous les lieux importés :',
+    placesSectionTitle: '🇵🇹 Trié par Villes & Régions',
+    placesSectionSub: 'Choisissez une région pour voir tous les lieux enregistrés :',
     openInAppMaps: 'Ouvrir dans Plans',
-    swipeInstruction: '👉 Parcourez vos lieux enregistrés :',
+    swipeInstruction: '👉 Vos lieux enregistrés triés par villes :',
     openInMapsBtn: 'Itinéraire',
     gygBtn: 'Billets et visites (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Apprenez à parler couramment le portugais',
     italkiBannerDesc: 'Trouvez des tuteurs natifs certifiés pour des cours particuliers sur italki.',
     italkiBtn: 'Trouver des tuteurs natifs (italki) ↗',
     
-    filterExplore: 'Favoris & Lieux',
+    filterExplore: 'Villes & Lieux',
     filterAtm: 'DAB (Multibanco)',
     filterDoctors: 'Médecins & Cliniques',
 
@@ -535,7 +541,7 @@ const LOCALES = {
       { id: 6, title: 'Enregistrement de résidence (CRUE / AIMA)', tip: 'Les citoyens de l’UE s’inscrivent à la Câmara après 3 mois.' },
       { id: 7, title: 'Obtenir votre numéro de santé SNS', tip: 'Accès aux centres de santé publics et médecin traitant.' },
     ],
-    categories: MAP_CATEGORIES,
+    citiesData: CITIES_DATA,
   },
   it: {
     title: 'PortuStart',
@@ -545,17 +551,17 @@ const LOCALES = {
     tabTrans: 'Traduttore',
     tabCalc: 'Stipendio',
     tabPerks: 'Offerte',
-    placesSectionTitle: '🇵🇹 I tuoi Preferiti di Google Maps (70+ Luoghi)',
-    placesSectionSub: 'Scegli una categoria per visualizzare tutti i luoghi importati:',
+    placesSectionTitle: '🇵🇹 Ordinato per Città e Regioni',
+    placesSectionSub: 'Scegli una regione per visualizzare tutti i luoghi salvati:',
     openInAppMaps: 'Apri in Maps',
-    swipeInstruction: '👉 Sfoglia i tuoi luoghi salvati:',
+    swipeInstruction: '👉 I tuoi luoghi salvati ordinati per città:',
     openInMapsBtn: 'Percorso',
     gygBtn: 'Biglietti e tour (GetYourGuide) ↗',
     italkiBannerTitle: '🗣 Impara a parlare portogruese fluentemente',
     italkiBannerDesc: 'Trova insegnanti madrelingua certificati per lezioni individuali su italki.',
     italkiBtn: 'Trova insegnanti madrelingua (italki) ↗',
     
-    filterExplore: 'Preferiti e Luoghi',
+    filterExplore: 'Città e Luoghi',
     filterAtm: 'ATM (Multibanco)',
     filterDoctors: 'Medici e Cliniche',
 
@@ -614,7 +620,7 @@ const LOCALES = {
       { id: 6, title: 'Registrazione residenza (CRUE / AIMA)', tip: 'I cittadini UE si registrano in Câmara dopo 3 mesi.' },
       { id: 7, title: 'Ottieni il numero sanitario SNS', tip: 'Accesso a centri sanitari pubblici e medico di base.' },
     ],
-    categories: MAP_CATEGORIES,
+    citiesData: CITIES_DATA,
   },
 };
 
@@ -628,7 +634,7 @@ export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState('services');
-  const [selectedCatId, setSelectedCatId] = useState('culture');
+  const [selectedCityId, setSelectedCityId] = useState('lisboa');
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
 
   const t = LOCALES[appLang] || LOCALES['de'];
@@ -729,8 +735,7 @@ export default function App() {
     });
   }, [grossInput, paymentsCount, taxStatus]);
 
-  const currentCategory = t.categories.find((c) => c.id === selectedCatId) || t.categories[0];
-  const currentMeta = CITIES_METADATA[selectedCatId] || CITIES_METADATA['culture'];
+  const currentCityObj = t.citiesData.find((c) => c.id === selectedCityId) || t.citiesData[0];
 
   const toggleChecklistItem = (id) => {
     setCheckedMap({ ...checkedMap, [id]: !checkedMap[id] });
@@ -795,7 +800,7 @@ export default function App() {
     if (activePlaceFilter === 'doctors') {
       return `https://maps.google.com/maps?q=Hospital+Lisbon+Porto+Algarve&z=7&output=embed`;
     }
-    return `https://maps.google.com/maps?q=${currentMeta.lat},${currentMeta.lng}&z=${currentMeta.zoom}&output=embed`;
+    return `https://maps.google.com/maps?q=${currentCityObj.lat},${currentCityObj.lng}&z=${currentCityObj.zoom}&output=embed`;
   };
 
   return (
@@ -958,12 +963,12 @@ export default function App() {
 
               {activePlaceFilter === 'explore' && (
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
-                  {t.categories.map((cat) => {
-                    const isSelected = selectedCatId === cat.id;
+                  {t.citiesData.map((city) => {
+                    const isSelected = selectedCityId === city.id;
                     return (
-                      <TouchableOpacity key={cat.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => setSelectedCatId(cat.id)}>
-                        <Ionicons name="folder" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
-                        <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{cat.name}</Text>
+                      <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => setSelectedCityId(city.id)}>
+                        <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                        <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
                       </TouchableOpacity>
                     );
                   })}
@@ -991,25 +996,30 @@ export default function App() {
               <>
                 <View style={styles.cityDetailsHeader}>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.activeCityName}>{currentCategory.name}</Text>
-                    <Text style={styles.activeCityTagline}>{currentCategory.tagline}</Text>
+                    <Text style={styles.activeCityName}>{currentCityObj.name}</Text>
+                    <Text style={styles.activeCityTagline}>{currentCityObj.tagline}</Text>
                   </View>
                   <View style={styles.cityPlacesCounter}>
-                    <Text style={styles.cityPlacesCounterText}>{currentCategory.places.length} Orte</Text>
+                    <Text style={styles.cityPlacesCounterText}>{currentCityObj.places.length} Orte</Text>
                   </View>
                 </View>
 
                 <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
 
-                {/* ORTLISTE OHNE BILDER - GETYOUR GUIDE NUR WENN BUCHBAR */}
-                {currentCategory.places.map((place) => (
+                {/* ORTLISTE MIT STADTVANZEIGE */}
+                {currentCityObj.places.map((place) => (
                   <View key={place.id} style={styles.placeCardSimple}>
                     <View style={styles.placeCardHeaderRow}>
                       <View style={styles.placeIconBadge}>
                         <Ionicons name="location" size={16} color="#0F5132" />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.placeCardTitle}>{place.title}</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <Text style={styles.placeCardTitle}>{place.title}</Text>
+                          <View style={styles.cityBadge}>
+                            <Text style={styles.cityBadgeText}>{place.city}</Text>
+                          </View>
+                        </View>
                         <Text style={styles.placeCardCategory}>{place.category}</Text>
                       </View>
                     </View>
@@ -1023,7 +1033,7 @@ export default function App() {
                         </TouchableOpacity>
                       )}
 
-                      <TouchableOpacity style={[styles.openMapBtn, { flex: 1, marginTop: 0 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.title + ' Portugal')}`)}>
+                      <TouchableOpacity style={[styles.openMapBtn, { flex: 1, marginTop: 0 }]} onPress={() => openUrl(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.title + ' ' + place.city + ' Portugal')}`)}>
                         <Ionicons name="navigate-outline" size={13} color="#475569" style={{ marginRight: 4 }} />
                         <Text style={styles.openMapBtnText}>{t.openInMapsBtn}</Text>
                       </TouchableOpacity>
@@ -1551,6 +1561,9 @@ const styles = StyleSheet.create({
   placeCardTitle: { fontSize: 14.5, fontWeight: '800', color: '#0F172A' },
   placeCardCategory: { fontSize: 11, fontWeight: '700', color: '#0284C7', marginTop: 1 },
   placeCardDesc: { fontSize: 12, color: '#64748B', marginTop: 6, lineHeight: 17 },
+
+  cityBadge: { backgroundColor: '#F1F5F9', paddingVertical: 2, paddingHorizontal: 6, borderRadius: 6, borderWidth: 1, borderColor: '#E2E8F0' },
+  cityBadgeText: { fontSize: 10, fontWeight: '700', color: '#475569' },
 
   attractionTipBox: {
     flexDirection: 'row',
