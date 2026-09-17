@@ -53,24 +53,6 @@ const TRANSLATOR_LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
 ];
 
-// SPANISCHES VOKABULAR (Nur aktiv, wenn Quellsprache 'es' ist)
-const SPANISH_VOCABULARY = [
-  {
-    category: 'Autoridades y NIF',
-    items: [
-      { pt: 'Gostaria de solicitar o meu NIF.', es: 'Me gustaría solicitar mi NIF.' },
-      { pt: 'Onde fica o serviço de Finanças mais próximo?', es: '¿Dónde está la oficina de hacienda más cercana?' }
-    ]
-  },
-  {
-    category: 'Vida diaria y vivienda',
-    items: [
-      { pt: 'Aceitam animais de estimação no apartamento?', es: '¿Se admiten mascotas en el apartamento?' },
-      { pt: 'Pode enviar-me a referência Multibanco por favor?', es: '¿Puede enviarme la referencia de Multibanco por favor?' }
-    ]
-  }
-];
-
 const CITIES_METADATA = {
   lisboa: {
     lat: 38.7223,
@@ -256,6 +238,12 @@ const LOCALES = {
     checklistDone: 'erledigt',
     applyOnlineBtn: 'Jetzt online beantragen ↗',
     affiliateDisclosure: 'Transparenz: Über diese Links erhältst du geprüfte Express-Bearbeitung bei e-Residence. Wir erhalten eine kleine Vermittlungsprovision – für dich bleibt der Preis unverändert.',
+    affiliateCards: [
+      { key: 'nif', title: 'NIF (Portugiesische Steuernummer)', badge: 'Schritt 1 • Pflicht', desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Portugiesisches Bankkonto', badge: 'Schritt 2 • IBAN', desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+    ],
     calcTitle: '💶 Brutto-Netto-Gehaltsrechner',
     calcSub: 'Berechne das Netto (automatische Umrechnung bei 12 oder 14 Monatsgehältern).',
     calcGrossLabel: 'Bruttogehalt (€):',
@@ -1084,6 +1072,7 @@ export default function App() {
     }
   };
 
+  // ROBUUSTER ÜBERSETZER MIT MYMEMORY API (FUNKTIONIERT OHNE API-KEY)
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
     setLoading(true);
@@ -1101,6 +1090,7 @@ export default function App() {
     setLoading(false);
   };
 
+  // KORRIGIERTER GEHALTSRECHNER (14 MONATSGEHÄLTER AUF 12 MONATE UMGERECHNET)
   const calculateNetSalary = (gross, payments, status) => {
     const inputSalary = parseFloat(gross) || 0;
     if (inputSalary <= 0) return;
@@ -1483,38 +1473,6 @@ export default function App() {
                 <Text style={styles.resultBody}>{translatedText}</Text>
               </View>
             ) : null}
-
-            {/* Spanisches Vokabular (wird nur angezeigt, wenn Quellsprache Spanisch 'es' ist) */}
-            {sourceLang === 'es' && (
-              <View style={[styles.card, { marginTop: 4 }]}>
-                <Text style={styles.sectionHeaderTitle}>📚 Guía de Vocabulario Expat</Text>
-                <Text style={styles.subText}>Haz clic en una frase para usarla:</Text>
-                
-                {SPANISH_VOCABULARY.map((group, idx) => (
-                  <View key={idx} style={{ marginTop: 8 }}>
-                    <Text style={[styles.miniLabel, { color: '#0F5132', marginBottom: 4 }]}>
-                      {group.category}
-                    </Text>
-                    {group.items.map((vocab, vIdx) => (
-                      <TouchableOpacity 
-                        key={vIdx} 
-                        style={styles.vocabItemChip} 
-                        onPress={() => {
-                          setInputText(vocab.es);
-                          setTargetLang('pt');
-                        }}
-                      >
-                        <Ionicons name="chatbubble-outline" size={13} color="#0F5132" style={{ marginRight: 6 }} />
-                        <View style={{ flex: 1 }}>
-                          <Text style={styles.vocabSourceText}>{vocab.es}</Text>
-                          <Text style={styles.vocabPtText}>🇵🇹 {vocab.pt}</Text>
-                        </View>
-                      </TouchableOpacity>
-                    ))}
-                  </View>
-                ))}
-              </View>
-            )}
 
             <View style={styles.italkiBannerCard}>
               <View style={styles.italkiTopRow}>
@@ -2071,25 +2029,4 @@ const styles = StyleSheet.create({
   modalLangBtnActive: { borderColor: '#0F5132', backgroundColor: '#DCFCE7' },
   modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B', marginTop: 2 },
   modalLangTextActive: { color: '#0F5132' },
-  vocabItemChip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#F8FAFC',
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 6,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
-  vocabSourceText: {
-    fontSize: 12.5,
-    fontWeight: '700',
-    color: '#0F172A',
-  },
-  vocabPtText: {
-    fontSize: 11.5,
-    color: '#0F5132',
-    fontWeight: '600',
-    marginTop: 2,
-  },
 });
