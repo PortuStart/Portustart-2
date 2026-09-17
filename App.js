@@ -21,7 +21,7 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 // ==========================================
-// DEIN OPENAI API-KEY & PARTNER-LINKS
+// DEIN API-KEY & PARTNER-LINKS
 // ==========================================
 const OPENAI_API_KEY = 'vck_5LPthEy2whGmjOe0cmJ8xqAjlKDmuKVRdCeTS73N7vVTFcFgpt47DlNd';
 
@@ -318,7 +318,7 @@ const LOCALES = {
         places: [
           { id: 'a1', title: 'Benagil Meereshöhle', category: 'Grotten & Strand', desc: 'Berühmte Brandungshöhle mit kreisrundem Naturfenster.', tip: 'Tipp: Früh mit dem Kajak erkunden.' },
           { id: 'a2', title: 'Ponta da Piedade (Lagos)', category: 'Klippenlandschaft', desc: 'Bizarre Felstürme, Bögen und türkisblaues Wasser.', tip: 'Tipp: Fischerboottour machen.' },
-          { id: 'a3', title: 'Ria Formosa Naturpark', category: 'Lagune & Inseln', desc: 'Riesiges Gezeitenschutzgebiet mit autofreien Inseln.', tip: 'Tipp: Fähre nach Armona nehmen.' },
+          { id: 'a3', title: 'Ria Formosa Natural Park', category: 'Lagune & Inseln', desc: 'Riesiges Gezeitenschutzgebiet mit autofreien Inseln.', tip: 'Tipp: Fähre nach Armona nehmen.' },
           { id: 'ab1', title: 'Praia da Marinha', category: '🏖 Top-Strand Europas', desc: 'Doppelfelsbögen und kristallklares Schnorchel-Wasser.', tip: 'Tipp: Seven Hanging Valleys Trail.' },
           { id: 'ab2', title: 'Praia da Falésia', category: '🏖 Rote Klippenküste', desc: 'Über 6 km Sandstrand unter roten Steilklippen.', tip: 'Tipp: Barfuß-Wanderungen bei Ebbe.' },
         ],
@@ -982,7 +982,7 @@ const LOCALES = {
           { id: 'm1', title: 'Pico do Arieiro a Pico Ruivo', category: 'Escursione alpina', desc: 'Spettacolare traversata di cresta sopra le nuvole.', tip: 'Consiglio: Inizia all’alba.' },
           { id: 'm2', title: 'Levada das 25 Fontes', category: 'Natura UNESCO', desc: 'Sentiero lungo i canali nella foresta di laurisilva.', tip: 'Consiglio: Parti presto.' },
           { id: 'mb1', title: 'Prainha do Caniçal', category: '🏖 Sabbia nera vulcanica', desc: 'Incantevole caletta nascosta di sabbia scura.', tip: 'Consiglio: Bellissimo contrasto cromatico.' },
-          { id: 'mb2', title: 'Spiaggia di Calheta', category: '🏖 Laguna dorata', desc: 'Doppia spiaggia protetta con acque calme.', tip: 'Consiglio: Ideale per famiglie.' },
+          { id: 'mb2', title: 'Spiaggia di Calheta', category: '🏖 Laguna dorada', desc: 'Doppia spiaggia protetta con acque calme.', tip: 'Consiglio: Ideale per famiglie.' },
         ],
       },
     ],
@@ -1128,6 +1128,7 @@ export default function App() {
     }
   };
 
+  // ROBUUSTER TRANSLATOR MIT FALLBACK
   const handleTranslate = async () => {
     if (!inputText.trim()) return;
     setLoading(true);
@@ -1157,10 +1158,20 @@ export default function App() {
       if (data.choices && data.choices[0].message.content) {
         setTranslatedText(data.choices[0].message.content.trim());
       } else {
-        setTranslatedText('Fehler bei der KI-Antwort.');
+        // Fallback auf externen MyMemory Dienst wenn OpenAI-Antwort leer ist
+        const fallbackRes = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
+        const fallbackData = await fallbackRes.json();
+        setTranslatedText(fallbackData.responseData?.translatedText || 'Übersetzungsfehler aufgetreten.');
       }
     } catch {
-      setTranslatedText('Verbindungsfehler zur OpenAI API.');
+      // Offline/Netzwerk Fallback
+      try {
+        const fallbackRes = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText.trim())}&langpair=${sourceLang}|${targetLang}`);
+        const fallbackData = await fallbackRes.json();
+        setTranslatedText(fallbackData.responseData?.translatedText || 'Verbindungsfehler.');
+      } catch {
+        setTranslatedText('Netzwerkfehler. Bitte Internetverbindung prüfen.');
+      }
     } finally {
       setLoading(false);
     }
@@ -1170,46 +1181,21 @@ export default function App() {
     const salary = parseFloat(gross) || 0;
     if (salary <= 0) return;
     setLoading(true);
-    try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            {
-              role: 'system',
-              content: `Du bist ein portugiesischer Steuerberater. Berechne für ein monatliches Bruttogehalt von ${salary} € (bei 14 Monatsgehältern) das Nettoeinkommen in Portugal unter Berücksichtigung von 11% Sozialversicherung und IRS-Steuertabrufen. Antworte AUSSCHLIESSLICH im folgenden JSON-Format ohne Markdown-Zeichen: {"gross": "...", "ss": "...", "irs": "...", "irsPercent": "...", "netMonthly": "...", "netAnnual": "..."}`
-            }
-          ],
-          temperature: 0.1,
-        }),
-      });
-      const data = await response.json();
-      if (data.choices && data.choices[0].message.content) {
-        const cleanJson = data.choices[0].message.content.replace(/```json/g, '').replace(/```/g, '').trim();
-        const parsed = JSON.parse(cleanJson);
-        setCalcResult(parsed);
-      }
-    } catch {
-      const ssAmount = salary * 0.11;
-      let irsRate = salary <= 820 ? 0 : salary <= 1300 ? 0.11 : salary <= 2000 ? 0.18 : 0.25;
-      const irsAmount = salary * irsRate;
-      const netMonthly = salary - ssAmount - irsAmount;
-      setCalcResult({
-        gross: salary.toFixed(2),
-        ss: ssAmount.toFixed(2),
-        irs: irsAmount.toFixed(2),
-        irsPercent: (irsRate * 100).toFixed(0),
-        netMonthly: netMonthly.toFixed(2),
-        netAnnual: (netMonthly * 14).toFixed(2),
-      });
-    } finally {
-      setLoading(false);
-    }
+    const ssAmount = salary * 0.11;
+    let irsRate = salary <= 820 ? 0 : salary <= 1300 ? 0.11 : salary <= 2000 ? 0.18 : 0.25;
+    const irsAmount = salary * irsRate;
+    const netMonthly = salary - ssAmount - irsAmount;
+    
+    // Mathematischer Standard-Wert als sofortiger Garant
+    setCalcResult({
+      gross: salary.toFixed(2),
+      ss: ssAmount.toFixed(2),
+      irs: irsAmount.toFixed(2),
+      irsPercent: (irsRate * 100).toFixed(0),
+      netMonthly: netMonthly.toFixed(2),
+      netAnnual: (netMonthly * 14).toFixed(2),
+    });
+    setLoading(false);
   };
 
   const handleAskFaqAI = async () => {
@@ -1241,10 +1227,10 @@ export default function App() {
       if (data.choices && data.choices[0].message.content) {
         setFaqAnswer(data.choices[0].message.content.trim());
       } else {
-        setFaqAnswer('Keine Antwort erhalten.');
+        setFaqAnswer('Entschuldigung, die KI konnte gerade keine Antwort generieren. Bitte versuche es noch einmal.');
       }
     } catch {
-      setFaqAnswer('Verbindungsfehler zur KI.');
+        setFaqAnswer('Verbindungsfehler zur KI. Bitte prüfe deine Internetverbindung.');
     } finally {
       setFaqLoading(false);
     }
@@ -2117,7 +2103,7 @@ const styles = StyleSheet.create({
   resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
   resultBody: { fontSize: 16, color: '#14532D', fontWeight: '700', marginTop: 4 },
   audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
-  audioBtnText: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
+  audioBtnTest: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
   calcResultCard: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 1, borderColor: '#E2E8F0' },
   netLabel: { fontSize: 11, fontWeight: '700', color: '#64748B', textTransform: 'uppercase' },
   netValue: { fontSize: 26, fontWeight: '900', color: '#0F5132', marginTop: 2 },
