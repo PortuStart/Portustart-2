@@ -257,6 +257,21 @@ const LOCALES = {
     subCatNature: 'Natur & Parks',
     subCatShopping: 'Shopping',
     subCatBeach: 'Strände',
+    tutorialSteps: [
+      { title: 'Willkommen bei PortuStart! 🇵🇹', desc: 'Dein ultimativer Begleiter für einen reibungslosen Umzug und Start in Portugal. Lass uns die wichtigsten Funktionen erkunden!' },
+      { title: '1. Services & Roadmap 📋', desc: 'Hier findest du deine 30-Tage-Checkliste für alle Behördengänge und wichtigen Erledigungen.' },
+      { title: '2. NIF (Steuernummer) 📄', desc: 'Der absolute Pflicht-Schritt 1! Du benötigst die NIF für absolut alles: Miete, Handytarif, Arbeit und Bankkonto.' },
+      { title: '3. Bankkonto 💳', desc: 'Schritt 2: Eröffne ein offizielles portugiesisches Bankkonto, um Gehalt zu empfangen und Mieten zu hinterlegen.' },
+      { title: '4. NISS (Sozialversicherung) 🛡️', desc: 'Schritt 3: Deine Sozialversicherungsnummer ist zwingend für deinen Arbeitsvertrag und spätere Rentenansprüche.' },
+      { title: '5. Krankenversicherung 🏥', desc: 'Schritt 4: Schließe eine visumskonforme Auslandskrankenversicherung ab, bevor du Zugriff auf das staatliche SNS erhältst.' },
+      { title: '6. Karten & Orte 🗺️', desc: 'Entdecke kuratierte Orte, Cafés, Kultur-Highlights und finde direkt das zuständige Centro de Saúde für deine Adresse.' },
+      { title: '7. Übersetzer 🗣️', desc: 'Ein eingebauter Echtzeit-Übersetzer inklusive Spracherkennung (STT) und Sprachausgabe (TTS) für den Alltag.' },
+      { title: '8. Gehaltsrechner 💶', desc: 'Berechne präzise dein Nettoeinkommen in Portugal unter Berücksichtigung von 12 oder 14 Monatsgehältern und Steuern.' },
+      { title: '9. Bereit für den Start! 🚀', desc: 'Du kannst diesen Guide jederzeit über das Fragezeichen-Symbol oben neben deinem Profil aufrufen. Viel Erfolg!' }
+    ],
+    tutorialNext: 'Weiter',
+    tutorialPrev: 'Zurück',
+    tutorialFinish: 'Loslegen!',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -354,6 +369,21 @@ const LOCALES = {
     subCatNature: 'Nature & Parks',
     subCatShopping: 'Shopping',
     subCatBeach: 'Beaches',
+    tutorialSteps: [
+      { title: 'Welcome to PortuStart! 🇵🇹', desc: 'Your ultimate companion for a smooth move and start in Portugal. Let us explore the main features!' },
+      { title: '1. Services & Roadmap 📋', desc: 'Here you will find your 30-day checklist for all official procedures and essential tasks.' },
+      { title: '2. NIF (Tax Number) 📄', desc: 'The absolute mandatory Step 1! You need the NIF for everything: rent, mobile plan, job, and bank account.' },
+      { title: '3. Bank Account 💳', desc: 'Step 2: Open an official Portuguese bank account to receive salary and handle rental deposits.' },
+      { title: '4. NISS (Social Security) 🛡️', desc: 'Step 3: Your social security number is mandatory for your employment contract and future pension claims.' },
+      { title: '5. Health Insurance 🏥', desc: 'Step 4: Get a visa-compliant health insurance before gaining access to the public SNS system.' },
+      { title: '6. Maps & Places 🗺️', desc: 'Discover curated locations, cafes, cultural highlights, and instantly find the responsible Centro de Saúde for your address.' },
+      { title: '7. Translator 🗣️', desc: 'A built-in real-time translator including speech recognition (STT) and text-to-speech (TTS) for daily life.' },
+      { title: '8. Salary Calculator 💶', desc: 'Accurately calculate your net income in Portugal taking 12 or 14 salary payments and taxes into account.' },
+      { title: '9. Ready for Takeoff! 🚀', desc: 'You can reopen this guide anytime using the question mark icon in the header next to your profile. Good luck!' }
+    ],
+    tutorialNext: 'Next',
+    tutorialPrev: 'Back',
+    tutorialFinish: 'Get Started!',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -451,6 +481,21 @@ const LOCALES = {
     subCatNature: 'Naturaleza y Parques',
     subCatShopping: 'Compras',
     subCatBeach: 'Playas',
+    tutorialSteps: [
+      { title: '¡Bienvenido a PortuStart! 🇵🇹', desc: 'Tu compañero definitivo para una mudanza y un inicio sin problemas en Portugal. ¡Exploremos las funciones principales!' },
+      { title: '1. Servicios y Hoja de Ruta 📋', desc: 'Aquí encontrarás tu lista de verificación de 30 días para todos los trámites burocráticos y tareas esenciales.' },
+      { title: '2. NIF (Número Fiscal) 📄', desc: '¡El Paso 1 obligatorio! Necesitas el NIF para todo: alquiler, línea móvil, trabajo y cuenta bancaria.' },
+      { title: '3. Cuenta Bancaria 💳', desc: 'Paso 2: Abre una cuenta bancaria oficial en Portugal para recibir tu salario y depositar alquileres.' },
+      { title: '4. NISS (Seguridad Social) 🛡️', desc: 'Paso 3: Tu número de seguridad social es obligatorio para tu contrato laboral y futuros derechos de pensión.' },
+      { title: '5. Seguro Médico 🏥', desc: 'Paso 4: Contrata un seguro médico compatible con el visado antes de acceder al SNS público.' },
+      { title: '6. Mapas y Lugares 🗺️', desc: 'Descubre ubicaciones seleccionadas, cafés, cultura y encuentra al instante el Centro de Saúde responsable de tu dirección.' },
+      { title: '7. Traductor 🗣️', desc: 'Un traductor en tiempo real integrado con reconocimiento de voz (STT) y síntesis de voz (TTS) para el día a día.' },
+      { title: '8. Calculadora de Salario 💶', desc: 'Calcula con precisión tus ingresos netos en Portugal teniendo en cuenta 12 o 14 pagas y los impuestos.' },
+      { title: '9. ¡Listo para despegar! 🚀', desc: 'Puedes reabrir esta guía en cualquier momento usando el icono de interrogación en el encabezado junto a tu perfil. ¡Mucho éxito!' }
+    ],
+    tutorialNext: 'Siguiente',
+    tutorialPrev: 'Anterior',
+    tutorialFinish: '¡Comenzar!',
     checklist: [
       { id: 1, title: 'Solicitar número fiscal (NIF)', tip: 'La clave para alquileres, SIM, trabajo y suministros.' },
       { id: 2, title: 'Conseguir tarjeta SIM portuguesa', tip: 'Esencial para autenticación digital (Chave Móvel).' },
@@ -548,6 +593,21 @@ const LOCALES = {
     subCatNature: 'Nature & Parcs',
     subCatShopping: 'Shopping',
     subCatBeach: 'Plages',
+    tutorialSteps: [
+      { title: 'Bienvenue sur PortuStart ! 🇵🇹', desc: 'Votre compagnon ultime pour une installation et un début réussis au Portugal. Explorons les fonctionnalités principales !' },
+      { title: '1. Services & Feuille de route 📋', desc: 'Retrouvez ici votre liste de tâches sur 30 jours pour toutes les démarches administratives et essentielles.' },
+      { title: '2. NIF (Numéro fiscal) 📄', desc: 'L’étape 1 indispensable ! Vous avez besoin du NIF pour tout : loyer, abonnement mobile, travail et compte bancaire.' },
+      { title: '3. Compte bancaire 💳', desc: 'Étape 2 : Ouvrez un compte bancaire officiel au Portugal pour percevoir votre salaire et verser les cautions.' },
+      { title: '4. NISS (Sécurité sociale) 🛡️', desc: 'Étape 3 : Votre numéro de sécurité sociale est obligatoire pour votre contrat de travail et vos futurs droits à la retraite.' },
+      { title: '5. Assurance santé 🏥', desc: 'Étape 4 : Souscrivez une assurance maladie conforme aux exigences de visa avant d’accéder au système public SNS.' },
+      { title: '6. Cartes & Lieux 🗺️', desc: 'Découvrez des lieux sélectionnés, des cafés, de la culture et trouvez instantanément le Centro de Saúde de votre adresse.' },
+      { title: '7. Traducteur 🗣️', desc: 'Un traducteur en temps réel intégré avec reconnaissance vocale (STT) et synthèse vocale (TTS) pour le quotidien.' },
+      { title: '8. Calculateur de salaire 💶', desc: 'Calculez précisément votre revenu net au Portugal en tenant compte de 12 ou 14 versements et des impôts.' },
+      { title: '9. Prêt pour le départ ! 🚀', desc: 'Vous pouvez rouvrir ce guide à tout moment en cliquant sur l’icône d’interrogation dans l’en-tête, à côté de votre profil. Bon succès !' }
+    ],
+    tutorialNext: 'Suivant',
+    tutorialPrev: 'Retour',
+    tutorialFinish: 'Commencer !',
     checklist: [
       { id: 1, title: 'Obtenir votre numéro fiscal (NIF)', tip: 'La clé pour le loyer, la carte SIM, l’emploi et les services.' },
       { id: 2, title: 'Obtenir une carte SIM portugaise', tip: 'Essentiel pour l’authentification numérique (Chave Móvel).' },
@@ -645,6 +705,21 @@ const LOCALES = {
     subCatNature: 'Natura e Parchi',
     subCatShopping: 'Shopping',
     subCatBeach: 'Spiagge',
+    tutorialSteps: [
+      { title: 'Benvenuto su PortuStart! 🇵🇹', desc: 'Il tuo compagno ideale per un trasferimento e un inizio sereno in Portogallo. Esploriamo insieme le funzioni principali!' },
+      { title: '1. Servizi & Roadmap 📋', desc: 'Qui troverai la checklist di 30 giorni per tutte le pratiche burocratiche e gli adempimenti essenziali.' },
+      { title: '2. NIF (Codice Fiscale) 📄', desc: 'Il fondamentale Passo 1! Il NIF serve per qualsiasi cosa: affitto, SIM telefonica, lavoro e conto bancario.' },
+      { title: '3. Conto Bancario 💳', desc: 'Passo 2: Apri un conto corrente ufficiale in Portogallo per ricevere lo stipendio e gestire la cauzione d’affitto.' },
+      { title: '4. NISS (Previdenza Sociale) 🛡️', desc: 'Passo 3: Il numero di previdenza sociale è obbligatorio per il contratto di lavoro e i futuri contributi pensionistici.' },
+      { title: '5. Assicurazione Sanitaria 🏥', desc: 'Passo 4: Stipula un’assicurazione conforme al visto prima di accedere al sistema sanitario pubblico SNS.' },
+      { title: '6. Mappe & Luoghi 🗺️', desc: 'Scopri luoghi selezionati, caffè, cultura e trova subito il Centro de Saúde competente per il tuo indirizzo.' },
+      { title: '7. Traduttore 🗣️', desc: 'Un traduttore in tempo reale con riconoscimento vocale (STT) e sintesi vocale (TTS) per la vita di tutti i giorni.' },
+      { title: '8. Calcolatore Stipendio 💶', desc: 'Calcola con precisione il tuo stipendio netto in Portogallo considerando 12 o 14 mensilità e le tasse.' },
+      { title: '9. Pronto per partire! 🚀', desc: 'Puoi riaprire questa guida in qualsiasi momento cliccando sull’icona del punto interrogativo nell’intestazione accanto al tuo profilo. Buon lavoro!' }
+    ],
+    tutorialNext: 'Avanti',
+    tutorialPrev: 'Indietro',
+    tutorialFinish: 'Inizia!',
     checklist: [
       { id: 1, title: 'Ottieni il codice fiscale (NIF)', tip: 'La chiave per affitto, SIM, lavoro e utenze.' },
       { id: 2, title: 'Procura una scheda SIM portoghese', tip: 'Essenziale per l’autenticazione digitale (Chave Móvel).' },
@@ -667,7 +742,10 @@ const EMERGENCIES = [
 export default function App() {
   const [appLang, setAppLang] = useState('en');
   const [langModalVisible, setLangModalVisible] = useState(false);
-  const [profileModalVisible, setProfileModalVisible] = useState(true);
+  const [profileModalVisible, setProfileModalVisible] = useState(false);
+  const [tutorialModalVisible, setTutorialModalVisible] = useState(true);
+  const [tutorialStep, setTutorialStep] = useState(0);
+
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
@@ -868,6 +946,11 @@ export default function App() {
               </View>
             </View>
             <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
+              {/* Tutorial Guide Button */}
+              <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => { setTutorialStep(0); setTutorialModalVisible(true); }}>
+                <Ionicons name="help-circle-outline" size={15} color="#fff" />
+              </TouchableOpacity>
+
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setProfileModalVisible(true)}>
                 <Ionicons name="person-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
                 <Text style={styles.langSwitchHeaderText}>Profil</Text>
@@ -1305,6 +1388,49 @@ export default function App() {
             )}
           </ScrollView>
         )}
+
+        {/* MODAL: TUTORIAL & GUIDE SLIDESHOW */}
+        <Modal visible={tutorialModalVisible} transparent animationType="slide" onRequestClose={() => setTutorialModalVisible(false)}>
+          <View style={styles.modalOverlay}>
+            <View style={[styles.modalCard, { maxWidth: 380, padding: 22 }]}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+                <View style={styles.tutorialIndicatorBadge}>
+                  <Text style={styles.tutorialIndicatorText}>Step {tutorialStep + 1} / {t.tutorialSteps.length}</Text>
+                </View>
+                <TouchableOpacity onPress={() => setTutorialModalVisible(false)}>
+                  <Ionicons name="close-circle" size={24} color="#64748B" />
+                </TouchableOpacity>
+              </View>
+
+              <View style={{ minHeight: 140, justifyContent: 'center' }}>
+                <Text style={[styles.modalTitle, { textAlign: 'left', fontSize: 18, marginBottom: 8 }]}>
+                  {t.tutorialSteps[tutorialStep].title}
+                </Text>
+                <Text style={{ fontSize: 13.5, color: '#475569', lineHeight: 20 }}>
+                  {t.tutorialSteps[tutorialStep].desc}
+                </Text>
+              </View>
+
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20 }}>
+                {tutorialStep > 0 ? (
+                  <TouchableOpacity style={styles.tutorialNavBtnSecondary} onPress={() => setTutorialStep(tutorialStep - 1)}>
+                    <Text style={styles.tutorialNavBtnSecondaryText}>{t.tutorialPrev}</Text>
+                  </TouchableOpacity>
+                ) : <View />}
+
+                {tutorialStep < t.tutorialSteps.length - 1 ? (
+                  <TouchableOpacity style={styles.primaryBtn} onPress={() => setTutorialStep(tutorialStep + 1)}>
+                    <Text style={styles.btnText}>{t.tutorialNext}</Text>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: '#166534' }]} onPress={() => setTutorialModalVisible(false)}>
+                    <Text style={styles.btnText}>{t.tutorialFinish}</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            </View>
+          </View>
+        </Modal>
 
         {/* MODAL: EXPAT PROFIL & DATEN */}
         <Modal visible={profileModalVisible} transparent animationType="slide" onRequestClose={() => setProfileModalVisible(false)}>
@@ -1776,4 +1902,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   italkiActionBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
+  tutorialIndicatorBadge: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 10, borderRadius: 8 },
+  tutorialIndicatorText: { fontSize: 12, fontWeight: '800', color: '#0F5132' },
+  tutorialNavBtnSecondary: { paddingVertical: 12, paddingHorizontal: 16, borderRadius: 12, backgroundColor: '#F1F5F9', justifyContent: 'center', alignItems: 'center' },
+  tutorialNavBtnSecondaryText: { color: '#334155', fontSize: 14, fontWeight: '700' },
 });
