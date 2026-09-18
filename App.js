@@ -1439,7 +1439,7 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              {/* App Icon: Voll ausgefüllte runde Portugal-Flagge mit dynamischem Umlauf-Pfeil */}
+              {/* App Icon: Voll ausgefüllte runde Flagge mit dynamischem Umlauf-Pfeil */}
               <View style={styles.appIconWrapper}>
                 <View style={styles.appIconOrbitArrow} />
                 <View style={styles.appIconFlagCircleFull}>
