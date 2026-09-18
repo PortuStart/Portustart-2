@@ -229,6 +229,12 @@ const LOCALES = {
     calcGrossRow: 'Brutto / Monat:',
     calcSSRow: 'Sozialversicherung (-11%):',
     calcIRSRow: 'IRS Steuerabzug:',
+    calcPayments12: '12 Gehälter',
+    calcPayments14: '14 Gehälter',
+    calcTaxSingle: 'Single ohne Kinder (Não casado)',
+    calcTaxMarried1: 'Verheiratet (1 Verdiener / Único titular)',
+    calcTaxMarried2: 'Verheiratet (2 Verdiener / Dois titulares)',
+    calcNetNote: (payments) => `Auszahlung auf Basis von ${payments} Gehältern / Jahr`,
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -298,6 +304,12 @@ const LOCALES = {
     calcGrossRow: 'Monthly Gross:',
     calcSSRow: 'Social Security (-11%):',
     calcIRSRow: 'IRS Withholding:',
+    calcPayments12: '12 payments',
+    calcPayments14: '14 payments',
+    calcTaxSingle: 'Single without children (Não casado)',
+    calcTaxMarried1: 'Married (1 earner / Único titular)',
+    calcTaxMarried2: 'Married (2 earners / Dois titulares)',
+    calcNetNote: (payments) => `Payout based on ${payments} payments / year`,
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -367,6 +379,12 @@ const LOCALES = {
     calcGrossRow: 'Bruto mensual:',
     calcSSRow: 'Seguridad Social (-11%):',
     calcIRSRow: 'Retención IRS:',
+    calcPayments12: '12 pagas',
+    calcPayments14: '14 pagas',
+    calcTaxSingle: 'Soltero sin hijos (Não casado)',
+    calcTaxMarried1: 'Casado (1 sueldo / Único titular)',
+    calcTaxMarried2: 'Casado (2 sueldos / Dois titulares)',
+    calcNetNote: (payments) => `Pago basado en ${payments} pagas / año`,
     checklist: [
       { id: 1, title: 'Solicitar número fiscal (NIF)', tip: 'La clave para alquileres, SIM, trabajo y suministros.' },
       { id: 2, title: 'Conseguir tarjeta SIM portuguesa', tip: 'Esencial para autenticación digital (Chave Móvel).' },
@@ -374,7 +392,7 @@ const LOCALES = {
       { id: 4, title: 'Contratar seguro médico de expatriado', tip: 'Esencial para el visado y atención previa al SNS.' },
       { id: 5, title: 'Obtener número de Seguridad Social (NISS)', tip: 'Obligatorio para contratos y pensiones.' },
       { id: 6, title: 'Certificado de Registro UE (CRUE)', tip: 'Certificado de residencia oficial para ciudadanos de la UE.' },
-      { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso al centros de salud públicos y médico de cabecera.' },
+      { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso a centros de salud públicos y médico de cabecera.' },
     ],
     citiesData: CITIES_DATA,
   },
@@ -436,6 +454,12 @@ const LOCALES = {
     calcGrossRow: 'Brut mensuel :',
     calcSSRow: 'Sécurité Sociale (-11%) :',
     calcIRSRow: 'Retenue IRS :',
+    calcPayments12: '12 versements',
+    calcPayments14: '14 versements',
+    calcTaxSingle: 'Célibataire sans enfants (Não casado)',
+    calcTaxMarried1: 'Marié (1 salaire / Único titular)',
+    calcTaxMarried2: 'Marié (2 salaires / Dois titulares)',
+    calcNetNote: (payments) => `Versement basé sur ${payments} versements / an`,
     checklist: [
       { id: 1, title: 'Obtenir votre numéro fiscal (NIF)', tip: 'La clé pour le loyer, la carte SIM, l’emploi et les services.' },
       { id: 2, title: 'Obtenir une carte SIM portugaise', tip: 'Essentiel pour l’authentification numérique (Chave Móvel).' },
@@ -505,6 +529,12 @@ const LOCALES = {
     calcGrossRow: 'Lordo mensile:',
     calcSSRow: 'Previdenza Sociale (-11%):',
     calcIRSRow: 'Trattenuta IRS:',
+    calcPayments12: '12 mensilità',
+    calcPayments14: '14 mensilità',
+    calcTaxSingle: 'Single senza figli (Não casado)',
+    calcTaxMarried1: 'Coniugato (1 stipendio / Único titular)',
+    calcTaxMarried2: 'Coniugato (2 stipendi / Dois titulares)',
+    calcNetNote: (payments) => `Accredito basato su ${payments} mensilità / anno`,
     checklist: [
       { id: 1, title: 'Ottieni il codice fiscale (NIF)', tip: 'La chiave per affitto, SIM, lavoro e utenze.' },
       { id: 2, title: 'Procura una scheda SIM portoghese', tip: 'Essenziale per l’autenticazione digitale (Chave Móvel).' },
@@ -527,7 +557,6 @@ const EMERGENCIES = [
 export default function App() {
   const [appLang, setAppLang] = useState('de');
   const [langModalVisible, setLangModalVisible] = useState(false);
-  // Hier wieder auf true gesetzt, damit es beim Start direkt öffnet:
   const [profileModalVisible, setProfileModalVisible] = useState(true);
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
@@ -1076,13 +1105,16 @@ export default function App() {
 
               <Text style={styles.inputFieldLabel}>{t.calcPaymentsLabel}</Text>
               <View style={{ flexDirection: 'row', gap: 10, marginBottom: 4 }}>
-                {['12', '14'].map((num) => (
+                {[
+                  { id: '12', label: t.calcPayments12 },
+                  { id: '14', label: t.calcPayments14 },
+                ].map((item) => (
                   <TouchableOpacity
-                    key={num}
-                    style={[styles.modalLangBtn, paymentsCount === num && styles.modalLangBtnActive, { width: '48%' }]}
-                    onPress={() => setPaymentsCount(num)}
+                    key={item.id}
+                    style={[styles.modalLangBtn, paymentsCount === item.id && styles.modalLangBtnActive, { width: '48%' }]}
+                    onPress={() => setPaymentsCount(item.id)}
                   >
-                    <Text style={[styles.modalLangText, paymentsCount === num && styles.modalLangTextActive]}>{num} Gehälter</Text>
+                    <Text style={[styles.modalLangText, paymentsCount === item.id && styles.modalLangTextActive]}>{item.label}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
@@ -1090,9 +1122,9 @@ export default function App() {
               <Text style={styles.inputFieldLabel}>{t.calcStatusLabel}</Text>
               <View style={{ gap: 6, marginBottom: 10 }}>
                 {[
-                  { id: 'single', label: 'Single ohne Kinder (Não casado)' },
-                  { id: 'married_1', label: 'Verheiratet (1 Verdiener / Único titular)' },
-                  { id: 'married_2', label: 'Verheiratet (2 Verdiener / Dois titulares)' },
+                  { id: 'single', label: t.calcTaxSingle },
+                  { id: 'married_1', label: t.calcTaxMarried1 },
+                  { id: 'married_2', label: t.calcTaxMarried2 },
                 ].map((st) => (
                   <TouchableOpacity
                     key={st.id}
@@ -1109,7 +1141,7 @@ export default function App() {
               <View style={styles.calcResultCard}>
                 <Text style={styles.netLabel}>{t.calcNetMonthly}</Text>
                 <Text style={styles.netValue}>{calcResult.netMonthly} €</Text>
-                <Text style={styles.netNote}>Auszahlung auf Basis von {paymentsCount} Gehältern / Jahr (Jahresnetto: {calcResult.netAnnual} €)</Text>
+                <Text style={styles.netNote}>{t.calcNetNote(paymentsCount)} (Jahresnetto: {calcResult.netAnnual} €)</Text>
                 <View style={styles.calcDivider} />
                 <View style={styles.row}>
                   <Text style={styles.rowLabel}>{t.calcGrossRow}</Text>
@@ -1202,9 +1234,9 @@ export default function App() {
                 <Text style={styles.inputFieldLabel}>Familienstand (für Steuerberechnung):</Text>
                 <View style={{ gap: 6 }}>
                   {[
-                    { id: 'single', label: 'Single ohne Kinder (Não casado)' },
-                    { id: 'married_1', label: 'Verheiratet (1 Verdiener / Único titular)' },
-                    { id: 'married_2', label: 'Verheiratet (2 Verdiener / Dois titulares)' },
+                    { id: 'single', label: t.calcTaxSingle },
+                    { id: 'married_1', label: t.calcTaxMarried1 },
+                    { id: 'married_2', label: t.calcTaxMarried2 },
                   ].map((st) => (
                     <TouchableOpacity
                       key={st.id}
