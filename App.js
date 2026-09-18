@@ -250,6 +250,13 @@ const LOCALES = {
     profileSalaryLabel: 'Geplantes Monatsgehalt (€):',
     profileStatusLabel: 'Familienstand (für Steuerberechnung):',
     profileSaveBtn: 'Daten speichern & Weiter',
+    subCatAll: 'Alle',
+    subCatCafe: 'Cafés & Food',
+    subCatBar: 'Bars & Nightlife',
+    subCatCulture: 'Kultur & Museen',
+    subCatNature: 'Natur & Parks',
+    subCatShopping: 'Shopping',
+    subCatBeach: 'Strände',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -340,6 +347,13 @@ const LOCALES = {
     profileSalaryLabel: 'Planned Monthly Salary (€):',
     profileStatusLabel: 'Marital status (for tax calculation):',
     profileSaveBtn: 'Save data & Continue',
+    subCatAll: 'All',
+    subCatCafe: 'Cafes & Food',
+    subCatBar: 'Bars & Nightlife',
+    subCatCulture: 'Culture & Museums',
+    subCatNature: 'Nature & Parks',
+    subCatShopping: 'Shopping',
+    subCatBeach: 'Beaches',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -430,6 +444,13 @@ const LOCALES = {
     profileSalaryLabel: 'Salario mensual previsto (€):',
     profileStatusLabel: 'Estado civil (para cálculo de impuestos):',
     profileSaveBtn: 'Guardar datos y continuar',
+    subCatAll: 'Todos',
+    subCatCafe: 'Cafés y Comida',
+    subCatBar: 'Bares y Noche',
+    subCatCulture: 'Cultura y Museos',
+    subCatNature: 'Naturaleza y Parques',
+    subCatShopping: 'Compras',
+    subCatBeach: 'Playas',
     checklist: [
       { id: 1, title: 'Solicitar número fiscal (NIF)', tip: 'La clave para alquileres, SIM, trabajo y suministros.' },
       { id: 2, title: 'Conseguir tarjeta SIM portuguesa', tip: 'Esencial para autenticación digital (Chave Móvel).' },
@@ -520,6 +541,13 @@ const LOCALES = {
     profileSalaryLabel: 'Salaire mensuel prévu (€) :',
     profileStatusLabel: 'Situation familiale (pour le calcul des impôts) :',
     profileSaveBtn: 'Enregistrer & Continuer',
+    subCatAll: 'Tous',
+    subCatCafe: 'Cafés & Nourriture',
+    subCatBar: 'Bars & Nuit',
+    subCatCulture: 'Culture & Musées',
+    subCatNature: 'Nature & Parcs',
+    subCatShopping: 'Shopping',
+    subCatBeach: 'Plages',
     checklist: [
       { id: 1, title: 'Obtenir votre numéro fiscal (NIF)', tip: 'La clé pour le loyer, la carte SIM, l’emploi et les services.' },
       { id: 2, title: 'Obtenir une carte SIM portugaise', tip: 'Essentiel pour l’authentification numérique (Chave Móvel).' },
@@ -610,6 +638,13 @@ const LOCALES = {
     profileSalaryLabel: 'Stipendio mensile previsto (€):',
     profileStatusLabel: 'Stato civile (per calcolo tasse):',
     profileSaveBtn: 'Salva dati e Continua',
+    subCatAll: 'Tutti',
+    subCatCafe: 'Caffè e Cibo',
+    subCatBar: 'Bar e Notte',
+    subCatCulture: 'Cultura e Musei',
+    subCatNature: 'Natura e Parchi',
+    subCatShopping: 'Shopping',
+    subCatBeach: 'Spiagge',
     checklist: [
       { id: 1, title: 'Ottieni il codice fiscale (NIF)', tip: 'La chiave per affitto, SIM, lavoro e utenze.' },
       { id: 2, title: 'Procura una scheda SIM portoghese', tip: 'Essenziale per l’autenticazione digitale (Chave Móvel).' },
@@ -636,6 +671,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('services');
   const [selectedCityId, setSelectedCityId] = useState('lisboa');
   const [activePlaceFilter, setActivePlaceFilter] = useState('explore');
+  const [activeSubCategory, setActiveSubCategory] = useState('all');
 
   const [profileData, setProfileData] = useState({
     fullName: '',
@@ -725,6 +761,18 @@ export default function App() {
   }, [grossInput, paymentsCount, taxStatus]);
 
   const currentCityObj = t.citiesData.find((c) => c.id === selectedCityId) || t.citiesData[0];
+
+  const filteredPlaces = currentCityObj.places.filter((place) => {
+    if (activeSubCategory === 'all') return true;
+    const cat = place.category.toLowerCase();
+    if (activeSubCategory === 'cafe') return cat.includes('coffee') || cat.includes('pastries') || cat.includes('cafe') || cat.includes('vegan');
+    if (activeSubCategory === 'bar') return cat.includes('bar') || cat.includes('club') || cat.includes('pub');
+    if (activeSubCategory === 'culture') return cat.includes('museum') || cat.includes('cultural') || cat.includes('monastery') || cat.includes('gallery') || cat.includes('castle') || cat.includes('historic');
+    if (activeSubCategory === 'nature') return cat.includes('park') || cat.includes('garden') || cat.includes('scenic') || cat.includes('mountain') || cat.includes('preserve');
+    if (activeSubCategory === 'shopping') return cat.includes('store') || cat.includes('clothing') || cat.includes('market') || cat.includes('goods') || cat.includes('shop') || cat.includes('hand');
+    if (activeSubCategory === 'beach') return cat.includes('beach');
+    return true;
+  });
 
   const toggleChecklistItem = (id) => {
     setCheckedMap({ ...checkedMap, [id]: !checkedMap[id] });
@@ -980,17 +1028,40 @@ export default function App() {
               </View>
 
               {activePlaceFilter === 'explore' && (
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
-                  {t.citiesData.map((city) => {
-                    const isSelected = selectedCityId === city.id;
-                    return (
-                      <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => { setSelectedCityId(city.id); setMapQueryOverride(null); }}>
-                        <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
-                        <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
+                <>
+                  <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.cityFilterScroll}>
+                    {t.citiesData.map((city) => {
+                      const isSelected = selectedCityId === city.id;
+                      return (
+                        <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => { setSelectedCityId(city.id); setMapQueryOverride(null); }}>
+                          <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                          <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </ScrollView>
+
+                  {/* UNTERKATEGORIEN FILTER */}
+                  <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={[styles.cityFilterScroll, { marginTop: 4 }]}>
+                    {[
+                      { id: 'all', label: t.subCatAll, icon: 'apps' },
+                      { id: 'cafe', label: t.subCatCafe, icon: 'cafe' },
+                      { id: 'bar', label: t.subCatBar, icon: 'beer' },
+                      { id: 'culture', label: t.subCatCulture, icon: 'color-palette' },
+                      { id: 'nature', label: t.subCatNature, icon: 'leaf' },
+                      { id: 'shopping', label: t.subCatShopping, icon: 'cart' },
+                      { id: 'beach', label: t.subCatBeach, icon: 'sunny' },
+                    ].map((sub) => {
+                      const isSubSelected = activeSubCategory === sub.id;
+                      return (
+                        <TouchableOpacity key={sub.id} style={[styles.cityChip, isSubSelected && styles.cityChipActive]} onPress={() => setActiveSubCategory(sub.id)}>
+                          <Ionicons name={sub.icon} size={13} color={isSubSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                          <Text style={[styles.cityChipText, isSubSelected && styles.cityChipTextActive]}>{sub.label}</Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </ScrollView>
+                </>
               )}
 
               <View style={styles.liveMapWrapper}>
@@ -1018,13 +1089,13 @@ export default function App() {
                     <Text style={styles.activeCityTagline}>{currentCityObj.tagline}</Text>
                   </View>
                   <View style={styles.cityPlacesCounter}>
-                    <Text style={styles.cityPlacesCounterText}>{currentCityObj.places.length} Orte</Text>
+                    <Text style={styles.cityPlacesCounterText}>{filteredPlaces.length} Orte</Text>
                   </View>
                 </View>
 
                 <Text style={[styles.miniLabel, { marginHorizontal: 4, marginBottom: 8 }]}>{t.swipeInstruction}</Text>
 
-                {currentCityObj.places.map((place) => (
+                {filteredPlaces.map((place) => (
                   <View key={place.id} style={styles.placeCardSimple}>
                     <View style={styles.placeCardHeaderRow}>
                       <View style={styles.placeIconBadge}>
