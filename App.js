@@ -677,11 +677,17 @@ const LOCALES = {
     applyOnlineBtn: 'Jetzt online beantragen ↗',
     affiliateDisclosure: 'Transparenz: Über diese Links erhältst du geprüfte Express-Bearbeitung bei e-Residence. Wir erhalten eine kleine Vermittlungsprovision – für dich bleibt der Preis unverändert.',
     affiliateCards: [
-      { key: 'nif', title: 'NIF (Portugiesische Steuernummer)', badge: 'Schritt 1 • Pflicht', desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Portugiesisches Bankkonto', badge: 'Schritt 2 • IBAN', desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 3 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 4 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+      { key: 'nif', title: 'NIF (Portugiesische Steuernummer)', badge: 'Schritt 2 • Pflicht', desc: 'Der Schlüssel für Miete, SIM-Karte, Job und Bankkonto.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Portugiesisches Bankkonto', badge: 'Schritt 3 • IBAN', desc: 'Eröffne ein offizielles Bankkonto bei führenden portugiesischen Banken.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Sozialversicherungsnummer)', badge: 'Schritt 4 • Arbeit', desc: 'Notwendig für Arbeitsvertrag, Gehaltseingang und Rentenbeiträge.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Internationale Krankenversicherung', badge: 'Schritt 5 • Visum & Schutz', desc: 'Visum-konforme Auslandskrankenversicherung vor dem SNS-Zugang.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
+    euCertServiceCard: {
+      title: 'EU-Anmeldebescheinigung (CRUE / SIGA)',
+      badge: 'Schritt 1 • Pflicht für EU-Bürger',
+      desc: 'Offizieller Termin- und Serviceservice zur Registrierung deines Aufenthalts in Portugal nach 3 Monaten.',
+      btnText: 'Offizielles EU-Zertifikat / Termin ↗',
+    },
     calcTitle: '💶 Brutto-Netto-Gehaltsrechner',
     calcSub: 'Berechne das Netto (automatische Umrechnung bei 12 oder 14 Monatsgehältern).',
     calcGrossLabel: 'Bruttogehalt (€):',
@@ -721,10 +727,10 @@ const LOCALES = {
     subCatBeach: 'Strände',
     tutorialSteps: [
       { title: 'Willkommen bei PortuStart! 🇵🇹', desc: 'Dein ultimativer Begleiter für einen reibungslosen Umzug. Schau auf die Menüleiste unten 👇 – wir führen dich jetzt durch alle Tabs!' },
-      { title: '1. Services & Roadmap 📋 (Tab aktiv)', desc: 'Schau nach oben ⬆️: Hier siehst du die 30-Tage-Checkliste und offizielle Services (NIF, Bank, NISS, Krankenversicherung).' },
-      { title: '2. NIF (Steuernummer) 📄', desc: 'Der absolute Pflicht-Schritt 1 in den Services! Ohne NIF läuft in Portugal nichts (Miete, SIM-Karte, Job).' },
-      { title: '3. Bankkonto 💳', desc: 'Schritt 2 in den Services: Eröffne ein offizielles Konto für Gehaltseingang und Wohnungskaution.' },
-      { title: '4. NISS & Krankenversicherung 🛡️🏥', desc: 'Schritte 3 & 4: Sozialversicherung für deinen Job und Auslandskrankenversicherung für dein Visum.' },
+      { title: '1. Services & Roadmap 📋 (Tab aktiv)', desc: 'Schau nach oben ⬆️: Hier siehst du die 30-Tage-Checkliste und offizielle Services (EU-Zertifikat als Schritt 1, NIF, Bank, NISS, Krankenversicherung).' },
+      { title: '2. EU-Anmeldebescheinigung (Schritt 1) 🏛️', desc: 'Das offizielle EU-Zertifikat ist der allererste offizielle Schritt für EU-Bürger nach Ankunft in Portugal.' },
+      { title: '3. NIF (Steuernummer) 📄', desc: 'Pflicht-Schritt 2! Du benötigst die NIF für absolut alles: Miete, Handytarif, Arbeit und Bankkonto.' },
+      { title: '4. Bankkonto & NISS 💳🛡️', desc: 'Schritte 3 & 4: Eröffne dein Bankkonto und erhalte deine Sozialversicherungsnummer für den Arbeitsvertrag.' },
       { title: '5. Karten & Orte 🗺️ (Tab wechselt)', desc: 'Klicke auf den Tab "Karten" 👈 in der unteren Leiste. Hier findest du kuratierte Orte und den Centro de Saúde Finder.' },
       { title: '6. Unterkategorien filtern 🏷️', desc: 'Nutze die Filter oben in den Karten (Cafés, Bars, Kultur, Natur, Shopping, Strände), um gezielt Orte zu finden.' },
       { title: '7. Übersetzer 🗣️ (Tab wechselt)', desc: 'Wechsle zum Tab "Übersetzer" 👈 unten. Perfekt für den Alltag mit Spracherkennung (STT) und Sprachausgabe (TTS).' },
@@ -788,11 +794,17 @@ const LOCALES = {
     applyOnlineBtn: 'Apply online now ↗',
     affiliateDisclosure: 'Transparency notice: These links route to certified express processing with e-Residence. We receive a small referral commission at no additional cost to you.',
     affiliateCards: [
-      { key: 'nif', title: 'NIF (Portuguese Tax Number)', badge: 'Step 1 • Mandatory', desc: 'The key for rent, SIM card, job and bank account.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Portuguese Bank Account', badge: 'Step 2 • IBAN', desc: 'Open an official bank account with leading Portuguese banks.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Social Security Number)', badge: 'Step 3 • Work', desc: 'Required for employment contract, salary and pension contributions.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'International Health Insurance', badge: 'Step 4 • Visa & Protection', desc: 'Visa-compliant health insurance prior to SNS access.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+      { key: 'nif', title: 'NIF (Portuguese Tax Number)', badge: 'Step 2 • Mandatory', desc: 'The key for rent, SIM card, job and bank account.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Portuguese Bank Account', badge: 'Step 3 • IBAN', desc: 'Open an official bank account with leading Portuguese banks.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Social Security Number)', badge: 'Step 4 • Work', desc: 'Required for employment contract, salary and pension contributions.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'International Health Insurance', badge: 'Step 5 • Visa & Protection', desc: 'Visa-compliant health insurance prior to SNS access.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
+    euCertServiceCard: {
+      title: 'EU Registration Certificate (CRUE / SIGA)',
+      badge: 'Step 1 • Mandatory for EU Citizens',
+      desc: 'Official appointment and service to register your residence in Portugal after 3 months.',
+      btnText: 'Official EU Certificate / Appointment ↗',
+    },
     calcTitle: '💶 Salary Calculator',
     calcSub: 'Precise calculation based on payments and tax status.',
     calcGrossLabel: 'Gross Salary (€):',
@@ -832,10 +844,10 @@ const LOCALES = {
     subCatBeach: 'Beaches',
     tutorialSteps: [
       { title: 'Welcome to PortuStart! 🇵🇹', desc: 'Your ultimate companion for moving to Portugal. Look at the bottom menu bar 👇 – we will guide you through all tabs!' },
-      { title: '1. Services & Roadmap 📋 (Active Tab)', desc: 'Look above ⬆️: Here you find your 30-day checklist and official services (NIF, Bank, NISS, Health Insurance).' },
-      { title: '2. NIF (Tax Number) 📄', desc: 'The absolute mandatory Step 1 in services! You need the NIF for everything: rent, SIM card, job.' },
-      { title: '3. Bank Account 💳', desc: 'Step 2 in services: Open an official bank account to receive salary and rental deposits.' },
-      { title: '4. NISS & Health Insurance 🛡️🏥', desc: 'Steps 3 & 4: Social security for your job and expat health insurance for your visa.' },
+      { title: '1. Services & Roadmap 📋 (Active Tab)', desc: 'Look above ⬆️: Here you find your 30-day checklist and official services (EU Certificate as Step 1, NIF, Bank, NISS, Health Insurance).' },
+      { title: '2. EU Registration Certificate (Step 1) 🏛️', desc: 'The official EU certificate is the very first mandatory official step for EU citizens after arriving in Portugal.' },
+      { title: '3. NIF (Tax Number) 📄', desc: 'Mandatory Step 2! You need the NIF for everything: rent, mobile plan, job.' },
+      { title: '4. Bank Account & NISS 💳🛡️', desc: 'Steps 3 & 4: Open your bank account and get your social security number for employment.' },
       { title: '5. Maps & Places 🗺️ (Tab switches)', desc: 'Click the "Maps" tab 👈 in the bottom bar. Here you will find curated places and the Centro de Saúde finder.' },
       { title: '6. Filter Subcategories 🏷️', desc: 'Use the filters at the top of the maps (Cafes, Bars, Culture, Nature, Shopping, Beaches) to find specific locations.' },
       { title: '7. Translator 🗣️ (Tab switches)', desc: 'Switch to the "Translator" tab 👈 below. Perfect for everyday life with speech recognition (STT) and text-to-speech (TTS).' },
@@ -899,11 +911,17 @@ const LOCALES = {
     applyOnlineBtn: 'Solicitar online ahora ↗',
     affiliateDisclosure: 'Transparencia: Estos enlaces dirigen a un procesamiento exprés certificado con e-Residence. Recibimos una pequeña comisión sin coste adicional para ti.',
     affiliateCards: [
-      { key: 'nif', title: 'NIF (Número de Identificación Fiscal)', badge: 'Paso 1 • Obligatorio', desc: 'La clave para alquiler, tarjeta SIM, trabajo y cuenta bancaria.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Cuenta bancaria portuguesa', badge: 'Paso 2 • IBAN', desc: 'Abre una cuenta bancaria oficial en los principales bancos.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Número de Seguridad Social)', badge: 'Paso 3 • Trabajo', desc: 'Necesario para contrato laboral, salario y cotizaciones.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Seguro médico internacional', badge: 'Paso 4 • Visado y protección', desc: 'Seguro médico compatible con visado antes del acceso al SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+      { key: 'nif', title: 'NIF (Número de Identificación Fiscal)', badge: 'Paso 2 • Obligatorio', desc: 'La clave para alquiler, tarjeta SIM, trabajo y cuenta bancaria.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Cuenta bancaria portuguesa', badge: 'Paso 3 • IBAN', desc: 'Abre una cuenta bancaria oficial en los principales bancos.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Número de Seguridad Social)', badge: 'Paso 4 • Trabajo', desc: 'Necesario para contrato laboral, salario y cotizaciones.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Seguro médico internacional', badge: 'Paso 5 • Visado y protección', desc: 'Seguro médico compatible con visado antes del acceso al SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
+    euCertServiceCard: {
+      title: 'Certificado de Registro UE (CRUE / SIGA)',
+      badge: 'Paso 1 • Obligatorio para ciudadanos UE',
+      desc: 'Cita y servicio oficial para registrar tu residencia en Portugal después de 3 meses.',
+      btnText: 'Certificado UE Oficial / Cita ↗',
+    },
     calcTitle: '💶 Calculadora de salario',
     calcSub: 'Cálculo estimado según deducciones en Portugal.',
     calcGrossLabel: 'Salario bruto (€):',
@@ -943,10 +961,10 @@ const LOCALES = {
     subCatBeach: 'Playas',
     tutorialSteps: [
       { title: '¡Bienvenido a PortuStart! 🇵🇹', desc: 'Tu compañero para mudarte. Mira la barra de menú inferior 👇: ¡te guiaremos por todas las pestañas!' },
-      { title: '1. Servicios y Hoja de Ruta 📋 (Pestaña activa)', desc: 'Mira arriba ⬆️: Aquí tienes tu lista de verificación y servicios oficiales (NIF, Banco, NISS, Seguro).' },
-      { title: '2. NIF (Número Fiscal) 📄', desc: '¡El Paso 1 obligatorio! Necesitas el NIF para todo: alquiler, móvil, trabajo.' },
-      { title: '3. Cuenta Bancaria 💳', desc: 'Paso 2: Abre una cuenta bancaria oficial para tu salario y depósitos.' },
-      { title: '4. NISS y Seguro Médico 🛡️🏥', desc: 'Pasos 3 y 4: Seguridad social para tu trabajo y seguro para tu visado.' },
+      { title: '1. Servicios y Hoja de Ruta 📋 (Pestaña activa)', desc: 'Mira arriba ⬆️: Aquí tienes tu lista de verificación y servicios oficiales (Certificado UE como Paso 1, NIF, Banco, NISS, Seguro).' },
+      { title: '2. Certificado de Registro UE (Paso 1) 🏛️', desc: 'El certificado oficial de la UE es el primer trámite obligatorio para ciudadanos de la UE tras llegar a Portugal.' },
+      { title: '3. NIF (Número Fiscal) 📄', desc: '¡Paso 2 obligatorio! Necesitas el NIF para todo: alquiler, móvil, trabajo.' },
+      { title: '4. Cuenta Bancaria y NISS 💳🛡️', desc: 'Pasos 3 y 4: Abre tu cuenta bancaria y obtén tu número de seguridad social.' },
       { title: '5. Mapas y Lugares 🗺️ (Cambio de pestaña)', desc: 'Haz clic en la pestaña "Mapas" 👈 abajo. Aquí verás lugares seleccionados y el buscador de Centro de Saúde.' },
       { title: '6. Filtrar Subcategorías 🏷️', desc: 'Usa los filtros superiores (Cafés, Bares, Cultura, Naturaleza, Compras, Playas).' },
       { title: '7. Traductor 🗣️ (Cambio de pestaña)', desc: 'Cambia a "Traductor" 👈 abajo. Ideal para el día a día con voz (STT y TTS).' },
@@ -1010,11 +1028,17 @@ const LOCALES = {
     applyOnlineBtn: 'Demander en ligne ↗',
     affiliateDisclosure: 'Transparence : Ces liens redirigent vers un traitement express certifié avec e-Residence. Nous recevons une petite commission sans coût supplémentaire pour vous.',
     affiliateCards: [
-      { key: 'nif', title: 'NIF (Numéro fiscal portugais)', badge: 'Étape 1 • Obligatoire', desc: 'La clé pour le loyer, la carte SIM, l’emploi et le compte bancaire.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Compte bancaire portugais', badge: 'Étape 2 • IBAN', desc: 'Ouvrez un compte bancaire officiel auprès des principales banques.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Numéro de Sécurité Sociale)', badge: 'Étape 3 • Travail', desc: 'Nécessaire pour le contrat de travail, le salaire et les cotisations.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Assurance santé internationale', badge: 'Étape 4 • Visa & Protection', desc: 'Assurance maladie conforme aux exigences de visa avant l’accès au SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+      { key: 'nif', title: 'NIF (Numéro fiscal portugais)', badge: 'Étape 2 • Obligatoire', desc: 'La clé pour le loyer, la carte SIM, l’emploi et le compte bancaire.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Compte bancaire portugais', badge: 'Étape 3 • IBAN', desc: 'Ouvrez un compte bancaire officiel auprès des principales banques.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Numéro de Sécurité Sociale)', badge: 'Étape 4 • Travail', desc: 'Nécessaire pour le contrat de travail, le salaire et les cotisations.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Assurance santé internationale', badge: 'Étape 5 • Visa & Protection', desc: 'Assurance maladie conforme aux exigences de visa avant l’accès au SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
+    euCertServiceCard: {
+      title: 'Certificat d’enregistrement UE (CRUE / SIGA)',
+      badge: 'Étape 1 • Obligatoire pour citoyens UE',
+      desc: 'Rendez-vous et service officiel pour enregistrer votre séjour au Portugal après 3 mois.',
+      btnText: 'Certificat UE Officiel / Rendez-vous ↗',
+    },
     calcTitle: '💶 Calculateur de salaire',
     calcSub: 'Calcul estimé basé sur les déductions standard au Portugal.',
     calcGrossLabel: 'Salaire brut (€) :',
@@ -1054,10 +1078,10 @@ const LOCALES = {
     subCatBeach: 'Plages',
     tutorialSteps: [
       { title: 'Bienvenue sur PortuStart ! 🇵🇹', desc: 'Votre compagnon pour déménager. Regardez la barre de menu en bas 👇 : nous vous guidons à travers tous les onglets !' },
-      { title: '1. Services & Roadmap 📋 (Onglet actif)', desc: 'Regardez en haut ⬆️ : Retrouvez votre checklist et les services officiels (NIF, Banque, NISS, Assurance).' },
-      { title: '2. NIF (Numéro fiscal) 📄', desc: 'L’étape 1 obligatoire ! Le NIF est indispensable pour tout : loyer, mobile, travail.' },
-      { title: '3. Compte bancaire 💳', desc: 'Étape 2 : Ouvrez un compte bancaire officiel pour votre salaire et vos cautions.' },
-      { title: '4. NISS & Assurance santé 🛡️🏥', desc: 'Étapes 3 & 4 : Sécurité sociale pour votre travail et assurance pour votre visa.' },
+      { title: '1. Services & Roadmap 📋 (Onglet actif)', desc: 'Regardez en haut ⬆️ : Retrouvez votre checklist et les services officiels (Certificat UE comme Étape 1, NIF, Banque, NISS, Assurance).' },
+      { title: '2. Certificat d’enregistrement UE (Étape 1) 🏛️', desc: 'Le certificat officiel de l’UE est la toute première démarche obligatoire pour les citoyens de l’UE après leur arrivée.' },
+      { title: '3. NIF (Numéro fiscal) 📄', desc: 'Étape 2 obligatoire ! Le NIF est indispensable pour tout : loyer, mobile, travail.' },
+      { title: '4. Compte bancaire & NISS 💳🛡️', desc: 'Étapes 3 & 4 : Ouvrez votre compte bancaire et obtenez votre numéro de sécurité sociale.' },
       { title: '5. Cartes & Lieux 🗺️ (Changement d’onglet)', desc: 'Cliquez sur l’onglet "Cartes" 👈 en bas. Découvrez les lieux et le chercheur de Centro de Saúde.' },
       { title: '6. Filtrer les sous-catégories 🏷️', desc: 'Utilisez les filtres en haut des cartes (Cafés, Bars, Culture, Nature, Shopping, Plages).' },
       { title: '7. Traducteur 🗣️ (Changement d’onglet)', desc: 'Passez à "Traducteur" 👈 en bas. Idéal pour le quotidien avec la voix (STT et TTS).' },
@@ -1121,11 +1145,17 @@ const LOCALES = {
     applyOnlineBtn: 'Richiedi online ora ↗',
     affiliateDisclosure: 'Trasparenza: Questi link reindirizzano a un’elaborazione express certificata con e-Residence. Riceviamo una piccola commissione senza costi aggiuntivi per te.',
     affiliateCards: [
-      { key: 'nif', title: 'NIF (Codice Fiscale portoghese)', badge: 'Passo 1 • Obbligatorio', desc: 'La chiave per affitto, SIM, lavoro e conto bancario.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
-      { key: 'bank', title: 'Conto bancario portoghese', badge: 'Passo 2 • IBAN', desc: 'Apri un conto bancario ufficiale presso le principali banche.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
-      { key: 'niss', title: 'NISS (Numero di Previdenza Sociale)', badge: 'Passo 3 • Lavoro', desc: 'Necessario per contratto di lavoro, stipendio e contributi.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
-      { key: 'health', title: 'Assicurazione sanitaria internazionale', badge: 'Passo 4 • Visto e protezione', desc: 'Assicurazione conforme al visto prima dell’accesso al SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
+      { key: 'nif', title: 'NIF (Codice Fiscale portoghese)', badge: 'Passo 2 • Obbligatorio', desc: 'La chiave per affitto, SIM, lavoro e conto bancario.', link: AFFILIATE_LINKS.eResidenceNif, icon: 'document-text' },
+      { key: 'bank', title: 'Conto bancario portoghese', badge: 'Passo 3 • IBAN', desc: 'Apri un conto bancario ufficiale presso le principali banche.', link: AFFILIATE_LINKS.eResidenceBank, icon: 'card' },
+      { key: 'niss', title: 'NISS (Numero di Previdenza Sociale)', badge: 'Passo 4 • Lavoro', desc: 'Necessario per contratto di lavoro, stipendio e contributi.', link: AFFILIATE_LINKS.eResidenceNiss, icon: 'shield-checkmark' },
+      { key: 'health', title: 'Assicurazione sanitaria internazionale', badge: 'Passo 5 • Visto e protezione', desc: 'Assicurazione conforme al visto prima dell’accesso al SNS.', link: AFFILIATE_LINKS.eResidenceHealth, icon: 'medkit' },
     ],
+    euCertServiceCard: {
+      title: 'Certificato di Registrazione UE (CRUE / SIGA)',
+      badge: 'Passo 1 • Obbligatorio per cittadini UE',
+      desc: 'Appuntamento e servizio ufficiale per registrare la tua residenza in Portogallo dopo 3 mesi.',
+      btnText: 'Certificato UE Ufficiale / Appuntamento ↗',
+    },
     calcTitle: '💶 Calcolatore stipendio',
     calcSub: 'Calcolo stimato basato sulle trattenute in Portogallo.',
     calcGrossLabel: 'Stipendio lordo (€):',
@@ -1165,10 +1195,10 @@ const LOCALES = {
     subCatBeach: 'Spiagge',
     tutorialSteps: [
       { title: 'Benvenuto su PortuStart! 🇵🇹', desc: 'Il tuo compagno per il trasferimento. Guarda la barra dei menu in basso 👇: ti guideremo attraverso tutte le schede!' },
-      { title: '1. Servizi & Roadmap 📋 (Scheda attiva)', desc: 'Guarda in alto ⬆️: Qui trovi la checklist di 30 giorni e i servizi ufficiali (NIF, Banca, NISS, Assicurazione).' },
-      { title: '2. NIF (Codice Fiscale) 📄', desc: 'Il fondamentale Passo 1! Il NIF serve per tutto: affitto, SIM, lavoro.' },
-      { title: '3. Conto Bancario 💳', desc: 'Passo 2: Apri un conto bancario ufficiale per stipendio e cauzione.' },
-      { title: '4. NISS & Assicurazione 🛡️🏥', desc: 'Passi 3 & 4: Previdenza sociale per il lavoro e assicurazione per il visto.' },
+      { title: '1. Servizi & Roadmap 📋 (Scheda attiva)', desc: 'Guarda in alto ⬆️: Qui trovi la checklist di 30 giorni e i servizi ufficiali (Certificato UE come Passo 1, NIF, Banca, NISS, Assicurazione).' },
+      { title: '2. Certificato di Registrazione UE (Passo 1) 🏛️', desc: 'Il certificato ufficiale dell’UE è il primissimo passo obbligatorio per i cittadini UE dopo l’arrivo in Portogallo.' },
+      { title: '3. NIF (Codice Fiscale) 📄', desc: 'Passo 2 obbligatorio! Il NIF serve per tutto: affitto, SIM, lavoro.' },
+      { title: '4. Conto Bancario e NISS 💳🛡️', desc: 'Passi 3 & 4: Apri il tuo conto bancario e ottieni il numero di previdenza sociale.' },
       { title: '5. Mappe & Luoghi 🗺️ (Cambio scheda)', desc: 'Clicca sulla scheda "Mappe" 👈 in basso. Qui trovi luoghi selezionati e il Centro de Saúde.' },
       { title: '6. Filtra Sottocategorie 🏷️', desc: 'Usa i filtri in alto nelle mappe (Caffè, Bar, Cultura, Natura, Shopping, Spiagge).' },
       { title: '7. Traduttore 🗣️ (Cambio scheda)', desc: 'Passa a "Traduttore" 👈 in basso. Ideale per la vita di tutti i giorni con riconoscimento vocale.' },
@@ -1508,6 +1538,24 @@ export default function App() {
               <Text style={styles.sectionHeaderTitle}>{t.servicesTitle}</Text>
               <Text style={styles.subText}>{t.servicesSub}</Text>
 
+              {/* STEP 1: EU-ZERTIFIKAT ALS ERSTER KARTEN-EINTRAG */}
+              <View style={[styles.affiliateServiceCard, { backgroundColor: '#F0FDF4', borderColor: '#86EFAC' }]}>
+                <View style={styles.affiliateTopRow}>
+                  <View style={[styles.affiliateIconBadge, { backgroundColor: '#DCFCE7' }]}>
+                    <Ionicons name="calendar" size={20} color="#0F5132" />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.affiliateBadgeText}>{t.euCertServiceCard.badge}</Text>
+                    <Text style={styles.affiliateTitle}>{t.euCertServiceCard.title}</Text>
+                  </View>
+                </View>
+                <Text style={styles.affiliateDesc}>{t.euCertServiceCard.desc}</Text>
+                <TouchableOpacity style={[styles.affiliateActionBtn, { backgroundColor: '#166534' }]} onPress={() => openUrl(AFFILIATE_LINKS.euCertificatePortal)}>
+                  <Text style={styles.affiliateActionBtnText}>{t.euCertServiceCard.btnText}</Text>
+                  <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
+                </TouchableOpacity>
+              </View>
+
               {t.affiliateCards.map((srv) => (
                 <View key={srv.key} style={styles.affiliateServiceCard}>
                   <View style={styles.affiliateTopRow}>
@@ -1526,23 +1574,6 @@ export default function App() {
                   </TouchableOpacity>
                 </View>
               ))}
-
-              <View style={[styles.affiliateServiceCard, { backgroundColor: '#F0FDF4', borderColor: '#86EFAC' }]}>
-                <View style={styles.affiliateTopRow}>
-                  <View style={[styles.affiliateIconBadge, { backgroundColor: '#DCFCE7' }]}>
-                    <Ionicons name="calendar" size={20} color="#0F5132" />
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.affiliateBadgeText}>Behörden • EU-Bürger</Text>
-                    <Text style={styles.affiliateTitle}>EU-Anmeldebescheinigung (CRUE / SIGA)</Text>
-                  </View>
-                </View>
-                <Text style={styles.affiliateDesc}>Offizieller Termin- und Serviceservice zur Registrierung deines Aufenthalts in Portugal.</Text>
-                <TouchableOpacity style={[styles.affiliateActionBtn, { backgroundColor: '#166534' }]} onPress={() => openUrl(AFFILIATE_LINKS.euCertificatePortal)}>
-                  <Text style={styles.affiliateActionBtnText}>{t.euCertBtn}</Text>
-                  <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
-                </TouchableOpacity>
-              </View>
 
               <Text style={styles.disclosureText}>{t.affiliateDisclosure}</Text>
             </View>
