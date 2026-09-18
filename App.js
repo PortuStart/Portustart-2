@@ -235,6 +235,21 @@ const LOCALES = {
     calcTaxMarried1: 'Verheiratet (1 Verdiener / Único titular)',
     calcTaxMarried2: 'Verheiratet (2 Verdiener / Dois titulares)',
     calcNetNote: (payments) => `Auszahlung auf Basis von ${payments} Gehältern / Jahr`,
+    profileTitle: '👤 Expat-Profil & Daten',
+    profileSub: 'Deine Daten für Anträge, NIF, NISS und die Ermittlung des zuständigen Centro de Saúde.',
+    profileNameLabel: 'Vollständiger Name:',
+    profileNamePlaceholder: 'z.B. Max Mustermann',
+    profileEmailLabel: 'E-Mail-Adresse:',
+    profileEmailPlaceholder: 'z.B. max@email.com',
+    profileAddressLabel: 'Zukünftige Adresse in Portugal (für Centro de Saúde):',
+    profileAddressPlaceholder: 'z.B. Rua Augusta 123, Lisbon',
+    profileNifLabel: 'Steuernummer (NIF - falls schon vorhanden):',
+    profileNifPlaceholder: 'z.B. 293847561',
+    profileNissLabel: 'Sozialversicherungsnummer (NISS):',
+    profileNissPlaceholder: 'z.B. 12345678901',
+    profileSalaryLabel: 'Geplantes Monatsgehalt (€):',
+    profileStatusLabel: 'Familienstand (für Steuerberechnung):',
+    profileSaveBtn: 'Daten speichern & Weiter',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -310,6 +325,21 @@ const LOCALES = {
     calcTaxMarried1: 'Married (1 earner / Único titular)',
     calcTaxMarried2: 'Married (2 earners / Dois titulares)',
     calcNetNote: (payments) => `Payout based on ${payments} payments / year`,
+    profileTitle: '👤 Expat Profile & Data',
+    profileSub: 'Your details for applications, NIF, NISS and finding the responsible Centro de Saúde.',
+    profileNameLabel: 'Full Name:',
+    profileNamePlaceholder: 'e.g. John Doe',
+    profileEmailLabel: 'Email Address:',
+    profileEmailPlaceholder: 'e.g. john@email.com',
+    profileAddressLabel: 'Future Address in Portugal (for Centro de Saúde):',
+    profileAddressPlaceholder: 'e.g. Rua Augusta 123, Lisbon',
+    profileNifLabel: 'Tax Number (NIF - if already available):',
+    profileNifPlaceholder: 'e.g. 293847561',
+    profileNissLabel: 'Social Security Number (NISS):',
+    profileNissPlaceholder: 'e.g. 12345678901',
+    profileSalaryLabel: 'Planned Monthly Salary (€):',
+    profileStatusLabel: 'Marital status (for tax calculation):',
+    profileSaveBtn: 'Save data & Continue',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -385,6 +415,21 @@ const LOCALES = {
     calcTaxMarried1: 'Casado (1 sueldo / Único titular)',
     calcTaxMarried2: 'Casado (2 sueldos / Dois titulares)',
     calcNetNote: (payments) => `Pago basado en ${payments} pagas / año`,
+    profileTitle: '👤 Perfil de Expat y Datos',
+    profileSub: 'Tus datos para solicitudes, NIF, NISS y la búsqueda del Centro de Saúde responsable.',
+    profileNameLabel: 'Nombre completo:',
+    profileNamePlaceholder: 'ej. Juan Pérez',
+    profileEmailLabel: 'Correo electrónico:',
+    profileEmailPlaceholder: 'ej. juan@email.com',
+    profileAddressLabel: 'Futura dirección en Portugal (para Centro de Saúde):',
+    profileAddressPlaceholder: 'ej. Rua Augusta 123, Lisboa',
+    profileNifLabel: 'Número fiscal (NIF - si ya lo tienes):',
+    profileNifPlaceholder: 'ej. 293847561',
+    profileNissLabel: 'Número de Seguridad Social (NISS):',
+    profileNissPlaceholder: 'ej. 12345678901',
+    profileSalaryLabel: 'Salario mensual previsto (€):',
+    profileStatusLabel: 'Estado civil (para cálculo de impuestos):',
+    profileSaveBtn: 'Guardar datos y continuar',
     checklist: [
       { id: 1, title: 'Solicitar número fiscal (NIF)', tip: 'La clave para alquileres, SIM, trabajo y suministros.' },
       { id: 2, title: 'Conseguir tarjeta SIM portuguesa', tip: 'Esencial para autenticación digital (Chave Móvel).' },
@@ -460,6 +505,21 @@ const LOCALES = {
     calcTaxMarried1: 'Marié (1 salaire / Único titular)',
     calcTaxMarried2: 'Marié (2 salaires / Dois titulares)',
     calcNetNote: (payments) => `Versement basé sur ${payments} versements / an`,
+    profileTitle: '👤 Profil Expatrié & Données',
+    profileSub: 'Vos données pour les demandes, NIF, NISS et la détermination du Centro de Saúde.',
+    profileNameLabel: 'Nom complet :',
+    profileNamePlaceholder: 'ex. Jean Dupont',
+    profileEmailLabel: 'Adresse e-mail :',
+    profileEmailPlaceholder: 'ex. jean@email.com',
+    profileAddressLabel: 'Future adresse au Portugal (pour Centro de Saúde) :',
+    profileAddressPlaceholder: 'ex. Rua Augusta 123, Lisbonne',
+    profileNifLabel: 'Numéro fiscal (NIF - si déjà possédé) :',
+    profileNifPlaceholder: 'ex. 293847561',
+    profileNissLabel: 'Numéro de Sécurité Sociale (NISS) :',
+    profileNissPlaceholder: 'ex. 12345678901',
+    profileSalaryLabel: 'Salaire mensuel prévu (€) :',
+    profileStatusLabel: 'Situation familiale (pour le calcul des impôts) :',
+    profileSaveBtn: 'Enregistrer & Continuer',
     checklist: [
       { id: 1, title: 'Obtenir votre numéro fiscal (NIF)', tip: 'La clé pour le loyer, la carte SIM, l’emploi et les services.' },
       { id: 2, title: 'Obtenir une carte SIM portugaise', tip: 'Essentiel pour l’authentification numérique (Chave Móvel).' },
@@ -535,6 +595,21 @@ const LOCALES = {
     calcTaxMarried1: 'Coniugato (1 stipendio / Único titular)',
     calcTaxMarried2: 'Coniugato (2 stipendi / Dois titulares)',
     calcNetNote: (payments) => `Accredito basato su ${payments} mensilità / anno`,
+    profileTitle: '👤 Profilo Expat & Dati',
+    profileSub: 'I tuoi dati per pratiche, NIF, NISS e per trovare il Centro de Saúde competente.',
+    profileNameLabel: 'Nome completo:',
+    profileNamePlaceholder: 'es. Mario Rossi',
+    profileEmailLabel: 'Indirizzo e-mail:',
+    profileEmailPlaceholder: 'es. mario@email.com',
+    profileAddressLabel: 'Futuro indirizzo in Portogallo (per il Centro de Saúde):',
+    profileAddressPlaceholder: 'es. Rua Augusta 123, Lisbona',
+    profileNifLabel: 'Codice Fiscale (NIF - se già posseduto):',
+    profileNifPlaceholder: 'es. 293847561',
+    profileNissLabel: 'Numero di Previdenza Sociale (NISS):',
+    profileNissPlaceholder: 'es. 12345678901',
+    profileSalaryLabel: 'Stipendio mensile previsto (€):',
+    profileStatusLabel: 'Stato civile (per calcolo tasse):',
+    profileSaveBtn: 'Salva dati e Continua',
     checklist: [
       { id: 1, title: 'Ottieni il codice fiscale (NIF)', tip: 'La chiave per affitto, SIM, lavoro e utenze.' },
       { id: 2, title: 'Procura una scheda SIM portoghese', tip: 'Essenziale per l’autenticazione digitale (Chave Móvel).' },
@@ -1165,63 +1240,63 @@ export default function App() {
           <View style={styles.modalOverlay}>
             <View style={[styles.modalCard, { maxHeight: '90%' }]}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-                <Text style={[styles.modalTitle, { marginBottom: 0, textAlign: 'left' }]}>👤 Expat-Profil & Daten</Text>
+                <Text style={[styles.modalTitle, { marginBottom: 0, textAlign: 'left' }]}>{t.profileTitle}</Text>
                 <TouchableOpacity onPress={() => setProfileModalVisible(false)}>
                   <Ionicons name="close-circle" size={24} color="#64748B" />
                 </TouchableOpacity>
               </View>
-              <Text style={styles.subText}>Deine Daten für Anträge, NIF, NISS und die Ermittlung des zuständigen Centro de Saúde.</Text>
+              <Text style={styles.subText}>{t.profileSub}</Text>
 
               <ScrollView contentContainerStyle={{ gap: 8, paddingBottom: 20 }} showsVerticalScrollIndicator={false}>
-                <Text style={styles.inputFieldLabel}>Vollständiger Name:</Text>
+                <Text style={styles.inputFieldLabel}>{t.profileNameLabel}</Text>
                 <TextInput 
                   style={styles.salaryInputField} 
-                  placeholder="z.B. Max Mustermann" 
+                  placeholder={t.profileNamePlaceholder} 
                   placeholderTextColor="#94A3B8"
                   value={profileData.fullName}
                   onChangeText={(val) => setProfileData({...profileData, fullName: val})}
                 />
 
-                <Text style={styles.inputFieldLabel}>E-Mail-Adresse:</Text>
+                <Text style={styles.inputFieldLabel}>{t.profileEmailLabel}</Text>
                 <TextInput 
                   style={styles.salaryInputField} 
-                  placeholder="z.B. max@email.com" 
+                  placeholder={t.profileEmailPlaceholder} 
                   placeholderTextColor="#94A3B8"
                   keyboardType="email-address"
                   value={profileData.email}
                   onChangeText={(val) => setProfileData({...profileData, email: val})}
                 />
 
-                <Text style={styles.inputFieldLabel}>Zukünftige Adresse in Portugal (für Centro de Saúde):</Text>
+                <Text style={styles.inputFieldLabel}>{t.profileAddressLabel}</Text>
                 <TextInput 
                   style={styles.salaryInputField} 
-                  placeholder="z.B. Rua Augusta 123, Lisbon" 
+                  placeholder={t.profileAddressPlaceholder} 
                   placeholderTextColor="#94A3B8"
                   value={profileData.futureAddress}
                   onChangeText={(val) => setProfileData({...profileData, futureAddress: val})}
                 />
 
-                <Text style={styles.inputFieldLabel}>Steuernummer (NIF - falls schon vorhanden):</Text>
+                <Text style={styles.inputFieldLabel}>{t.profileNifLabel}</Text>
                 <TextInput 
                   style={styles.salaryInputField} 
-                  placeholder="z.B. 293847561" 
+                  placeholder={t.profileNifPlaceholder} 
                   placeholderTextColor="#94A3B8"
                   keyboardType="numeric"
                   value={profileData.nifNumber}
                   onChangeText={(val) => setProfileData({...profileData, nifNumber: val})}
                 />
 
-                <Text style={styles.inputFieldLabel}>Sozialversicherungsnummer (NISS):</Text>
+                <Text style={styles.inputFieldLabel}>{t.profileNissLabel}</Text>
                 <TextInput 
                   style={styles.salaryInputField} 
-                  placeholder="z.B. 12345678901" 
+                  placeholder={t.profileNissPlaceholder} 
                   placeholderTextColor="#94A3B8"
                   keyboardType="numeric"
                   value={profileData.nissNumber}
                   onChangeText={(val) => setProfileData({...profileData, nissNumber: val})}
                 />
 
-                <Text style={styles.inputFieldLabel}>Geplantes Monatsgehalt (€):</Text>
+                <Text style={styles.inputFieldLabel}>{t.profileSalaryLabel}</Text>
                 <TextInput 
                   style={styles.salaryInputField} 
                   placeholder="1500" 
@@ -1231,7 +1306,7 @@ export default function App() {
                   onChangeText={(val) => setProfileData({...profileData, estimatedSalary: val})}
                 />
 
-                <Text style={styles.inputFieldLabel}>Familienstand (für Steuerberechnung):</Text>
+                <Text style={styles.inputFieldLabel}>{t.profileStatusLabel}</Text>
                 <View style={{ gap: 6 }}>
                   {[
                     { id: 'single', label: t.calcTaxSingle },
@@ -1249,7 +1324,7 @@ export default function App() {
                 </View>
 
                 <TouchableOpacity style={[styles.primaryBtn, { marginTop: 14 }]} onPress={() => setProfileModalVisible(false)}>
-                  <Text style={styles.btnText}>Daten speichern & Weiter</Text>
+                  <Text style={styles.btnText}>{t.profileSaveBtn}</Text>
                 </TouchableOpacity>
               </ScrollView>
             </View>
