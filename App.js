@@ -1892,45 +1892,81 @@ export default function App() {
           </ScrollView>
         )}
 
-        {/* MODAL: INTERACTIVE TUTORIAL & GUIDE SLIDESHOW */}
-        <Modal visible={tutorialModalVisible} transparent animationType="slide" onRequestClose={() => setTutorialModalVisible(false)}>
-          <View style={styles.modalOverlay}>
-            <View style={[styles.modalCard, { maxWidth: 380, padding: 22 }]}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-                <View style={styles.tutorialIndicatorBadge}>
-                  <Text style={styles.tutorialIndicatorText}>Step {tutorialStep + 1} / {t.tutorialSteps.length}</Text>
+        {/* MODAL: MODERN SLIDE/SWIPE TUTORIAL */}
+        <Modal visible={tutorialModalVisible} transparent animationType="fade" onRequestClose={() => setTutorialModalVisible(false)}>
+          <View style={styles.tutorialOverlay}>
+            <View style={styles.tutorialCard}>
+              
+              {/* Top Bar with Close & Steps count */}
+              <View style={styles.tutorialTopBar}>
+                <View style={styles.tutorialBadge}>
+                  <Text style={styles.tutorialBadgeText}>
+                    {tutorialStep + 1} / {t.tutorialSteps.length}
+                  </Text>
                 </View>
-                <TouchableOpacity onPress={() => setTutorialModalVisible(false)}>
-                  <Ionicons name="close-circle" size={24} color="#64748B" />
+                <TouchableOpacity onPress={() => setTutorialModalVisible(false)} style={styles.tutorialCloseBtn}>
+                  <Ionicons name="close" size={20} color="#64748B" />
                 </TouchableOpacity>
               </View>
 
-              <View style={{ minHeight: 140, justifyContent: 'center' }}>
-                <Text style={[styles.modalTitle, { textAlign: 'left', fontSize: 18, marginBottom: 8 }]}>
+              {/* Main Slide Content */}
+              <View style={styles.tutorialContentContainer}>
+                <View style={styles.tutorialIconWrapper}>
+                  <Ionicons 
+                    name={
+                      tutorialStep === 0 ? 'sparkles' :
+                      tutorialStep <= 4 ? 'briefcase' :
+                      tutorialStep <= 6 ? 'map' :
+                      tutorialStep === 7 ? 'chatbubbles' :
+                      tutorialStep === 8 ? 'calculator' : 'rocket'
+                    } 
+                    size={36} 
+                    color="#0F5132" 
+                  />
+                </View>
+
+                <Text style={styles.tutorialTitle}>
                   {t.tutorialSteps[tutorialStep].title}
                 </Text>
-                <Text style={{ fontSize: 13.5, color: '#475569', lineHeight: 20 }}>
+
+                <Text style={styles.tutorialDesc}>
                   {t.tutorialSteps[tutorialStep].desc}
                 </Text>
               </View>
 
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20 }}>
+              {/* Dots Indicator */}
+              <View style={styles.tutorialDotsRow}>
+                {t.tutorialSteps.map((_, idx) => (
+                  <View 
+                    key={idx} 
+                    style={[
+                      styles.tutorialDot, 
+                      tutorialStep === idx && styles.tutorialDotActive
+                    ]} 
+                  />
+                ))}
+              </View>
+
+              {/* Bottom Navigation Buttons */}
+              <View style={styles.tutorialBottomNav}>
                 {tutorialStep > 0 ? (
-                  <TouchableOpacity style={styles.tutorialNavBtnSecondary} onPress={() => setTutorialStep(tutorialStep - 1)}>
-                    <Text style={styles.tutorialNavBtnSecondaryText}>{t.tutorialPrev}</Text>
+                  <TouchableOpacity style={styles.tutorialBackBtn} onPress={() => setTutorialStep(tutorialStep - 1)}>
+                    <Text style={styles.tutorialBackBtnText}>{t.tutorialPrev}</Text>
                   </TouchableOpacity>
-                ) : <View />}
+                ) : <View style={{ width: 90 }} />}
 
                 {tutorialStep < t.tutorialSteps.length - 1 ? (
-                  <TouchableOpacity style={styles.primaryBtn} onPress={() => setTutorialStep(tutorialStep + 1)}>
-                    <Text style={styles.btnText}>{t.tutorialNext}</Text>
+                  <TouchableOpacity style={styles.tutorialNextBtn} onPress={() => setTutorialStep(tutorialStep + 1)}>
+                    <Text style={styles.tutorialNextBtnText}>{t.tutorialNext}</Text>
+                    <Ionicons name="arrow-forward" size={16} color="#FFFFFF" style={{ marginLeft: 4 }} />
                   </TouchableOpacity>
                 ) : (
-                  <TouchableOpacity style={[styles.primaryBtn, { backgroundColor: '#166534' }]} onPress={() => setTutorialModalVisible(false)}>
-                    <Text style={styles.btnText}>{t.tutorialFinish}</Text>
+                  <TouchableOpacity style={styles.tutorialFinishBtn} onPress={() => setTutorialModalVisible(false)}>
+                    <Text style={styles.tutorialFinishBtnText}>{t.tutorialFinish}</Text>
                   </TouchableOpacity>
                 )}
               </View>
+
             </View>
           </View>
         </Modal>
@@ -2405,8 +2441,26 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   italkiActionBtnText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700' },
-  tutorialIndicatorBadge: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 10, borderRadius: 8 },
-  tutorialIndicatorText: { fontSize: 12, fontWeight: '800', color: '#0F5132' },
-  tutorialNavBtnSecondary: { paddingVertical: 12, paddingHorizontal: 16, borderRadius: 12, backgroundColor: '#F1F5F9', justifyContent: 'center', alignItems: 'center' },
-  tutorialNavBtnSecondaryText: { color: '#334155', fontSize: 14, fontWeight: '700' },
+  
+  /* Modern Slideshow Tutorial Styles */
+  tutorialOverlay: { flex: 1, backgroundColor: 'rgba(15,23,42,0.75)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+  tutorialCard: { backgroundColor: '#FFFFFF', borderRadius: 24, padding: 24, width: '100%', maxWidth: 360, shadowColor: '#000', shadowOpacity: 0.15, shadowRadius: 10, elevation: 6 },
+  tutorialTopBar: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
+  tutorialBadge: { backgroundColor: '#F0FDF4', paddingVertical: 4, paddingHorizontal: 10, borderRadius: 12, borderWidth: 1, borderColor: '#DCFCE7' },
+  tutorialBadgeText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
+  tutorialCloseBtn: { width: 30, height: 30, borderRadius: 15, backgroundColor: '#F1F5F9', alignItems: 'center', justifyContent: 'center' },
+  tutorialContentContainer: { alignItems: 'center', marginVertical: 16 },
+  tutorialIconWrapper: { width: 64, height: 64, borderRadius: 32, backgroundColor: '#DCFCE7', alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  tutorialTitle: { fontSize: 18, fontWeight: '900', color: '#0F172A', textAlign: 'center', marginBottom: 8 },
+  tutorialDesc: { fontSize: 13, color: '#64748B', textAlign: 'center', lineHeight: 19 },
+  tutorialDotsRow: { flexDirection: 'row', justifyContent: 'center', gap: 6, marginVertical: 14 },
+  tutorialDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: '#E2E8F0' },
+  tutorialDotActive: { width: 20, backgroundColor: '#0F5132' },
+  tutorialBottomNav: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
+  tutorialBackBtn: { paddingVertical: 10, paddingHorizontal: 14, borderRadius: 12, backgroundColor: '#F1F5F9', justifyContent: 'center', alignItems: 'center' },
+  tutorialBackBtnText: { color: '#475569', fontSize: 13, fontWeight: '700' },
+  tutorialNextBtn: { flexDirection: 'row', backgroundColor: '#0F5132', paddingVertical: 10, paddingHorizontal: 18, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  tutorialNextBtnText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700' },
+  tutorialFinishBtn: { backgroundColor: '#166534', paddingVertical: 10, paddingHorizontal: 22, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  tutorialFinishBtnText: { color: '#FFFFFF', fontSize: 13, fontWeight: '800' },
 });
