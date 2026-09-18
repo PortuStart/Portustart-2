@@ -970,7 +970,7 @@ const LOCALES = {
       { title: '6. Filtrar Subcategorías 🏷️', desc: 'Usa los filtros superiores (Cafés, Bares, Cultura, Naturaleza, Compras, Playas).' },
       { title: '7. Traductor 🗣️ (Cambio de pestaña)', desc: 'Cambia a "Traductor" 👈 abajo. Ideal para el día a día con voz (STT y TTS).' },
       { title: '8. Calculadora de Salario 💶 (Cambio de pestaña)', desc: 'Cambia a "Salario" 👈 abajo. Calcula con precisión tu neto en Portugal.' },
-      { title: '9. ¡Listo! 🚀', desc: 'Puedes reabrir هذا tutorial interactivo usando el icono de interrogación arriba ↗️. ¡Mucho éxito!' }
+      { title: '9. ¡Listo! 🚀', desc: 'Puedes reabrir este tutorial interactivo usando el icono de interrogación arriba ↗️. ¡Mucho éxito!' }
     ],
     tutorialNext: 'Siguiente ➡️',
     tutorialPrev: '⬅️ Anterior',
@@ -1440,7 +1440,7 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              {/* App Icon: Schöner runder portugiesischer Flaggen-Look per CSS (garantiert ohne weiße Ränder / Schachbrett) */}
+              {/* App Icon: Saubere runde Flagge mit Umlauf-Pfeil (reines CSS, kein weißer Hintergrund) */}
               <View style={styles.appIconWrapper}>
                 <View style={styles.appIconOrbitArrow} />
                 <View style={styles.appIconFlagCirclePure}>
@@ -2120,7 +2120,7 @@ const styles = StyleSheet.create({
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   
-  /* App-Icon: CSS-basierte runde Flagge (Grün/Rot + Wappen-Symbol) mit Umlauf-Pfeil */
+  /* App-Icon: Saubere runde Flagge mit Umlauf-Pfeil (reines CSS ohne weiße Artefakte) */
   appIconWrapper: {
     width: 42,
     height: 42,
