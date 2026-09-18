@@ -14,7 +14,6 @@ import {
   Platform,
   Linking,
   Dimensions,
-  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -1440,14 +1439,14 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              {/* App Icon: Saubere runde Flagge mit Umlauf-Pfeil (reines CSS, kein weißer Hintergrund) */}
+              {/* App Icon: Runde Flagge mit Umlauf-Pfeil und kleinem Flugzeug statt des Wappens */}
               <View style={styles.appIconWrapper}>
                 <View style={styles.appIconOrbitArrow} />
                 <View style={styles.appIconFlagCirclePure}>
                   <View style={styles.flagGreenSide} />
                   <View style={styles.flagRedSide} />
-                  <View style={styles.flagShieldCenter}>
-                    <View style={styles.flagShieldInner} />
+                  <View style={styles.flagPlaneCenter}>
+                    <Ionicons name="airplane" size={10} color="#FFCC00" />
                   </View>
                 </View>
               </View>
@@ -2120,7 +2119,7 @@ const styles = StyleSheet.create({
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   
-  /* App-Icon: Saubere runde Flagge mit Umlauf-Pfeil (reines CSS ohne weiße Artefakte) */
+  /* App-Icon: Saubere runde Flagge mit Umlauf-Pfeil und kleinem Flugzeug */
   appIconWrapper: {
     width: 42,
     height: 42,
@@ -2161,22 +2160,14 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#DA291C',
   },
-  flagShieldCenter: {
+  flagPlaneCenter: {
     position: 'absolute',
-    left: '28%',
-    top: '25%',
-    width: 14,
-    height: 16,
-    backgroundColor: '#FFCC00',
-    borderRadius: 2,
+    left: '26%',
+    top: '26%',
+    width: 15,
+    height: 15,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  flagShieldInner: {
-    width: 9,
-    height: 11,
-    backgroundColor: '#DA291C',
-    borderRadius: 1,
   },
 
   headerTitle: { color: '#F4EFEA', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
@@ -2529,6 +2520,6 @@ const styles = StyleSheet.create({
   tutorialBackBtnText: { color: '#0F5132', fontSize: 13, fontWeight: '700' },
   tutorialNextBtn: { flexDirection: 'row', backgroundColor: '#0F5132', paddingVertical: 10, paddingHorizontal: 18, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   tutorialNextBtnText: { color: '#F4EFEA', fontSize: 13, fontWeight: '700' },
-  tutorialFinishBtn: { backgroundColor: '#0F5132', paddingVertical: 10, paddingHorizontal: 22, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  tutorialFinishBtn: { backgroundColor: '#0F5132', py: 10, paddingVertical: 10, paddingHorizontal: 22, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   tutorialFinishBtnText: { color: '#F4EFEA', fontSize: 13, fontWeight: '800' },
 });
