@@ -1439,8 +1439,12 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              <View style={styles.appHeaderLogoPlaceholder}>
-                <Ionicons name="map" size={20} color="#0F5132" />
+              {/* App Icon: Runde Portugal-Flagge mit dynamischem Umlauf-Pfeil */}
+              <View style={styles.appIconWrapper}>
+                <View style={styles.appIconOrbitArrow} />
+                <View style={styles.appIconFlagCircle}>
+                  <Text style={{ fontSize: 16 }}>🇵🇹</Text>
+                </View>
               </View>
               <View>
                 <Text style={styles.headerTitle}>{t.title}</Text>
@@ -2110,7 +2114,39 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  appHeaderLogoPlaceholder: { width: 36, height: 36, borderRadius: 8, backgroundColor: '#F4EFEA', alignItems: 'center', justifyContent: 'center' },
+  
+  /* Neuer App-Icon-Container mit Umlauf-Pfeil */
+  appIconWrapper: {
+    width: 42,
+    height: 42,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  appIconOrbitArrow: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#D4C4B4',
+    borderTopColor: 'transparent',
+    borderLeftColor: 'transparent',
+    transform: [{ rotate: '-45deg' }],
+  },
+  appIconFlagCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#F4EFEA',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+
   headerTitle: { color: '#F4EFEA', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
   headerSubtitle: { color: '#D4C4B4', fontSize: 11, marginTop: 2 },
   langSwitchHeaderBtn: {
@@ -2457,7 +2493,7 @@ const styles = StyleSheet.create({
   tutorialDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: '#D4C4B4' },
   tutorialDotActive: { width: 20, backgroundColor: '#0F5132' },
   tutorialBottomNav: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
-  tutorialBackBtn: { paddingVertical: 10, paddingHorizontal: 14, borderRadius: 12, backgroundColor: '#FFFFFF', justifyContent: 'center', alignItems: 'center' },
+  tutorialBackBtn: {paddingVertical: 10, paddingHorizontal: 14, borderRadius: 12, backgroundColor: '#FFFFFF', justifyContent: 'center', alignItems: 'center' },
   tutorialBackBtnText: { color: '#0F5132', fontSize: 13, fontWeight: '700' },
   tutorialNextBtn: { flexDirection: 'row', backgroundColor: '#0F5132', paddingVertical: 10, paddingHorizontal: 18, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   tutorialNextBtnText: { color: '#F4EFEA', fontSize: 13, fontWeight: '700' },
