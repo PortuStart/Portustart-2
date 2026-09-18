@@ -19,9 +19,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
-// ==========================================
-// PARTNER-LINKS & DATENBANK
-// ==========================================
 const AFFILIATE_LINKS = {
   eResidenceNif: 'https://e-residence.com/?via=portustart',
   eResidenceNiss: 'https://e-residence.com/?via=portustart',
@@ -1265,7 +1262,6 @@ export default function App() {
   const [taxStatus, setTaxStatus] = useState('single');
   const [calcResult, setCalcResult] = useState(null);
 
-  // Interaktiver Tab-Wechsel je nach Tutorial-Schritt
   useEffect(() => {
     if (!tutorialModalVisible) return;
     if (tutorialStep >= 1 && tutorialStep <= 4) {
@@ -1439,14 +1435,14 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              {/* App Icon: Runde Flagge mit Umlauf-Pfeil und kleinem Flugzeug statt des Wappens */}
+              {/* App Icon: Runde Flagge mit Umlauf-Pfeil und vergrößertem Flugzeug von oben links nach unten rechts */}
               <View style={styles.appIconWrapper}>
                 <View style={styles.appIconOrbitArrow} />
                 <View style={styles.appIconFlagCirclePure}>
                   <View style={styles.flagGreenSide} />
                   <View style={styles.flagRedSide} />
                   <View style={styles.flagPlaneCenter}>
-                    <Ionicons name="airplane" size={10} color="#FFCC00" />
+                    <Ionicons name="airplane" size={16} color="#FFCC00" style={{ transform: [{ rotate: '45deg' }] }} />
                   </View>
                 </View>
               </View>
@@ -2119,7 +2115,7 @@ const styles = StyleSheet.create({
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   
-  /* App-Icon: Saubere runde Flagge mit Umlauf-Pfeil und kleinem Flugzeug */
+  /* App-Icon: Saubere runde Flagge mit Umlauf-Pfeil und vergrößertem Flugzeug von oben links nach unten rechts */
   appIconWrapper: {
     width: 42,
     height: 42,
@@ -2162,10 +2158,10 @@ const styles = StyleSheet.create({
   },
   flagPlaneCenter: {
     position: 'absolute',
-    left: '26%',
-    top: '26%',
-    width: 15,
-    height: 15,
+    left: '20%',
+    top: '20%',
+    width: 18,
+    height: 18,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -2491,6 +2487,7 @@ const styles = StyleSheet.create({
   italkiTitle: { fontSize: 13.5, fontWeight: '800', color: '#0F172A' },
   italkiDesc: { fontSize: 11.5, color: '#64748B', marginTop: 6, lineHeight: 16 },
   italkiActionBtn: {
+    direction: 'row',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
