@@ -1432,7 +1432,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="light-content" backgroundColor="#C4B5A5" />
+      <StatusBar barStyle="light-content" backgroundColor="#0F5132" />
       <View style={styles.container}>
         
         {/* Header */}
@@ -1440,7 +1440,7 @@ export default function App() {
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <View style={styles.appHeaderLogoPlaceholder}>
-                <Ionicons name="map" size={20} color="#C4B5A5" />
+                <Ionicons name="map" size={20} color="#0F5132" />
               </View>
               <View>
                 <Text style={styles.headerTitle}>{t.title}</Text>
@@ -1450,15 +1450,15 @@ export default function App() {
             <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
               {/* Tutorial Guide Button */}
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => { setTutorialStep(0); setTutorialModalVisible(true); }}>
-                <Ionicons name="help-circle-outline" size={15} color="#0F5132" />
+                <Ionicons name="help-circle-outline" size={15} color="#F4EFEA" />
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setProfileModalVisible(true)}>
-                <Ionicons name="person-outline" size={14} color="#0F5132" style={{ marginRight: 3 }} />
+                <Ionicons name="person-outline" size={14} color="#F4EFEA" style={{ marginRight: 3 }} />
                 <Text style={styles.langSwitchHeaderText}>Profil</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
-                <Ionicons name="globe-outline" size={14} color="#0F5132" style={{ marginRight: 3 }} />
+                <Ionicons name="globe-outline" size={14} color="#F4EFEA" style={{ marginRight: 3 }} />
                 <Text style={styles.langSwitchHeaderText}>
                   {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
                 </Text>
@@ -1471,22 +1471,22 @@ export default function App() {
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
-              <Ionicons name="briefcase" size={12} color={activeTab === 'services' ? '#0F5132' : '#64748B'} />
+              <Ionicons name="briefcase" size={12} color={activeTab === 'services' ? '#F4EFEA' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]} onPress={() => setActiveTab('places')}>
-              <Ionicons name="map" size={12} color={activeTab === 'places' ? '#0F5132' : '#64748B'} />
+              <Ionicons name="map" size={12} color={activeTab === 'places' ? '#F4EFEA' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]} onPress={() => setActiveTab('trans')}>
-              <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#0F5132' : '#64748B'} />
+              <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#F4EFEA' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => setActiveTab('calc')}>
-              <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#0F5132' : '#64748B'} />
+              <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#F4EFEA' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
           </View>
@@ -1539,9 +1539,9 @@ export default function App() {
               <Text style={styles.subText}>{t.servicesSub}</Text>
 
               {/* STEP 1: EU-ZERTIFIKAT ALS ERSTER KARTEN-EINTRAG */}
-              <View style={[styles.affiliateServiceCard, { backgroundColor: '#F4EFEA', borderColor: '#D4C4B4' }]}>
+              <View style={[styles.affiliateServiceCard, { backgroundColor: '#FFFFFF', borderColor: '#D4C4B4' }]}>
                 <View style={styles.affiliateTopRow}>
-                  <View style={[styles.affiliateIconBadge, { backgroundColor: '#E4DCD0' }]}>
+                  <View style={[styles.affiliateIconBadge, { backgroundColor: '#F4EFEA' }]}>
                     <Ionicons name="calendar" size={20} color="#0F5132" />
                   </View>
                   <View style={{ flex: 1 }}>
@@ -1592,7 +1592,7 @@ export default function App() {
                   style={[styles.filterChip, activePlaceFilter === 'explore' && styles.filterChipActive]} 
                   onPress={() => { setActivePlaceFilter('explore'); setMapQueryOverride(null); }}
                 >
-                  <Ionicons name="compass" size={14} color={activePlaceFilter === 'explore' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                  <Ionicons name="compass" size={14} color={activePlaceFilter === 'explore' ? '#F4EFEA' : '#64748B'} style={{ marginRight: 4 }} />
                   <Text style={[styles.filterChipText, activePlaceFilter === 'explore' && styles.filterChipTextActive]}>{t.filterExplore}</Text>
                 </TouchableOpacity>
 
@@ -1600,7 +1600,7 @@ export default function App() {
                   style={[styles.filterChip, activePlaceFilter === 'sns' && styles.filterChipActive]} 
                   onPress={() => { setActivePlaceFilter('sns'); setMapQueryOverride(null); }}
                 >
-                  <Ionicons name="medical" size={14} color={activePlaceFilter === 'sns' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                  <Ionicons name="medical" size={14} color={activePlaceFilter === 'sns' ? '#F4EFEA' : '#64748B'} style={{ marginRight: 4 }} />
                   <Text style={[styles.filterChipText, activePlaceFilter === 'sns' && styles.filterChipTextActive]}>{t.filterSns}</Text>
                 </TouchableOpacity>
 
@@ -1608,7 +1608,7 @@ export default function App() {
                   style={[styles.filterChip, activePlaceFilter === 'atm' && styles.filterChipActive]} 
                   onPress={() => { setActivePlaceFilter('atm'); setMapQueryOverride(null); }}
                 >
-                  <Ionicons name="card" size={14} color={activePlaceFilter === 'atm' ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                  <Ionicons name="card" size={14} color={activePlaceFilter === 'atm' ? '#F4EFEA' : '#64748B'} style={{ marginRight: 4 }} />
                   <Text style={[styles.filterChipText, activePlaceFilter === 'atm' && styles.filterChipTextActive]}>{t.filterAtm}</Text>
                 </TouchableOpacity>
               </View>
@@ -1620,7 +1620,7 @@ export default function App() {
                       const isSelected = selectedCityId === city.id;
                       return (
                         <TouchableOpacity key={city.id} style={[styles.cityChip, isSelected && styles.cityChipActive]} onPress={() => { setSelectedCityId(city.id); setMapQueryOverride(null); }}>
-                          <Ionicons name="location" size={13} color={isSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                          <Ionicons name="location" size={13} color={isSelected ? '#F4EFEA' : '#64748B'} style={{ marginRight: 4 }} />
                           <Text style={[styles.cityChipText, isSelected && styles.cityChipTextActive]}>{city.name}</Text>
                         </TouchableOpacity>
                       );
@@ -1641,7 +1641,7 @@ export default function App() {
                       const isSubSelected = activeSubCategory === sub.id;
                       return (
                         <TouchableOpacity key={sub.id} style={[styles.cityChip, isSubSelected && styles.cityChipActive]} onPress={() => setActiveSubCategory(sub.id)}>
-                          <Ionicons name={sub.icon} size={13} color={isSubSelected ? '#0F5132' : '#64748B'} style={{ marginRight: 4 }} />
+                          <Ionicons name={sub.icon} size={13} color={isSubSelected ? '#F4EFEA' : '#64748B'} style={{ marginRight: 4 }} />
                           <Text style={[styles.cityChipText, isSubSelected && styles.cityChipTextActive]}>{sub.label}</Text>
                         </TouchableOpacity>
                       );
@@ -1708,7 +1708,7 @@ export default function App() {
                       )}
 
                       <TouchableOpacity 
-                        style={[styles.openMapBtn, { flex: 1, marginTop: 0, backgroundColor: '#F4EFEA' }]} 
+                        style={[styles.openMapBtn, { flex: 1, marginTop: 0, backgroundColor: '#FFFFFF' }]} 
                         onPress={() => {
                           setMapQueryOverride({ title: place.title, city: place.city });
                         }}
@@ -1727,7 +1727,7 @@ export default function App() {
                 <Text style={styles.sectionHeaderTitle}>{t.snsFinderTitle}</Text>
                 <Text style={styles.subText}>{t.snsFinderDesc}</Text>
                 {profileData.futureAddress ? (
-                  <View style={{ backgroundColor: '#F4EFEA', padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#D4C4B4', marginVertical: 8 }}>
+                  <View style={{ backgroundColor: '#FFFFFF', padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#D4C4B4', marginVertical: 8 }}>
                     <Text style={{ fontSize: 12, fontWeight: '700', color: '#0F5132' }}>Deine Profil-Adresse: {profileData.futureAddress}</Text>
                   </View>
                 ) : (
@@ -1789,7 +1789,7 @@ export default function App() {
 
             {loading && (
               <View style={{ padding: 10, alignItems: 'center' }}>
-                <ActivityIndicator color="#0F5132" size="small" />
+                <ActivityIndicator color="#F4EFEA" size="small" />
               </View>
             )}
 
@@ -1921,7 +1921,7 @@ export default function App() {
                       tutorialStep === 8 ? 'calculator' : 'rocket'
                     } 
                     size={36} 
-                    color="#0F5132" 
+                    color="#F4EFEA" 
                   />
                 </View>
 
@@ -1958,7 +1958,7 @@ export default function App() {
                 {tutorialStep < t.tutorialSteps.length - 1 ? (
                   <TouchableOpacity style={styles.tutorialNextBtn} onPress={() => setTutorialStep(tutorialStep + 1)}>
                     <Text style={styles.tutorialNextBtnText}>{t.tutorialNext}</Text>
-                    <Ionicons name="arrow-forward" size={16} color="#FFFFFF" style={{ marginLeft: 4 }} />
+                    <Ionicons name="arrow-forward" size={16} color="#F4EFEA" style={{ marginLeft: 4 }} />
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity style={styles.tutorialFinishBtn} onPress={() => setTutorialModalVisible(false)}>
