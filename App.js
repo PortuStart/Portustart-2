@@ -1432,7 +1432,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="light-content" backgroundColor="#0F5132" />
+      <StatusBar barStyle="light-content" backgroundColor="#C4B5A5" />
       <View style={styles.container}>
         
         {/* Header */}
@@ -1440,7 +1440,7 @@ export default function App() {
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <View style={styles.appHeaderLogoPlaceholder}>
-                <Ionicons name="map" size={20} color="#0F5132" />
+                <Ionicons name="map" size={20} color="#C4B5A5" />
               </View>
               <View>
                 <Text style={styles.headerTitle}>{t.title}</Text>
@@ -1450,15 +1450,15 @@ export default function App() {
             <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
               {/* Tutorial Guide Button */}
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => { setTutorialStep(0); setTutorialModalVisible(true); }}>
-                <Ionicons name="help-circle-outline" size={15} color="#fff" />
+                <Ionicons name="help-circle-outline" size={15} color="#0F5132" />
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setProfileModalVisible(true)}>
-                <Ionicons name="person-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
+                <Ionicons name="person-outline" size={14} color="#0F5132" style={{ marginRight: 3 }} />
                 <Text style={styles.langSwitchHeaderText}>Profil</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.langSwitchHeaderBtn} onPress={() => setLangModalVisible(true)}>
-                <Ionicons name="globe-outline" size={14} color="#fff" style={{ marginRight: 3 }} />
+                <Ionicons name="globe-outline" size={14} color="#0F5132" style={{ marginRight: 3 }} />
                 <Text style={styles.langSwitchHeaderText}>
                   {UI_LANGUAGES.find((l) => l.code === appLang)?.flag} {appLang.toUpperCase()}
                 </Text>
@@ -1471,22 +1471,22 @@ export default function App() {
         <View style={styles.tabBarContainer}>
           <View style={styles.tabBar}>
             <TouchableOpacity style={[styles.tabButton, activeTab === 'services' && styles.tabButtonActive]} onPress={() => setActiveTab('services')}>
-              <Ionicons name="briefcase" size={12} color={activeTab === 'services' ? '#fff' : '#64748B'} />
+              <Ionicons name="briefcase" size={12} color={activeTab === 'services' ? '#0F5132' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'services' && styles.tabTextActive]}>{t.tabServices}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'places' && styles.tabButtonActive]} onPress={() => setActiveTab('places')}>
-              <Ionicons name="map" size={12} color={activeTab === 'places' ? '#fff' : '#64748B'} />
+              <Ionicons name="map" size={12} color={activeTab === 'places' ? '#0F5132' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'places' && styles.tabTextActive]}>{t.tabPlaces}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'trans' && styles.tabButtonActive]} onPress={() => setActiveTab('trans')}>
-              <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#fff' : '#64748B'} />
+              <Ionicons name="chatbubbles" size={12} color={activeTab === 'trans' ? '#0F5132' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'trans' && styles.tabTextActive]}>{t.tabTrans}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.tabButton, activeTab === 'calc' && styles.tabButtonActive]} onPress={() => setActiveTab('calc')}>
-              <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#fff' : '#64748B'} />
+              <Ionicons name="calculator" size={12} color={activeTab === 'calc' ? '#0F5132' : '#64748B'} />
               <Text style={[styles.tabText, activeTab === 'calc' && styles.tabTextActive]}>{t.tabCalc}</Text>
             </TouchableOpacity>
           </View>
@@ -1539,9 +1539,9 @@ export default function App() {
               <Text style={styles.subText}>{t.servicesSub}</Text>
 
               {/* STEP 1: EU-ZERTIFIKAT ALS ERSTER KARTEN-EINTRAG */}
-              <View style={[styles.affiliateServiceCard, { backgroundColor: '#F0FDF4', borderColor: '#86EFAC' }]}>
+              <View style={[styles.affiliateServiceCard, { backgroundColor: '#F4EFEA', borderColor: '#D4C4B4' }]}>
                 <View style={styles.affiliateTopRow}>
-                  <View style={[styles.affiliateIconBadge, { backgroundColor: '#DCFCE7' }]}>
+                  <View style={[styles.affiliateIconBadge, { backgroundColor: '#E4DCD0' }]}>
                     <Ionicons name="calendar" size={20} color="#0F5132" />
                   </View>
                   <View style={{ flex: 1 }}>
@@ -1550,7 +1550,7 @@ export default function App() {
                   </View>
                 </View>
                 <Text style={styles.affiliateDesc}>{t.euCertServiceCard.desc}</Text>
-                <TouchableOpacity style={[styles.affiliateActionBtn, { backgroundColor: '#166534' }]} onPress={() => openUrl(AFFILIATE_LINKS.euCertificatePortal)}>
+                <TouchableOpacity style={[styles.affiliateActionBtn, { backgroundColor: '#0F5132' }]} onPress={() => openUrl(AFFILIATE_LINKS.euCertificatePortal)}>
                   <Text style={styles.affiliateActionBtnText}>{t.euCertServiceCard.btnText}</Text>
                   <Ionicons name="arrow-forward" size={14} color="#FFFFFF" style={{ marginLeft: 4 }} />
                 </TouchableOpacity>
@@ -1708,7 +1708,7 @@ export default function App() {
                       )}
 
                       <TouchableOpacity 
-                        style={[styles.openMapBtn, { flex: 1, marginTop: 0, backgroundColor: '#DCFCE7' }]} 
+                        style={[styles.openMapBtn, { flex: 1, marginTop: 0, backgroundColor: '#F4EFEA' }]} 
                         onPress={() => {
                           setMapQueryOverride({ title: place.title, city: place.city });
                         }}
@@ -1727,8 +1727,8 @@ export default function App() {
                 <Text style={styles.sectionHeaderTitle}>{t.snsFinderTitle}</Text>
                 <Text style={styles.subText}>{t.snsFinderDesc}</Text>
                 {profileData.futureAddress ? (
-                  <View style={{ backgroundColor: '#F0FDF4', padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#86EFAC', marginVertical: 8 }}>
-                    <Text style={{ fontSize: 12, fontWeight: '700', color: '#166534' }}>Deine Profil-Adresse: {profileData.futureAddress}</Text>
+                  <View style={{ backgroundColor: '#F4EFEA', padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#D4C4B4', marginVertical: 8 }}>
+                    <Text style={{ fontSize: 12, fontWeight: '700', color: '#0F5132' }}>Deine Profil-Adresse: {profileData.futureAddress}</Text>
                   </View>
                 ) : (
                   <View style={{ backgroundColor: '#FEF3C7', padding: 10, borderRadius: 10, borderWidth: 1, borderColor: '#FCD34D', marginVertical: 8 }}>
@@ -2099,10 +2099,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#0F5132' },
+  safeArea: { flex: 1, backgroundColor: '#C4B5A5' },
   container: { flex: 1, backgroundColor: '#FBF9F5' },
   header: {
-    backgroundColor: '#0F5132',
+    backgroundColor: '#C4B5A5',
     paddingTop: 8,
     paddingBottom: 22,
     paddingHorizontal: 16,
@@ -2110,18 +2110,18 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  appHeaderLogoPlaceholder: { width: 36, height: 36, borderRadius: 8, backgroundColor: '#BBF7D0', alignItems: 'center', justifyContent: 'center' },
-  headerTitle: { color: '#FFFFFF', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
-  headerSubtitle: { color: '#BBF7D0', fontSize: 11, marginTop: 2 },
+  appHeaderLogoPlaceholder: { width: 36, height: 36, borderRadius: 8, backgroundColor: '#0F5132', alignItems: 'center', justifyContent: 'center' },
+  headerTitle: { color: '#0F5132', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
+  headerSubtitle: { color: '#2C3E35', fontSize: 11, marginTop: 2 },
   langSwitchHeaderBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.18)',
+    backgroundColor: 'rgba(15, 81, 50, 0.12)',
     paddingVertical: 5,
     paddingHorizontal: 8,
     borderRadius: 12,
   },
-  langSwitchHeaderText: { color: '#FFFFFF', fontSize: 11, fontWeight: 'bold' },
+  langSwitchHeaderText: { color: '#0F5132', fontSize: 11, fontWeight: 'bold' },
   tabBarContainer: { paddingHorizontal: 4, marginTop: -16, marginBottom: 8, zIndex: 10 },
   tabBar: {
     flexDirection: 'row',
@@ -2142,9 +2142,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     gap: 1,
   },
-  tabButtonActive: { backgroundColor: '#0F5132' },
+  tabButtonActive: { backgroundColor: '#C4B5A5' },
   tabText: { fontSize: 9.5, color: '#64748B', fontWeight: '600' },
-  tabTextActive: { color: '#FFFFFF', fontWeight: '700' },
+  tabTextActive: { color: '#0F5132', fontWeight: '700' },
   scrollContent: { padding: 14, paddingBottom: 40 },
   card: {
     backgroundColor: '#FFFFFF',
@@ -2176,7 +2176,7 @@ const styles = StyleSheet.create({
     borderColor: '#E2E8F0',
   },
   filterChipActive: {
-    backgroundColor: '#DCFCE7',
+    backgroundColor: '#F4EFEA',
     borderColor: '#0F5132',
   },
   filterChipText: {
@@ -2191,15 +2191,15 @@ const styles = StyleSheet.create({
   congratsBanner: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#DCFCE7',
+    backgroundColor: '#F4EFEA',
     borderWidth: 1,
-    borderColor: '#86EFAC',
+    borderColor: '#D4C4B4',
     borderRadius: 12,
     padding: 12,
     marginBottom: 12,
   },
-  congratsTitle: { fontSize: 13, fontWeight: '800', color: '#166534' },
-  congratsDesc: { fontSize: 11.5, color: '#14532D', marginTop: 2, lineHeight: 16 },
+  congratsTitle: { fontSize: 13, fontWeight: '800', color: '#0F5132' },
+  congratsDesc: { fontSize: 11.5, color: '#2C3E35', marginTop: 2, lineHeight: 16 },
 
   affiliateServiceCard: {
     backgroundColor: '#F8FAFC',
@@ -2214,7 +2214,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 10,
-    backgroundColor: '#DCFCE7',
+    backgroundColor: '#F4EFEA',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -2273,7 +2273,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#F1F5F9',
   },
-  cityChipActive: { backgroundColor: '#DCFCE7', borderWidth: 1.5, borderColor: '#0F5132' },
+  cityChipActive: { backgroundColor: '#F4EFEA', borderWidth: 1.5, borderColor: '#0F5132' },
   cityChipText: { fontSize: 12, fontWeight: '700', color: '#334155' },
   cityChipTextActive: { color: '#0F5132' },
 
@@ -2286,7 +2286,7 @@ const styles = StyleSheet.create({
   },
   activeCityName: { fontSize: 18, fontWeight: '900', color: '#0F172A' },
   activeCityTagline: { fontSize: 12, color: '#64748B', marginTop: 1 },
-  cityPlacesCounter: { backgroundColor: '#DCFCE7', paddingVertical: 3, paddingHorizontal: 8, borderRadius: 8 },
+  cityPlacesCounter: { backgroundColor: '#F4EFEA', paddingVertical: 3, paddingHorizontal: 8, borderRadius: 8 },
   cityPlacesCounterText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
 
   placeCardSimple: {
@@ -2298,7 +2298,7 @@ const styles = StyleSheet.create({
     borderColor: '#E2E8F0',
   },
   placeCardHeaderRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  placeIconBadge: { width: 32, height: 32, borderRadius: 8, backgroundColor: '#DCFCE7', alignItems: 'center', justifyContent: 'center' },
+  placeIconBadge: { width: 32, height: 32, borderRadius: 8, backgroundColor: '#F4EFEA', alignItems: 'center', justifyContent: 'center' },
   placeCardTitle: { fontSize: 14.5, fontWeight: '800', color: '#0F172A' },
   placeCardCategory: { fontSize: 11, fontWeight: '700', color: '#0284C7', marginTop: 1 },
   placeCardDesc: { fontSize: 12, color: '#64748B', marginTop: 6, lineHeight: 17 },
@@ -2327,7 +2327,7 @@ const styles = StyleSheet.create({
   openMapBtnText: { color: '#475569', fontSize: 11.5, fontWeight: '600' },
 
   checklistHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
-  progressBadge: { backgroundColor: '#DCFCE7', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
+  progressBadge: { backgroundColor: '#F4EFEA', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 8 },
   progressBadgeText: { fontSize: 11, fontWeight: '700', color: '#0F5132' },
   progressBarTrack: { height: 6, backgroundColor: '#E2E8F0', borderRadius: 3, overflow: 'hidden', marginVertical: 10 },
   progressBarFill: { height: '100%', backgroundColor: '#0F5132', borderRadius: 3 },
@@ -2361,7 +2361,7 @@ const styles = StyleSheet.create({
   btnText: { color: '#FFFFFF', fontSize: 14, fontWeight: '700' },
   langScroll: { paddingVertical: 4, gap: 6 },
   langChip: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 10, backgroundColor: '#F1F5F9' },
-  langChipSelected: { backgroundColor: '#DCFCE7', borderColor: '#0F5132', borderWidth: 1.5 },
+  langChipSelected: { backgroundColor: '#F4EFEA', borderColor: '#0F5132', borderWidth: 1.5 },
   langChipText: { fontSize: 12, fontWeight: '700', color: '#334155' },
   langChipTextSelected: { color: '#0F5132' },
   textInput: {
@@ -2389,10 +2389,10 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   sttMicButtonText: { color: '#FFFFFF', fontSize: 10.5, fontWeight: 'bold' },
-  resultCard: { backgroundColor: '#F0FDF4', borderRadius: 16, padding: 14, borderColor: '#BBF7D0', borderWidth: 1, marginTop: 10 },
+  resultCard: { backgroundColor: '#F4EFEA', borderRadius: 16, padding: 14, borderColor: '#D4C4B4', borderWidth: 1, marginTop: 10 },
   resultHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  resultHeader: { fontSize: 11, color: '#166534', fontWeight: '800', textTransform: 'uppercase' },
-  resultBody: { fontSize: 16, color: '#14532D', fontWeight: '700', marginTop: 4 },
+  resultHeader: { fontSize: 11, color: '#0F5132', fontWeight: '800', textTransform: 'uppercase' },
+  resultBody: { fontSize: 16, color: '#0F5132', fontWeight: '700', marginTop: 4 },
   audioBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFFFFF', paddingVertical: 4, paddingHorizontal: 8, borderRadius: 10, gap: 3 },
   audioBtnText: { fontSize: 11, color: '#0F5132', fontWeight: 'bold' },
   calcResultCard: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 1, borderColor: '#E2E8F0' },
@@ -2408,7 +2408,7 @@ const styles = StyleSheet.create({
   modalTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 12, color: '#0F172A' },
   modalGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8 },
   modalLangBtn: { width: '48%', backgroundColor: '#F8FAFC', paddingVertical: 10, borderRadius: 10, alignItems: 'center', borderWidth: 1.5, borderColor: '#E2E8F0' },
-  modalLangBtnActive: { borderColor: '#0F5132', backgroundColor: '#DCFCE7' },
+  modalLangBtnActive: { borderColor: '#0F5132', backgroundColor: '#F4EFEA' },
   modalLangText: { fontSize: 12, fontWeight: '700', color: '#1E293B', marginTop: 2 },
   modalLangTextActive: { color: '#0F5132' },
   italkiBannerCard: {
@@ -2424,7 +2424,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 10,
-    backgroundColor: '#DCFCE7',
+    backgroundColor: '#F4EFEA',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -2446,11 +2446,11 @@ const styles = StyleSheet.create({
   tutorialOverlay: { flex: 1, backgroundColor: 'rgba(15,23,42,0.75)', justifyContent: 'center', alignItems: 'center', padding: 20 },
   tutorialCard: { backgroundColor: '#FFFFFF', borderRadius: 24, padding: 24, width: '100%', maxWidth: 360, shadowColor: '#000', shadowOpacity: 0.15, shadowRadius: 10, elevation: 6 },
   tutorialTopBar: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
-  tutorialBadge: { backgroundColor: '#F0FDF4', paddingVertical: 4, paddingHorizontal: 10, borderRadius: 12, borderWidth: 1, borderColor: '#DCFCE7' },
+  tutorialBadge: { backgroundColor: '#F4EFEA', paddingVertical: 4, paddingHorizontal: 10, borderRadius: 12, borderWidth: 1, borderColor: '#D4C4B4' },
   tutorialBadgeText: { fontSize: 11, fontWeight: '800', color: '#0F5132' },
   tutorialCloseBtn: { width: 30, height: 30, borderRadius: 15, backgroundColor: '#F1F5F9', alignItems: 'center', justifyContent: 'center' },
   tutorialContentContainer: { alignItems: 'center', marginVertical: 16 },
-  tutorialIconWrapper: { width: 64, height: 64, borderRadius: 32, backgroundColor: '#DCFCE7', alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  tutorialIconWrapper: { width: 64, height: 64, borderRadius: 32, backgroundColor: '#F4EFEA', alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
   tutorialTitle: { fontSize: 18, fontWeight: '900', color: '#0F172A', textAlign: 'center', marginBottom: 8 },
   tutorialDesc: { fontSize: 13, color: '#64748B', textAlign: 'center', lineHeight: 19 },
   tutorialDotsRow: { flexDirection: 'row', justifyContent: 'center', gap: 6, marginVertical: 14 },
@@ -2461,6 +2461,6 @@ const styles = StyleSheet.create({
   tutorialBackBtnText: { color: '#475569', fontSize: 13, fontWeight: '700' },
   tutorialNextBtn: { flexDirection: 'row', backgroundColor: '#0F5132', paddingVertical: 10, paddingHorizontal: 18, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   tutorialNextBtnText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700' },
-  tutorialFinishBtn: { backgroundColor: '#166534', paddingVertical: 10, paddingHorizontal: 22, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  tutorialFinishBtn: { backgroundColor: '#0F5132', paddingVertical: 10, paddingHorizontal: 22, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   tutorialFinishBtnText: { color: '#FFFFFF', fontSize: 13, fontWeight: '800' },
 });
