@@ -1439,11 +1439,11 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              {/* App Icon: Runde Portugal-Flagge mit dynamischem Umlauf-Pfeil */}
+              {/* App Icon: Voll ausgefüllte runde Portugal-Flagge mit dynamischem Umlauf-Pfeil */}
               <View style={styles.appIconWrapper}>
                 <View style={styles.appIconOrbitArrow} />
-                <View style={styles.appIconFlagCircle}>
-                  <Text style={{ fontSize: 16 }}>🇵🇹</Text>
+                <View style={styles.appIconFlagCircleFull}>
+                  <Text style={{ fontSize: 24, textAlign: 'center' }}>🇵🇹</Text>
                 </View>
               </View>
               <View>
@@ -2115,7 +2115,7 @@ const styles = StyleSheet.create({
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   
-  /* Neuer App-Icon-Container mit Umlauf-Pfeil */
+  /* App-Icon: Voll ausgefüllte runde Flagge mit dynamischem Umlauf-Pfeil */
   appIconWrapper: {
     width: 42,
     height: 42,
@@ -2125,19 +2125,20 @@ const styles = StyleSheet.create({
   },
   appIconOrbitArrow: {
     position: 'absolute',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 2,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 2.5,
     borderColor: '#D4C4B4',
     borderTopColor: 'transparent',
     borderLeftColor: 'transparent',
     transform: [{ rotate: '-45deg' }],
   },
-  appIconFlagCircle: {
+  appIconFlagCircleFull: {
     width: 32,
     height: 32,
     borderRadius: 16,
+    overflow: 'hidden',
     backgroundColor: '#F4EFEA',
     alignItems: 'center',
     justifyContent: 'center',
@@ -2493,7 +2494,7 @@ const styles = StyleSheet.create({
   tutorialDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: '#D4C4B4' },
   tutorialDotActive: { width: 20, backgroundColor: '#0F5132' },
   tutorialBottomNav: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 },
-  tutorialBackBtn: {paddingVertical: 10, paddingHorizontal: 14, borderRadius: 12, backgroundColor: '#FFFFFF', justifyContent: 'center', alignItems: 'center' },
+  tutorialBackBtn: { paddingVertical: 10, paddingHorizontal: 14, borderRadius: 12, backgroundColor: '#FFFFFF', justifyContent: 'center', alignItems: 'center' },
   tutorialBackBtnText: { color: '#0F5132', fontSize: 13, fontWeight: '700' },
   tutorialNextBtn: { flexDirection: 'row', backgroundColor: '#0F5132', paddingVertical: 10, paddingHorizontal: 18, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   tutorialNextBtnText: { color: '#F4EFEA', fontSize: 13, fontWeight: '700' },
