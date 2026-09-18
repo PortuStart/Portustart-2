@@ -14,6 +14,7 @@ import {
   Platform,
   Linking,
   Dimensions,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -969,7 +970,7 @@ const LOCALES = {
       { title: '6. Filtrar Subcategorías 🏷️', desc: 'Usa los filtros superiores (Cafés, Bares, Cultura, Naturaleza, Compras, Playas).' },
       { title: '7. Traductor 🗣️ (Cambio de pestaña)', desc: 'Cambia a "Traductor" 👈 abajo. Ideal para el día a día con voz (STT y TTS).' },
       { title: '8. Calculadora de Salario 💶 (Cambio de pestaña)', desc: 'Cambia a "Salario" 👈 abajo. Calcula con precisión tu neto en Portugal.' },
-      { title: '9. ¡Listo! 🚀', desc: 'Puedes reabrir este tutorial interactivo usando el icono de interrogación arriba ↗️. ¡Mucho éxito!' }
+      { title: '9. ¡Listo! 🚀', desc: 'Puedes reabrir هذا tutorial interactivo usando el icono de interrogación arriba ↗️. ¡Mucho éxito!' }
     ],
     tutorialNext: 'Siguiente ➡️',
     tutorialPrev: '⬅️ Anterior',
@@ -1439,14 +1440,16 @@ export default function App() {
         <View style={styles.header}>
           <View style={styles.headerTopRow}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              {/* App Icon: Sauberes Flaggen-Icon im runden Kreis mit Umlauf-Pfeil */}
+              {/* App Icon: Schöner runder portugiesischer Flaggen-Look per CSS (garantiert ohne weiße Ränder / Schachbrett) */}
               <View style={styles.appIconWrapper}>
                 <View style={styles.appIconOrbitArrow} />
-                <View style={styles.appIconFlagCircleFull}>
-                  <Image 
-                    source={{ uri: 'data:image/jpeg;base64,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'}} 
-                  style={{ width: 32, height: 32, resizeMode: 'cover' }} 
-                />
+                <View style={styles.appIconFlagCirclePure}>
+                  <View style={styles.flagGreenSide} />
+                  <View style={styles.flagRedSide} />
+                  <View style={styles.flagShieldCenter}>
+                    <View style={styles.flagShieldInner} />
+                  </View>
+                </View>
               </View>
               <View>
                 <Text style={styles.headerTitle}>{t.title}</Text>
@@ -2117,7 +2120,7 @@ const styles = StyleSheet.create({
   },
   headerTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   
-  /* App-Icon: Saubere runde Flagge mit Umlauf-Pfeil */
+  /* App-Icon: CSS-basierte runde Flagge (Grün/Rot + Wappen-Symbol) mit Umlauf-Pfeil */
   appIconWrapper: {
     width: 42,
     height: 42,
@@ -2136,18 +2139,44 @@ const styles = StyleSheet.create({
     borderLeftColor: 'transparent',
     transform: [{ rotate: '-45deg' }],
   },
-  appIconFlagCircleFull: {
+  appIconFlagCirclePure: {
     width: 32,
     height: 32,
     borderRadius: 16,
     overflow: 'hidden',
-    backgroundColor: '#0F5132',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    position: 'relative',
     elevation: 3,
     shadowColor: '#000',
     shadowOpacity: 0.2,
     shadowRadius: 3,
+  },
+  flagGreenSide: {
+    width: '38%',
+    height: '100%',
+    backgroundColor: '#006600',
+  },
+  flagRedSide: {
+    width: '62%',
+    height: '100%',
+    backgroundColor: '#DA291C',
+  },
+  flagShieldCenter: {
+    position: 'absolute',
+    left: '28%',
+    top: '25%',
+    width: 14,
+    height: 16,
+    backgroundColor: '#FFCC00',
+    borderRadius: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flagShieldInner: {
+    width: 9,
+    height: 11,
+    backgroundColor: '#DA291C',
+    borderRadius: 1,
   },
 
   headerTitle: { color: '#F4EFEA', fontSize: 20, fontWeight: '800', letterSpacing: 0.5 },
