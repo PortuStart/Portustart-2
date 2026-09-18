@@ -258,20 +258,20 @@ const LOCALES = {
     subCatShopping: 'Shopping',
     subCatBeach: 'Strände',
     tutorialSteps: [
-      { title: 'Willkommen bei PortuStart! 🇵🇹', desc: 'Dein ultimativer Begleiter für einen reibungslosen Umzug und Start in Portugal. Lass uns die wichtigsten Funktionen erkunden!' },
-      { title: '1. Services & Roadmap 📋', desc: 'Hier findest du deine 30-Tage-Checkliste für alle Behördengänge und wichtigen Erledigungen.' },
-      { title: '2. NIF (Steuernummer) 📄', desc: 'Der absolute Pflicht-Schritt 1! Du benötigst die NIF für absolut alles: Miete, Handytarif, Arbeit und Bankkonto.' },
-      { title: '3. Bankkonto 💳', desc: 'Schritt 2: Eröffne ein offizielles portugiesisches Bankkonto, um Gehalt zu empfangen und Mieten zu hinterlegen.' },
-      { title: '4. NISS (Sozialversicherung) 🛡️', desc: 'Schritt 3: Deine Sozialversicherungsnummer ist zwingend für deinen Arbeitsvertrag und spätere Rentenansprüche.' },
-      { title: '5. Krankenversicherung 🏥', desc: 'Schritt 4: Schließe eine visumskonforme Auslandskrankenversicherung ab, bevor du Zugriff auf das staatliche SNS erhältst.' },
-      { title: '6. Karten & Orte 🗺️', desc: 'Entdecke kuratierte Orte, Cafés, Kultur-Highlights und finde direkt das zuständige Centro de Saúde für deine Adresse.' },
-      { title: '7. Übersetzer 🗣️', desc: 'Ein eingebauter Echtzeit-Übersetzer inklusive Spracherkennung (STT) und Sprachausgabe (TTS) für den Alltag.' },
-      { title: '8. Gehaltsrechner 💶', desc: 'Berechne präzise dein Nettoeinkommen in Portugal unter Berücksichtigung von 12 oder 14 Monatsgehältern und Steuern.' },
-      { title: '9. Bereit für den Start! 🚀', desc: 'Du kannst diesen Guide jederzeit über das Fragezeichen-Symbol oben neben deinem Profil aufrufen. Viel Erfolg!' }
+      { title: 'Willkommen bei PortuStart! 🇵🇹', desc: 'Dein ultimativer Begleiter für einen reibungslosen Umzug. Schau auf die Menüleiste unten 👇 – wir führen dich jetzt durch alle Tabs!' },
+      { title: '1. Services & Roadmap 📋 (Tab aktiv)', desc: 'Schau nach oben ⬆️: Hier siehst du die 30-Tage-Checkliste und offizielle Services (NIF, Bank, NISS, Krankenversicherung).' },
+      { title: '2. NIF (Steuernummer) 📄', desc: 'Der absolute Pflicht-Schritt 1 in den Services! Ohne NIF läuft in Portugal nichts (Miete, SIM-Karte, Job).' },
+      { title: '3. Bankkonto 💳', desc: 'Schritt 2 in den Services: Eröffne ein offizielles Konto für Gehaltseingang und Wohnungskaution.' },
+      { title: '4. NISS & Krankenversicherung 🛡️🏥', desc: 'Schritte 3 & 4: Sozialversicherung für deinen Job und Auslandskrankenversicherung für dein Visum.' },
+      { title: '5. Karten & Orte 🗺️ (Tab wechselt)', desc: 'Klicke auf den Tab "Karten" 👈 in der unteren Leiste. Hier findest du kuratierte Orte und den Centro de Saúde Finder.' },
+      { title: '6. Unterkategorien filtern 🏷️', desc: 'Nutze die Filter oben in den Karten (Cafés, Bars, Kultur, Natur, Shopping, Strände), um gezielt Orte zu finden.' },
+      { title: '7. Übersetzer 🗣️ (Tab wechselt)', desc: 'Wechsle zum Tab "Übersetzer" 👈 unten. Perfekt für den Alltag mit Spracherkennung (STT) und Sprachausgabe (TTS).' },
+      { title: '8. Gehaltsrechner 💶 (Tab wechselt)', desc: 'Wechsle zum Tab "Gehalt" 👈 unten. Berechne präzise dein Netto in Portugal bei 12 oder 14 Monatsgehältern.' },
+      { title: '9. Bereit für den Start! 🚀', desc: 'Du kannst dieses interaktive Tutorial jederzeit über das Fragezeichen-Symbol oben rechts ↗️ wieder aufrufen. Viel Erfolg!' }
     ],
-    tutorialNext: 'Weiter',
-    tutorialPrev: 'Zurück',
-    tutorialFinish: 'Loslegen!',
+    tutorialNext: 'Weiter ➡️',
+    tutorialPrev: '⬅️ Zurück',
+    tutorialFinish: 'App erkunden! 🎉',
     checklist: [
       { id: 1, title: 'Steuernummer (NIF) beantragen', tip: 'Der Schlüssel für Miete, Handyvertrag, Arbeit und Bankkonto.' },
       { id: 2, title: 'Portugiesische SIM-Karte besorgen', tip: 'Notwendig für Chave Móvel Digital und Behörden-SMS.' },
@@ -370,20 +370,20 @@ const LOCALES = {
     subCatShopping: 'Shopping',
     subCatBeach: 'Beaches',
     tutorialSteps: [
-      { title: 'Welcome to PortuStart! 🇵🇹', desc: 'Your ultimate companion for a smooth move and start in Portugal. Let us explore the main features!' },
-      { title: '1. Services & Roadmap 📋', desc: 'Here you will find your 30-day checklist for all official procedures and essential tasks.' },
-      { title: '2. NIF (Tax Number) 📄', desc: 'The absolute mandatory Step 1! You need the NIF for everything: rent, mobile plan, job, and bank account.' },
-      { title: '3. Bank Account 💳', desc: 'Step 2: Open an official Portuguese bank account to receive salary and handle rental deposits.' },
-      { title: '4. NISS (Social Security) 🛡️', desc: 'Step 3: Your social security number is mandatory for your employment contract and future pension claims.' },
-      { title: '5. Health Insurance 🏥', desc: 'Step 4: Get a visa-compliant health insurance before gaining access to the public SNS system.' },
-      { title: '6. Maps & Places 🗺️', desc: 'Discover curated locations, cafes, cultural highlights, and instantly find the responsible Centro de Saúde for your address.' },
-      { title: '7. Translator 🗣️', desc: 'A built-in real-time translator including speech recognition (STT) and text-to-speech (TTS) for daily life.' },
-      { title: '8. Salary Calculator 💶', desc: 'Accurately calculate your net income in Portugal taking 12 or 14 salary payments and taxes into account.' },
-      { title: '9. Ready for Takeoff! 🚀', desc: 'You can reopen this guide anytime using the question mark icon in the header next to your profile. Good luck!' }
+      { title: 'Welcome to PortuStart! 🇵🇹', desc: 'Your ultimate companion for moving to Portugal. Look at the bottom menu bar 👇 – we will guide you through all tabs!' },
+      { title: '1. Services & Roadmap 📋 (Active Tab)', desc: 'Look above ⬆️: Here you find your 30-day checklist and official services (NIF, Bank, NISS, Health Insurance).' },
+      { title: '2. NIF (Tax Number) 📄', desc: 'The absolute mandatory Step 1 in services! You need the NIF for everything: rent, SIM card, job.' },
+      { title: '3. Bank Account 💳', desc: 'Step 2 in services: Open an official bank account to receive salary and rental deposits.' },
+      { title: '4. NISS & Health Insurance 🛡️🏥', desc: 'Steps 3 & 4: Social security for your job and expat health insurance for your visa.' },
+      { title: '5. Maps & Places 🗺️ (Tab switches)', desc: 'Click the "Maps" tab 👈 in the bottom bar. Here you will find curated places and the Centro de Saúde finder.' },
+      { title: '6. Filter Subcategories 🏷️', desc: 'Use the filters at the top of the maps (Cafes, Bars, Culture, Nature, Shopping, Beaches) to find specific locations.' },
+      { title: '7. Translator 🗣️ (Tab switches)', desc: 'Switch to the "Translator" tab 👈 below. Perfect for everyday life with speech recognition (STT) and text-to-speech (TTS).' },
+      { title: '8. Salary Calculator 💶 (Tab switches)', desc: 'Switch to the "Salary" tab 👈 below. Accurately calculate your net income in Portugal with 12 or 14 payments.' },
+      { title: '9. Ready for Takeoff! 🚀', desc: 'You can reopen this interactive tutorial anytime using the question mark icon in the header ↗️. Good luck!' }
     ],
-    tutorialNext: 'Next',
-    tutorialPrev: 'Back',
-    tutorialFinish: 'Get Started!',
+    tutorialNext: 'Next ➡️',
+    tutorialPrev: '⬅️ Back',
+    tutorialFinish: 'Explore App! 🎉',
     checklist: [
       { id: 1, title: 'Get your Tax Number (NIF)', tip: 'The master key for rent, SIM card, employment and utilities.' },
       { id: 2, title: 'Get a local Portuguese SIM card', tip: 'Essential for digital government authentication (Chave Móvel).' },
@@ -482,20 +482,20 @@ const LOCALES = {
     subCatShopping: 'Compras',
     subCatBeach: 'Playas',
     tutorialSteps: [
-      { title: '¡Bienvenido a PortuStart! 🇵🇹', desc: 'Tu compañero definitivo para una mudanza y un inicio sin problemas en Portugal. ¡Exploremos las funciones principales!' },
-      { title: '1. Servicios y Hoja de Ruta 📋', desc: 'Aquí encontrarás tu lista de verificación de 30 días para todos los trámites burocráticos y tareas esenciales.' },
-      { title: '2. NIF (Número Fiscal) 📄', desc: '¡El Paso 1 obligatorio! Necesitas el NIF para todo: alquiler, línea móvil, trabajo y cuenta bancaria.' },
-      { title: '3. Cuenta Bancaria 💳', desc: 'Paso 2: Abre una cuenta bancaria oficial en Portugal para recibir tu salario y depositar alquileres.' },
-      { title: '4. NISS (Seguridad Social) 🛡️', desc: 'Paso 3: Tu número de seguridad social es obligatorio para tu contrato laboral y futuros derechos de pensión.' },
-      { title: '5. Seguro Médico 🏥', desc: 'Paso 4: Contrata un seguro médico compatible con el visado antes de acceder al SNS público.' },
-      { title: '6. Mapas y Lugares 🗺️', desc: 'Descubre ubicaciones seleccionadas, cafés, cultura y encuentra al instante el Centro de Saúde responsable de tu dirección.' },
-      { title: '7. Traductor 🗣️', desc: 'Un traductor en tiempo real integrado con reconocimiento de voz (STT) y síntesis de voz (TTS) para el día a día.' },
-      { title: '8. Calculadora de Salario 💶', desc: 'Calcula con precisión tus ingresos netos en Portugal teniendo en cuenta 12 o 14 pagas y los impuestos.' },
-      { title: '9. ¡Listo para despegar! 🚀', desc: 'Puedes reabrir esta guía en cualquier momento usando el icono de interrogación en el encabezado junto a tu perfil. ¡Mucho éxito!' }
+      { title: '¡Bienvenido a PortuStart! 🇵🇹', desc: 'Tu compañero para mudarte. Mira la barra de menú inferior 👇: ¡te guiaremos por todas las pestañas!' },
+      { title: '1. Servicios y Hoja de Ruta 📋 (Pestaña activa)', desc: 'Mira arriba ⬆️: Aquí tienes tu lista de verificación y servicios oficiales (NIF, Banco, NISS, Seguro).' },
+      { title: '2. NIF (Número Fiscal) 📄', desc: '¡El Paso 1 obligatorio! Necesitas el NIF para todo: alquiler, móvil, trabajo.' },
+      { title: '3. Cuenta Bancaria 💳', desc: 'Paso 2: Abre una cuenta bancaria oficial para tu salario y depósitos.' },
+      { title: '4. NISS y Seguro Médico 🛡️🏥', desc: 'Pasos 3 y 4: Seguridad social para tu trabajo y seguro para tu visado.' },
+      { title: '5. Mapas y Lugares 🗺️ (Cambio de pestaña)', desc: 'Haz clic en la pestaña "Mapas" 👈 abajo. Aquí verás lugares seleccionados y el buscador de Centro de Saúde.' },
+      { title: '6. Filtrar Subcategorías 🏷️', desc: 'Usa los filtros superiores (Cafés, Bares, Cultura, Naturaleza, Compras, Playas).' },
+      { title: '7. Traductor 🗣️ (Cambio de pestaña)', desc: 'Cambia a "Traductor" 👈 abajo. Ideal para el día a día con voz (STT y TTS).' },
+      { title: '8. Calculadora de Salario 💶 (Cambio de pestaña)', desc: 'Cambia a "Salario" 👈 abajo. Calcula con precisión tu neto en Portugal.' },
+      { title: '9. ¡Listo! 🚀', desc: 'Puedes reabrir este tutorial interactivo usando el icono de interrogación arriba ↗️. ¡Mucho éxito!' }
     ],
-    tutorialNext: 'Siguiente',
-    tutorialPrev: 'Anterior',
-    tutorialFinish: '¡Comenzar!',
+    tutorialNext: 'Siguiente ➡️',
+    tutorialPrev: '⬅️ Anterior',
+    tutorialFinish: '¡Explorar App! 🎉',
     checklist: [
       { id: 1, title: 'Solicitar número fiscal (NIF)', tip: 'La clave para alquileres, SIM, trabajo y suministros.' },
       { id: 2, title: 'Conseguir tarjeta SIM portuguesa', tip: 'Esencial para autenticación digital (Chave Móvel).' },
@@ -503,7 +503,7 @@ const LOCALES = {
       { id: 4, title: 'Contratar seguro médico de expatriado', tip: 'Esencial para el visado y atención previa al SNS.' },
       { id: 5, title: 'Obtener número de Seguridad Social (NISS)', tip: 'Obligatorio para contratos y pensiones.' },
       { id: 6, title: 'Certificado de Registro UE (CRUE)', tip: 'Certificado de residencia oficial para ciudadanos de la UE.' },
-      { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso a centros de salud públicos y médico de cabecera.' },
+      { id: 7, title: 'Obtener número de sanidad SNS', tip: 'Acceso al centros de salud públicos y médico de cabecera.' },
     ],
     citiesData: CITIES_DATA,
   },
@@ -594,20 +594,20 @@ const LOCALES = {
     subCatShopping: 'Shopping',
     subCatBeach: 'Plages',
     tutorialSteps: [
-      { title: 'Bienvenue sur PortuStart ! 🇵🇹', desc: 'Votre compagnon ultime pour une installation et un début réussis au Portugal. Explorons les fonctionnalités principales !' },
-      { title: '1. Services & Feuille de route 📋', desc: 'Retrouvez ici votre liste de tâches sur 30 jours pour toutes les démarches administratives et essentielles.' },
-      { title: '2. NIF (Numéro fiscal) 📄', desc: 'L’étape 1 indispensable ! Vous avez besoin du NIF pour tout : loyer, abonnement mobile, travail et compte bancaire.' },
-      { title: '3. Compte bancaire 💳', desc: 'Étape 2 : Ouvrez un compte bancaire officiel au Portugal pour percevoir votre salaire et verser les cautions.' },
-      { title: '4. NISS (Sécurité sociale) 🛡️', desc: 'Étape 3 : Votre numéro de sécurité sociale est obligatoire pour votre contrat de travail et vos futurs droits à la retraite.' },
-      { title: '5. Assurance santé 🏥', desc: 'Étape 4 : Souscrivez une assurance maladie conforme aux exigences de visa avant d’accéder au système public SNS.' },
-      { title: '6. Cartes & Lieux 🗺️', desc: 'Découvrez des lieux sélectionnés, des cafés, de la culture et trouvez instantanément le Centro de Saúde de votre adresse.' },
-      { title: '7. Traducteur 🗣️', desc: 'Un traducteur en temps réel intégré avec reconnaissance vocale (STT) et synthèse vocale (TTS) pour le quotidien.' },
-      { title: '8. Calculateur de salaire 💶', desc: 'Calculez précisément votre revenu net au Portugal en tenant compte de 12 ou 14 versements et des impôts.' },
-      { title: '9. Prêt pour le départ ! 🚀', desc: 'Vous pouvez rouvrir ce guide à tout moment en cliquant sur l’icône d’interrogation dans l’en-tête, à côté de votre profil. Bon succès !' }
+      { title: 'Bienvenue sur PortuStart ! 🇵🇹', desc: 'Votre compagnon pour déménager. Regardez la barre de menu en bas 👇 : nous vous guidons à travers tous les onglets !' },
+      { title: '1. Services & Roadmap 📋 (Onglet actif)', desc: 'Regardez en haut ⬆️ : Retrouvez votre checklist et les services officiels (NIF, Banque, NISS, Assurance).' },
+      { title: '2. NIF (Numéro fiscal) 📄', desc: 'L’étape 1 obligatoire ! Le NIF est indispensable pour tout : loyer, mobile, travail.' },
+      { title: '3. Compte bancaire 💳', desc: 'Étape 2 : Ouvrez un compte bancaire officiel pour votre salaire et vos cautions.' },
+      { title: '4. NISS & Assurance santé 🛡️🏥', desc: 'Étapes 3 & 4 : Sécurité sociale pour votre travail et assurance pour votre visa.' },
+      { title: '5. Cartes & Lieux 🗺️ (Changement d’onglet)', desc: 'Cliquez sur l’onglet "Cartes" 👈 en bas. Découvrez les lieux et le chercheur de Centro de Saúde.' },
+      { title: '6. Filtrer les sous-catégories 🏷️', desc: 'Utilisez les filtres en haut des cartes (Cafés, Bars, Culture, Nature, Shopping, Plages).' },
+      { title: '7. Traducteur 🗣️ (Changement d’onglet)', desc: 'Passez à "Traducteur" 👈 en bas. Idéal pour le quotidien avec la voix (STT et TTS).' },
+      { title: '8. Calculateur de salaire 💶 (Changement d’onglet)', desc: 'Passez à "Salaire" 👈 en bas. Calculez précisément votre net au Portugal.' },
+      { title: '9. Prêt ! 🚀', desc: 'Vous pouvez rouvrir ce tutoriel interactif à tout moment via l’icône de point d’interrogation en haut ↗️.' }
     ],
-    tutorialNext: 'Suivant',
-    tutorialPrev: 'Retour',
-    tutorialFinish: 'Commencer !',
+    tutorialNext: 'Suivant ➡️',
+    tutorialPrev: '⬅️ Retour',
+    tutorialFinish: 'Explorer l’app ! 🎉',
     checklist: [
       { id: 1, title: 'Obtenir votre numéro fiscal (NIF)', tip: 'La clé pour le loyer, la carte SIM, l’emploi et les services.' },
       { id: 2, title: 'Obtenir une carte SIM portugaise', tip: 'Essentiel pour l’authentification numérique (Chave Móvel).' },
@@ -706,20 +706,20 @@ const LOCALES = {
     subCatShopping: 'Shopping',
     subCatBeach: 'Spiagge',
     tutorialSteps: [
-      { title: 'Benvenuto su PortuStart! 🇵🇹', desc: 'Il tuo compagno ideale per un trasferimento e un inizio sereno in Portogallo. Esploriamo insieme le funzioni principali!' },
-      { title: '1. Servizi & Roadmap 📋', desc: 'Qui troverai la checklist di 30 giorni per tutte le pratiche burocratiche e gli adempimenti essenziali.' },
-      { title: '2. NIF (Codice Fiscale) 📄', desc: 'Il fondamentale Passo 1! Il NIF serve per qualsiasi cosa: affitto, SIM telefonica, lavoro e conto bancario.' },
-      { title: '3. Conto Bancario 💳', desc: 'Passo 2: Apri un conto corrente ufficiale in Portogallo per ricevere lo stipendio e gestire la cauzione d’affitto.' },
-      { title: '4. NISS (Previdenza Sociale) 🛡️', desc: 'Passo 3: Il numero di previdenza sociale è obbligatorio per il contratto di lavoro e i futuri contributi pensionistici.' },
-      { title: '5. Assicurazione Sanitaria 🏥', desc: 'Passo 4: Stipula un’assicurazione conforme al visto prima di accedere al sistema sanitario pubblico SNS.' },
-      { title: '6. Mappe & Luoghi 🗺️', desc: 'Scopri luoghi selezionati, caffè, cultura e trova subito il Centro de Saúde competente per il tuo indirizzo.' },
-      { title: '7. Traduttore 🗣️', desc: 'Un traduttore in tempo reale con riconoscimento vocale (STT) e sintesi vocale (TTS) per la vita di tutti i giorni.' },
-      { title: '8. Calcolatore Stipendio 💶', desc: 'Calcola con precisione il tuo stipendio netto in Portogallo considerando 12 o 14 mensilità e le tasse.' },
-      { title: '9. Pronto per partire! 🚀', desc: 'Puoi riaprire questa guida in qualsiasi momento cliccando sull’icona del punto interrogativo nell’intestazione accanto al tuo profilo. Buon lavoro!' }
+      { title: 'Benvenuto su PortuStart! 🇵🇹', desc: 'Il tuo compagno per il trasferimento. Guarda la barra dei menu in basso 👇: ti guideremo attraverso tutte le schede!' },
+      { title: '1. Servizi & Roadmap 📋 (Scheda attiva)', desc: 'Guarda in alto ⬆️: Qui trovi la checklist di 30 giorni e i servizi ufficiali (NIF, Banca, NISS, Assicurazione).' },
+      { title: '2. NIF (Codice Fiscale) 📄', desc: 'Il fondamentale Passo 1! Il NIF serve per tutto: affitto, SIM, lavoro.' },
+      { title: '3. Conto Bancario 💳', desc: 'Passo 2: Apri un conto bancario ufficiale per stipendio e cauzione.' },
+      { title: '4. NISS & Assicurazione 🛡️🏥', desc: 'Passi 3 & 4: Previdenza sociale per il lavoro e assicurazione per il visto.' },
+      { title: '5. Mappe & Luoghi 🗺️ (Cambio scheda)', desc: 'Clicca sulla scheda "Mappe" 👈 in basso. Qui trovi luoghi selezionati e il Centro de Saúde.' },
+      { title: '6. Filtra Sottocategorie 🏷️', desc: 'Usa i filtri in alto nelle mappe (Caffè, Bar, Cultura, Natura, Shopping, Spiagge).' },
+      { title: '7. Traduttore 🗣️ (Cambio scheda)', desc: 'Passa a "Traduttore" 👈 in basso. Ideale per la vita di tutti i giorni con riconoscimento vocale.' },
+      { title: '8. Calcolatore Stipendio 💶 (Cambio scheda)', desc: 'Passa a "Stipendio" 👈 in basso. Calcola con precisione il tuo netto in Portogallo.' },
+      { title: '9. Pronto! 🚀', desc: 'Puoi riaprire questo tutorial interattivo in qualsiasi momento dall’icona del punto interrogativo in alto ↗️.' }
     ],
-    tutorialNext: 'Avanti',
-    tutorialPrev: 'Indietro',
-    tutorialFinish: 'Inizia!',
+    tutorialNext: 'Avanti ➡️',
+    tutorialPrev: '⬅️ Indietro',
+    tutorialFinish: 'Esplora App! 🎉',
     checklist: [
       { id: 1, title: 'Ottieni il codice fiscale (NIF)', tip: 'La chiave per affitto, SIM, lavoro e utenze.' },
       { id: 2, title: 'Procura una scheda SIM portoghese', tip: 'Essenziale per l’autenticazione digitale (Chave Móvel).' },
@@ -776,6 +776,20 @@ export default function App() {
   const [paymentsCount, setPaymentsCount] = useState('14');
   const [taxStatus, setTaxStatus] = useState('single');
   const [calcResult, setCalcResult] = useState(null);
+
+  // Interaktiver Tab-Wechsel je nach Tutorial-Schritt
+  useEffect(() => {
+    if (!tutorialModalVisible) return;
+    if (tutorialStep >= 1 && tutorialStep <= 4) {
+      setActiveTab('services');
+    } else if (tutorialStep === 5 || tutorialStep === 6) {
+      setActiveTab('places');
+    } else if (tutorialStep === 7) {
+      setActiveTab('trans');
+    } else if (tutorialStep === 8) {
+      setActiveTab('calc');
+    }
+  }, [tutorialStep, tutorialModalVisible]);
 
   useEffect(() => {
     if (profileData.estimatedSalary) {
