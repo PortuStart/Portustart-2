@@ -38,17 +38,17 @@ const AFFILIATE_LINKS = {
 };
 
 const UI_LANGUAGES = [
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
   { code: 'es', label: 'Español', flag: '🇪🇸' },
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹' },
 ];
 
 const TRANSLATOR_LANGUAGES = [
+  { code: 'en', label: 'English', flag: '🇬🇧', voice: 'en-US' },
   { code: 'pt', label: 'Português', flag: '🇵🇹', voice: 'pt-PT' },
   { code: 'de', label: 'Deutsch', flag: '🇩🇪', voice: 'de-DE' },
-  { code: 'en', label: 'English', flag: '🇬🇧', voice: 'en-US' },
   { code: 'es', label: 'Español', flag: '🇪🇸', voice: 'es-ES' },
   { code: 'fr', label: 'Français', flag: '🇫🇷', voice: 'fr-FR' },
   { code: 'it', label: 'Italiano', flag: '🇮🇹', voice: 'it-IT' },
@@ -555,7 +555,7 @@ const EMERGENCIES = [
 ];
 
 export default function App() {
-  const [appLang, setAppLang] = useState('de');
+  const [appLang, setAppLang] = useState('en');
   const [langModalVisible, setLangModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(true);
   const [activeTab, setActiveTab] = useState('services');
@@ -574,11 +574,11 @@ export default function App() {
     maritalStatus: 'single',
   });
 
-  const t = LOCALES[appLang] || LOCALES['de'];
+  const t = LOCALES[appLang] || LOCALES['en'];
 
   const [checkedMap, setCheckedMap] = useState({});
   const [inputText, setInputText] = useState('');
-  const [sourceLang, setSourceLang] = useState('de');
+  const [sourceLang, setSourceLang] = useState('en');
   const [targetLang, setTargetLang] = useState('pt');
   const [translatedText, setTranslatedText] = useState('');
   const [loading, setLoading] = useState(false);
